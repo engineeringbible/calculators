@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heat exchanger LMTD — Engineering calculators</title>
+  <meta name="description" content="LMTD for counter, parallel and 1-2 shell-and-tube flow, duty from either stream, F correction, fouling and required area from U.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Heat exchanger LMTD</h1>
+    <p class="ec-summary">Log-mean temperature difference for counterflow, parallel flow and one-shell-pass shell-and-tube exchangers, duty from either stream, Bowman F correction, fouling and the required area from the overall U value. Defaults reproduce Incropera's Example 11.1.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The log-mean temperature difference method answers the sizing question for any two-fluid heat exchanger: given the four terminal temperatures, how much heat is exchanged and how much surface is needed for a given overall heat transfer coefficient. This calculator computes the LMTD for counterflow and parallel flow, the Bowman correction factor F for a one-shell-pass shell-and-tube unit with an even number of tube passes, the duty from either stream&#39;s mass flow and specific heat (or taken directly), the service U after fouling, and the required area. It also reports effectiveness, NTU and capacity ratio, which follow from the temperatures alone and link to the ε-NTU method.</p>
+<p>Marine engineers use it for lube-oil and jacket-water coolers, fuel heaters and central coolers; process and HVAC engineers for any shell-and-tube or plate exchanger pre-sizing; students for the standard heat transfer course problems.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Heat duty (energy balance on either stream):</p>
+<pre class="ec-formula" tabindex="0"><code>Q = ṁ_h c_p,h (T_h,in − T_h,out) = ṁ_c c_p,c (T_c,out − T_c,in)</code></pre>
+<ul>
+<li>ṁ — mass flow, kg/s; c_p — specific heat, J/(kg·K); T — terminal temperatures, °C</li>
+</ul>
+<p>Log-mean temperature difference:</p>
+<pre class="ec-formula" tabindex="0"><code>LMTD = (ΔT₁ − ΔT₂) / ln(ΔT₁/ΔT₂)       (LMTD = ΔT₁ when ΔT₁ = ΔT₂)
+Counterflow: ΔT₁ = T_h,in − T_c,out,  ΔT₂ = T_h,out − T_c,in
+Parallel:    ΔT₁ = T_h,in − T_c,in,   ΔT₂ = T_h,out − T_c,out</code></pre>
+<p>Correction factor for one shell pass, 2/4/6… tube passes (Bowman, Mueller and Nagle 1940), applied to the counterflow LMTD:</p>
+<pre class="ec-formula" tabindex="0"><code>R = (T_h,in − T_h,out) / (T_c,out − T_c,in),   P = (T_c,out − T_c,in) / (T_h,in − T_c,in)
+F = √(R²+1) ln[(1−P)/(1−RP)] / { (R−1) ln[ (2 − P(R+1−√(R²+1))) / (2 − P(R+1+√(R²+1))) ] }
+R = 1:  F = P√2 / { (1−P) ln[ (2 − P(2−√2)) / (2 − P(2+√2)) ] }</code></pre>
+<p>Area and fouling:</p>
+<pre class="ec-formula" tabindex="0"><code>1/U_service = 1/U_clean + R_f
+A = Q / (U_service × F × LMTD)</code></pre>
+<ul>
+<li>U — overall heat transfer coefficient, W/(m²·K); R_f — total fouling resistance, m²·K/W</li>
+</ul>
+<p>Effectiveness, NTU and capacity ratio (from the temperatures alone):</p>
+<pre class="ec-formula" tabindex="0"><code>ε = max(ΔT_h, ΔT_c) / (T_h,in − T_c,in)
+NTU = U A / C_min = max(ΔT_h, ΔT_c) / (F × LMTD)
+C_r = min(ΔT_h, ΔT_c) / max(ΔT_h, ΔT_c)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Steady state, no heat loss to the surroundings, constant specific heats and constant U along the exchanger. For large temperature ranges or condensing/boiling, split the exchanger into zones.</li>
+<li>The LMTD method needs all four temperatures. When only inlets are known (rating an existing exchanger), use the ε-NTU method; the ε, NTU and C_r outputs here are the bridge.</li>
+<li>The F factor is the Bowman analytical result for one shell pass with any even number of tube passes. Two or more shell passes in series, cross-flow and plate exchangers have different F curves; for plate exchangers F is close to 1 in pure counterflow arrangement.</li>
+<li>F below about 0.75 means the design sits on the steep part of the curve and small temperature changes cause large area changes; add shell passes or use counterflow.</li>
+<li>Fouling resistances are the TEMA design values; actual fouling depends on velocity, temperature and cleaning schedule. Fouling on each side should be referred to the same area basis as U.</li>
+<li>U values in the help text are order-of-magnitude ranges for pre-sizing; a real design computes U from the film coefficients, wall resistance and fin efficiency.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Incropera, Example 11.1. A counterflow concentric-tube cooler takes lubricating oil from 100 °C to 60 °C at 0.1 kg/s (c_p = 2 131 J/(kg·K)); cooling water at 0.2 kg/s enters at 30 °C. U = 38.1 W/(m²·K) based on the 25 mm inner tube.</p>
+<ol>
+<li>Duty: 0.1 × 2 131 × (100 − 60) = 8 524 W.</li>
+<li>Water outlet: 30 + 8 524 / (0.2 × 4 178) = 40.2 °C.</li>
+<li>Terminal differences, counterflow: ΔT₁ = 100 − 40.2 = 59.8 K, ΔT₂ = 60 − 30 = 30 K.</li>
+<li>LMTD: (59.8 − 30) / ln(59.8/30) = 43.2 K.</li>
+<li>Area: 8 524 / (38.1 × 43.2) = 5.18 m²; as a 25 mm tube that is 5.18 / (π × 0.025) = 65.9 m, Incropera&#39;s answer.</li>
+<li>Effectiveness: oil has the smaller capacity rate; ε = 40 / 70 = 0.571; NTU = 40 / 43.2 = 0.93; C_r = 10.2 / 40 = 0.255.</li>
+</ol>
+<p>In parallel flow the same temperatures give LMTD = 39.75 K and about 9 % more area. In a 1-2 shell-and-tube with the water heated to 60 °C instead (R = 1, P = 0.5), F = 0.80 and the effective difference drops from 40 K to 32 K.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Counterflow or parallel flow — which needs less area?</summary>
+<p>Counterflow, always, for the same four temperatures. It is also the only simple arrangement that can heat the cold fluid above the hot outlet temperature (a temperature cross).</p>
+</details>
+<details class="ec-faq"><summary>When do I need the F correction?</summary>
+<p>Whenever the flow is not purely counter or parallel: multi-pass shell-and-tube, cross-flow, and most compact exchangers. F multiplies the counterflow LMTD and is always ≤ 1.</p>
+</details>
+<details class="ec-faq"><summary>My F comes out undefined or the calculator says the cross is not achievable.</summary>
+<p>A single shell pass cannot deliver that combination of temperatures no matter how large the area. Use two shell passes in series (or a counterflow plate exchanger), or relax the cold outlet temperature.</p>
+</details>
+<details class="ec-faq"><summary>What U value should I use?</summary>
+<p>Pre-sizing ranges: water-to-water 800–1 500, oil-to-water 100–350, gas-to-liquid 20–60, condensing steam to water 1 500–4 000 W/(m²·K). Plate exchangers reach 3 000–7 000 for water-to-water. Confirm with the vendor&#39;s thermal design.</p>
+</details>
+<details class="ec-faq"><summary>How do fouling factors change the result?</summary>
+<p>They add a resistance in series with 1/U. With U = 1 000 and R_f = 0.0005 m²·K/W, the service U is 667 and the area 50 % larger. TEMA per-side values: treated cooling water 0.00018, sea water 0.00009, fuel oil 0.0009, lube oil 0.00018 m²·K/W.</p>
+</details>
+<details class="ec-faq"><summary>Why does the calculator compute effectiveness when I gave four temperatures?</summary>
+<p>Because the same four temperatures define ε, NTU and C_r, and seeing them tells you how hard the exchanger is working: ε above 0.8 or NTU above 3 means diminishing returns on extra area.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this for a plate heat exchanger?</summary>
+<p>Yes, in counterflow with F = 1 for single-pass arrangements. Use the manufacturer&#39;s U, which is much higher than for shell-and-tube.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — tube-side and shell-side nozzle losses.</li>
+<li><a href="../pump-affinity/index.html">Pump and fan affinity laws</a> — cooling-water flow changes that move the duty.</li>
+<li><a href="../thermal-expansion/index.html">Thermal expansion and restraint stress</a> — tube bundle expansion between the two fluid temperatures.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — Btu/(h·ft²·°F), °F, kJ/(kg·K).</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

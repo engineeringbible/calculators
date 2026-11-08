@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rotor sail (Flettner rotor) thrust and saving — Engineering calculators</title>
+  <meta name="description" content="Thrust, side force, spin power and net power saving of Flettner rotors from the true wind and ship speed, at the best spin, and averaged over a wind table.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Rotor sail (Flettner rotor) thrust and saving</h1>
+    <p class="ec-summary">Estimate the thrust, side force, spin power and net saving of Flettner rotor sails from the true wind and the ship speed, with the full-scale coefficients of Tillig and Ringsberg evaluated through the wind profile at the best spin, and averaged over a wind table for a route.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A rotor sail is a tall spinning cylinder. In a cross wind the spin creates a large lift force by the Magnus effect, and part of that force pushes the ship forward. How much depends on the apparent wind, which the ship&#39;s own speed turns forward, and on how fast the rotor spins relative to the wind: the spin ratio. This calculator uses the lift, drag and power coefficients that Tillig and Ringsberg fitted to full-scale measurements. It evaluates the rotor in height strips through the wind profile, finds the spin that gives the most net power, and averages the result over a table of wind conditions for a route.</p>
+<p>It is for naval architects and owners screening wind-assisted propulsion, performance analysts estimating savings from rotor sails in service, and anyone checking a supplier&#39;s claim.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Wind profile:        TWS(z) = TWS₁₀ (z / 10)^α
+Apparent wind:       AWS, AWA from TWS(z), TWA and the ship speed V_s
+Spin ratio:          SR = ω R / AWS
+Lift and drag:       L = c_L(SR) ½ ρ A AWS²,   D = c_D(SR) ½ ρ A AWS²
+Thrust:              T = L sin AWA − D cos AWA
+Side force:          S = L cos AWA + D sin AWA
+Spin power:          P_rotor = c_P(SR) ½ ρ A AWS³
+Net power (eq. 10):  P_net = T V_s − P_rotor
+Engine saving:       ≈ T V_s / η_D</code></pre>
+<ul>
+<li>c_L, c_D, c_P — fifth-order polynomials in SR (Tillig &amp; Ringsberg 2020, eqs 7–9); A = D H, the projected area of each height strip; AWA from the bow.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Coefficients for a rotor of aspect ratio 6 with an end disc of twice its diameter, held at their SR = 4 values beyond 4.</li>
+<li>Wind profile with the 1/9 power law of ISO 15016:2025 by default; ten height strips share one rpm.</li>
+<li>The best spin maximises the net power up to the rpm limit, without exceeding SR 4 anywhere on the rotor.</li>
+<li>Leeway and rudder drag from the side force, heel, interaction between rotors and with the superstructure, and generator losses are not included, so the saving is an upper estimate.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 5 m × 30 m rotor stands 20 m above the waterline. The ship makes 12 kn with a 20 kn true wind on the beam.</p>
+<ol>
+<li>At mid-height (35 m) the true wind is 20 × 3.5^0.111 = 23.0 kn, and the apparent wind is 25.9 kn from 62.4° off the bow.</li>
+<li>The best spin is 189 rpm (SR 3.70 at mid-height), limited by SR 4 at the foot of the rotor where the wind is weakest.</li>
+<li>Thrust 134.3 kN and side force 130.7 kN; thrust power 134.3 kN × 6.17 m/s = 829 kW.</li>
+<li>Spin power 126 kW, so the net power is 703 kW; with η_D = 0.7 the main engine saves about 1184 kW.</li>
+<li>Over the example wind table the mean net power is 431 kW.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why is the best spin ratio so high?</summary>
+<p>In this model the thrust keeps growing with the spin ratio faster than the spin power up to about SR 3–4. In service the side force, leeway and rudder drag push the best value lower; Tillig and Ringsberg note that SR 1.5–2.5 is often optimal in typical operation.</p>
+</details>
+<details class="ec-faq"><summary>Why does the wind direction matter so much?</summary>
+<p>The lift acts across the apparent wind, so it pushes the ship forward most when the apparent wind is near the beam. In a head wind the rotor only adds drag. With a following wind the ship&#39;s speed reduces the apparent wind.</p>
+</details>
+<details class="ec-faq"><summary>Why evaluate in height strips?</summary>
+<p>The wind is stronger higher up, so the apparent wind speed and angle change along the rotor. At one rpm the spin ratio is higher at the foot than at the top.</p>
+</details>
+<details class="ec-faq"><summary>What does the side force do?</summary>
+<p>It pushes the ship sideways. The hull must sail at a small drift angle with some rudder to balance it, which adds resistance not counted here. On a slender ship with a large sail area it can also cause heel.</p>
+</details>
+<details class="ec-faq"><summary>How should I use the wind table?</summary>
+<p>Enter the wind statistics of the route: true wind speed at 10 m, angle off the bow and share of time. The calculator finds the best spin for each line and gives the time-weighted mean saving.</p>
+</details>
+<details class="ec-faq"><summary>Can I compare suppliers&#39; rotors?</summary>
+<p>Only roughly. The coefficients are for one rotor geometry; a different aspect ratio or end plate changes the lift, so use the supplier&#39;s coefficients when you have them.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../true-wind/index.html">True wind from apparent wind</a> — the true wind from the ship&#39;s anemometer.</li>
+<li><a href="../wind-resistance/index.html">Wind resistance (ISO 15016)</a> — the wind load on the hull and superstructure.</li>
+<li><a href="../beaufort-sea-state/index.html">Beaufort, wind speed and sea state converter</a> — wind statistics by Beaufort number.</li>
+<li><a href="../speed-power-fit/index.html">Speed–power curve fit</a> — converting the saving to speed or power at sea.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

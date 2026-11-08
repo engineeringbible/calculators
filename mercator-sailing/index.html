@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mercator (rhumb-line) sailing — Engineering calculators</title>
+  <meta name="description" content="Rhumb-line course and distance from meridional parts (sphere or WGS84), departure, great-circle comparison and passage time.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Mercator (rhumb-line) sailing</h1>
+    <p class="ec-summary">The constant-course route between two positions: differences of latitude and longitude, meridional parts on the sphere or the WGS84 ellipsoid, the rhumb-line course in true and quadrantal notation, departure and distance on the one-minute-one-mile convention, the great-circle distance for comparison and the passage time at a given speed.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A rhumb line crosses every meridian at the same angle, which is why it is the course a ship actually steers and a straight line on a Mercator chart. Finding it between two positions is the oldest problem of navigation: stretch the latitude scale into meridional parts, take the longitude difference over the difference of meridional parts for the course, and the latitude difference over the cosine of the course for the distance. This calculator does that on the sphere or the WGS84 ellipsoid, reports the course in true and quadrantal form, the departure and distance, and sets the great-circle distance beside it so the saving of a great-circle or composite route is visible.</p>
+<p>It is for navigators and voyage planners, performance analysts computing noon-to-noon distances and courses made good, and students of navigation.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>MP(φ) = (10800/π) [ln tan(45° + φ/2) − e² sin φ − e⁴ sin³φ/3 − e⁶ sin⁵φ/5]    minutes; e = 0 on the sphere
+DMP = MP₂ − MP₁,   DLo = λ₂ − λ₁ (shorter way, in minutes),   DLat = φ₂ − φ₁ (minutes)
+tan C = DLo / DMP
+departure = DLo × DLat/DMP  (parallel: DLo cos φ),   D = √(DLat² + departure²) = DLat / cos C
+great circle (haversine, same 1′ = 1 nmi basis) for comparison</code></pre>
+<p>Sphere: MP = 7915.7045 log₁₀ tan(45° + φ/2). WGS84: leading correction 23.0134 sin φ.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>One minute of latitude = one nautical mile for the distance (±0.5 % against the ellipsoidal meridian); the ellipsoidal course is exact.</li>
+<li>No pole crossing (positions within 0.1° of a pole rejected); parallel-sailing form near east–west courses.</li>
+<li>Positions only: current, leeway and compass error are handled by the course-to-steer calculator.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Piraeus (37° 56.25′ N, 23° 38.25′ E) to Port Said (31° 15′ N, 32° 18′ E), spherical meridional parts, 12 kn.</p>
+<ol>
+<li>DLat = −401.25′ (south), DLo = +519.75′ (east).</li>
+<li>MP₁ = 2 463.5′, MP₂ = 1 975.5′ → DMP = −488.0′.</li>
+<li>tan C = 519.75/−488.0 → C = 133.2° true (S 46.8° E).</li>
+<li>Departure 427.4 nmi; distance √(401.25² + 427.4²) = 586.2 nmi; great circle 586.0 nmi (saving 0.03 %, negligible on a Mediterranean leg); 48.9 h at 12 kn.</li>
+</ol>
+<p>With WGS84 meridional parts the course moves by 0.13°. New York to the Lizard (40 N 74 W → 50 N 5 W) is 2 977 nmi by rhumb line at 078.4° against 2 881 by great circle: there the 3.2 % saving is worth the course changes.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why meridional parts?</summary>
+<p>On a Mercator chart the meridians are parallel, so latitude must be stretched by the same factor as longitude at each latitude (sec φ); the meridional part is that stretched latitude integrated from the equator.</p>
+</details>
+<details class="ec-faq"><summary>Sphere or WGS84?</summary>
+<p>WGS84 matches chart-plotting tables and GPS; the sphere is what most hand formulas use. The difference is about a tenth of a degree in course on a diagonal leg, nil on meridians and parallels.</p>
+</details>
+<details class="ec-faq"><summary>Why does the distance use 1′ = 1 nmi?</summary>
+<p>By definition of the nautical mile in navigation practice; the true meridian minute varies 1 843–1 862 m on the ellipsoid, within half a per cent.</p>
+</details>
+<details class="ec-faq"><summary>When should I use a great circle instead?</summary>
+<p>On long east–west legs in high latitudes; the comparison output shows the saving. Below about 1 % the rhumb line&#39;s single course is usually preferred.</p>
+</details>
+<details class="ec-faq"><summary>How does this relate to noon reports?</summary>
+<p>The course and distance made good between consecutive noon positions are exactly this calculation; the production navigation module uses the spherical form with a 3 440.065 nmi radius, 0.07 % longer than the 1′ = 1 nmi convention.</p>
+</details>
+<details class="ec-faq"><summary>What about crossing the dateline?</summary>
+<p>The longitude difference is taken the shorter way round, so 170° E to 170° W is 20°, not 340°.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../great-circle-distance/index.html">Great-circle distance and initial course</a> — the shortest route.</li>
+<li><a href="../course-to-steer/index.html">Course to steer with set and drift</a> — allowing for current and leeway on the leg.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel and voyage cost</a> — fuel for the distance.</li>
+<li><a href="../optimal-speed-charter/index.html">Optimal speed under charter</a> — the speed to run the leg.</li>
+<li><a href="../tidal-height/index.html">Tidal height (rule of twelfths)</a> — port arrival windows.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

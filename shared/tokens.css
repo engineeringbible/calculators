@@ -1,0 +1,142 @@
+/*
+ * shared/tokens.css — every colour, font, size and spacing value used by the calculators.
+ * Theme by overriding these custom properties; component rules in ui.css never hardcode a value.
+ * Prefix: ec- (engineering calculators).
+ */
+:root {
+  /* Colour — light theme */
+  --ec-color-bg: #f9f1ed;
+  --ec-color-surface: #ffffff;
+  --ec-color-surface-alt: #fdf8f6;
+  --ec-color-text: #0e1a2b;
+  --ec-color-text-muted: #51606f;
+  --ec-color-border: #e8dbd5;
+  --ec-color-border-strong: #c9b8b0;
+  --ec-color-accent: #ff4f03;
+  --ec-color-accent-text: #ffffff;
+  --ec-color-focus: #ff4f03;
+  --ec-color-error: #b3261e;
+  --ec-color-error-bg: #fdecea;
+  --ec-color-warning: #8a5a00;
+  --ec-color-warning-bg: #fff4d6;
+  --ec-color-success: #1b6e3a;
+  --ec-color-success-bg: #e6f4ea;
+  --ec-color-code-bg: #f1e9e5;
+  --ec-color-info-bg: #fdf8f6;
+  --ec-color-diff-bg: rgba(255, 79, 3, 0.12);
+  /* Chart line: Signal Orange, validated with the dataviz palette checks (light: L 0.43–0.77, ≥ 3:1 on #ffffff) */
+  --ec-color-chart-line: #ff4f03;
+  /* Second series (tornado: lower input value): dataviz palette slot 1 blue, validated as a pair with the chart line
+     (light: CVD ΔE 26.5, normal-vision ΔE 37.6, both ≥ 3:1 on #ffffff) */
+  --ec-color-chart-second: #2a78d6;
+  /* Heat map: the documented blue sequential ramp, steps 100, 200 … 700, from low to high values; the light end
+     recedes into the surface (monotone lightness, ΔL ≥ 0.06 per step) */
+  --ec-color-seq-1: #cde2fb;
+  --ec-color-seq-2: #9ec5f4;
+  --ec-color-seq-3: #6da7ec;
+  --ec-color-seq-4: #3987e5;
+  --ec-color-seq-5: #256abf;
+  --ec-color-seq-6: #184f95;
+  --ec-color-seq-7: #0d366b;
+
+  /* Typography */
+  --ec-font-sans: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --ec-font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ec-font-size-xs: 0.75rem;
+  --ec-font-size-sm: 0.875rem;
+  --ec-font-size-md: 1rem;
+  --ec-font-size-lg: 1.25rem;
+  --ec-font-size-xl: 1.75rem;
+  --ec-line-height: 1.5;
+  --ec-font-weight-regular: 400;
+  --ec-font-weight-semibold: 600;
+
+  /* Spacing scale */
+  --ec-space-1: 0.25rem;
+  --ec-space-2: 0.5rem;
+  --ec-space-3: 0.75rem;
+  --ec-space-4: 1rem;
+  --ec-space-5: 1.5rem;
+  --ec-space-6: 2rem;
+  --ec-space-7: 3rem;
+
+  /* Shape */
+  --ec-radius-sm: 4px;
+  --ec-radius-md: 8px;
+  --ec-border-width: 1px;
+  --ec-focus-ring: 0 0 0 3px rgba(255, 79, 3, 0.35);
+
+  /* Layout */
+  --ec-page-max-width: 56rem;
+  --ec-control-height: 2.5rem;
+  --ec-unit-select-width: 8.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ec-color-bg: #0d141e;
+    --ec-color-surface: #162943;
+    --ec-color-surface-alt: #122238;
+    --ec-color-text: #f9f1ed;
+    --ec-color-text-muted: #b7c0cc;
+    --ec-color-border: #2a3d58;
+    --ec-color-border-strong: #4a5f7c;
+    --ec-color-accent: #ff6a2b;
+    --ec-color-accent-text: #0d141e;
+    --ec-color-focus: #ff6a2b;
+    --ec-color-error: #ff8a80;
+    --ec-color-error-bg: #3a1c1a;
+    --ec-color-warning: #ffd27a;
+    --ec-color-warning-bg: #3a2f14;
+    --ec-color-success: #8fd9a8;
+    --ec-color-success-bg: #163424;
+    --ec-color-code-bg: #0e1a2b;
+    --ec-color-info-bg: #122238;
+    --ec-color-diff-bg: rgba(242, 96, 30, 0.22);
+    /* dark-mode chart line #f2601e passes the dark band (L 0.48–0.67) and ≥ 3:1 on #162943; the brand #ff6a2b is too light */
+    --ec-color-chart-line: #f2601e;
+    /* dark second series #3987e5 (slot 1, dark step): CVD ΔE 27.0, normal-vision ΔE 34.2 against #f2601e, ≥ 3:1 on #162943 */
+    --ec-color-chart-second: #3987e5;
+    /* the sequential ramp flips in dark mode: low values take the dark step and recede into the navy surface */
+    --ec-color-seq-1: #0d366b;
+    --ec-color-seq-2: #184f95;
+    --ec-color-seq-3: #256abf;
+    --ec-color-seq-4: #3987e5;
+    --ec-color-seq-5: #6da7ec;
+    --ec-color-seq-6: #9ec5f4;
+    --ec-color-seq-7: #cde2fb;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ec-color-bg: #0d141e;
+  --ec-color-surface: #162943;
+  --ec-color-surface-alt: #122238;
+  --ec-color-text: #f9f1ed;
+  --ec-color-text-muted: #b7c0cc;
+  --ec-color-border: #2a3d58;
+  --ec-color-border-strong: #4a5f7c;
+  --ec-color-accent: #ff6a2b;
+  --ec-color-accent-text: #0d141e;
+  --ec-color-focus: #ff6a2b;
+  --ec-color-error: #ff8a80;
+  --ec-color-error-bg: #3a1c1a;
+  --ec-color-warning: #ffd27a;
+  --ec-color-warning-bg: #3a2f14;
+  --ec-color-success: #8fd9a8;
+  --ec-color-success-bg: #163424;
+  --ec-color-code-bg: #0e1a2b;
+  --ec-color-info-bg: #122238;
+  --ec-color-diff-bg: rgba(242, 96, 30, 0.22);
+  --ec-color-chart-line: #f2601e;
+  /* dark second series #3987e5 (slot 1, dark step): CVD ΔE 27.0, normal-vision ΔE 34.2 against #f2601e, ≥ 3:1 on #162943 */
+  --ec-color-chart-second: #3987e5;
+  /* the sequential ramp flips in dark mode: low values take the dark step and recede into the navy surface */
+  --ec-color-seq-1: #0d366b;
+  --ec-color-seq-2: #184f95;
+  --ec-color-seq-3: #256abf;
+  --ec-color-seq-4: #3987e5;
+  --ec-color-seq-5: #6da7ec;
+  --ec-color-seq-6: #9ec5f4;
+  --ec-color-seq-7: #cde2fb;
+}

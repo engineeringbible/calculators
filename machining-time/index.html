@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Machining time calculator (turning, facing, drilling, milling) — Engineering calculators</title>
+  <meta name="description" content="Cutting time per pass and per part for turning, facing, drilling and milling from length, feed and rpm, and total job time with set-up and handling.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Manufacturing</span>
+    <h1 class="ec-title">Machining time calculator (turning, facing, drilling, milling)</h1>
+    <p class="ec-summary">Cutting time per pass and per part for turning, facing, drilling and milling, and the total job time of a batch with set-up and handling.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Cutting time is the distance the tool feeds divided by the feed rate. On a lathe or a drill, the feed rate is the feed per revolution times the rpm. Turning 100 mm plus 3 mm of approach at 0.2 mm/rev and 1 000 rpm takes 103 ÷ 200 = 0.515 min. A milling cutter feeds at chip load × teeth × rpm.</p>
+<p>This calculator gives the tool travel, the feed rate and the cutting time of one pass, the time per part for several passes, and the total job time for a batch with set-up and handling time. It covers turning, facing, drilling and milling. It is for machinists, CNC programmers and estimators quoting jobs and planning shifts.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Feed rate:</p>
+<pre class="ec-formula" tabindex="0"><code>turning, facing, drilling:  v_f = f × n
+milling:                    v_f = f_z × z × n</code></pre>
+<p>Tool travel per pass:</p>
+<pre class="ec-formula" tabindex="0"><code>turning, milling:  L_t = L + approach and overtravel
+facing:            L_t = (D − d) / 2 + approach
+drilling:          L_t = depth + D / (2 tan(θ/2)) + approach</code></pre>
+<p>Times:</p>
+<pre class="ec-formula" tabindex="0"><code>t_pass = L_t / v_f
+t_part = passes × t_pass
+t_job = set-up + parts × (t_part + handling)</code></pre>
+<ul>
+<li>f — feed per revolution; f_z — feed per tooth; z — number of teeth; n — spindle speed</li>
+<li>L — length of cut; D — outside or drill diameter; d — bore diameter; θ — drill point angle</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The tool feeds at a constant rate over the whole travel. Rapid moves, tool changes and acceleration belong in the handling time per part.</li>
+<li>Facing runs at a constant rpm. A lathe with constant surface speed raises the rpm towards the centre and finishes the face sooner.</li>
+<li>Drilling adds the length of the drill point, so the full diameter reaches the stated depth. For a through hole, the approach and overtravel should include the breakthrough.</li>
+<li>In milling, the travel is the path of the cutter centre. A face mill must travel its own diameter past the part to clear the surface completely.</li>
+<li>Spindle speeds and feeds come from the speeds and feeds calculator or the tool maker&#39;s data.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A shaft is turned over 100 mm with 3 mm of approach and overtravel. The feed is 0.2 mm/rev at 1 000 rpm, in two passes. A batch of 50 parts needs 30 min of set-up and 0.5 min of handling per part.</p>
+<ol>
+<li>Feed rate: 0.2 × 1 000 = 200 mm/min.</li>
+<li>Time per pass: 103 / 200 = 0.515 min.</li>
+<li>Time per part: 2 × 0.515 = 1.03 min of cutting, 1.53 min with handling.</li>
+<li>Job time: 30 + 50 × 1.53 = 106.5 min, about 1.8 hours.</li>
+</ol>
+<p>After set-up, the lathe makes about 39 parts an hour.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate machining time?</summary>
+<p>Divide the tool travel by the feed rate. The feed rate is feed per revolution times rpm, or chip load times teeth times rpm for milling.</p>
+</details>
+<details class="ec-faq"><summary>What is approach and overtravel?</summary>
+<p>The extra distance the tool feeds before it enters and after it leaves the cut. A milling cutter that must clear the work needs more than a lathe tool.</p>
+</details>
+<details class="ec-faq"><summary>How do I estimate drilling time?</summary>
+<p>Add the drill point length to the depth: about 0.3 × the diameter for a 118° drill. Then divide by feed per revolution times rpm.</p>
+</details>
+<details class="ec-faq"><summary>Why is my real cycle time longer than the calculated cutting time?</summary>
+<p>Rapids, tool changes, spindle starts, measuring and loading all add time. Put them in the handling time per part.</p>
+</details>
+<details class="ec-faq"><summary>What is floor-to-floor time?</summary>
+<p>The time from picking up a raw part to putting down a finished one. It is cutting time plus handling.</p>
+</details>
+<details class="ec-faq"><summary>How do I reduce machining time?</summary>
+<p>Raise the feed or the cutting speed within the tool&#39;s limits, take fewer, deeper passes, and shorten the approach. Set-up time matters most for small batches.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../speeds-feeds/index.html">Speeds and feeds calculator</a> — rpm and feed for the cut.</li>
+<li><a href="../chip-load/index.html">Chip load calculator</a> — milling feed with chip thinning.</li>
+<li><a href="../drill-point-length/index.html">Drill point length</a> — the point length added to drilling depth.</li>
+<li><a href="../oee-takt/index.html">OEE and takt time calculator</a> — machine effectiveness and the pace demand sets.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stress and strain calculator (Young's modulus) — Engineering calculators</title>
+  <meta name="description" content="Axial stress, strain and elongation of a bar from force, area, length and Young's modulus, or solve for the force, modulus, area or length.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Stress and strain calculator (Young's modulus)</h1>
+    <p class="ec-summary">Normal stress, strain and elongation of a bar by Hooke's law, solving for force, modulus, area or length, with Young's modulus of common materials.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Stress is force divided by the area that carries it. Strain is the change in length divided by the original length. In the elastic range the two are proportional, and the constant is Young&#39;s modulus: σ = E ε. A 20 mm steel rod 2 m long, pulled with 50 kN, carries 159 MPa and stretches 1.5 mm.</p>
+<p>This calculator applies these three relations to a bar in tension or compression. It finds the stress, strain and elongation from the force, or works backwards to the force, the modulus, the area needed for an allowable stress, or the original length. It holds Young&#39;s modulus for common materials from standards and data sheets. It is for students, technicians and engineers sizing rods, ties, bolts and test pieces.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>σ = F / A
+ε = ΔL / L
+σ = E ε
+ΔL = F L / (A E)
+k = E A / L</code></pre>
+<ul>
+<li>F — axial force; A — cross-section area, π d²/4 for a round bar</li>
+<li>L — original length; ΔL — elongation (shortening in compression)</li>
+<li>E — Young&#39;s modulus; σ — normal stress; ε — strain</li>
+<li>k — axial stiffness of the bar, force per unit of elongation</li>
+</ul>
+<p>Each solve mode rearranges the same relations. For an allowable stress, A = F / σ_allow.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The load acts along the axis of a straight bar of constant section, so the stress is uniform. Holes, threads and shoulders raise the local stress.</li>
+<li>The material stays elastic. The calculator warns when the stress passes the yield strength held for the material, because Hooke&#39;s law no longer holds there.</li>
+<li>Strain is engineering strain on the original length. The small change in area from Poisson&#39;s ratio is ignored.</li>
+<li>A slender bar in compression buckles at a lower load. Check buckling separately.</li>
+<li>Moduli are code or data-sheet values. Eurocode uses 210 GPa for steel and AISC uses 200 GPa, and real values scatter by a few per cent.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 20 mm diameter steel tie rod, 2 m long, carries a tension of 50 kN. Take E = 210 GPa. What are the stress and the stretch?</p>
+<ol>
+<li>Area: π × 20² / 4 = 314.16 mm².</li>
+<li>Stress: 50 000 N / 314.16 mm² = 159.2 MPa.</li>
+<li>Strain: 159.2 / 210 000 = 0.000758, or 0.0758 %.</li>
+<li>Elongation: 0.000758 × 2 000 mm = 1.516 mm.</li>
+</ol>
+<p>The stress is well below the 235 MPa yield strength of S235, so the rod stays elastic. Its axial stiffness is 210 000 × 314.16 / 2 000 = 33.0 kN/mm.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the difference between stress and strain?</summary>
+<p>Stress is the internal force per unit area, in pascals or psi. Strain is the relative change in length and has no unit.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate Young&#39;s modulus from a test?</summary>
+<p>Divide the stress by the strain in the straight, elastic part of the curve. Use the force and elongation of two points to avoid errors from slack at the start.</p>
+</details>
+<details class="ec-faq"><summary>What is Young&#39;s modulus of steel?</summary>
+<p>About 200 to 210 GPa, or 29 000 to 30 500 ksi. Aluminium alloys are about 70 GPa, so they stretch three times as much under the same stress.</p>
+</details>
+<details class="ec-faq"><summary>Does the formula work in compression?</summary>
+<p>Yes, with the force taken as compressive and ΔL as a shortening. Slender members buckle long before they reach the yield stress, so check buckling.</p>
+</details>
+<details class="ec-faq"><summary>What is microstrain?</summary>
+<p>One millionth of a strain, the unit strain gauges read. The rod in the example sees 758 microstrain.</p>
+</details>
+<details class="ec-faq"><summary>Why does the calculator warn about yield?</summary>
+<p>Above the yield strength, steel stretches plastically and the elongation becomes far larger than Hooke&#39;s law predicts.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../elastic-constants/index.html">Elastic constants</a> — shear and bulk modulus from E and Poisson&#39;s ratio.</li>
+<li><a href="../material-properties/index.html">Material properties</a> — yield strength, density and modulus of common materials.</li>
+<li><a href="../thermal-expansion/index.html">Thermal expansion and restraint stress</a> — strain and stress from temperature change.</li>
+<li><a href="../mohr-circle/index.html">Mohr&#39;s circle</a> — combined stresses and principal stresses.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

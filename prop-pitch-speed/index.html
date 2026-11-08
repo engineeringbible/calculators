@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Propeller pitch and boat speed calculator — Engineering calculators</title>
+  <meta name="description" content="Boat speed from propeller pitch, engine rpm, gear ratio and slip; the pitch for a target speed; or the propeller slip from your GPS speed.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Propeller pitch and boat speed calculator</h1>
+    <p class="ec-summary">Boat speed from propeller pitch, engine rpm, gear ratio and slip, the pitch for a target speed, and the slip from a GPS speed.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Propeller pitch is the distance a propeller would move forward in one turn if it screwed through the water like a bolt through a nut. Multiply the pitch by the propeller rpm and you have the theoretical speed. A 19 in propeller turning 2 750 rpm would advance 52 250 in per minute, which is 43.0 kn. The boat goes slower than that because the water gives way: the shortfall is the slip.</p>
+<p>This calculator gives the boat speed from pitch, engine rpm, gear ratio and slip. It also works backwards: the pitch you need for a target speed, or the slip you are getting from a speed measured with GPS. It is for boat owners choosing a propeller for an outboard, stern drive or inboard. The <a href="../propeller-slip/index.html">propeller slip calculator</a> does the same job for ships, with current and wake fraction.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Propeller rpm and theoretical speed:</p>
+<pre class="ec-formula" tabindex="0"><code>n_prop = n_engine / gear ratio
+V_theory = pitch × n_prop × 60 / 1 852       kn, pitch in m
+V_theory = pitch[in] × n_prop / 1 215.2      kn
+V_theory = pitch[in] × n_prop / 1 056        mph</code></pre>
+<p>Speed, pitch and slip:</p>
+<pre class="ec-formula" tabindex="0"><code>V = V_theory × (1 − slip)
+pitch = V / ((1 − slip) × n_prop)
+slip = 1 − V_measured / V_theory</code></pre>
+<ul>
+<li>pitch — the nominal pitch, the second number on the propeller (14 × 19 means 19 in of pitch)</li>
+<li>gear ratio — engine turns per propeller turn, from the engine manual (2.0:1 halves the rpm)</li>
+<li>slip — apparent slip, as a fraction or percentage</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Slip here is apparent slip. It lumps together the real slip of the blades, the wake of the hull, any current and the error in your speed reading.</li>
+<li>Measure speed with GPS on runs in both directions and average them, in calm water and with a typical load.</li>
+<li>A bigger pitch only gives more speed if the engine can still reach its rated rpm range at wide-open throttle. Too much pitch overloads the engine and pulls the rpm down.</li>
+<li>Cupped and progressive-pitch propellers act as if their pitch were larger than the stamped value, so they show less apparent slip.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An outboard turns 5 500 rpm at wide-open throttle through a 2.0:1 gearcase. It has a 19 in pitch propeller, and the slip is 12 %. What speed should the boat make?</p>
+<ol>
+<li>Propeller rpm: 5 500 / 2.0 = 2 750 rpm.</li>
+<li>Theoretical speed: 19 × 2 750 / 1 215.2 = 43.0 kn.</li>
+<li>Boat speed: 43.0 × (1 − 0.12) = 37.8 kn.</li>
+</ol>
+<p>If the GPS shows 37 kn instead, the slip is 1 − 37 / 43.0 = 13.9 %. To reach 40 kn at the same rpm and 12 % slip, the propeller would need 20.1 in of pitch.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate boat speed from propeller pitch?</summary>
+<p>Multiply the pitch in inches by the propeller rpm and divide by 1 215.2 for knots, or by 1 056 for mph. Then take off the slip.</p>
+</details>
+<details class="ec-faq"><summary>What is propeller slip?</summary>
+<p>The difference between the theoretical speed, pitch × rpm, and the speed the boat actually makes, as a percentage of the theoretical speed.</p>
+</details>
+<details class="ec-faq"><summary>How do I measure slip on my boat?</summary>
+<p>Choose the slip mode and enter the pitch, the rpm at wide-open throttle, the gear ratio and the average GPS speed of runs both ways.</p>
+</details>
+<details class="ec-faq"><summary>Does more pitch mean more speed?</summary>
+<p>Only while the engine still reaches its rated rpm. More pitch loads the engine harder, so the rpm drops; if it falls below the rated range, the boat may get slower and the engine is overloaded.</p>
+</details>
+<details class="ec-faq"><summary>Where do I find the gear ratio?</summary>
+<p>In the engine&#39;s manual or specification sheet. Outboards and stern drives list the lower-unit ratio; inboards list the gearbox reduction.</p>
+</details>
+<details class="ec-faq"><summary>What does negative slip mean?</summary>
+<p>The boat went faster than pitch × rpm allows. Usually the gear ratio, pitch or rpm entered is wrong, or a following current pushed the boat.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../propeller-slip/index.html">Propeller slip and speed through water</a> — the ship version with current and wake fraction.</li>
+<li><a href="../planing-speed/index.html">Planing boat speed calculator</a> — the speed the engine power can give.</li>
+<li><a href="../hull-speed/index.html">Hull speed calculator</a> — the speed limit of displacement hulls.</li>
+<li><a href="../boat-fuel/index.html">Boat fuel consumption</a> — fuel use at that speed.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

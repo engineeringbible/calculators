@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hazen–Williams head loss calculator — Engineering calculators</title>
+  <meta name="description" content="Hazen–Williams friction loss of water in a pressure pipe, or the flow or pipe diameter for an allowed loss, with velocity, pressure drop and C-factors.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Hazen–Williams head loss calculator</h1>
+    <p class="ec-summary">Hazen–Williams friction loss of water in pressure pipes, or the flow or diameter for an allowed loss, with velocity, pressure drop and C-factors.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The Hazen–Williams equation estimates the friction loss of water flowing full in a pipe from the flow, the bore, the length and a roughness factor C. Smooth plastic pipe has C = 150 and old unlined iron about 100, and a lower C means more loss. Pumping 500 US gpm through 1 000 ft of 6 in plastic pipe loses 15.7 ft of head, a pressure drop of 6.8 psi.</p>
+<p>This calculator solves the equation for the head loss, the flow or the inside diameter, and shows the velocity and the pressure drop. It includes the C-factors of NFPA 13 for common pipe materials. It is for engineers and contractors sizing water mains, irrigation lines, fire sprinkler piping and pump suction and discharge lines.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Head loss in SI units, with Q in m³/s and d and L in m:</p>
+<pre class="ec-formula" tabindex="0"><code>h_f = 10.67 L Q^1.852 / (C^1.852 d^4.8704)</code></pre>
+<p>US form used by NFPA 13, with Q in gpm and d in inches:</p>
+<pre class="ec-formula" tabindex="0"><code>p = 4.52 Q^1.85 / (C^1.85 d^4.87)      psi per foot of pipe</code></pre>
+<p>Both come from the original velocity form, with the hydraulic radius R = d/4 of a full pipe:</p>
+<pre class="ec-formula" tabindex="0"><code>V = 0.849 C R^0.63 S^0.54   (SI),     V = 1.318 C R^0.63 S^0.54   (US)</code></pre>
+<p>Velocity and pressure drop:</p>
+<pre class="ec-formula" tabindex="0"><code>V = Q / (π d² / 4),     Δp = ρ g h_f</code></pre>
+<ul>
+<li>h_f — friction head loss; S = h_f / L — slope of the hydraulic grade line</li>
+<li>C — Hazen–Williams factor of the pipe material</li>
+<li>d — inside diameter, not the nominal size</li>
+<li>ρ = 999.1 kg/m³ for water at 15 °C; g = 9.81 m/s²</li>
+</ul>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Pipe material (NFPA 13 Table 28.3.4.8.1)</th><th scope="col">C</th></tr></thead>
+<tbody>
+<tr><td>Plastic (PVC, CPVC, PE), listed</td><td>150</td></tr>
+<tr><td>Copper tube, brass or stainless steel</td><td>150</td></tr>
+<tr><td>Cement-lined cast or ductile iron</td><td>140</td></tr>
+<tr><td>Asbestos cement, concrete</td><td>140</td></tr>
+<tr><td>Black or galvanized steel, wet systems</td><td>120</td></tr>
+<tr><td>Black or galvanized steel, dry systems</td><td>100</td></tr>
+<tr><td>Unlined cast or ductile iron</td><td>100</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The equation is for water near 15 °C (60 °F). It has no viscosity term, so it fails for oils, glycol mixtures and hot water. Use Darcy–Weisbach for those.</li>
+<li>It was fitted to pipes of about 50 mm (2 in) bore and up, at roughly 0.3 to 3 m/s (1 to 10 ft/s). The page warns outside that range.</li>
+<li>The C-factors are design values. Old, scaled or tuberculated pipe can fall well below them, and fire codes may require a specific value.</li>
+<li>Only straight-pipe friction is included. Add fittings as equivalent length, or use the minor losses calculator, and add elevation changes separately.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 6 in plastic main with an inside diameter of 6.00 in carries 500 US gpm over 1 000 ft. Take C = 150. What are the head loss and the pressure drop?</p>
+<ol>
+<li>In SI units: Q = 500 × 0.00006309 = 0.03155 m³/s, d = 0.1524 m, L = 304.8 m.</li>
+<li>Velocity: V = 0.03155 / (π × 0.1524² / 4) = 1.73 m/s, or 5.67 ft/s.</li>
+<li>Head loss: h_f = 10.67 × 304.8 × 0.03155^1.852 / (150^1.852 × 0.1524^4.8704) = 4.80 m, or 15.7 ft.</li>
+<li>Per 100 ft of pipe: 15.7 / 10 = 1.57 ft.</li>
+<li>Pressure drop: 999.1 × 9.81 × 4.80 = 47.0 kPa, or 6.82 psi.</li>
+</ol>
+<p>The NFPA 13 form gives 4.52 × 500^1.85 / (150^1.85 × 6^4.87) × 1 000 = 6.81 psi. An 8 in main would lose only 3.9 ft for the same flow.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the Hazen–Williams C factor?</summary>
+<p>A number that describes how smooth the pipe is for water. It runs from about 150 for plastic and copper down to 100 or less for old iron and steel.</p>
+</details>
+<details class="ec-faq"><summary>Hazen–Williams or Darcy–Weisbach?</summary>
+<p>Darcy–Weisbach works for any liquid, temperature and pipe size. Hazen–Williams is simpler and is standard for water mains and sprinkler systems. For 20 L/s of water in 150 mm PVC pipe the two differ by only 1 %.</p>
+</details>
+<details class="ec-faq"><summary>How much does head loss rise with flow?</summary>
+<p>With the flow to the power 1.852. Doubling the flow multiplies the friction loss by 3.6.</p>
+</details>
+<details class="ec-faq"><summary>How much does a bigger pipe help?</summary>
+<p>The loss falls with the diameter to the power 4.87. Going from 6 in to 8 in cuts the loss by about three quarters.</p>
+</details>
+<details class="ec-faq"><summary>Do I use the nominal or the inside diameter?</summary>
+<p>The inside diameter. A 6 in Schedule 40 steel pipe has a 6.07 in bore and a Schedule 80 pipe 5.76 in, which raises the loss by 28 %.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert head loss to pressure?</summary>
+<p>Multiply by the density and gravity. For water, 1 ft of head is 0.433 psi and 1 m of head is 9.8 kPa.</p>
+</details>
+<details class="ec-faq"><summary>Does C change as the pipe ages?</summary>
+<p>Yes, especially in unlined iron and steel, which corrode and build up scale. Use a lower C for old pipe, or a value measured in a flow test.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../total-dynamic-head/index.html">Total dynamic head (TDH) calculator</a> — the pump head with friction, fittings and lift.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — Darcy–Weisbach for any fluid.</li>
+<li><a href="../minor-losses/index.html">Minor losses calculator</a> — losses in fittings and valves.</li>
+<li><a href="../flow-rate-velocity/index.html">Flow rate and pipe velocity</a> — velocity for a flow and bore.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

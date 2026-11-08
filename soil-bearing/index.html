@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soil bearing capacity calculator (Terzaghi and Eurocode 7) — Engineering calculators</title>
+  <meta name="description" content="Ultimate and allowable bearing capacity of strip, square, rectangular and circular footings by Terzaghi or Eurocode 7, drained or undrained.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Soil bearing capacity calculator (Terzaghi and Eurocode 7)</h1>
+    <p class="ec-summary">Ultimate and allowable bearing capacity of shallow footings by Terzaghi or Eurocode 7, drained or undrained, with the bearing capacity factors.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A footing fails in bearing when the soil beneath it shears and pushes out to the sides. The pressure at which that happens is the ultimate bearing capacity. It depends on the soil&#39;s strength (its friction angle and cohesion), its weight, the footing&#39;s width, and how deep the footing sits, because the soil above the base holds the failure surface down.</p>
+<p>This calculator gives the ultimate and allowable bearing capacity of strip, square, rectangular and circular footings. It offers two methods: Terzaghi&#39;s classic equation, taught in every soil mechanics course, and the method of Eurocode 7 Annex D, for drained and undrained conditions. It shows the bearing capacity factors and the load the footing can carry at your factor of safety.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>General form, for a footing of width B at depth D_f:</p>
+<pre class="ec-formula" tabindex="0"><code>q_ult = c N_c s_c + q N_q s_q + ½ γ B N_γ s_γ,    q = γ D_f</code></pre>
+<p>Eurocode 7 Annex D factors (drained):</p>
+<pre class="ec-formula" tabindex="0"><code>N_q = e^{π tan φ} tan²(45° + φ/2)
+N_c = (N_q − 1) cot φ,    N_γ = 2 (N_q − 1) tan φ
+s_q = 1 + (B/L) sin φ,    s_γ = 1 − 0.3 B/L,    s_c = (s_q N_q − 1)/(N_q − 1)</code></pre>
+<p>Undrained (clay, short term):</p>
+<pre class="ec-formula" tabindex="0"><code>q_ult = (π + 2) c_u (1 + 0.2 B/L) + q</code></pre>
+<p>Terzaghi:</p>
+<pre class="ec-formula" tabindex="0"><code>N_q = e^{2(3π/4 − φ/2) tan φ} / (2 cos²(45° + φ/2)),    N_c = (N_q − 1) cot φ
+square: 1.3 c N_c + q N_q + 0.4 γ B N_γ;   circle: 1.3 c N_c + q N_q + 0.3 γ B N_γ</code></pre>
+<ul>
+<li>φ — friction angle; c — cohesion; c_u — undrained shear strength; γ — unit weight of the soil</li>
+<li>Allowable pressure: q_all = q_ult / FS, with FS usually 2.5 to 3</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The footing is shallow, level and loaded vertically at its centre. Inclined or off-centre loads, sloping ground and layered soils reduce the capacity and need the full Annex D factors or a geotechnical engineer.</li>
+<li>Below the water table, use the submerged unit weight, about γ − 9.81 kN/m³.</li>
+<li>The equations assume general shear failure in dense sand or stiff clay. Loose sand and soft clay fail at lower loads, and in practice settlement often limits the allowable pressure before bearing failure does.</li>
+<li>Terzaghi&#39;s N_γ was never given in closed form. This page uses Coduto&#39;s fit, which is 5 to 6 % above the usual tabulated values from 25° to 40° of friction angle.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 2 m square footing sits 1 m deep in dense sand with φ = 30°, c = 0 and γ = 18 kN/m³. What is its bearing capacity by Eurocode 7?</p>
+<ol>
+<li>Factors at 30°: N_q = 18.40, N_c = 30.14, N_γ = 20.09.</li>
+<li>Shape factors for a square: s_q = 1 + sin 30° = 1.5, s_γ = 0.7.</li>
+<li>Overburden: q = 18 × 1 = 18 kPa.</li>
+<li>q_ult = 18 × 18.40 × 1.5 + 0.5 × 18 × 2 × 20.09 × 0.7 = 497 + 253 = 750 kPa.</li>
+<li>With a factor of safety of 3: 250 kPa, so the footing can carry 250 × 4 = 1 000 kN.</li>
+</ol>
+<p>Terzaghi&#39;s equation gives 694 kPa for the same footing: its N_q and N_c are larger, but its shape factors for a square are smaller.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the bearing capacity of soil?</summary>
+<p>The pressure a soil can take under a footing before it fails in shear. Typical allowable values range from about 75 kPa (1 500 psf) for soft clay to 300 kPa (6 000 psf) or more for dense gravel.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between ultimate and allowable bearing capacity?</summary>
+<p>The ultimate value is the failure pressure. The allowable value divides it by a factor of safety, usually 3, and must also keep settlement acceptable.</p>
+</details>
+<details class="ec-faq"><summary>Why does a deeper footing carry more?</summary>
+<p>The soil above the base acts as a surcharge that holds the failure wedge down. That is the q N_q term.</p>
+</details>
+<details class="ec-faq"><summary>Which is more conservative, Terzaghi or Eurocode 7?</summary>
+<p>Neither is always lower. Terzaghi&#39;s N_q and N_c are larger, Eurocode 7&#39;s shape factors are larger, and the balance depends on the footing. Eurocode 7 designs also apply partial factors rather than one factor of safety.</p>
+</details>
+<details class="ec-faq"><summary>What friction angle should I use for sand?</summary>
+<p>From the site investigation. As a rough guide, loose sand is 28 to 30°, medium dense 30 to 36° and dense sand 36 to 41°.</p>
+</details>
+<details class="ec-faq"><summary>When do I use undrained analysis?</summary>
+<p>For saturated clays loaded quickly, where water cannot drain during construction. The short-term undrained case is usually critical for footings on clay.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../footing-size/index.html">Footing size calculator</a> — size a footing for a column load.</li>
+<li><a href="../retaining-wall/index.html">Retaining wall earth pressure</a> — lateral pressure and stability.</li>
+<li><a href="../concrete-footing/index.html">Concrete footing calculator</a> — concrete quantities.</li>
+<li><a href="../outrigger-pad-pressure/index.html">Outrigger pad pressure</a> — crane pads on soil.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

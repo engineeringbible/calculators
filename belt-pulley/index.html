@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Belt and pulley calculator (ratio, rpm, belt length) — Engineering calculators</title>
+  <meta name="description" content="Pulley ratio, driven rpm, belt speed, exact open or crossed belt length and wrap angle from the two pulley diameters and the centre distance.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Belt and pulley calculator (ratio, rpm, belt length)</h1>
+    <p class="ec-summary">Speed ratio, driven rpm, belt speed, exact open or crossed belt length and wrap angles of a two-pulley belt drive.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A belt drive changes speed in the ratio of its pulley diameters. A 100 mm pulley on a 1 450 rpm motor driving a 250 mm pulley turns it at 1 450 × 100 / 250 = 580 rpm, a ratio of 2.5. The torque rises by nearly the same ratio, less the small belt losses.</p>
+<p>This calculator gives the speed ratio, the driven speed with optional slip, the belt speed, and the exact length of an open or crossed belt from the pulley diameters and the centre distance. It also gives the wrap angle on each pulley and the free span. It is for anyone designing or replacing a belt drive on a fan, pump, machine tool or workshop machine.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Speeds:</p>
+<pre class="ec-formula" tabindex="0"><code>i = d₂ / d₁,    n₂ = n₁ d₁ / d₂ × (1 − s),    v = π d₁ n₁</code></pre>
+<p>Open belt, with D the larger and d the smaller diameter:</p>
+<pre class="ec-formula" tabindex="0"><code>φ = asin((D − d) / (2C))
+θ_d = π − 2φ,    θ_D = π + 2φ
+L = √(4C² − (D − d)²) + ½ (D θ_D + d θ_d)</code></pre>
+<p>Crossed belt:</p>
+<pre class="ec-formula" tabindex="0"><code>θ = π + 2 asin((D + d) / (2C))
+L = √(4C² − (D + d)²) + ½ (D + d) θ</code></pre>
+<ul>
+<li>d₁, n₁ — driver diameter and speed; d₂, n₂ — driven diameter and speed</li>
+<li>C — centre distance; s — slip; v — belt speed</li>
+<li>θ — wrap angle in radians; L — belt length on the pitch line</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Use the diameter on which the belt actually runs. For V-belts and timing belts this is the pitch diameter, for flat belts the outside diameter plus the belt thickness.</li>
+<li>The length is exact for straight spans and circular arcs. It ignores sag, stretch and the take-up allowance needed to fit the belt.</li>
+<li>Friction belts creep slightly, typically 1 to 2 %. Enter that as slip if the exact driven speed matters. Timing belts and chains do not slip.</li>
+<li>A wrap angle below about 120° on the small pulley lets a friction belt slip. The calculator warns below that value.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A motor at 1 450 rpm drives a fan with a 100 mm pulley on the motor and a 250 mm pulley on the fan. The centre distance is 600 mm. Find the fan speed and the belt length.</p>
+<ol>
+<li>Ratio: 250 / 100 = 2.500.</li>
+<li>Fan speed: 1 450 / 2.5 = 580 rpm.</li>
+<li>Belt speed: π × 0.100 × 1 450 / 60 = 7.59 m/s.</li>
+<li>Angle φ = asin(150 / 1 200) = 0.1253 rad, so the motor pulley has a wrap of π − 0.2507 = 2.891 rad, or 165.6 degrees.</li>
+<li>Length: √(4 × 600² − 150²) + ½ (250 × 3.392 + 100 × 2.891) = 1 190.6 + 568.6 = 1 759 mm.</li>
+</ol>
+<p>A crossed belt on the same pulleys would be 1 801 mm long and turn the fan the other way.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate pulley rpm?</summary>
+<p>Multiply the driver speed by the driver diameter and divide by the driven diameter. A 1 750 rpm motor with a 3 in pulley driving a 6 in pulley gives 875 rpm.</p>
+</details>
+<details class="ec-faq"><summary>How do I work out the belt length?</summary>
+<p>Use the exact formula above, or measure around both pulleys with a tape on the belt&#39;s running line. For V-belts, use the pitch length the belt maker lists.</p>
+</details>
+<details class="ec-faq"><summary>Does a bigger pulley make the driven shaft faster?</summary>
+<p>A bigger pulley on the driver does. A bigger pulley on the driven shaft makes it slower and increases its torque.</p>
+</details>
+<details class="ec-faq"><summary>What is the minimum wrap angle?</summary>
+<p>About 120° on the small pulley for flat and V-belts. Below that, increase the centre distance, reduce the ratio, or add an idler.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between an open and a crossed belt?</summary>
+<p>An open belt turns both pulleys the same way. A crossed belt reverses the driven pulley and wraps more of each pulley, but it rubs where it crosses.</p>
+</details>
+<details class="ec-faq"><summary>How fast does the belt run?</summary>
+<p>v = π d n. The example belt runs at 7.59 m/s, about 1 500 ft/min.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../v-belt-length/index.html">V-belt length and centre distance</a> — pitch length and the centre distance for a standard belt.</li>
+<li><a href="../gear-ratio/index.html">Gear ratio, rpm and torque</a> — the same ratio with gears.</li>
+<li><a href="../chain-sprocket/index.html">Chain and sprocket drive</a> — roller chain length and speed.</li>
+<li><a href="../torque-power-rpm/index.html">Torque, power and speed</a> — torque on each shaft.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reliability and redundancy — Engineering calculators</title>
+  <meta name="description" content="Availability and mission reliability of series, parallel and k-out-of-n systems, and a Weibull fit of failure times by median-rank regression.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">General</span>
+    <h1 class="ec-title">Reliability and redundancy</h1>
+    <p class="ec-summary">Combine blocks in series and k-out-of-n redundancy from their MTBF and MTTR to get the availability, yearly downtime and mission reliability of a system, and fit a Weibull distribution to failure times.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How often will a system be down, and how much does a standby unit help? A reliability block diagram answers this by combining blocks in series, where every block must work, with redundant blocks in which k of n identical units are enough. From each unit&#39;s mean time between failures and mean time to repair, this calculator gives the availability of each block and of the system, the expected downtime per year, and the probability of completing a mission without repair. A second part fits a Weibull distribution to observed failure times, to tell early failures from wear-out and to estimate the B10 life.</p>
+<p>It is for marine and reliability engineers assessing redundancy of essential systems, maintenance planners, and anyone analysing failure records.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Unit availability:     A = MTBF / (MTBF + MTTR)
+Mission reliability:   R(t) = e^(−t / MTBF)
+k-out-of-n block:      P = Σ_{j=k..n} C(n, j) p^j (1 − p)^(n−j)
+System (series):       Π P_block
+Median ranks:          F_i = (i − 0.3)/(n + 0.4)
+Weibull line:          ln t = ln η + (1/β) ln(−ln(1 − F))
+B10 life and mean:     η (−ln 0.9)^(1/β),   η Γ(1 + 1/β)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Independent failures and repairs; each unit has its own repair; switching to a standby unit is perfect.</li>
+<li>A constant failure rate for the mission reliability.</li>
+<li>Complete (uncensored) failure times for the Weibull fit, two parameters.</li>
+<li>No confidence bounds; small samples give very uncertain parameters.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A propulsion system has one main engine (MTBF 5000 h, MTTR 24 h), three generating sets of which two are needed (4000 h, 12 h), and two steering gear pumps and two fuel supply pumps, one of each needed.</p>
+<ol>
+<li>The main engine alone is available 5000/5024 = 99.522 % of the time.</li>
+<li>The 2-out-of-3 generating sets reach 99.9973 %, and each pair of pumps more than 99.9999 %.</li>
+<li>The system is available 99.5195 % of the time, about 42 h of downtime a year; the main engine dominates.</li>
+<li>Seven failure times from 1200 to 5100 h give β = 2.17 and η = 3464 h: wear-out, with a B10 life of about 1230 h.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does redundancy help so much?</summary>
+<p>With two units of which one is needed, the block fails only when both are down at once. With availabilities of 99.9 %, that is 0.1 % × 0.1 % = 0.0001 %, a thousand times less likely than either unit alone being down.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between availability and reliability?</summary>
+<p>Availability is the fraction of time the system works, counting repairs. Reliability is the probability that it works throughout a mission without repair.</p>
+</details>
+<details class="ec-faq"><summary>What does β tell me?</summary>
+<p>β below 1 means early failures, for example from poor installation; β about 1 means random failures; β above 1 means wear-out, where replacing parts before they fail pays off.</p>
+</details>
+<details class="ec-faq"><summary>Why rank regression?</summary>
+<p>With few failures it gives sensible estimates and a plot that shows whether the data follow a straight line. Maximum likelihood is preferred for large samples or many suspended items.</p>
+</details>
+<details class="ec-faq"><summary>What if some units have not failed yet?</summary>
+<p>Those suspended items carry information but need adjusted ranks, which this calculator does not apply; ignoring them biases the life downwards.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../quick-stats/index.html">Quick statistics of a series</a> — summary statistics of failure data.</li>
+<li><a href="../gum-uncertainty/index.html">Measurement uncertainty (GUM)</a> — uncertainty of measured quantities.</li>
+<li><a href="../bearing-life/index.html">Rolling bearing L10 life (ISO 281)</a> — bearing life, itself a Weibull B10 life.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — sizing the generating sets in the redundancy.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

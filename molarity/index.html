@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Molarity calculator (moles, mass, volume, normality) — Engineering calculators</title>
+  <meta name="description" content="Molarity, mass of solute or volume of solution from the other two, with molar masses of common reagents, moles, normality, molality and % w/w.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Process</span>
+    <h1 class="ec-title">Molarity calculator (moles, mass, volume, normality)</h1>
+    <p class="ec-summary">Molarity, mass of solute or volume of solution for 22 common reagents or your own, with moles, normality, molality and % w/w.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Molarity is the number of moles of a solute per litre of solution, written mol/L or M. You calculate it by dividing the mass of solute by its molar mass, which gives the moles, and then by the volume of solution in litres. Dissolving 58.44 g of sodium chloride and making it up to 1 L gives a 1 M solution. Turned around, the same relation tells you how much to weigh out: 250 mL of 0.5 M NaCl needs 7.305 g.</p>
+<p>This calculator solves for the mass of solute, the molarity or the volume of solution from the other two. It has the molar masses of 22 common reagents, or you can enter your own. It also gives the moles, the normality of acids and bases, and the molality and % w/w when you know the solution density. It is for laboratory technicians, chemistry students and process engineers preparing solutions.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Molarity, moles and mass:</p>
+<pre class="ec-formula" tabindex="0"><code>n = m / M
+c = n / V
+m = c × V × M</code></pre>
+<p>Normality, molality and mass fraction:</p>
+<pre class="ec-formula" tabindex="0"><code>N = c × z
+b = n / (ρ V − m)
+w = m / (ρ V)</code></pre>
+<ul>
+<li>c — molarity, mol/L; n — moles of solute; V — volume of solution, L</li>
+<li>m — mass of solute, g; M — molar mass, g/mol</li>
+<li>z — equivalents per mole: 1 for HCl and NaOH, 2 for H₂SO₄, 3 for H₃PO₄</li>
+<li>b — molality, mol per kg of solvent; ρ — solution density; w — mass fraction</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The volume is the final volume of the solution. Dissolve the solute in less solvent, then make it up to the mark.</li>
+<li>Hydrates include their water of crystallisation. CuSO₄·5H₂O weighs 249.68 g/mol, against 159.60 g/mol for the anhydrous salt.</li>
+<li>Normality depends on the reaction. The table covers acid–base use; for redox, enter the electrons per mole, such as 5 for permanganate in acid.</li>
+<li>Molality and % w/w need the measured density of the solution at its temperature.</li>
+<li>The reagent is taken as pure. For a 98 % assay, divide the mass by 0.98.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>How much sodium chloride is needed for 250 mL of a 0.5 M solution?</p>
+<ol>
+<li>Volume: 250 mL = 0.250 L.</li>
+<li>Moles: 0.5 mol/L × 0.250 L = 0.125 mol.</li>
+<li>Molar mass of NaCl: 22.990 + 35.45 = 58.44 g/mol.</li>
+<li>Mass: 0.125 × 58.44 = 7.305 g.</li>
+</ol>
+<p>Weigh 7.305 g of NaCl, dissolve it in about 200 mL of water, and make up to 250 mL in a volumetric flask.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do you calculate molarity?</summary>
+<p>Divide the moles of solute by the litres of solution. 10 g of glucose (180.16 g/mol) in 500 mL is 0.0555 mol / 0.5 L = 0.111 M.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between molarity and molality?</summary>
+<p>Molarity is moles per litre of solution; molality is moles per kilogram of solvent. Molality does not change with temperature, because it uses masses only.</p>
+</details>
+<details class="ec-faq"><summary>What is normality?</summary>
+<p>Molarity times the equivalents per mole for the reaction. 0.5 M sulphuric acid gives two protons per molecule, so it is 1.0 N.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the molarity of a concentrated acid?</summary>
+<p>Multiply the density by the mass fraction to get g/L, then divide by the molar mass. 37 % HCl of density 1.18 g/mL holds 437 g/L, which is 12.0 M.</p>
+</details>
+<details class="ec-faq"><summary>How do I make a solution from a concentrated stock?</summary>
+<p>Use C1V1 = C2V2. To make 1 L of 1 M HCl from 12 M stock, take 83 mL of stock and make it up to 1 L, always adding acid to water.</p>
+</details>
+<details class="ec-faq"><summary>Why does my solution not come out to the right concentration?</summary>
+<p>Common causes are a wet or hydrated salt, an impure reagent, making up to the wrong volume, or a temperature far from the flask&#39;s calibration.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../dilution/index.html">Dilution C1V1 = C2V2</a> — making working solutions from a stock.</li>
+<li><a href="../ppm-concentration/index.html">PPM concentration converter</a> — mol/L to mg/L, ppm and % w/w.</li>
+<li><a href="../density/index.html">Density calculator</a> — mass and volume of the solution.</li>
+<li><a href="../chemical-dosing/index.html">Chemical dosing</a> — feeding a solution into a flow.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

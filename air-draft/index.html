@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Air draft and bridge clearance — Engineering calculators</title>
+  <meta name="description" content="Clearance under a bridge or power cable from the charted clearance, tide, the ship&#x27;s air draft at its actual draft and trim, and the allowances.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Air draft and bridge clearance</h1>
+    <p class="ec-summary">Bring the charted clearance of a bridge or overhead cable, the predicted tide and the ship's air draft at its actual draft and trim to the same reference, deduct the allowances, and find the margin and the highest tide at which the passage is still safe.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Bridge strikes and power-cable contacts happen when the charted clearance, the tide and the ship&#39;s actual air draft are not brought to the same reference. Charted clearances are measured from a high-water datum, tides from chart datum, and the ship&#39;s air draft changes with its draft and trim. This calculator puts them together: the real clearance over the water at the predicted tide, the air draft at the draft of the highest point, the margin after allowances for motion and electrical safety, and the highest tide at which the passage still keeps the required margin.</p>
+<p>It is for masters, pilots and passage planners preparing river and port transits, and for anyone checking a vessel&#39;s suitability for a berth behind a bridge.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Clearance above water   = charted clearance + (clearance datum − chart datum) − height of tide
+Draft at the mast       = T_aft + (T_fwd − T_aft) · x / L_BP
+Air draft               = height of the highest point above the keel − draft at the mast (− squat credit)
+Gross clearance         = clearance above water − air draft
+Net margin              = gross clearance − motion allowance − electrical safety distance
+Highest permissible tide = charted clearance + datum − air draft − allowances − required margin</code></pre>
+<ul>
+<li>x — position of the highest point forward of the aft perpendicular; L_BP — length between perpendiculars.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The datum of the charted clearance must be checked on the chart in use: HAT, MHWS or MHW.</li>
+<li>Squat is credited only if chosen.</li>
+<li>One allowance covers pitch, heave, roll and tide uncertainty; storm surges are not predicted.</li>
+<li>Power cables need an extra electrical safety distance and sag more when hot.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A bridge has 45.0 m clearance above HAT, and HAT is 5.6 m above chart datum. The predicted tide is 2.5 m. The ship&#39;s radar mast reaches 56.0 m above the keel at 150 m forward of the aft perpendicular, the ship is 280 m between perpendiculars and floats at 11.5 m forward and 12.5 m aft.</p>
+<ol>
+<li>Clearance above the water: 45.0 + 5.6 − 2.5 = 48.1 m.</li>
+<li>Draft at the mast: 12.5 + (11.5 − 12.5) × 150/280 = 11.96 m; air draft 56.0 − 11.96 = 44.04 m.</li>
+<li>Gross clearance 4.06 m; after a 0.5 m motion allowance the net margin is 3.56 m, above the 2 m required.</li>
+<li>The passage keeps the 2 m margin until the tide rises above 4.06 m on chart datum.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why is the clearance not simply the charted figure?</summary>
+<p>The chart gives it above a high-water datum. When the tide is lower than that datum the clearance is larger; when it is higher, as with HAT-based figures only at extreme tides, it is smaller.</p>
+</details>
+<details class="ec-faq"><summary>Why does trim matter?</summary>
+<p>A ship trimmed by the stern sits deeper aft; a mast near the bow then stands higher than the mean draft suggests.</p>
+</details>
+<details class="ec-faq"><summary>Should I count squat?</summary>
+<p>Usually not. Squat depends on speed, and a ship that slows down under the bridge loses it at the worst moment.</p>
+</details>
+<details class="ec-faq"><summary>What about power cables?</summary>
+<p>Add the electrical safety distance specified by the cable owner or port; arcing can occur without contact. Cables also sag in hot weather.</p>
+</details>
+<details class="ec-faq"><summary>What margin is usual?</summary>
+<p>Port rules and company procedures vary; 1–2 m, or a percentage of the air draft, is typical.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../tidal-height/index.html">Tidal height</a> — the tide at the time of the passage.</li>
+<li><a href="../ship-squat/index.html">Ship squat</a> — the sinkage at speed.</li>
+<li><a href="../hydrostatics/index.html">Hydrostatics</a> — drafts and trim of the loading condition.</li>
+<li><a href="../light-range/index.html">Light, radar and VHF range</a> — heights and horizons on the bridge.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

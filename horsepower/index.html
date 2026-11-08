@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Horsepower calculator — Engineering calculators</title>
+  <meta name="description" content="Horsepower from torque and rpm, or estimated from quarter-mile time or trap speed and weight, in hp, kW and PS, at the crank and the wheels.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Horsepower calculator</h1>
+    <p class="ec-summary">Horsepower from torque and rpm, or estimated from a quarter-mile time slip and weight, in hp, kW and PS at the crank and at the wheels.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Horsepower is the rate at which an engine does work. To calculate it from a dyno reading, multiply the torque in lbf·ft by the rpm and divide by 5 252. An engine making 400 lbf·ft at 5 000 rpm produces 380.8 hp. Without a dyno, drag racers estimate power from the car&#39;s weight and its quarter-mile time or trap speed.</p>
+<p>This calculator gives the crank horsepower from torque and rpm, or estimates it from a time slip with three published sets of constants. It shows the result in hp, kW and PS, and the wheel horsepower after a drivetrain loss. It is for car enthusiasts reading dyno sheets and time slips, and for anyone converting between horsepower units.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Power from torque, exact:</p>
+<pre class="ec-formula" tabindex="0"><code>P = T × 2π × N / 60
+hp = T[lbf·ft] × N[rpm] / 5 252</code></pre>
+<p>Estimates from a quarter-mile run:</p>
+<pre class="ec-formula" tabindex="0"><code>hp = W × (K_t / ET)³
+hp = W × (mph / K_v)³</code></pre>
+<p>Wheel and crank power:</p>
+<pre class="ec-formula" tabindex="0"><code>hp_wheel = hp_crank × (1 − loss)</code></pre>
+<ul>
+<li>T — torque; N — engine speed</li>
+<li>W — race weight in lb, with driver and fuel</li>
+<li>ET — elapsed time in s; mph — trap speed</li>
+<li>K_t, K_v — Hale 5.825 and 234; Fox 6.050 and 225; Huntington 6.290 and 224</li>
+<li>1 hp = 745.7 W; 1 PS = 735.5 W</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Power from torque and rpm is exact. Torque and horsepower curves always cross at 5 252 rpm when plotted in lbf·ft and hp.</li>
+<li>The time-slip formulas are estimates fitted to drag-strip results. They give flywheel horsepower for a car with good traction on a prepared track.</li>
+<li>Trap speed is the better guide. A poor launch or wheelspin adds tenths to the elapsed time but changes the trap speed much less.</li>
+<li>The drivetrain loss is an assumption. 15 % is a common figure for a manual rear-drive car, and automatics and all-wheel drive lose more.</li>
+<li>The constants differ because they were fitted to different cars. Hale&#39;s suit modern performance cars; Huntington&#39;s came from 1960s muscle cars.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An engine dyno shows 400 lbf·ft at 5 000 rpm. What is the power at that point, and at the wheels with a 15 % drivetrain loss?</p>
+<ol>
+<li>Power: 400 × 5 000 / 5 252 = 380.8 hp.</li>
+<li>In kilowatts: 380.8 × 0.7457 = 284.0 kW.</li>
+<li>In metric horsepower: 284 000 / 735.5 = 386.1 PS.</li>
+<li>At the wheels: 380.8 × (1 − 0.15) = 323.7 hp.</li>
+</ol>
+<p>In a 3 500 lb car with good traction, the Hale formula predicts a trap speed of 234 × (380.8 / 3 500)^(1/3) = 111.7 mph. Working backwards from a time slip, 111.7 mph gives back about 381 hp.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate horsepower from torque?</summary>
+<p>Multiply torque in lbf·ft by rpm and divide by 5 252. In SI units, kW = N·m × rpm / 9 549.</p>
+</details>
+<details class="ec-faq"><summary>Why do torque and horsepower cross at 5 252 rpm?</summary>
+<p>Because 5 252 is the constant in hp = lbf·ft × rpm / 5 252. At that speed the two numbers are equal.</p>
+</details>
+<details class="ec-faq"><summary>How accurate is horsepower from a quarter-mile time?</summary>
+<p>It is an estimate. For the same elapsed time, Huntington&#39;s constant gives 26 % more power than Hale&#39;s, so the choice of constants matters. Trap speed gives a more reliable figure than elapsed time.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between hp and PS?</summary>
+<p>PS is metric horsepower, 735.5 W. One mechanical horsepower is 745.7 W, so 100 hp is 101.4 PS.</p>
+</details>
+<details class="ec-faq"><summary>What is wheel horsepower?</summary>
+<p>The power a chassis dyno measures at the driven wheels. It is lower than crank power because the gearbox, driveshaft and differential absorb some of it.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert hp to kW?</summary>
+<p>Multiply by 0.7457. A 300 hp engine is 224 kW.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../quarter-mile/index.html">Quarter-mile ET and trap speed</a> — the time slip from weight and power.</li>
+<li><a href="../torque-power-rpm/index.html">Torque, power and speed</a> — any one of the three from the other two.</li>
+<li><a href="../engine-displacement/index.html">Engine displacement</a> — cubic inches and litres from bore and stroke.</li>
+<li><a href="../fuel-injector-size/index.html">Fuel injector size</a> — injector flow for the power.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

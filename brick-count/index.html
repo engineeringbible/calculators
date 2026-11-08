@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brick calculator: bricks and mortar for a wall — Engineering calculators</title>
+  <meta name="description" content="Number of bricks for a wall from its area less openings, for modular, standard, metric or custom bricks, one or two wythes, with waste and mortar.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Brick calculator: bricks and mortar for a wall</h1>
+    <p class="ec-summary">Bricks for a wall of modular, standard, metric or custom bricks, one or two wythes, less openings, with waste, joint mortar and bags of mortar mix.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How many bricks do you need? Divide the wall area by the face of one brick plus one mortar joint. A modular brick, 7⅝ × 2¼ in, laid with ⅜ in joints takes up 8 × 2⅝ in, so a square foot of wall holds 6.86 bricks. A wall of 148 ft² after deducting a window needs 1 015 bricks, or 1 066 with 5 % for cutting and breakage.</p>
+<p>This calculator counts the bricks for a wall of any common US brick, the UK metric brick or a size you enter. It handles one or two wythes, deducts doors and windows and adds waste. It also gives the mortar volume in the joints and the bags of mortar mix. It is for masons, builders and homeowners pricing a wall, a veneer or a garden project.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Bricks:</p>
+<pre class="ec-formula" tabindex="0"><code>bricks per area = 1 / ((L + j) × (H + j))
+bricks = A_net × bricks per area × wythes × (1 + waste)</code></pre>
+<p>Mortar, the method of BIA Technical Note 10:</p>
+<pre class="ec-formula" tabindex="0"><code>mortar per brick = ((L + j) × (H + j) − L × H) × W
+collar joint = A_net × j   (double wythe only)</code></pre>
+<ul>
+<li>L, H, W — specified length, height and width of the brick</li>
+<li>j — mortar joint thickness, ⅜ in in the US and 10 mm in metric brickwork</li>
+<li>A_net — wall area less doors and windows</li>
+<li>wythes — one or two thicknesses of brick</li>
+</ul>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Brick</th><th scope="col">Size, in</th><th scope="col">Bricks per ft² with ⅜ in joints</th></tr></thead>
+<tbody>
+<tr><td>Modular</td><td>7⅝ × 2¼ × 3⅝</td><td>6.86</td></tr>
+<tr><td>Standard</td><td>8 × 2¼ × 3⅝</td><td>6.55</td></tr>
+<tr><td>Queen</td><td>7⅝ × 2¾ × 2¾</td><td>5.76</td></tr>
+<tr><td>Norman</td><td>11⅝ × 2¼ × 3⅝</td><td>4.57</td></tr>
+<tr><td>Utility</td><td>11⅝ × 3⅝ × 3⅝</td><td>3.00</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The wall is laid in running or stack bond with even joints. Bonds with header courses use more bricks; BIA TN 10 gives the correction factors.</li>
+<li>BIA TN 10 lists 675 modular bricks per 100 ft² because three modular courses fill exactly 8 in. With joints of exactly ⅜ in the count is 686.</li>
+<li>The mortar volume is the theoretical volume of full joints, with no waste. It reproduces the BIA figure of 8.1 ft³ per 1 000 modular bricks.</li>
+<li>Bags use the QUIKRETE rate of 37 standard bricks per 80 lb bag of mortar mix, scaled to the chosen brick. That rate includes normal droppings and waste.</li>
+<li>Load-bearing or tall brick walls need a design by an engineer.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A wall is 20 ft long and 8 ft high with a window of 12 ft². It is built of modular brick with ⅜ in joints, one wythe thick. How many bricks and how much mortar are needed with 5 % waste?</p>
+<ol>
+<li>Net area: 20 × 8 − 12 = 148 ft².</li>
+<li>Bricks per square foot: 144 / (8 × 2.625) = 6.857.</li>
+<li>Bricks: 148 × 6.857 = 1 014.9, so 1 015 bricks without waste.</li>
+<li>With 5 % waste: 1 015 × 1.05 = 1 066 bricks.</li>
+<li>Mortar per brick: (8 × 2.625 − 7.625 × 2.25) × 3.625 = 13.93 in³, or 8.06 ft³ per 1 000 bricks.</li>
+<li>Mortar for the wall: 1 014.9 × 13.93 in³ = 8.18 ft³.</li>
+<li>Bags: at 37 standard bricks per bag, 27 bags of 80 lb mortar mix.</li>
+</ol>
+<p>The theoretical mortar is close to the 8.1 ft³ per 1 000 bricks in BIA TN 10 Table 4.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many bricks are in a square foot?</summary>
+<p>6.86 modular bricks with ⅜ in joints, or 6.75 by the BIA modular coursing. Standard bricks give 6.55 per square foot.</p>
+</details>
+<details class="ec-faq"><summary>How many bricks are in a square metre?</summary>
+<p>59.3 UK bricks of 215 × 65 mm with 10 mm joints, usually rounded to 60.</p>
+</details>
+<details class="ec-faq"><summary>How many bricks for a double wythe wall?</summary>
+<p>Twice the single-wythe count. The mortared collar joint between the wythes adds 3.13 ft³ of mortar per 100 ft² at ⅜ in thick.</p>
+</details>
+<details class="ec-faq"><summary>How much mortar do 1 000 bricks need?</summary>
+<p>About 8.1 ft³ of joint mortar for modular brick with ⅜ in joints, and 10.3 ft³ with ½ in joints. Real use is higher because of droppings.</p>
+</details>
+<details class="ec-faq"><summary>How many bricks does a bag of mortar lay?</summary>
+<p>QUIKRETE gives up to 37 standard bricks per 80 lb bag of Mortar Mix. Masons often reckon eight bags of masonry cement, mixed with sand, per 1 000 bricks.</p>
+</details>
+<details class="ec-faq"><summary>How much waste should I allow for bricks?</summary>
+<p>About 5 % on plain walls. Allow more for many openings, corners and cut bricks.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../concrete-block/index.html">Concrete block calculator</a> — concrete masonry units, mortar and grout.</li>
+<li><a href="../paint-coverage/index.html">Paint coverage and quantity</a> — wall areas less openings for coatings.</li>
+<li><a href="../concrete-footing/index.html">Concrete footing calculator</a> — the footing under a brick wall.</li>
+<li><a href="../retaining-wall/index.html">Retaining wall earth pressure calculator (Rankine)</a> — soil pressure on a garden retaining wall.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

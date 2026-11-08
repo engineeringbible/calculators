@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speed of sound and Mach number calculator — Engineering calculators</title>
+  <meta name="description" content="Speed of sound from temperature or altitude, Mach number from a speed, and the speed for a given Mach, in mph, knots, km/h and m/s.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Speed of sound and Mach number calculator</h1>
+    <p class="ec-summary">Speed of sound from temperature or altitude, Mach number from a speed, and the speed for a Mach number, with the total temperature.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The Mach number is a speed divided by the local speed of sound. The speed of sound in air depends only on the temperature: a = √(γ R T). At 15 °C it is 340.3 m/s, or 761.2 mph. High up the air is colder, so sound is slower and the same speed is a higher Mach number. At 35 000 ft in the standard atmosphere, 500 mph is Mach 0.754.</p>
+<p>This calculator gives the speed of sound from a measured temperature or a standard-atmosphere altitude. It then finds the Mach number for a speed, or the speed for a Mach number, with the flow regime and the total temperature. It is for pilots, students, model-rocket fliers and anyone asking how fast Mach 1 is.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Speed of sound and Mach number:</p>
+<pre class="ec-formula" tabindex="0"><code>a = √(γ R T)
+M = V / a
+V = M × a</code></pre>
+<p>Total (stagnation) temperature:</p>
+<pre class="ec-formula" tabindex="0"><code>T_total = T × (1 + (γ − 1) / 2 × M²)</code></pre>
+<p>Standard atmosphere temperature:</p>
+<pre class="ec-formula" tabindex="0"><code>T = 288.15 K − 6.5 K/km × h      up to 11 km (36 089 ft)
+T = 216.65 K                      from 11 to 20 km</code></pre>
+<ul>
+<li>γ — ratio of specific heats, 1.4 for air</li>
+<li>R — specific gas constant, 287.05 J/(kg·K) for air</li>
+<li>T — static air temperature in kelvin; V — speed</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Air is treated as an ideal gas. Pressure does not change the speed of sound, only temperature does.</li>
+<li>The altitude option uses the standard atmosphere. On a real day the temperature can differ by many degrees, so enter the measured temperature when you know it.</li>
+<li>Humid air carries sound slightly faster than dry air. The calculator uses dry air.</li>
+<li>Above about Mach 5 the air gets so hot that γ falls below 1.4. The total temperature shown is then too high.</li>
+<li>For other gases, enter their own γ and R.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An airliner flies at 500 mph true airspeed at 35 000 ft on a standard day. What is its Mach number?</p>
+<ol>
+<li>Standard temperature at 35 000 ft (10 668 m): 288.15 − 0.0065 × 10 668 = 218.81 K, or −54.34 °C.</li>
+<li>Speed of sound: √(1.4 × 287.05 × 218.81) = 296.5 m/s, or 663.3 mph.</li>
+<li>Mach number: 500 / 663.3 = 0.754.</li>
+<li>Total temperature: 218.81 × (1 + 0.2 × 0.754²) = 243.7 K, or −29.5 °C.</li>
+</ol>
+<p>The flight is subsonic. A probe on the aircraft would read close to the total temperature, about 25 °C warmer than the outside air.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How fast is Mach 1?</summary>
+<p>761.2 mph, 661.5 kn or 1 225 km/h at sea level on a standard 15 °C day. At 36 089 ft and above, where the standard temperature is −56.5 °C, it is 660.1 mph.</p>
+</details>
+<details class="ec-faq"><summary>Does the speed of sound change with altitude?</summary>
+<p>Only because the temperature changes. In the stratosphere, where the temperature is constant, the speed of sound is constant too.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate Mach number?</summary>
+<p>Divide the true airspeed by the speed of sound at the outside air temperature. Use true airspeed, not indicated airspeed.</p>
+</details>
+<details class="ec-faq"><summary>What is the speed of sound at 20 °C?</summary>
+<p>343.2 m/s, or 767.8 mph.</p>
+</details>
+<details class="ec-faq"><summary>What is transonic flight?</summary>
+<p>Flight between about Mach 0.8 and 1.2, where part of the flow over the aircraft is supersonic and shock waves form.</p>
+</details>
+<details class="ec-faq"><summary>What is total temperature?</summary>
+<p>The temperature air reaches when brought to rest without heat loss. It is the temperature a probe measures at high speed.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../true-airspeed/index.html">True airspeed</a> — TAS and Mach from calibrated airspeed.</li>
+<li><a href="../density-altitude/index.html">Density altitude</a> — pressure and density altitude.</li>
+<li><a href="../drag-lift/index.html">Drag and lift force</a> — forces at a given speed.</li>
+<li><a href="../rocket-equation/index.html">Rocket equation</a> — delta-v from exhaust velocity and mass.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RC time constant and filter — Engineering calculators</title>
+  <meta name="description" content="Time constant τ = RC, capacitor voltage while charging or discharging, time to 99 %, and the −3 dB cutoff frequency of an RC filter.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">RC time constant and filter</h1>
+    <p class="ec-summary">The time constant of a resistor-capacitor circuit, the capacitor voltage at any time while charging or discharging, the time to 99 per cent, the first-instant current, the stored energy and the cutoff frequency of the RC filter.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A resistor and a capacitor in series are the most common timing and filtering circuit in electronics. When a voltage is switched on, the capacitor does not charge instantly. It follows an exponential curve whose pace is set by a single number, the time constant τ = R × C. The same two parts used as a filter pass slow signals and block fast ones, with a cutoff frequency set by the same product.</p>
+<p>This calculator gives the time constant, the capacitor voltage at any moment after the step for both charging and discharging, the time to reach 99 %, the current at the first instant, the energy stored, and the −3 dB cutoff frequency of the RC low-pass or high-pass filter. It is for students, hobbyists and engineers designing delays, debounce circuits, power-on resets and simple filters.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Time constant:</p>
+<pre class="ec-formula" tabindex="0"><code>τ = R × C</code></pre>
+<p>Charging from 0 towards V_s, and discharging from V_s:</p>
+<pre class="ec-formula" tabindex="0"><code>V_C(t) = V_s × (1 − e^(−t/τ))
+V_C(t) = V_s × e^(−t/τ)</code></pre>
+<p>Milestones: 63.2 % at t = τ, 86.5 % at 2τ, 95.0 % at 3τ, 99 % at 4.6τ, and 99.3 % at 5τ.</p>
+<p>Cutoff (−3 dB) frequency of a first-order RC filter:</p>
+<pre class="ec-formula" tabindex="0"><code>f_c = 1 / (2π × R × C)</code></pre>
+<p>Current at the first instant and stored energy:</p>
+<pre class="ec-formula" tabindex="0"><code>I₀ = V_s / R,    E = ½ × C × V_s²</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>One resistor in series with one capacitor, driven by an ideal voltage step. If the source has its own resistance, add it to R.</li>
+<li>The capacitor is ideal. Electrolytic capacitors leak, so timing periods of minutes or more drift, and their −20 % / +80 % tolerance moves τ just as much.</li>
+<li>The filter result is the −3 dB point of a first-order filter into a high-impedance load. A load across the output lowers the effective resistance and shifts the cutoff.</li>
+<li>An RC filter rolls off at only 20 dB per decade. Sharper filtering needs more stages or an active filter.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 10 kΩ resistor charges a 100 µF capacitor from a 5 V supply. How fast does it charge, and what is the voltage after one second?</p>
+<ol>
+<li>Time constant: τ = R × C = 10 000 × 100 × 10⁻⁶ = 1.00 s.</li>
+<li>After t = 1 s, that is one time constant: V_C = 5 × (1 − e^(−1)) = 5 × 0.632 = 3.16 V.</li>
+<li>Practically full, at 99.3 %, after five time constants: 5 × 1.00 = 5.00 s.</li>
+<li>Used as a filter, the same pair has a cutoff of f_c = 1 / (2π × 10 000 × 100 × 10⁻⁶) = 0.159 Hz. It passes only very slow changes, which makes it a smoothing filter.</li>
+</ol>
+<p>For an audio low-pass filter with 1 kΩ and 100 nF, τ = 100 µs and f_c = 1.59 kHz.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What does the time constant mean?</summary>
+<p>The time to reach 63.2 % of the final voltage when charging, or to fall to 36.8 % when discharging. Each further τ closes 63.2 % of the remaining gap.</p>
+</details>
+<details class="ec-faq"><summary>When is a capacitor fully charged?</summary>
+<p>Never exactly, in theory. In practice, 5τ (99.3 %) is taken as full; 3τ (95 %) is often good enough for timing.</p>
+</details>
+<details class="ec-faq"><summary>How do I choose R and C for a delay?</summary>
+<p>Pick the delay, then τ = R C. A logic input that switches at half the supply needs t = 0.69 τ, so for a 1 s delay use τ = 1.44 s, for example 1 MΩ and 1.5 µF.</p>
+</details>
+<details class="ec-faq"><summary>What is the cutoff frequency of an RC filter?</summary>
+<p>The frequency where the output is down 3 dB, or 70.7 % of the input. For a low-pass filter, the output is taken across the capacitor; for a high-pass filter, across the resistor. Both have the same f_c.</p>
+</details>
+<details class="ec-faq"><summary>Why does my RC timer drift?</summary>
+<p>Capacitor tolerance and leakage, especially with electrolytics, and the threshold of whatever reads the voltage. For accurate or long delays, use a timer IC or a microcontroller.</p>
+</details>
+<details class="ec-faq"><summary>How much current flows at switch-on?</summary>
+<p>At the first instant the capacitor acts like a short circuit, so the current is V_s / R. A small R with a large C gives a heavy inrush.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../capacitors-series-parallel/index.html">Series and parallel capacitors</a> — making up the capacitance C.</li>
+<li><a href="../resistors-series-parallel/index.html">Series and parallel resistors</a> — making up the resistance R.</li>
+<li><a href="../ohms-law/index.html">Ohm&#39;s law and electrical power</a> — the switch-on current V / R.</li>
+<li><a href="../voltage-divider/index.html">Voltage divider</a> — the divider&#39;s source resistance adds to R.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

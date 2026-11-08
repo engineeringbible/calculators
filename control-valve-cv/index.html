@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Control valve Cv / Kv sizing — Engineering calculators</title>
+  <meta name="description" content="Liquid control valve coefficient Kv and Cv to IEC 60534 with the choked-flow and cavitation check, valve opening and pipe velocity.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Control valve Cv / Kv sizing</h1>
+    <p class="ec-summary">Liquid control valve sizing to IEC 60534-2-1: the actual pressure drop, the liquid critical pressure ratio factor, the choked pressure drop from the valve style's pressure recovery factor and the vapour pressure, the sizing drop, the required Kv and Cv, the flow regime (turbulent, near cavitation, choked), the opening against the rated coefficient, the pipe velocity and the maximum flow the chosen valve can pass.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A control valve is specified by its flow coefficient: the cubic metres per hour of water it passes at one bar of pressure drop (Kv), or the US gallons per minute at one psi (Cv). For a liquid the required coefficient follows from the flow, the density and the pressure drop, with one complication: when the drop is large the pressure inside the valve falls to the vapour pressure, the flow chokes and cavitation begins, so the sizing drop is capped by the valve style&#39;s pressure recovery factor. This calculator applies the IEC 60534-2-1 liquid equations, flags near-cavitating and choked conditions, compares the required coefficient with the rated one for a sensible opening, and checks the pipe velocity.</p>
+<p>It is for marine and process engineers sizing cooling-water, fuel and cargo control valves, for anyone checking why a valve cavitates, and for students of fluid control.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Kv = Q √( (ρ/1000) / Δp_sizing )      Q m³/h, Δp bar;   Cv = 1.156 Kv
+F_F = 0.96 − 0.28 √(p_v / p_c)
+Δp_max = F_L² (p₁ − F_F p_v),   Δp_sizing = min(Δp, Δp_max)   (choked when Δp ≥ Δp_max)
+opening ≈ Kv_required / Kv_rated,   velocity = Q / (π D²/4)
+maximum flow of a rated valve at p₁: Q_max = Kv_rated √(Δp_max / (ρ/1000))</code></pre>
+<p>Typical F_L at full opening: single-seat globe 0.90, cage globe 0.85, eccentric plug 0.77, butterfly 60° 0.68, segmented ball 0.60, butterfly 90° 0.55.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Turbulent single-phase liquid, line-size valve (F_P = 1), no Reynolds correction; flashing (p₂ below p_v), gas and steam are outside this page.</li>
+<li>F_L values are typical; the manufacturer&#39;s value for the trim and opening governs.</li>
+<li>Incipient cavitation flagged at 70 % of the choked drop as a rule of thumb; manufacturers publish their own indices.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>100 m³/h of cooling water (998 kg/m³, 20 °C) through a single-seat globe valve from 6 to 4 bar abs in a 100 mm line; candidate valve Kv 100.</p>
+<ol>
+<li>Δp = 2 bar; F_F = 0.96 − 0.28 √(0.023/221.2) = 0.957; Δp_max = 0.9² × (6 − 0.957 × 0.023) = 4.84 bar: the drop is 41 % of the limit, no cavitation.</li>
+<li>Kv = 100 √(0.998/2) = 70.6, Cv = 81.7.</li>
+<li>Opening 71 % of the rated Kv 100: within the 60–80 % target; pipe velocity 3.5 m/s.</li>
+</ol>
+<p>Throttling to 0.5 bar abs instead (Δp 5.5 bar) chokes the valve: it is sized on 4.84 bar (Kv 45.4, not 42.6), the Kv 100 valve cannot pass more than 220 m³/h at this inlet pressure, and anti-cavitation trim is needed. A 90° butterfly (F_L 0.55) would already be choked at the original 2 bar drop.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Kv or Cv?</summary>
+<p>Kv is the metric coefficient (m³/h, bar), Cv the US one (gpm, psi); Cv = 1.156 Kv. European datasheets quote Kv, most sizing software both.</p>
+</details>
+<details class="ec-faq"><summary>What is the pressure recovery factor?</summary>
+<p>F_L describes how much of the pressure dip at the vena contracta is recovered downstream; low-recovery valves (globe) tolerate larger drops before choking than high-recovery ones (butterfly, ball).</p>
+</details>
+<details class="ec-faq"><summary>Why does the flow stop increasing when choked?</summary>
+<p>The vena contracta pressure cannot fall below the vapour pressure, so the driving pressure inside the valve stops growing even if the outlet pressure falls further.</p>
+</details>
+<details class="ec-faq"><summary>Is cavitation the same as choking?</summary>
+<p>Choking is the flow limit; cavitation damage and noise begin earlier, at 60–80 % of the choked drop depending on the trim, and continue through the choked regime.</p>
+</details>
+<details class="ec-faq"><summary>What opening should the valve work at?</summary>
+<p>About 60–80 % at maximum flow and not below 10–20 % at minimum, so the controller has authority in both directions; the inherent characteristic sets the exact stem position.</p>
+</details>
+<details class="ec-faq"><summary>What about viscous fluids?</summary>
+<p>Heavy fuel oil at low temperature can be laminar in small valves; IEC 60534-2-1 applies the Reynolds factor F_R, which this page does not include.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — the pressure available at the valve.</li>
+<li><a href="../orifice-flow/index.html">Orifice and venturi flow (ISO 5167)</a> — fixed restrictions.</li>
+<li><a href="../pump-npsh/index.html">Pump NPSH</a> — the same vapour-pressure physics on the suction side.</li>
+<li><a href="../water-hammer/index.html">Water hammer</a> — what fast valve closure does to the line.</li>
+<li><a href="../relief-valve-api520/index.html">Relief valve sizing (API 520)</a> — protecting the system the valve serves.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

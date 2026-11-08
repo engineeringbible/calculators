@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Concrete column and post hole calculator — Engineering calculators</title>
+  <meta name="description" content="Concrete for round columns, piers and tube forms, or for setting fence and deck posts, with premix bags per hole and in total, weight and cost.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Concrete column and post hole calculator</h1>
+    <p class="ec-summary">Concrete for fence and deck post holes, round piers, tube forms and columns, with bags per hole and in total, weight and cost.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Setting a fence post, pouring a deck pier in a cardboard tube form, or casting a round column all come down to the volume of a cylinder. For a post hole, the post itself takes up part of that cylinder, and a layer of gravel at the bottom takes up more. A 12 in hole 3 ft deep around a 4 × 4 post holds 2.1 cubic feet of concrete, three and a half bags of 80 lb.</p>
+<p>This calculator gives the concrete per hole or column and for the whole job, in cubic feet, cubic yards or cubic metres. It counts bags per hole and in total, and gives the weight and the cost at your prices. It is for fence builders, deck builders and anyone pouring round piers or columns.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Round column or pier:</p>
+<pre class="ec-formula" tabindex="0"><code>V = n × π × D² / 4 × H</code></pre>
+<p>Post hole, with the post standing on gravel:</p>
+<pre class="ec-formula" tabindex="0"><code>V = n × (π × D² / 4 − A_post) × (h − h_gravel)
+A_post = s² for a square post, π × s² / 4 for a round one</code></pre>
+<p>Order and bags:</p>
+<pre class="ec-formula" tabindex="0"><code>V_order = V × (1 + waste)
+bags = V_order / bag yield, rounded up</code></pre>
+<ul>
+<li>D — hole or column diameter; H — column height; h — hole depth</li>
+<li>s — actual post size: a 4 × 4 is 3.5 in, a 6 × 6 is 5.5 in</li>
+<li>n — number of holes or columns</li>
+<li>bag yield — 0.60 ft³ per 80 lb, 0.45 ft³ per 60 lb, 0.30 ft³ per 40 lb, 11.7 L per 25 kg</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Holes and columns are straight cylinders. Augered holes are often wider at the top and bells at the bottom of piers add volume, so allow 10 % or more for waste.</li>
+<li>The post stands on the gravel and displaces concrete over the rest of the hole. The calculator checks that a square post fits, which needs a hole wider than the post&#39;s diagonal.</li>
+<li>Common fencing practice is a hole about three times the post width and about a third of the post&#39;s length in the ground, below the frost line in cold climates. Deck and building posts follow the local code and the drawings.</li>
+<li>Premix bag yields are those printed on US bags. The weight uses 2 400 kg/m³.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A fence has ten 4 × 4 posts, each set in a 12 in hole 36 in deep, with no gravel. How much concrete is needed with 10 % waste?</p>
+<ol>
+<li>Hole area: π × 1² / 4 = 0.785 ft². Post area: 3.5 × 3.5 / 144 = 0.085 ft².</li>
+<li>Concrete per hole: (0.785 − 0.085) × 3 = 2.10 ft³.</li>
+<li>In 80 lb bags: 2.10 / 0.60 = 3.50 bags per hole.</li>
+<li>Ten holes with 10 % waste: 2.10 × 10 × 1.10 = 23.1 ft³.</li>
+<li>Bags: 23.1 / 0.60 = 38.5, so buy 39 bags of 80 lb.</li>
+</ol>
+<p>With 4 in of gravel at the bottom of each hole for drainage, the same fence needs 35 bags.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many bags of concrete per fence post?</summary>
+<p>For a 4 × 4 post in a 10 in hole 2 ft deep, about 1.5 bags of 80 lb, so 2 bags. In a 12 in hole 3 ft deep, 3.5 bags.</p>
+</details>
+<details class="ec-faq"><summary>How big should a post hole be?</summary>
+<p>About three times the post width: 10 to 12 in for a 4 × 4 and 16 to 18 in for a 6 × 6. The depth is usually a third of the post&#39;s length, and below the frost line where the ground freezes.</p>
+</details>
+<details class="ec-faq"><summary>How much concrete is in a 12 in tube form?</summary>
+<p>0.785 ft³ per foot of height, so a 4 ft tube takes 3.14 ft³, about 5.2 bags of 80 lb.</p>
+</details>
+<details class="ec-faq"><summary>Should I put gravel in the bottom of a post hole?</summary>
+<p>Many builders add 4 to 6 in of gravel so water drains away from the end of the post. Enter its depth, and the calculator removes it from the concrete.</p>
+</details>
+<details class="ec-faq"><summary>Can I use fast-setting concrete for posts?</summary>
+<p>Yes. Fast-setting mixes can yield a different volume per pound, so read the yield printed on the bag and scale the bag count to match.</p>
+</details>
+<details class="ec-faq"><summary>How much concrete for a round column?</summary>
+<p>Multiply 0.785 by the diameter squared and by the height, all in feet. A 16 in column 10 ft tall needs 14.0 ft³, about 0.52 yd³.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../concrete-footing/index.html">Concrete footing calculator</a> — square pads and strip footings.</li>
+<li><a href="../concrete-bags/index.html">Concrete bag calculator</a> — bags of each size for any volume.</li>
+<li><a href="../concrete-slab/index.html">Concrete slab calculator</a> — patios, driveways and floors.</li>
+<li><a href="../concrete-volume/index.html">Concrete volume and rebar weight</a> — columns with reinforcement weight.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

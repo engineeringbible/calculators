@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generator size calculator — Engineering calculators</title>
+  <meta name="description" content="What size generator you need: running watts of your loads, the surge of the largest motor starting, and the minimum running, starting and kVA ratings.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Generator size calculator</h1>
+    <p class="ec-summary">What size generator you need for a house, RV or job site: running watts, the starting surge of the largest motor and the minimum generator ratings.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>To size a generator, add up the running watts of everything you want to power, then add the extra surge that the largest motor draws for a few seconds when it starts. The generator&#39;s running rating must cover the first number with some margin, and its starting rating must cover the second. A fridge, sump pump, furnace fan, lights, microwave and TV run on about 4 450 W, but need 6 000 W for the moment the furnace fan starts.</p>
+<p>This calculator does that sum for any list of loads, for a home backup generator, an RV, a job site or a cabin. It gives the running and starting watts, the minimum ratings to look for on a generator, and the kVA rating of a permanently installed standby set.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Running load and starting surge:</p>
+<pre class="ec-formula" tabindex="0"><code>W_run = Σ W_running
+surge = max(W_starting − W_running)       motors starting one at a time
+surge = Σ (W_starting − W_running)        all starting together
+W_peak = W_run + surge</code></pre>
+<p>Minimum ratings:</p>
+<pre class="ec-formula" tabindex="0"><code>running rating ≥ W_run / k_max
+starting rating ≥ W_peak
+standby kVA = running rating / 0.8</code></pre>
+<ul>
+<li>W_running, W_starting — running and starting watts of each load, from the nameplate or manual</li>
+<li>k_max — the highest share of its rating you want the generator to run at, 80 % by default</li>
+<li>0.8 — the power factor at which standby generators are rated (ISO 8528-1)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The default list is an example. Real running and starting watts vary by model, so read them from nameplates or manuals. A motor that shows only amps draws about volts × amps watts while running.</li>
+<li>Motors usually start one at a time. After a power cut several may start together when the power returns; choose &quot;all together&quot; or use a transfer switch that staggers them.</li>
+<li>Running a generator at no more than about 80 % of its rating leaves room for loads switching on and spares the engine. Inverter generators handle surges less well than their running rating suggests, so check their surge rating too.</li>
+<li>Altitude and heat reduce an engine generator&#39;s output. A permanently connected standby generator must be installed with a transfer switch by a licensed electrician.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A house wants to back up a fridge (700 W running, 2 200 W starting), a 1/2 hp sump pump (1 050 W, 2 150 W), a 1/2 hp furnace fan (800 W, 2 350 W), 600 W of lights, a 1 000 W microwave and 300 W of TV and internet. What generator is needed?</p>
+<ol>
+<li>Running watts: 700 + 1 050 + 800 + 600 + 1 000 + 300 = 4 450 W.</li>
+<li>Surges: fridge 1 500 W, sump pump 1 100 W, furnace fan 1 550 W. The largest is 1 550 W.</li>
+<li>Peak while the furnace fan starts: 4 450 + 1 550 = 6 000 W.</li>
+<li>Running rating at 80 % loading: 4 450 / 0.8 = 5 563 W.</li>
+</ol>
+<p>So look for a generator rated at least about 5 600 running watts and 6 000 starting watts; a common 7 500 W portable model covers both. If all three motors could start together, the peak would be 8 600 W.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What size generator do I need to run a house?</summary>
+<p>For essentials such as a fridge, sump pump, furnace fan, lights and a few outlets, typically 5 000 to 8 000 running watts. Whole-house backup with central air conditioning and electric cooking usually needs a 15 to 25 kW standby generator.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between running and starting watts?</summary>
+<p>Running watts are what a load draws once it is going. Starting watts are the brief surge a motor needs to get moving, often two to three times its running watts.</p>
+</details>
+<details class="ec-faq"><summary>Can a 3 500 W generator run a refrigerator?</summary>
+<p>Usually yes. A typical fridge runs on 600 to 800 W and starts at around 2 000 W, well within a 3 500 W generator&#39;s surge rating, leaving some capacity for lights and a few small loads.</p>
+</details>
+<details class="ec-faq"><summary>Why not size the generator exactly to the load?</summary>
+<p>A generator running flat out for hours wears faster and has no capacity left to start another motor. Sizing for about 80 % leaves that margin.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between kW and kVA on a generator?</summary>
+<p>Standby generators are rated in kVA at a power factor of 0.8, so a 25 kVA set delivers 20 kW. Portable generators are rated in watts.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the watts of an appliance?</summary>
+<p>Read the nameplate or manual. If it lists only amps, multiply by the voltage: a 5 A appliance on 120 V draws about 600 W.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — loading and fuel of generator sets running in parallel.</li>
+<li><a href="../watts-to-amps/index.html">Watts to amps</a> — the current of each load.</li>
+<li><a href="../kw-to-kva/index.html">kW to kVA</a> — the kVA rating for a load in kW.</li>
+<li><a href="../breaker-size/index.html">Breaker size calculator</a> — the breaker for the generator circuit.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

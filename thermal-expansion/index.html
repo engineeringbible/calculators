@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thermal expansion and restraint stress — Engineering calculators</title>
+  <meta name="description" content="Length change of solids with temperature, the stress and force when expansion is restrained, and the volume change and pressure rise of a liquid trapped in a pipe or tank.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Thermal expansion and restraint stress</h1>
+    <p class="ec-summary">Free expansion of a pipe, bar or structure with temperature, the thermal stress and anchor force when the expansion is fully or partially restrained, and the volume change and blocked-in pressure rise of a liquid in a tank or pipe.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Everything grows when it warms: a 100 m steam line gains more than a decimetre between cold and hot, a deck plate in the sun pushes against its neighbours, and fuel in a tank gains volume while the sounding stays the same. If the expansion is prevented, the material develops stress instead, and the stress is surprisingly large: fully restrained steel builds about 2.4 MPa for every degree, so a 100 K rise alone exceeds the yield strength of ordinary structural steel. Liquids are worse: a completely filled, blocked-in water line rises by several bar per degree.</p>
+<p>This calculator covers both cases: linear expansion of a solid member with free, partial or full restraint (thermal stress, anchor force, utilisation against yield), and volumetric expansion of a liquid with the pressure rise if it is confined. It is for piping and structural engineers, marine engineers dealing with heated fuel systems and blocked-in lines, and students meeting thermal stress for the first time.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Linear expansion of a solid:</p>
+<pre class="ec-formula" tabindex="0"><code>ΔL = α L ΔT                       free expansion
+ε_T = α ΔT                        thermal strain
+σ = E (α ΔT − δ / L)              stress when the member may move only δ (δ = 0 fully restrained; σ = 0 when δ ≥ |ΔL|)
+F = σ A                           force on the anchors
+E α                               stress per kelvin for full restraint</code></pre>
+<p>Sign: heating a restrained member gives compression (positive here); cooling gives tension (negative).</p>
+<p>Volumetric expansion of a liquid:</p>
+<pre class="ec-formula" tabindex="0"><code>ΔV = β V ΔT                       unconfined (vented tank)
+Δp = K (β − 3 α_pipe) ΔT          blocked in, completely filled, rigid walls (3 α_pipe credits the container&#39;s own volume growth)
+V_relief = (β − 3 α_pipe) V ΔT    liquid that must escape to hold the pressure</code></pre>
+<ul>
+<li>α — linear expansion coefficient (steel 12, stainless 304 17.3, aluminium 23.1, copper 16.5, PVC 70, HDPE 150 µm/m·K)</li>
+<li>β — volumetric expansion coefficient of the liquid (water 20 °C 0.21, sea water 0.25, diesel 0.83, HFO 0.68, lube oil 0.70 ×10⁻³/K)</li>
+<li>K — bulk modulus of the liquid (water 2.2, oils 1.5–1.6 GPa); E — Young&#39;s modulus; A — cross-section area</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Mean coefficients over the range; α and β both change with temperature (β of water is zero at 4 °C and triples between 20 and 80 °C). For large ranges use the code or handbook value for the actual interval as a custom input.</li>
+<li>Material presets are typical values for the alloy family; the yield strength for the utilisation is a common grade, not your certificate.</li>
+<li>Rigid anchors and a straight, uniformly heated member. Real supports deflect and reduce the force; a slender member in compression buckles well before yield, so a compressive thermal stress near yield is a buckling problem.</li>
+<li>Trapped-liquid pressure assumes no vapour space and no wall stretch under pressure; both reduce the real rise, so the result is an upper bound that justifies a thermal relief valve rather than predicting the exact pressure.</li>
+<li>For bunker and cargo quantities use the Table 54B method (bunker-quantity calculator); the constant β here is for engineering estimates.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 100 m carbon-steel pipeline (cross-section 100 cm²) is heated by 100 K.</p>
+<ol>
+<li>Free expansion: 12 × 10⁻⁶ × 100 × 100 = 0.120 m = 120 mm.</li>
+<li>Fully restrained between rigid anchors: σ = 200 × 10⁹ × 12 × 10⁻⁶ × 100 = 240 MPa — 102 % of S235 yield, so the line would yield or, more likely, buckle sideways. Anchor force 240 MPa × 0.01 m² = 2.4 MN.</li>
+<li>With an expansion loop allowing 60 mm: σ = 200 × 10⁹ × (1.2 × 10⁻³ − 0.6 × 10⁻³) = 120 MPa, force 1.2 MN.</li>
+<li>Allowing the full 120 mm (expansion joint or free sliding supports): no stress.</li>
+</ol>
+<p>Blocked-in water line: 1 m³ of water at 20 °C in a closed steel pipe warmed by 10 K. ΔV would be 0.21 × 10⁻³ × 1 × 10 = 2.1 L if vented; confined, Δp = 2.2 × 10⁹ × (0.21 − 3 × 0.012) × 10⁻³ × 10 = 38 bar, i.e. 3.8 bar per kelvin. Relieving 1.74 L holds the pressure. A sun-warmed deck line can gain 30 K, more than enough to burst a flange gasket without a thermal relief valve.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the thermal stress not depend on the length?</summary>
+<p>Because strain, not length, sets the stress: a short and a long bar both have the strain α ΔT when fully restrained. Length only matters for how much movement an expansion joint must absorb and for buckling.</p>
+</details>
+<details class="ec-faq"><summary>How do pipe designers avoid these stresses?</summary>
+<p>Expansion loops, bellows, offsets and sliding or spring supports convert the restraint into allowed movement. ASME B31.3 Appendix D analyses the flexibility; this calculator shows how much movement removes the stress.</p>
+</details>
+<details class="ec-faq"><summary>My steel pipe is in compression at 240 MPa. Will it really yield?</summary>
+<p>A straight restrained pipe would buckle laterally long before 240 MPa; the force on the anchors is capped by that buckling. Either way the installation fails without flexibility.</p>
+</details>
+<details class="ec-faq"><summary>Which expansion coefficient for stainless steel?</summary>
+<p>Austenitic grades (304, 316) are about 16–17 µm/m·K, 40 % more than carbon steel, which matters at dissimilar-metal joints and for stainless pipes clamped to a steel ship structure.</p>
+</details>
+<details class="ec-faq"><summary>Why is the blocked-in pressure rise so high?</summary>
+<p>Liquids are nearly incompressible: with K = 2.2 GPa, forcing a 0.17 % volume change on water needs 38 bar. Only a vapour space or a relief valve can absorb it.</p>
+</details>
+<details class="ec-faq"><summary>Does the pipe&#39;s own expansion help?</summary>
+<p>Yes, that is the 3 α_pipe term: the volume of a steel pipe grows 36 ×10⁻⁶ per kelvin, about 17 % of the water expansion, which lowers the pressure rise correspondingly.</p>
+</details>
+<details class="ec-faq"><summary>How does this relate to fuel tank soundings?</summary>
+<p>The volume of fuel in a tank changes with temperature while its mass does not; the bunker-quantity calculator converts observed volume to mass at 15 °C with the standard tables, which is the precise version of β V ΔT.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../pressure-vessel/index.html">Thin-wall pressure vessel</a> — pressure stresses combined with thermal stresses.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — the piping that needs expansion loops.</li>
+<li><a href="../bunker-quantity/index.html">Bunker quantity and density correction</a> — temperature correction of fuel volumes.</li>
+<li><a href="../heat-exchanger-lmtd/index.html">Heat exchanger LMTD</a> — tube bundle expansion between the fluid temperatures.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

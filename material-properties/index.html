@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Material properties table (steel, aluminium, plastics) — Engineering calculators</title>
+  <meta name="description" content="Density, Young's modulus, yield and tensile strength, thermal expansion, conductivity, specific heat and melting range of common materials, with mass.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Material properties table (steel, aluminium, plastics)</h1>
+    <p class="ec-summary">Reference properties of twenty engineering materials from cited standards and data sheets, with mass, specific stiffness and specific strength.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Most engineering sums start with a handful of material properties. Density gives weight, Young&#39;s modulus gives stiffness, and the yield strength sets the stress a part can carry. Structural steel S355, for example, weighs 7 850 kg/m³, has a modulus of 210 GPa and yields at 355 MPa in plates up to 40 mm thick.</p>
+<p>This page holds those properties for twenty common materials: structural and stainless steels, aluminium alloys, copper, brass, titanium, cast iron, concrete, timber, glass and three plastics. Each value comes from a named standard or data sheet. Enter a volume to get the mass, and compare materials by their stiffness and strength per unit weight. It is for designers, students and anyone choosing a material.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Values derived from the table:</p>
+<pre class="ec-formula" tabindex="0"><code>m = ρ V
+specific stiffness = E / ρ
+specific strength = f / ρ</code></pre>
+<ul>
+<li>ρ — density; V — volume; E — Young&#39;s modulus</li>
+<li>f — yield or 0.2 % proof strength, or the tensile or characteristic strength where there is no yield</li>
+</ul>
+<p>Main values held (the calculator shows the thermal properties and the basis of each value):</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Material</th><th scope="col">ρ (kg/m³)</th><th scope="col">E (GPa)</th><th scope="col">Yield (MPa)</th><th scope="col">Tensile (MPa)</th><th scope="col">α (µm/(m·K))</th></tr></thead>
+<tbody>
+<tr><td>S235, t ≤ 40 mm</td><td>7 850</td><td>210</td><td>235</td><td>360</td><td>12.0</td></tr>
+<tr><td>S355, t ≤ 40 mm</td><td>7 850</td><td>210</td><td>355</td><td>490</td><td>12.0</td></tr>
+<tr><td>ASTM A36</td><td>7 850</td><td>200</td><td>248</td><td>400</td><td>11.7</td></tr>
+<tr><td>ASTM A572 Grade 50</td><td>7 850</td><td>200</td><td>345</td><td>448</td><td>11.7</td></tr>
+<tr><td>Stainless 304</td><td>8 030</td><td>193</td><td>205</td><td>515</td><td>16.9</td></tr>
+<tr><td>Stainless 316</td><td>8 030</td><td>193</td><td>205</td><td>515</td><td>16.0</td></tr>
+<tr><td>Aluminium 6061-T6</td><td>2 700</td><td>69</td><td>276</td><td>310</td><td>23.6</td></tr>
+<tr><td>Aluminium 6082-T6</td><td>2 700</td><td>70</td><td>260</td><td>310</td><td>23.0</td></tr>
+<tr><td>Aluminium 5083-O</td><td>2 700</td><td>70</td><td>125</td><td>275</td><td>23.0</td></tr>
+<tr><td>Copper C11000</td><td>8 910</td><td>117</td><td>69</td><td>221</td><td>16.9</td></tr>
+<tr><td>Brass C26000</td><td>8 530</td><td>110</td><td>103</td><td>324</td><td>20.0</td></tr>
+<tr><td>Titanium Grade 2</td><td>4 510</td><td>105</td><td>275</td><td>344</td><td>8.6</td></tr>
+<tr><td>Ti-6Al-4V</td><td>4 430</td><td>114</td><td>828</td><td>895</td><td>8.6</td></tr>
+<tr><td>Grey iron EN-GJL-250</td><td>7 200</td><td>103</td><td>—</td><td>250</td><td>—</td></tr>
+<tr><td>Concrete C30/37</td><td>2 400</td><td>33</td><td>—</td><td>2.9</td><td>10.0</td></tr>
+<tr><td>Timber C24</td><td>420</td><td>11</td><td>—</td><td>14.5</td><td>—</td></tr>
+<tr><td>Float glass</td><td>2 500</td><td>70</td><td>—</td><td>45</td><td>9.0</td></tr>
+<tr><td>PVC-U</td><td>1 440</td><td>3.0</td><td>55</td><td>—</td><td>75</td></tr>
+<tr><td>HDPE</td><td>950</td><td>1.1</td><td>23</td><td>—</td><td>180</td></tr>
+<tr><td>Nylon PA66</td><td>1 140</td><td>2.4</td><td>83</td><td>85</td><td>81</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Steel, aluminium, concrete and timber values are code minimums or characteristic values. Copper, brass, 6061-T6 and the plastics are typical data-sheet values. The basis line in the results says which.</li>
+<li>Strengths depend on thickness, temper and product form. Thicker plate, welded joints and higher temperatures all give lower values.</li>
+<li>Concrete is shown with its mean tensile strength. Its compressive strength fck is 30 MPa. Timber shows its tension strength along the grain, and glass its bending strength.</li>
+<li>A dash means no value from a cited source is held for that property. The page does not fill gaps with guesses.</li>
+<li>Plastics creep under steady load and soften as they warm. Their short-term values overstate what they carry for years.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A designer compares a 2 litre block of aluminium 6061-T6 with the same volume of S355 steel.</p>
+<ol>
+<li>Mass of the aluminium: 2 700 × 0.002 = 5.40 kg. The steel weighs 7 850 × 0.002 = 15.7 kg.</li>
+<li>Specific stiffness of the aluminium: 68.9 GPa / 2 700 = 25.52 MJ/kg. Steel gives 210 / 7 850 = 26.75 MJ/kg, almost the same.</li>
+<li>Specific strength of the aluminium: 276 MPa / 2 700 = 102.2 kJ/kg. Steel gives 355 / 7 850 = 45.2 kJ/kg.</li>
+</ol>
+<p>Per kilogram, the aluminium is about as stiff as steel and more than twice as strong. Per litre, steel is three times stiffer.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the density of steel?</summary>
+<p>7 850 kg/m³ for structural carbon steel in Eurocode design, about 490 lb/ft³. Stainless steels 304 and 316 are slightly heavier at 8 030 kg/m³.</p>
+</details>
+<details class="ec-faq"><summary>What is Young&#39;s modulus of steel and aluminium?</summary>
+<p>Eurocode 3 uses 210 GPa for structural steel and AISC uses 200 GPa (29 000 ksi). Aluminium alloys are about 70 GPa, a third of steel.</p>
+</details>
+<details class="ec-faq"><summary>What is the yield strength of A36 steel?</summary>
+<p>36 ksi, or 248 MPa, as a minimum. Its tensile strength is 58 to 80 ksi, 400 to 550 MPa.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between 6061-T6 and 6082-T6?</summary>
+<p>Both are heat-treated Al-Mg-Si alloys of similar strength. 6061 is the common alloy in North America, 6082 in Europe.</p>
+</details>
+<details class="ec-faq"><summary>Why does stainless steel expand more than carbon steel?</summary>
+<p>Austenitic grades such as 304 expand about 17 µm per metre per kelvin, against 12 for carbon steel. Joints between them need room to move.</p>
+</details>
+<details class="ec-faq"><summary>Is titanium stronger than steel?</summary>
+<p>Ti-6Al-4V yields at 828 MPa or more, far above S355, and weighs 44 % less. Commercially pure Grade 2 is about as strong as S275 steel.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../stress-strain/index.html">Stress and strain</a> — stress and elongation with these moduli.</li>
+<li><a href="../elastic-constants/index.html">Elastic constants</a> — shear and bulk modulus from E and Poisson&#39;s ratio.</li>
+<li><a href="../metal-weight/index.html">Steel and metal weight calculator</a> — weight of plates, bars and sections.</li>
+<li><a href="../thermal-expansion/index.html">Thermal expansion and restraint stress</a> — length change with temperature.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

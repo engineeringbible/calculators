@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hydraulic cylinder force and speed — Engineering calculators</title>
+  <meta name="description" content="Push and pull force, extend and retract speed and time, regenerative mode, hydraulic power, oil volumes and piston-rod buckling margin from bore, rod, pressure and flow.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Hydraulic cylinder force and speed</h1>
+    <p class="ec-summary">Push and pull force, extend and retract speed and time, regenerative extension, hydraulic power, oil volumes per stroke and the Euler buckling margin of the piston rod, from bore, rod diameter, working pressure, pump flow and stroke.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Hatch covers, steering gears, cranes, winches, ramps and workshop presses are all driven by hydraulic cylinders, and the questions are always the same: how much force, how fast, how much oil and power, and will the rod buckle at full stroke. The answers come from the piston areas, the working pressure and the pump flow. This calculator gives push and pull force with a seal-friction efficiency, extend and retract speeds and times, the return flow the valve must pass, regenerative (differential) operation, hydraulic power, the oil volume per stroke and the Euler buckling margin of the rod for the chosen mounting.</p>
+<p>It is for marine and mechanical engineers specifying or troubleshooting cylinders, for technicians checking a replacement, and for students meeting the fluid-power basics.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Areas (bore D, rod d):</p>
+<pre class="ec-formula" tabindex="0"><code>A_cap = π D² / 4,   A_rod = π d² / 4,   A_ann = A_cap − A_rod,   φ = A_cap / A_ann</code></pre>
+<p>Forces (effective differential pressure p, mechanical efficiency η):</p>
+<pre class="ec-formula" tabindex="0"><code>F_push = p A_cap η,   F_pull = p A_ann η</code></pre>
+<p>Speeds and times (pump flow Q, stroke s):</p>
+<pre class="ec-formula" tabindex="0"><code>v_extend = Q / A_cap,   v_retract = Q / A_ann,   t = s / v
+Return flow while extending = Q × A_ann / A_cap</code></pre>
+<p>Regenerative extension (annulus connected to the cap side):</p>
+<pre class="ec-formula" tabindex="0"><code>v_regen = Q / A_rod,   F_regen = p A_rod η</code></pre>
+<p>Power and volumes:</p>
+<pre class="ec-formula" tabindex="0"><code>P_hyd = p Q,   V_extend = A_cap s,   V_retract = A_ann s</code></pre>
+<p>Rod buckling (Euler, rod alone at full extension, mounting factor K):</p>
+<pre class="ec-formula" tabindex="0"><code>I = π d⁴ / 64,   P_cr = π² E I / (K s)²,   safety factor = P_cr / F_push
+s_max = √(π² E I / (FS × F_push)) / K</code></pre>
+<p>K: both ends pivoted with guided rod 1.0; cylinder fixed, rod end guided 0.7; cylinder fixed, rod end pivoted and guided 1.0; cylinder fixed, rod end free 2.0.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The pressure is the effective differential across the piston. With back-pressure on the return side, or a counterbalance valve, the net force is lower than supply pressure × area.</li>
+<li>Seal friction and breakaway are lumped into η (0.85–0.95); starting friction can be higher.</li>
+<li>Full pump flow reaches the cylinder: valve pressure drops, pump slip and pressure-compensator behaviour are not modelled; times exclude acceleration and cushioning.</li>
+<li>Rod buckling uses the rod alone over the full extended length with the catalogue K factor — conservative. Manufacturers&#39; charts also credit the cylinder tube and bearings and apply a factor of 3.5 (Parker) or 2.5–4 (standards).</li>
+<li>The cylinder tube as a pressure vessel, the end caps, tie rods and mountings are not checked.</li>
+<li>Oil compressibility and hose expansion are ignored.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Cylinder 100 mm bore, 56 mm rod, 500 mm stroke, 200 bar working pressure, pump flow 40 L/min, η = 0.9, both ends pivoted.</p>
+<ol>
+<li>Areas: cap 78.5 cm², rod 24.6 cm², annulus 53.9 cm², ratio 1.46.</li>
+<li>Forces: push 200 × 10⁵ × 78.5 × 10⁻⁴ × 0.9 = 141 kN; pull 97 kN. (157 kN and 108 kN at η = 1.)</li>
+<li>Speeds: extend (40/60 000) / 78.5 × 10⁻⁴ = 0.085 m/s = 5.1 m/min → 5.9 s for the stroke; retract 0.124 m/s → 4.0 s. The return flow during extension is 27.5 L/min.</li>
+<li>Regenerative extension: 0.27 m/s but only 44 kN (η = 0.9) — useful for a fast approach, not for pressing.</li>
+<li>Hydraulic power: 200 bar × 40 L/min = 13.3 kW; oil per extend stroke 3.9 L.</li>
+<li>Rod buckling: I = π × 56⁴ / 64 = 48.3 cm⁴; Euler load at 0.5 m pinned = π² × 210 × 10⁹ × 4.83 × 10⁻⁷ / 0.25 = 4.0 MN, 25 times the push force — no concern. The same rod at a 3 m stroke would carry only 111 kN, less than the push force, and would need a thicker rod or a stop tube.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why is the pull force smaller than the push force?</summary>
+<p>The rod occupies part of the piston on the rod side, so the annulus area is smaller. The ratio φ also makes the cylinder retract faster than it extends for the same flow.</p>
+</details>
+<details class="ec-faq"><summary>What is regenerative operation for?</summary>
+<p>Rapid approach: connecting the rod-end return to the cap side adds the return oil to the pump flow, raising the speed by (D/d)² but leaving only the rod area to produce force.</p>
+</details>
+<details class="ec-faq"><summary>Which pressure should I enter?</summary>
+<p>The pressure actually available across the piston at the load: relief setting minus line and valve losses minus any back-pressure. Catalogue forces at &quot;rated pressure&quot; assume no back-pressure.</p>
+</details>
+<details class="ec-faq"><summary>How do I choose the rod diameter?</summary>
+<p>From the buckling check at full stroke with the mounting factor and a safety factor of about 3.5, then round up to the ISO 3320 standard rod for the bore. A larger rod also reduces the pull force and increases retract speed.</p>
+</details>
+<details class="ec-faq"><summary>Does the mounting really matter that much?</summary>
+<p>Yes: an unsupported rod end (K = 2) carries a quarter of the Euler load of a pivoted and guided one (K = 1). Side loads from misalignment reduce the capacity further.</p>
+</details>
+<details class="ec-faq"><summary>What is a stop tube?</summary>
+<p>A spacer that prevents the piston from reaching the rod-end head, increasing the bearing span at full extension and reducing side-load and buckling problems on long cylinders.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this for pneumatic cylinders?</summary>
+<p>The force and speed formulas are the same at the air pressure (typically 6 bar), but air compressibility makes speeds and positioning much less predictable.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../pressure-vessel/index.html">Thin-wall pressure vessel</a> — the cylinder tube at working pressure.</li>
+<li><a href="../column-buckling/index.html">Column buckling (Euler and Johnson)</a> — the rod as a column with other end conditions.</li>
+<li><a href="../pump-affinity/index.html">Pump and fan affinity laws</a> — the hydraulic power unit&#39;s pump.</li>
+<li><a href="../lifting-sling/index.html">Lifting sling and wire rope load</a> — loads on hydraulic cranes and winches.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

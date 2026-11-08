@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decibel calculator (dB, dBm, dBV, dBu) — Engineering calculators</title>
+  <meta name="description" content="Decibels from power or voltage ratios and back, dBm, dBW, dBV, dBµV and dBu converted to watts and volts, and the sum of several decibel levels.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Decibel calculator (dB, dBm, dBV, dBu)</h1>
+    <p class="ec-summary">Convert power and voltage ratios to decibels and back, dBm, dBW, dBV, dBµV and dBu to watts and volts at any impedance, and add decibel levels.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A decibel is a tenth of a bel, the logarithm of a power ratio. For power, dB = 10 log10(P2 / P1). For voltage or current, dB = 20 log10(V2 / V1), because power goes with the square of the voltage. Doubling the power adds 3.01 dB, and doubling the voltage adds 6.02 dB. With a fixed reference the decibel becomes an absolute level: 0 dBm is 1 mW, and 0 dBV is 1 V.</p>
+<p>This calculator converts ratios to decibels and back, and converts absolute levels between dBm, dBW, dBV, dBµV, dBu, watts and volts across an impedance you choose. It also adds the levels of several uncorrelated sources. It is for radio, audio and electronics engineers, technicians and students working with gains, losses, signal levels and noise.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Ratios:</p>
+<pre class="ec-formula" tabindex="0"><code>L = 10 log10(P2 / P1) dB = 20 log10(V2 / V1) dB
+P2 / P1 = 10^(L/10),   V2 / V1 = 10^(L/20)</code></pre>
+<p>Absolute levels:</p>
+<pre class="ec-formula" tabindex="0"><code>dBm = 10 log10(P / 1 mW),   dBW = 10 log10(P / 1 W) = dBm − 30
+dBV = 20 log10(V / 1 V),   dBµV = 20 log10(V / 1 µV) = dBV + 120
+dBu = 20 log10(V / 0.7746 V) = dBV + 2.218
+P = V² / R</code></pre>
+<p>Adding uncorrelated levels:</p>
+<pre class="ec-formula" tabindex="0"><code>L_total = 10 log10(10^(L1/10) + 10^(L2/10) + …)</code></pre>
+<ul>
+<li>P — power, W; V — r.m.s. voltage, V; R — impedance, Ω</li>
+<li>0.7746 V — the voltage of 1 mW in 600 Ω, √(0.001 × 600)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The 20 log form gives the same number as the power ratio only when both voltages act across the same impedance.</li>
+<li>Voltages are r.m.s. values. A peak or peak-to-peak value must be converted first.</li>
+<li>dBm and dBW are power levels. dBV, dBµV and dBu are voltage levels, related to power through the impedance entered.</li>
+<li>The dBu is a voltage level and needs no 600 Ω load. It equals dBm only across 600 Ω.</li>
+<li>The sum assumes uncorrelated sources such as separate machines or noise, whose powers add. Identical signals in phase add their voltages and can give up to 6 dB more.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A signal generator delivers 10 dBm into a 50 Ω load. What is that in watts, volts and the other level units?</p>
+<ol>
+<li>Power: P = 1 mW × 10^(10/10) = 10 mW, which is 0.0100 W.</li>
+<li>In dBW: 10 − 30 = −20.00 dBW.</li>
+<li>Voltage across 50 Ω: V = √(0.0100 × 50) = 0.707 V r.m.s.</li>
+<li>In dBV: 20 log10(0.707) = −3.01 dBV.</li>
+<li>In dBµV: −3.01 + 120 = 117.0 dBµV.</li>
+<li>In dBu: 20 log10(0.707 / 0.7746) = −0.79 dBu.</li>
+</ol>
+<p>The same 10 dBm across 600 Ω would be 2.45 V and 10 dBu, which shows why the impedance matters.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I convert dBm to watts?</summary>
+<p>Divide the dBm value by 10, raise 10 to that power, and multiply by 1 mW. 30 dBm is 1 W and 20 dBm is 100 mW.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between 10 log and 20 log?</summary>
+<p>10 log is for power ratios. 20 log is for voltage and current ratios, because power is proportional to the voltage squared.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between dBu and dBV?</summary>
+<p>dBV is referred to 1 V and dBu to 0.7746 V. A level in dBu is 2.22 dB higher than the same level in dBV.</p>
+</details>
+<details class="ec-faq"><summary>What does adding 3 dB mean?</summary>
+<p>Doubling the power. Two equal uncorrelated sources together are 3 dB louder than one, and ten of them are 10 dB louder.</p>
+</details>
+<details class="ec-faq"><summary>How do I add decibel levels?</summary>
+<p>Convert each to a power ratio with 10^(L/10), add them, and take 10 log10 of the sum. 85, 82 and 79 dB make 87.4 dB.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert dBµV to dBm in a 50 Ω system?</summary>
+<p>Subtract 107. In 50 Ω, 0 dBm is 0.2236 V, which is 107.0 dBµV.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../filter-cutoff/index.html">Filter cutoff frequency</a> — attenuation of RC, RL and LC filters in dB.</li>
+<li><a href="../ohms-law/index.html">Ohm&#39;s law</a> — the power and voltage behind each level.</li>
+<li><a href="../lc-resonance/index.html">LC resonant frequency</a> — Q and bandwidth at the −3 dB points.</li>
+<li><a href="../voltage-divider/index.html">Voltage divider</a> — an attenuator and its loss in dB.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Air density calculator — Engineering calculators</title>
+  <meta name="description" content="Density of dry or humid air from temperature, humidity and altitude or pressure, with specific volume, the ratio to standard air and the density altitude.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">HVAC</span>
+    <h1 class="ec-title">Air density calculator</h1>
+    <p class="ec-summary">Density of dry or humid air at any temperature, humidity and altitude or pressure, with specific volume, the ratio to standard air and density altitude.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Air density sets how much air a fan moves by mass, how much power an engine makes, how much lift a wing produces and how much heat a duct carries. Standard air at sea level and 15 °C weighs 1.225 kg per cubic metre. On a hot, humid day it is 6 % lighter, and in Denver 15 to 18 % lighter, so equipment rated at standard conditions delivers less.</p>
+<p>This calculator gives the density of air from its temperature, relative humidity and either the altitude or the barometric pressure. It also gives the specific volume used on psychrometric charts, the ratio to standard air, and the density altitude used for engines, fans and aircraft. It is for HVAC engineers correcting fan and coil ratings, and for anyone needing the density of real air.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Moist air as a mixture of ideal gases (ASHRAE Fundamentals, Chapter 1):</p>
+<pre class="ec-formula" tabindex="0"><code>W = 0.621945 × p_w / (p − p_w),   p_w = RH × p_ws(t)
+v = 287.042 × (t + 273.15) × (1 + 1.607858 W) / p
+ρ = (1 + W) / v</code></pre>
+<p>Pressure at altitude Z in the standard atmosphere, and density altitude:</p>
+<pre class="ec-formula" tabindex="0"><code>p = 101 325 × (1 − 2.25577 × 10⁻⁵ Z)^5.2559
+h_ρ = (1 − (ρ / 1.225)^(1/4.2559)) / 2.25577 × 10⁻⁵</code></pre>
+<ul>
+<li>p_ws — saturation pressure of water vapour at t (Hyland–Wexler)</li>
+<li>W — humidity ratio, kg of water per kg of dry air; v — m³ per kg of dry air</li>
+<li>ρ — density of the moist air, kg/m³</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The ideal-gas mixture is accurate to better than 0.5 % at normal atmospheric pressures.</li>
+<li>The standard atmosphere converts altitude to pressure. Actual pressure varies with the weather by a few percent, so enter the station pressure when you have it, not the sea-level value from a weather report.</li>
+<li>Humid air is lighter than dry air because a water molecule weighs less than the nitrogen and oxygen it displaces.</li>
+<li>Density altitude uses the standard troposphere, below 11 km.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>What is the density of air at 30 °C and 60 % relative humidity at sea level?</p>
+<ol>
+<li>Saturation pressure at 30 °C: 4.246 kPa, so the vapour pressure is 0.60 × 4.246 = 2.548 kPa.</li>
+<li>Humidity ratio: 0.621945 × 2.548 / (101.325 − 2.548) = 0.01604 kg/kg.</li>
+<li>Specific volume: 287.042 × 303.15 × (1 + 1.607858 × 0.01604) / 101 325 = 0.8809 m³/kg.</li>
+<li>Density: (1 + 0.01604) / 0.8809 = 1.153 kg/m³.</li>
+</ol>
+<p>Dry air at the same temperature would be 1.164 kg/m³. The humid air is 94.2 % of standard density, so a fan moves 5.8 % less mass of air than at standard conditions.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the density of air?</summary>
+<p>1.225 kg/m³ (0.0765 lb/ft³) for dry air at 15 °C and sea-level pressure, the international standard. At 20 °C it is 1.204 kg/m³, the value often used for HVAC &quot;standard air&quot;.</p>
+</details>
+<details class="ec-faq"><summary>Is humid air heavier or lighter than dry air?</summary>
+<p>Lighter. Water vapour has a molar mass of 18 g/mol, against about 29 g/mol for dry air.</p>
+</details>
+<details class="ec-faq"><summary>How does altitude change air density?</summary>
+<p>Density falls about 9 to 10 % for every 1 000 m. At 1 600 m it is 15 to 18 % below sea level, depending on the temperature.</p>
+</details>
+<details class="ec-faq"><summary>What is density altitude?</summary>
+<p>The altitude in the standard atmosphere that has the same density as the actual air. Hot, high and humid conditions raise it, and engines, propellers and wings perform as if they were at that height.</p>
+</details>
+<details class="ec-faq"><summary>Why does air density matter for fans and ducts?</summary>
+<p>Fans move a fixed volume, so the mass flow, the pressure they develop and the heat the air carries all scale with density. Ratings at standard air must be corrected for altitude and temperature.</p>
+</details>
+<details class="ec-faq"><summary>What is the specific volume on a psychrometric chart?</summary>
+<p>The volume of moist air that contains one kilogram of dry air, in m³/kg. It is the inverse of density per unit of dry air.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../dew-point/index.html">Dew point calculator</a> — humidity, dew point and wet bulb.</li>
+<li><a href="../duct-size/index.html">Duct size calculator</a> — airflow, velocity and friction in ducts.</li>
+<li><a href="../air-changes/index.html">Air changes per hour and CFM</a> — ventilation rates.</li>
+<li><a href="../ideal-gas-law/index.html">Ideal gas law</a> — the gas law behind the density.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

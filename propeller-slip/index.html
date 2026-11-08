@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Propeller slip and speed through water — Engineering calculators</title>
+  <meta name="description" content="Theoretical propeller speed, apparent and real slip, speed through water and speed of advance from pitch, RPM and observed speed.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Propeller slip and speed through water</h1>
+    <p class="ec-summary">Theoretical propeller speed, apparent and real slip, speed through water and speed of advance from pitch, RPM and observed speed.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A propeller is a screw. If it turned in a solid, each revolution would move the ship forward by one pitch, and pitch × revolutions would be the ship&#39;s speed. In water the ship moves less than that, and the shortfall, expressed as a percentage of the theoretical distance, is the slip. Watch officers and engineers log slip every noon because it is a cheap health check: a sudden change means a change in weather, current, fouling, propeller damage or a wrong speed input.</p>
+<p>This calculator gives the theoretical speed from pitch and RPM, the apparent slip against observed speed over ground, the speed through water once a current is removed, and the real slip against the speed of advance when the wake fraction is known. In reverse it gives the ship speed you should expect from an assumed slip. Cadets use it for the slip question in every engine-log exercise; engineers use it to sanity-check noon reports.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Theoretical (engine) speed:</p>
+<pre class="ec-formula" tabindex="0"><code>Vₜ [kn] = P × N × 60 / 1852</code></pre>
+<ul>
+<li>P — propeller pitch, m (mean face pitch)</li>
+<li>N — propeller revolutions per minute</li>
+<li>1852 — metres per nautical mile, 60 — minutes per hour</li>
+</ul>
+<p>Apparent slip (against observed speed over ground V):</p>
+<pre class="ec-formula" tabindex="0"><code>S_A [%] = (Vₜ − V) / Vₜ × 100</code></pre>
+<p>Speed through water (STW) with a current c along the track (positive following):</p>
+<pre class="ec-formula" tabindex="0"><code>STW = V − c</code></pre>
+<p>Slip through water:</p>
+<pre class="ec-formula" tabindex="0"><code>S_W [%] = (Vₜ − STW) / Vₜ × 100</code></pre>
+<p>Speed of advance and real slip, with Taylor wake fraction w:</p>
+<pre class="ec-formula" tabindex="0"><code>Vₐ = STW × (1 − w)
+S_R [%] = (Vₜ − Vₐ) / Vₜ × 100</code></pre>
+<p>Ship speed from an assumed apparent slip:</p>
+<pre class="ec-formula" tabindex="0"><code>V = Vₜ × (1 − S_A / 100)</code></pre>
+<p>Engine-log quantities:</p>
+<pre class="ec-formula" tabindex="0"><code>Engine distance per day   = Vₜ × 24      [nmi]
+Observed distance per day = V × 24       [nmi]
+Revolutions per mile      = N × 60 / V</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Pitch is the mean face pitch of a fixed-pitch propeller. For a controllable-pitch propeller use the design pitch at the current setting; slip figures then only compare like with like.</li>
+<li>Apparent slip mixes propeller behaviour with current, wind, waves and the accuracy of the speed input. It is a trend indicator, not a measurement of propeller efficiency.</li>
+<li>Speed through water is taken as speed over ground minus a single along-track current. A cross current changes course made good but is ignored here. If you have a calibrated speed log, enter its reading as the observed speed and set the current to zero.</li>
+<li>The wake fraction is an input, not a prediction. Typical service values: single-screw 0.20–0.35, twin-screw 0.10–0.20. With w = 0 the real slip equals the slip through water.</li>
+<li>Negative apparent slip is physically normal with a following current or sea, when the hull is moving faster than the propeller advances through the water. The calculator reports it with a warning instead of refusing it.</li>
+<li>Revolutions per mile are referred to speed over ground, as kept in most engine logs.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Propeller pitch 6.0 m, 90 rpm, observed speed 14.0 knots over ground with a 2.0 knot following current. Wake fraction 0.25.</p>
+<ol>
+<li>Theoretical speed: 6.0 × 90 × 60 / 1852 = 17.49 kn. Engine distance per day 419.9 nmi.</li>
+<li>Apparent slip: (17.49 − 14.0) / 17.49 = 19.98 %.</li>
+<li>Speed through water: 14.0 − 2.0 = 12.0 kn. Slip through water (17.49 − 12.0) / 17.49 = 31.4 %.</li>
+<li>Speed of advance: 12.0 × (1 − 0.25) = 9.0 kn. Real slip (17.49 − 9.0) / 17.49 = 48.6 %.</li>
+<li>Observed distance per day 336 nmi; revolutions per mile 90 × 60 / 14 = 385.7.</li>
+</ol>
+<p>Reverse check: with 10 % apparent slip at the same pitch and RPM, the expected speed is 17.49 × 0.90 = 15.74 kn.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why is my slip higher in ballast than loaded?</summary>
+<p>In ballast the propeller is nearer the surface and the wake field changes; the ship is also more affected by wind. A few percent difference between conditions is normal for the same ship.</p>
+</details>
+<details class="ec-faq"><summary>What is a normal apparent slip?</summary>
+<p>In calm water with a clean hull, 5–15 % for most merchant ships. Values above 25–30 % sustained in good weather point to fouling, propeller damage or an optimistic speed figure.</p>
+</details>
+<details class="ec-faq"><summary>Can slip be negative?</summary>
+<p>Yes. A strong following current or following sea pushes the hull faster than the propeller advances through the water. The slip then comes out negative; the calculator flags it.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between apparent and real slip?</summary>
+<p>Apparent slip uses the ship&#39;s speed over ground. Real slip uses the speed of advance, the water speed actually seen by the propeller after the hull&#39;s wake slows it down. Real slip is always higher and is the one that relates to propeller loading.</p>
+</details>
+<details class="ec-faq"><summary>Where do I find the wake fraction?</summary>
+<p>In the model-test report or propeller design documentation. If you have none, the Taylor estimate for single-screw ships is w ≈ 0.5 × C_B − 0.05, where C_B is the block coefficient.</p>
+</details>
+<details class="ec-faq"><summary>How do I get pitch for a controllable-pitch propeller?</summary>
+<p>Use the pitch corresponding to the current lever setting from the CPP calibration curve, or the design pitch when in combinator mode at full setting.</p>
+</details>
+<details class="ec-faq"><summary>Does propeller slip tell me the propeller efficiency?</summary>
+<p>Not directly. Efficiency depends on the advance ratio and the open-water characteristics. Slip is a proxy: at a fixed pitch ratio, higher real slip means a more heavily loaded propeller working at lower efficiency.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../fuel-voyage-cost/index.html">Fuel consumption and voyage cost</a> — turn the speed into passage time and fuel.</li>
+<li><a href="../admiralty-coefficient/index.html">Admiralty coefficient and speed–power scaling</a> — power needed at the observed speed.</li>
+<li><a href="../shaft-torque/index.html">Shaft torque, power and diameter</a> — torque behind the measured RPM.</li>
+<li><a href="../great-circle-distance/index.html">Great-circle and rhumb-line distance</a> — distance run between fixes for the observed speed.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

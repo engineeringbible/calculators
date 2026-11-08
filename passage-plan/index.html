@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Passage plan from waypoints — Engineering calculators</title>
+  <meta name="description" content="Leg courses, distances, times and ETAs from a pasted waypoint list, by rhumb line or great circle, with the passage totals.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Passage plan from waypoints</h1>
+    <p class="ec-summary">Paste a waypoint list in the formats used in ECDIS route tables and pilot books and get every leg's course, distance, time and ETA by rhumb line or great circle, the passage totals and the distance by the other sailing for comparison.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The waypoint list is the backbone of every passage plan: from it come the courses to steer, the distances, the time on each leg and the ETAs that the port, the charterer and the crew depend on. This calculator reads a pasted list in the formats used in ECDIS route tables and pilot books and returns a leg table with course, distance, speed, time and ETA, plus the totals by rhumb line or great circle and the distance by the other method for comparison.</p>
+<p>It is for navigating officers preparing a passage, superintendents checking a route and cadets learning sailings.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Rhumb line (Mercator sailing):
+    Δψ = ln[tan(π/4 + φ₂/2) / tan(π/4 + φ₁/2)]
+    q  = Δφ / Δψ   (cos φ on an east–west leg)
+    d  = R √(Δφ² + q² Δλ²),   course = atan2(Δλ, Δψ)
+Great circle:
+    d  = 2R asin √(sin²(Δφ/2) + cos φ₁ cos φ₂ sin²(Δλ/2))
+    initial course = atan2(sin Δλ cos φ₂, cos φ₁ sin φ₂ − sin φ₁ cos φ₂ cos Δλ)
+Time = d / speed;  ETA = departure + Σ time</code></pre>
+<ul>
+<li>φ — latitude, λ — longitude in radians; R = 10 800/π nmi, so one minute of arc is one nautical mile.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Spherical earth; ellipsoidal rhumb-line distances differ by up to about 0.5 %.</li>
+<li>Great-circle legs show the initial course; they are steered as a series of rhumb lines.</li>
+<li>Speeds are over the ground; current, weather and traffic are not allowed for.</li>
+<li>ETAs are in a single time zone from the departure time on day 1.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Piraeus pilot station to the Dardanelles entrance through Kafireas Strait, five waypoints, 12 kn on the first leg and 14 kn after, departure 06:00.</p>
+<ol>
+<li>Piraeus to Cape Sounion: 132.4°, 28.9 nmi, 2.4 h, at Sounion at 08:25.</li>
+<li>Cape Sounion to Kafireas Strait: 046.0°, 41.7 nmi, 3.0 h.</li>
+<li>Kafireas Strait to the south of Lemnos: 016.0°, 98.8 nmi; then 063.8°, 45.4 nmi to the Dardanelles entrance.</li>
+<li>In total 214.8 nmi in 15.7 h, arriving on Day 1 at 21:41. The great-circle total differs by less than 0.01 nmi on legs this short.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which coordinate formats can I paste?</summary>
+<p>Decimal degrees with a sign, or degrees and minutes with optional seconds, with N, S, E or W before or after: 37 55.5 N, 37°55.5′N, 37 55 30 N or 37.925.</p>
+</details>
+<details class="ec-faq"><summary>Where does the speed go?</summary>
+<p>On the line of the waypoint where the leg starts. Lines without a speed use the default.</p>
+</details>
+<details class="ec-faq"><summary>Rhumb line or great circle?</summary>
+<p>Rhumb lines are easier to steer and plot on a Mercator chart; great circles are shorter on long ocean legs. The page gives both totals so you can see what the choice is worth.</p>
+</details>
+<details class="ec-faq"><summary>Why does my ECDIS show slightly different distances?</summary>
+<p>ECDIS works on the WGS-84 ellipsoid. On a sphere with one minute of arc equal to one nautical mile the difference is a fraction of a percent.</p>
+</details>
+<details class="ec-faq"><summary>Can it handle the date line?</summary>
+<p>Yes: a leg always goes the short way round in longitude.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../mercator-sailing/index.html">Mercator sailing</a> — a single rhumb-line leg on the ellipsoid.</li>
+<li><a href="../great-circle-distance/index.html">Great-circle distance</a> — vertex and waypoints of a great circle.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel consumption and voyage cost</a> — fuel for the passage.</li>
+<li><a href="../course-to-steer/index.html">Course to steer with set and drift</a> — allowing for current on each leg.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

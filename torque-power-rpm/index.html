@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Torque, power and speed — Engineering calculators</title>
+  <meta name="description" content="Shaft power from torque and rpm, torque from power and rpm, or speed from power and torque, in kW, hp, N·m and lbf·ft.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Torque, power and speed</h1>
+    <p class="ec-summary">The power, torque or rotational speed of a shaft from the other two, in kilowatts and horsepower, newton-metres and pound-force feet, rpm and radians per second.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Every rotating machine trades torque against speed. A motor&#39;s nameplate gives its power and speed, but the coupling, shaft and gearbox are sized on torque. An engine&#39;s dynamometer measures torque at each speed, while the brochure quotes power. One relation converts between them: power equals torque times angular velocity.</p>
+<p>This calculator solves that relation for whichever quantity is missing. Enter power and speed to get the torque a shaft must carry, torque and speed to get the power, or power and torque to get the speed. Results come in kilowatts and horsepower, newton-metres and pound-force feet, and rpm and radians per second. It is for mechanical, marine and automotive engineers, technicians and students.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Power, torque and angular velocity:</p>
+<pre class="ec-formula" tabindex="0"><code>P = T × ω,   ω = 2π × n / 60</code></pre>
+<p>Solved for each quantity:</p>
+<pre class="ec-formula" tabindex="0"><code>T = 60 P / (2π n)
+P = 2π n T / 60
+n = 60 P / (2π T)</code></pre>
+<p>In imperial units, with T in lbf·ft and n in rpm:</p>
+<pre class="ec-formula" tabindex="0"><code>hp = T × n / 5252</code></pre>
+<ul>
+<li>P — power, W (1 kW = 1.341 hp)</li>
+<li>T — torque, N·m (1 N·m = 0.7376 lbf·ft)</li>
+<li>n — speed, rpm; ω — angular velocity, rad/s</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Power, torque and speed belong to the same shaft at the same moment. A gearbox changes torque and speed but, apart from its losses, not power.</li>
+<li>For a piston engine the torque pulsates with every firing; the formula gives the mean torque, and the peak can be several times higher.</li>
+<li>Horsepower here is mechanical horsepower, 745.7 W. Metric horsepower (PS or CV) is 735.5 W and appears in the unit list.</li>
+<li>A motor&#39;s rated torque is its continuous torque at rated speed. Starting and breakdown torque are higher and come from the data sheet.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 15 kW, 4-pole electric motor runs at 1460 rpm. What torque does its shaft and coupling carry at full load?</p>
+<ol>
+<li>Angular velocity: ω = 2π × 1460 / 60 = 152.9 rad/s.</li>
+<li>Torque: T = P / ω = 15 000 / 152.9 = 98.1 N·m.</li>
+<li>In imperial units, that is 72.4 lbf·ft.</li>
+</ol>
+<p>A coupling chosen for this motor should have a rated torque above 98.1 N·m times the service factor for the driven machine, typically 1.5 to 2 for a pump or fan.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I convert kW to N·m?</summary>
+<p>Torque in N·m = 9549 × power in kW / speed in rpm. 9549 is 60 000 / 2π.</p>
+</details>
+<details class="ec-faq"><summary>Why is torque in lbf·ft equal to horsepower at 5252 rpm?</summary>
+<p>Because 5252 is 33 000 / 2π, which comes from the definition of horsepower as 33 000 ft·lbf per minute. On a dynamometer chart the torque and power curves always cross there.</p>
+</details>
+<details class="ec-faq"><summary>Does a gearbox change the power?</summary>
+<p>Not apart from its losses. It multiplies torque by the gear ratio and divides speed by it, so their product, the power, stays the same less 1 to 3 % per stage.</p>
+</details>
+<details class="ec-faq"><summary>What torque does a diesel engine produce?</summary>
+<p>Large, slow engines produce enormous torque. A 10 MW ship engine at 80 rpm turns about 1.2 MN·m, which is why propeller shafts are so thick.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this for a motor&#39;s starting torque?</summary>
+<p>Not directly. Starting torque comes from the motor data sheet, typically 1.5 to 2.5 times rated torque for an induction motor.</p>
+</details>
+<details class="ec-faq"><summary>What are radians per second?</summary>
+<p>The SI unit of angular velocity. One revolution is 2π radians, so 1 rpm is 0.1047 rad/s.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../shaft-torque/index.html">Shaft torque, power and diameter</a> — the shaft diameter for this torque.</li>
+<li><a href="../gear-ratio/index.html">Gear ratio, rpm and torque</a> — speed and torque through a gearbox.</li>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — the electrical side of the motor.</li>
+<li><a href="../engine-bmep/index.html">Engine BMEP, torque and power</a> — torque from an engine&#39;s cylinder pressure.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

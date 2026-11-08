@@ -1,0 +1,103 @@
+# Holtrop–Mennen resistance and power calculator
+
+**Summary:** Holtrop–Mennen (1982/1984) resistance components, effective and brake power, wake fraction and thrust deduction from main particulars.
+
+## Introduction
+
+Before a model test or a CFD run, the first estimate of a ship's power comes from a statistical method, and the one used almost everywhere is Holtrop and Mennen's. Published by the Netherlands Ship Model Basin in 1982 and re-analysed by Holtrop in 1984 on 334 models and 168 trials, it splits the calm-water resistance into friction with a form factor, appendages, wave making, bulbous bow, immersed transom and a model-ship correlation allowance, and adds regression formulas for the wake fraction, thrust deduction and relative-rotative efficiency. This calculator implements both variants, reports every component, and converts the effective power to delivered and shaft power with the propulsion factors and an open-water efficiency you supply.
+
+It is for naval architects at the concept stage, performance analysts who need a reference curve, and students; the self-tests reproduce the paper's own example ship line by line.
+
+## Formulas
+
+Total resistance and powers:
+
+    R_T = R_F (1 + k1) + R_APP + R_W + R_B + R_TR + R_A
+    P_E = R_T V,    P_D = P_E / (η_H η_R η_O),    P_S = P_D / η_S,    η_H = (1 − t)/(1 − w)
+
+Friction and form (ITTC-1957):
+
+    Rn = V L / ν,   C_F = 0.075 / (log10 Rn − 2)²,   R_F = ½ ρ V² S C_F
+    S = L (2T + B) √C_M (0.453 + 0.4425 C_B − 0.2862 C_M − 0.003467 B/T + 0.3696 C_WP) + 2.38 A_BT / C_B
+    1982:  1 + k1 = c13 {0.93 + c12 (B/L_R)^0.92497 (0.95 − C_P)^−0.521448 (1 − C_P + 0.0225 lcb)^0.6906},  c13 = 1 + 0.003 C_stern
+    1984:  1 + k1 = 0.93 + 0.487118 c14 (B/L)^1.06806 (T/L)^0.46106 (L/L_R)^0.121563 (L³/∇)^0.36486 (1 − C_P)^−0.604247,  c14 = 1 + 0.011 C_stern
+    L_R = L (1 − C_P + 0.06 C_P lcb / (4 C_P − 1))
+
+Appendages: R_APP = ½ ρ V² S_APP (1 + k2) C_F (+ bow-thruster ρ V² π d² C_BTO).
+
+Wave resistance (Fn ≤ 0.40):
+
+    R_W = c1 c2 c5 ∇ ρ g exp[m1 Fn^d + m_hump cos(λ Fn⁻²)],  d = −0.9
+    c1 = 2223105 c7^3.78613 (T/B)^1.07961 (90 − i_E)^−1.37565,  c2 = exp(−1.89 √c3),  c5 = 1 − 0.8 A_T/(B T C_M)
+    m1 = 0.0140407 L/T − 1.75254 ∇^(1/3)/L − 4.79323 B/L − c16,  λ = 1.446 C_P − 0.03 L/B
+    1982: m_hump = m2 = c15 C_P² exp(−0.1 Fn⁻²);   1984: m_hump = m4 = 0.4 c15 exp(−0.034 Fn^−3.29)
+    1984, Fn ≥ 0.55: R_W-B with c17 = 6919.3 C_M^−1.3346 (∇/L³)^2.00977 (L/B − 2)^1.40692 and m3 = −7.2035 (B/L)^0.326869 (T/B)^0.605375; linear interpolation for 0.40 < Fn < 0.55
+
+Bulb, transom, correlation:
+
+    R_B = 0.11 exp(−3 P_B⁻²) Fn_i³ A_BT^1.5 ρ g / (1 + Fn_i²),  P_B = 0.56 √A_BT / (T_F − 1.5 h_B)
+    R_TR = ½ ρ V² A_T c6,  c6 = 0.2 (1 − 0.2 Fn_T) for Fn_T < 5
+    C_A = 0.006 (L + 100)^−0.16 − 0.00205 + 0.003 √(L/7.5) C_B⁴ c2 (0.04 − c4)  (+ roughness term above 150 µm)
+
+Propulsion factors (single screw, conventional stern): wake and thrust deduction regressions of the chosen variant; η_R = 0.9922 − 0.05908 A_E/A_0 + 0.07424 (C_P − 0.0225 lcb). Twin screw: 1982 formulas.
+
+Powering:
+
+    T = R_T / (1 − t)                    required thrust (a twin-screw ship splits it equally: T/2 per propeller)
+    V_A = V (1 − w)                      speed of advance
+    η_D = η_H η_R η_O = P_E / P_D        quasi-propulsive efficiency,  η_H = (1 − t)/(1 − w)
+    P_D = P_E / η_D,  P_S = P_D / η_S    delivered and shaft power
+    T_mean = (T_F + T_A) / 2             mean draft used by the formulas
+
+## Assumptions and limitations
+
+- The method is a regression on conventional merchant and naval hulls: roughly C_P 0.55–0.85, L/B 3.9–15, B/T 2.1–4.0, Fn up to about 0.45 (1982) or 0.8 (1984). Accuracy inside the range is typically ±5–10 %; outside it the page warns and the result is an extrapolation.
+- Ideal trial conditions: calm deep water, clean hull with 150 µm roughness, still air inside C_A. Service margins for wind, waves, fouling and shallow water come on top.
+- The 1984 interpolation between 0.40 and 0.55 is described by Holtrop himself as "more or less arbitrary".
+- lcb is relative to ½L_WL in % of L_WL (negative aft). The paper's example prints −2.02 % relative to ½L_PP; the value that reproduces its intermediates is −0.75 % of L_WL.
+- The open-water efficiency is an input. Use the B-series calculator with the wake and thrust from this page to find it.
+
+## Worked example
+
+The paper's hypothetical single-screw ship: L_WL 205 m, B 32 m, T 10 m, ∇ 37 500 m³, lcb −0.75 % of L_WL, C_M 0.98, C_WP 0.75, bulb 20 m² at 4 m above keel, transom 16 m², appendages 50 m² with 1+k2 = 1.5, U-shaped stern with Hogner (C_stern +10), 25 knots, 1982 variant.
+
+1. C_B = 0.572, C_P = 0.583, L_R = 81.4 m, 1+k1 = 1.156, S = 7 381 m². Fn = 0.287.
+2. Rn = 2.22·10⁹, C_F = 0.001390, R_F = 869.6 kN; viscous R_F (1+k1) = 1 006 kN; R_APP = 8.8 kN.
+3. Wave: i_E = 12.1°, c1 = 1.398, c2 = 0.760, c5 = 0.959, λ = 0.651, m1 = −2.127, m2 = −0.171 → R_W = 557.0 kN.
+4. Bulb: P_B = 0.626, Fn_i = 1.508 → R_B = 0.05 kN. Transom: Fn_T = 5.43 → R_TR = 0.
+5. C_A = 0.000352 → R_A = 220.6 kN. Total R_T = 1 792 kN, P_E = 23 048 kW.
+6. Propulsion: w = 0.258, t = 0.175, η_H = 1.112, η_R = 0.993. With the B-series optimum η_O = 0.646 the shaft power is 32 619 kW and the thrust 2 171 kN.
+
+The paper prints R_W = 557.11 kN, R_A = 221.98 kN, R_T = 1 793.26 kN, P_E = 23 063 kW, P_S = 32 621 kW and a thrust of 2 172.75 kN. The difference is almost all in R_A: the printed figure equals ½ρV² C_A taken over the hull and the 50 m² of appendages together (222.1 kN), while the method's formula R_A = ½ρV² S C_A, used here, takes the hull's wetted surface S alone. The totals agree within 0.07 %.
+
+Switching to the 1984 variant raises the form factor to 1.185 and the total resistance by 1.2 %.
+
+## FAQ
+
+**Which variant should I use?**
+The 1984 re-analysis for new work, especially above Fn 0.4 where the 1982 wave formula is weak. Many textbooks and in-house codes mix the 1982 form factor with the 1984 wave resistance; either way, state which you used.
+
+**How accurate is it?**
+Holtrop quotes standard deviations of a few per cent on the model data; in practice expect ±5–10 % on power for a conventional hull inside the range, worse for unusual forms, very full or very slender ships and fast craft.
+
+**What is lcb and why does the sign matter?**
+The longitudinal centre of buoyancy as a percentage of waterline length forward (+) or aft (−) of amidships. It shifts the length of run and the wave resistance; the paper's own example is a trap because it prints the value relative to L_PP amidships.
+
+**I have no bulb or transom data.**
+Enter zero for A_BT and A_T; those components vanish. For a bulb, h_B should not exceed 0.6 T_F (the 1984 variant caps it).
+
+**What does the correlation allowance contain?**
+Hull roughness at 150 µm, still-air resistance and all model-ship scaling effects, fitted to trial data. For a rougher hull enter k_s; the ITTC-1978 roughness increase is added.
+
+**How do I get the brake power?**
+P_S is the shaft power at the ideal trial condition. For a direct-coupled two-stroke engine brake power ≈ shaft power; add a sea margin (15–25 %) and an engine margin (10 %) for the installed MCR.
+
+**Can I use it for shallow water or fouled hulls?**
+No. Shallow water needs a separate correction (Schlichting, Lackenby); fouling needs a ΔC_F from the roughness or a performance model like the one in this repository.
+
+## Related calculators
+
+- [Wageningen B-series propeller](../propeller-bseries/index.html) — the open-water efficiency and optimum rpm for the thrust found here.
+- [Admiralty coefficient and speed–power scaling](../admiralty-coefficient/index.html) — scaling a known power point rather than predicting from scratch.
+- [Fuel consumption and voyage cost](../fuel-voyage-cost/index.html) — from shaft power to fuel.
+- [Propeller slip and speed through water](../propeller-slip/index.html) — operational check of the propulsion factors.

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bend allowance calculator (sheet metal flat length) — Engineering calculators</title>
+  <meta name="description" content="Sheet metal bend allowance, bend deduction, outside setback and flat length for one or many bends, from thickness, radius, angle and K-factor.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Manufacturing</span>
+    <h1 class="ec-title">Bend allowance calculator (sheet metal flat length)</h1>
+    <p class="ec-summary">Bend allowance, bend deduction, outside setback and flat blank length of sheet metal parts with one or many bends, with a DIN 6935 K-factor.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>When sheet metal bends, the outside stretches and the inside compresses. One layer in between, the neutral axis, keeps its length. The bend allowance is the length of that layer through the bend. It sets how long the flat blank must be. A 90° bend in 2 mm steel over a 2 mm radius uses 4.16 mm of material along the neutral axis.</p>
+<p>This calculator gives the bend allowance, the outside setback and the bend deduction of one bend. It then adds up the flat length of a part with any number of bends from its outside dimensions. It suggests a K-factor by DIN 6935 or takes your own. It is for sheet metal designers, press brake operators and anyone laying out a blank.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>One bend, with the bend angle θ in radians:</p>
+<pre class="ec-formula" tabindex="0"><code>BA = θ × (R + K × T)
+OSSB = tan(θ/2) × (R + T)
+BD = 2 × OSSB − BA</code></pre>
+<p>Flat length from outside dimensions (legs measured to the mould lines):</p>
+<pre class="ec-formula" tabindex="0"><code>L_flat = Σ legs − Σ BD</code></pre>
+<p>K-factor suggested by DIN 6935:</p>
+<pre class="ec-formula" tabindex="0"><code>k = 0.65 + 0.5 × log10(R/T)   for R/T &lt; 5,   k = 1 above
+K = k / 2</code></pre>
+<ul>
+<li>T — sheet thickness; R — inside bend radius; θ — bend angle (90° for an L)</li>
+<li>K — position of the neutral axis from the inside surface, as a fraction of T</li>
+<li>BA — bend allowance; OSSB — outside setback; BD — bend deduction</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The K-factor depends on the material, the tooling and the ratio R/T. The DIN formula gives 0.325 at R = T and 0.5 from R = 5T. A test bend and a measured blank give the best value for your shop.</li>
+<li>Leg lengths are outside dimensions. Each one runs to the point where the outside surfaces of two legs would meet.</li>
+<li>The bend angle is the angle the sheet turns through, not the angle left between the legs. A 90° L-bracket has a bend angle of 90°, and a 120° opening has a bend angle of 60°.</li>
+<li>In air bending, the inside radius follows the die opening, not the punch radius. Use the radius the part really gets.</li>
+<li>Springback and thinning in the bend are not modelled.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A U-channel is 30 × 50 × 30 mm outside, in 2 mm steel, with a 2 mm inside radius. What blank length is needed?</p>
+<ol>
+<li>R/T = 1, so DIN 6935 gives k = 0.65 and K = 0.325.</li>
+<li>Bend allowance: π/2 × (2 + 0.325 × 2) = 4.16 mm.</li>
+<li>Outside setback: tan 45° × (2 + 2) = 4 mm.</li>
+<li>Bend deduction: 2 × 4 − 4.16 = 3.84 mm.</li>
+<li>Flat length: 30 + 50 + 30 − 2 × 3.84 = 102.33 mm.</li>
+</ol>
+<p>With K = 0.44 the blank would be 103.05 mm, 0.72 mm longer.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is bend allowance?</summary>
+<p>The length of the neutral axis through the bend. Add it to the straight flat parts of the legs to get the blank length.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between bend allowance and bend deduction?</summary>
+<p>Bend allowance is added to the inside flat lengths. Bend deduction is subtracted from the outside dimensions. Both give the same blank.</p>
+</details>
+<details class="ec-faq"><summary>What K-factor should I use?</summary>
+<p>Usually between 0.3 and 0.5. Small radii give lower values, large radii approach 0.5. The DIN 6935 formula and a test bend are the best starting points.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the K-factor from a test bend?</summary>
+<p>Bend a strip of known length, measure the legs, and work out the bend allowance that matches. Then solve BA = θ (R + K T) for K.</p>
+</details>
+<details class="ec-faq"><summary>Is the bend angle the same as the included angle?</summary>
+<p>No. The bend angle is 180° minus the angle between the legs. A part that opens to 135° has a 45° bend.</p>
+</details>
+<details class="ec-faq"><summary>How does the inside radius depend on the die?</summary>
+<p>In air bending, the inside radius is a fraction of the V-die opening, set by the material. Bottoming and coining press the radius of the punch into the part.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../press-tonnage/index.html">Press tonnage calculator</a> — press brake force for the bend.</li>
+<li><a href="../tap-drill/index.html">Tap drill calculator</a> — holes for threaded fasteners in the part.</li>
+<li><a href="../weld-deposition/index.html">Weld metal and filler calculator</a> — welding the bent parts together.</li>
+<li><a href="../metal-weight/index.html">Steel and metal weight calculator</a> — the weight of the blank.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

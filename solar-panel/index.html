@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solar panel calculator: how many panels do I need? — Engineering calculators</title>
+  <meta name="description" content="Solar system size in kW and the number of panels to cover your yearly electricity use, from peak sun hours and losses, with roof area, output and cost.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Solar panel calculator: how many panels do I need?</h1>
+    <p class="ec-summary">How many solar panels a grid-tied home needs: system size in kW from yearly use and peak sun hours, number of panels, roof area, production and cost.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How many solar panels does a home need? Divide the electricity you use in a year by what one kilowatt of panels produces in a year where you live, and you have the system size. Divide that by the rating of one panel and round up. A home using 10 000 kWh a year, with 4.5 peak sun hours a day, needs about 7.1 kW of panels: eighteen 400 W panels.</p>
+<p>This calculator does that for a grid-tied system, the usual rooftop setup where the grid covers the gaps. It gives the system size, the number of panels, the yearly production, the share of your use covered, the roof area and the installed cost at your price per watt. For off-grid systems with batteries, use the solar PV array and storage calculator.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>What one kilowatt of panels produces in a year, the specific yield:</p>
+<pre class="ec-formula" tabindex="0"><code>Y = PSH × 365 × (1 − losses)        kWh per kW per year</code></pre>
+<p>System size and number of panels:</p>
+<pre class="ec-formula" tabindex="0"><code>P = E × offset / Y
+N = P / P_panel, rounded up</code></pre>
+<p>Yearly production of the installed panels:</p>
+<pre class="ec-formula" tabindex="0"><code>E_out = N × P_panel × Y</code></pre>
+<ul>
+<li>E — yearly electricity use, from 12 months of bills</li>
+<li>offset — the share of that use the panels should cover</li>
+<li>PSH — peak sun hours: the daily solar energy on the panels in kWh/m², averaged over the year</li>
+<li>losses — temperature, dirt, wiring, inverter and mismatch, about 14 %</li>
+<li>P_panel — the rated power of one panel at standard test conditions</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The system is tied to the grid, which supplies power at night and absorbs the surplus at midday. The calculation balances the year, not each day or season.</li>
+<li>Peak sun hours depend on the location, tilt and orientation. NREL&#39;s PVWatts tool gives them for the US and many other countries, and the EU&#39;s PVGIS tool covers Europe and Africa.</li>
+<li>14 % losses is the PVWatts default for a well-built system. Shading from trees, chimneys or neighbouring buildings can cost far more and needs a site survey.</li>
+<li>The panel area is the module outline. Roofs also need room for edges, walkways and the fire setbacks some codes require.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A home uses 10 000 kWh a year and wants to cover all of it. The site gets 4.5 peak sun hours a day on average, and the installer offers 400 W panels of 1.9 m² each.</p>
+<ol>
+<li>Yield per kW: 4.5 × 365 × (1 − 0.14) = 1 412.6 kWh per kW per year.</li>
+<li>System size: 10 000 / 1 412.6 = 7.08 kW.</li>
+<li>Panels: 7 080 / 400 = 17.7, so 18 panels, which is 7.2 kW installed.</li>
+<li>Production: 7.2 × 1 412.6 = 10 170 kWh a year, 102 % of the use.</li>
+<li>Roof area: 18 × 1.9 = 34.2 m², about 368 ft².</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many solar panels do I need for my house?</summary>
+<p>Divide your yearly kWh by 365, by your peak sun hours and by 0.86 for losses, then by the panel rating in kW. For 10 000 kWh a year in a 4.5-hour location, that is 18 panels of 400 W.</p>
+</details>
+<details class="ec-faq"><summary>How much does one solar panel produce?</summary>
+<p>A 400 W panel produces about 1.4 to 1.7 kWh a day in a sunny climate, and 500 to 630 kWh a year in a 4 to 5 peak-sun-hour location.</p>
+</details>
+<details class="ec-faq"><summary>What are peak sun hours?</summary>
+<p>The day&#39;s solar energy expressed as hours of full 1 000 W/m² sunshine. Southern Europe and much of the US get 4 to 6; northern Europe gets 2.5 to 3.5 averaged over the year.</p>
+</details>
+<details class="ec-faq"><summary>How much roof space do I need?</summary>
+<p>About 1.7 to 2 m² per panel, or 4.5 to 5 m² per kW with today&#39;s 400 to 450 W panels, plus room around the edges.</p>
+</details>
+<details class="ec-faq"><summary>Should I cover 100 % of my use?</summary>
+<p>It depends on what the utility pays for the surplus. Where exported power earns much less than imported power costs, a smaller system matched to daytime use often pays back faster.</p>
+</details>
+<details class="ec-faq"><summary>Do panels lose output over time?</summary>
+<p>Yes, slowly: typical warranties guarantee 80 to 90 % of the rated output after 25 years.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../solar-pv-sizing/index.html">Solar PV array and storage sizing</a> — off-grid systems with batteries.</li>
+<li><a href="../electricity-cost/index.html">Electricity cost</a> — what the energy you produce is worth.</li>
+<li><a href="../battery-charge-time/index.html">Battery charge time</a> — charging from the panels.</li>
+<li><a href="../mah-to-wh/index.html">mAh to Wh</a> — battery capacity conversions.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

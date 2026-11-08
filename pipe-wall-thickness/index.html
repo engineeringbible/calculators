@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pipe wall thickness (ASME B31.3) — Engineering calculators</title>
+  <meta name="description" content="ASME B31.3 pressure design thickness, allowances and mill tolerance, nominal wall required, schedule check and MAWP of the available wall.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Pipe wall thickness (ASME B31.3)</h1>
+    <p class="ec-summary">Straight pipe under internal pressure to ASME B31.3: the pressure design thickness from the allowable stress, joint quality factor, weld strength reduction factor and Y coefficient, the minimum thickness with corrosion and mechanical allowances, the nominal wall with the mill under-tolerance, a check of the available schedule wall, its maximum allowable working pressure, the Barlow hoop stress and the validity limits of the formula.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How thick must a pipe wall be? ASME B31.3, the process piping code, answers with a formula that is Barlow&#39;s hoop-stress equation adjusted for the outside diameter, the weld quality and a temperature-dependent coefficient, and then with allowances: corrosion that will eat the wall over its life, thread or groove depth, and the under-tolerance the mill is allowed on the wall it delivers. This calculator walks through those steps, compares the required nominal wall with the schedule you intend to use, and turns the question round to give the maximum allowable working pressure of that schedule, which usually shows that low-pressure pipe is governed by corrosion and handling, not pressure.</p>
+<p>It is for mechanical and marine engineers specifying piping, for anyone checking a pipe class or a vendor&#39;s data sheet, and for students of pressure design.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>t = P D / (2 (S E W + P Y))          B31.3 eq. (3a), valid for t &lt; D/6 and P/(S E) ≤ 0.385
+t_m = t + c                           c = corrosion/erosion + mechanical (thread, groove) allowance
+t_nom ≥ t_m / (1 − mill tolerance)   12.5 % for ASTM A106/A53/A312 (A530)
+t_eff = t_avail (1 − tol) − c,   MAWP = 2 S E W t_eff / (D − 2 Y t_eff),   σ_hoop = P D / (2 t_eff)</code></pre>
+<p>Y (Table 304.1.1): ferritic 0.4 to 482 °C, 0.5 to 510 °C, 0.7 above; austenitic 0.4 to 566 °C, 0.5 to 593 °C, 0.7 above; cast iron 0. E: seamless 1.0, ERW 0.85, EFW single 0.80 / double spot-radiographed 0.90, furnace butt 0.60.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Internal pressure in straight pipe; sustained, occasional, thermal and external loads are separate code checks.</li>
+<li>Allowable stresses in the table are low-temperature values; enter S at the design temperature above 200 °C.</li>
+<li>Class rules for shipboard piping use their own constants and minimum wall tables.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>NPS 8 (219.1 mm) ASTM A106 Grade B seamless pipe, 16 bar at 100 °C, 1.5 mm corrosion allowance, 12.5 % mill tolerance; schedule 40 (8.18 mm) proposed.</p>
+<ol>
+<li>S = 137.9 MPa, E = 1.0, W = 1.0, Y = 0.4: t = 1.6 × 219.1/(2 × (137.9 + 0.64)) = 1.27 mm.</li>
+<li>t_m = 1.27 + 1.5 = 2.77 mm; nominal required 2.77/0.875 = 3.16 mm.</li>
+<li>Schedule 40 passes with room to spare: effective wall 8.18 × 0.875 − 1.5 = 5.66 mm, MAWP 72.7 bar; the 16 bar design uses 22 % of it and the hoop stress is 31 MPa.</li>
+<li>Even schedule 10 (3.76 mm) would satisfy the pressure requirement at 16 bar, failing only at about 25 bar; the schedule is chosen for corrosion life, stiffness and handling.</li>
+</ol>
+<p>For ERW pipe (E 0.85) the pressure thickness rises to 1.49 mm; at 600 °C an austenitic steel takes Y = 0.7 and a much lower S.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why the outside diameter?</summary>
+<p>B31.3 writes the formula on the outside diameter, which is fixed by the pipe size, and the Y term compensates; the inside-diameter form (eq. 3b) gives the same result.</p>
+</details>
+<details class="ec-faq"><summary>What does Y do?</summary>
+<p>It shifts the formula from a thin-wall outside-diameter basis toward the mean-diameter (Lamé) result; at high temperature, where creep redistributes stress, Y rises toward 0.7.</p>
+</details>
+<details class="ec-faq"><summary>Why a 12.5 % tolerance?</summary>
+<p>ASTM allows the delivered wall to be 12.5 % under nominal; the code requires the minimum delivered wall to meet t_m, so the ordered nominal must be larger.</p>
+</details>
+<details class="ec-faq"><summary>Where do E and W come from?</summary>
+<p>E (Table A-1B) reflects the longitudinal weld examination; W (para. 302.3.5) reduces the strength of welds in creep range, 1.0 below about 510 °C.</p>
+</details>
+<details class="ec-faq"><summary>Does this apply to ship piping?</summary>
+<p>The physics is the same; class rules (DNV, LR, ABS) give their own allowable stresses, allowances and minimum thickness tables, which govern on board.</p>
+</details>
+<details class="ec-faq"><summary>What about bends and fittings?</summary>
+<p>Bends need an extra thickness on the intrados (para. 304.2.1); fittings are rated by their own standards (B16.9, B16.5).</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../pressure-vessel/index.html">Pressure vessel thickness</a> — shells and heads to the vessel code.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — the pressure the wall must contain.</li>
+<li><a href="../water-hammer/index.html">Water hammer</a> — surge pressures above the steady value.</li>
+<li><a href="../thermal-expansion/index.html">Thermal expansion</a> — pipe growth between anchors.</li>
+<li><a href="../bolt-torque/index.html">Bolt torque and preload</a> — flanged joints.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

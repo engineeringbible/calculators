@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ship squat and under-keel clearance — Engineering calculators</title>
+  <meta name="description" content="Barrass squat in open water and confined channels, Froude depth number, net under-keel clearance against a required margin and the maximum safe speed.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Ship squat and under-keel clearance</h1>
+    <p class="ec-summary">Barrass squat in open water (width of influence) and confined channels (blockage factor), the simplified rules for comparison, Froude depth number, net under-keel clearance after squat and allowances, and the maximum speed through water that keeps the required clearance.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A ship moving through shallow water sinks bodily and changes trim because the water accelerating under and around the hull drops in pressure. This squat can take a metre or more off the under-keel clearance at normal harbour-approach speeds, and it grows with the square of speed, so slowing down is the only immediate remedy. Groundings in channels and river approaches are regularly traced to underestimated squat.</p>
+<p>This calculator applies the Barrass method, the one most widely taught to masters and pilots: the general formula with blockage factor and width of influence, and the simplified open-water and confined-channel rules for comparison. It then does the under-keel clearance bookkeeping: charted depth plus tide, minus static draft, minus squat, minus allowances for swell, heel and uncertainty, compared with the required margin, and it inverts the formula to give the maximum speed that keeps that margin.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Blockage factor and width of influence:</p>
+<pre class="ec-formula" tabindex="0"><code>Open water:      F_B = 7.7 + 20 (1 − C_B)²,   W_eff = F_B × B,   S = T / (F_B h)
+Confined:        W_eff = W (channel width at the bed),             S = B T / (W h)</code></pre>
+<p>Barrass general squat (metres, V in knots through the water):</p>
+<pre class="ec-formula" tabindex="0"><code>S_max = C_B × S^0.81 × V^2.08 / 20</code></pre>
+<p>Simplified rules (h/T 1.1–1.4):</p>
+<pre class="ec-formula" tabindex="0"><code>Open water:   S_max ≈ C_B V² / 100
+Confined:     S_max ≈ C_B S^(2/3) V^2.08 / 20</code></pre>
+<p>Where the squat occurs: by the bow for C_B &gt; 0.70, by the stern for C_B &lt; 0.70, bodily for C_B ≈ 0.70.</p>
+<p>Froude depth number:</p>
+<pre class="ec-formula" tabindex="0"><code>F_nh = V / √(g h)        (V in m/s)</code></pre>
+<p>Under-keel clearance:</p>
+<pre class="ec-formula" tabindex="0"><code>UKC_static = h − T
+UKC_net    = h − T − S_max − allowances
+UKC_req    = (required % / 100) × T
+Margin     = UKC_net − UKC_req
+V_max      = [ 20 (h − T − allowances − UKC_req) / (C_B S^0.81) ]^(1/2.08)</code></pre>
+<ul>
+<li>C_B — block coefficient at the actual draft; B — beam; T — static draft; h — water depth (charted depth + height of tide); W — channel width; g = 9.80665 m/s²</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Empirical formula derived for 1.1 ≤ h/T ≤ 1.4; for deeper water it overestimates and for shallower water the ship is already nearly aground. Outside the range the calculator warns.</li>
+<li>Rectangular channel; bank slopes, a midship-section coefficient below 1 and dredged-channel shoulders are not modelled. For a trapezoidal channel use the width at about mid-draft.</li>
+<li>Speed through the water. A following current increases speed over ground without increasing squat; a head current the reverse.</li>
+<li>Even static trim is assumed. Squat is given as the maximum sinkage at the relevant end; a trimmed ship or one with a large static trim may behave differently.</li>
+<li>Not valid near the critical speed (F_nh → 1), where squat grows steeply and the ship may become uncontrollable; the calculator warns above F_nh = 0.7.</li>
+<li>Wave response (heave, pitch, roll in swell) is not calculated; include it in the allowances. PIANC recommends a separate wave allowance in exposed approaches.</li>
+<li>Ship-to-ship interaction when passing or overtaking, and bank suction, are separate phenomena not included.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Bulk carrier, C_B 0.80, beam 32 m, draft 10.0 m, in open water with 12.0 m depth (charted depth plus tide), 10 knots through the water. Allowances 0.5 m, required clearance 10 % of draft.</p>
+<ol>
+<li>h/T = 1.20, inside the Barrass range.</li>
+<li>Width of influence: F_B = 7.7 + 20 × 0.2² = 8.5 → W_eff = 272 m; S = 10 / (8.5 × 12) = 0.098.</li>
+<li>Squat: 0.80 × 0.098^0.81 × 10^2.08 / 20 = 0.80 × 0.152 × 120.2 / 20 = 0.73 m. The rule of thumb gives 0.80 m.</li>
+<li>Froude depth number: 5.14 / √(9.81 × 12) = 0.47 — comfortably subcritical.</li>
+<li>Clearance: static 2.00 m; net 2.00 − 0.73 − 0.50 = 0.77 m; required 1.00 m → 0.23 m short.</li>
+<li>Maximum speed: available squat 2.00 − 0.50 − 1.00 = 0.50 m → V = [20 × 0.5 / (0.8 × 0.152)]^(1/2.08) = 8.3 knots.</li>
+</ol>
+<p>In a 150 m channel at the same depth: S = 320 / 1800 = 0.178, squat 1.19 m (the simplified confined rule says 1.52 m), and the ship would need to slow to about 6.5 knots to keep 1.0 m of clearance.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which speed do I enter?</summary>
+<p>Speed through the water, from the log, not GPS speed over ground.</p>
+</details>
+<details class="ec-faq"><summary>Why do the general formula and the rule of thumb differ?</summary>
+<p>The rule of thumb C_B V²/100 is a fit for typical h/T around 1.2 in open water. The general formula includes the actual depth through the blockage factor and gives less squat in deeper water and more in very shallow water. Use the general formula; keep the rule of thumb as a sanity check.</p>
+</details>
+<details class="ec-faq"><summary>How much clearance is enough?</summary>
+<p>Common policy: 10 % of draft in open water and sheltered approaches, 15 % in channels, 20–30 % in exposed approaches with swell. Port authorities and company SMS set the requirement; PIANC gives a component-based method.</p>
+</details>
+<details class="ec-faq"><summary>Does squat always happen at the bow?</summary>
+<p>No. Full-form ships (bulk carriers, tankers, C_B above about 0.7) squat by the bow; fine-form ships (container ships, ferries, C_B below 0.7) squat by the stern. A ship already trimmed by the stern will usually increase that trim.</p>
+</details>
+<details class="ec-faq"><summary>What is the Froude depth number for?</summary>
+<p>It tells you how close you are to the critical speed √(g h), where the ship&#39;s own wave system travels at the ship&#39;s speed and squat and resistance rise very steeply. Stay below about 0.7.</p>
+</details>
+<details class="ec-faq"><summary>Does a passing ship change my squat?</summary>
+<p>Yes, interaction in narrow channels can add significantly to sinkage and cause sheer. It is not in this calculator; reduce speed and increase separation when meeting in a channel.</p>
+</details>
+<details class="ec-faq"><summary>Can I use the result to decide a tidal window?</summary>
+<p>Yes: enter the depth with the predicted tide, find the maximum speed or the required depth, and combine with the tidal height calculator to set the window.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hydrostatics/index.html">Hydrostatics basics</a> — block coefficient and draft at the actual condition.</li>
+<li><a href="../draft-survey/index.html">Draft survey</a> — the actual drafts before departure.</li>
+<li><a href="../tidal-height/index.html">Tidal height (rule of twelfths)</a> — the height of tide to add to the charted depth.</li>
+<li><a href="../beaufort-sea-state/index.html">Beaufort, wind speed and sea state converter</a> — wave allowance in exposed approaches.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

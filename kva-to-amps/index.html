@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>kVA to amps — Engineering calculators</title>
+  <meta name="description" content="Line current from kVA and voltage for single-phase and three-phase supplies, kVA from amps, and the kW at a given power factor.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">kVA to amps</h1>
+    <p class="ec-summary">The line current from apparent power in kVA and the voltage of a single-phase or three-phase supply, the kVA from a current, and the active and reactive power at a power factor.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Transformers, generators and UPS units are rated in kVA, while cables, breakers and busbars are chosen in amps. Converting between the two is one of the most common sums in power engineering, and getting the √3 wrong on a three-phase system gives an answer off by 73 %.</p>
+<p>This calculator converts apparent power in kVA to line current for single-phase and three-phase supplies at any voltage, and current back to kVA. With a power factor it also gives the active power in kW and the reactive power in kvar. It is for electricians, electrical engineers, and anyone sizing cables and protection for a transformer, generator or supply.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Three-phase, with the line-to-line voltage:</p>
+<pre class="ec-formula" tabindex="0"><code>I = S / (√3 × V)
+S = √3 × V × I</code></pre>
+<p>Single-phase:</p>
+<pre class="ec-formula" tabindex="0"><code>I = S / V
+S = V × I</code></pre>
+<p>Active and reactive power at a power factor cos φ:</p>
+<pre class="ec-formula" tabindex="0"><code>P = S × cos φ
+Q = S × sin φ = S × √(1 − cos² φ)</code></pre>
+<ul>
+<li>S — apparent power, VA (1 kVA = 1000 VA)</li>
+<li>V — voltage, V (line-to-line for three-phase)</li>
+<li>I — line current, A</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The supply is balanced and sinusoidal. For three-phase the voltage is line-to-line and the current is the line current, whether the load is connected in star or delta.</li>
+<li>The kVA set the current. The power factor only converts them to kW, which is why kVA-rated equipment carries its full current at any power factor.</li>
+<li>For a transformer, enter the voltage of the winding whose current you want. The secondary current at 400 V is far higher than the primary current at 11 kV.</li>
+<li>Harmonics from drives and rectifiers raise the RMS current above the fundamental value given here.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>What is the full-load current of a 1000 kVA transformer secondary at 400 V three-phase?</p>
+<ol>
+<li>Three-phase formula: I = S / (√3 × V).</li>
+<li>I = 1 000 000 / (1.732 × 400) = 1 443 A.</li>
+<li>At a power factor of 0.8, the transformer supplies 1000 × 0.8 = 800 kW.</li>
+</ol>
+<p>The cables or busbar from this transformer must carry 1 443 A, before any derating for grouping or temperature.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I convert kVA to amps?</summary>
+<p>For three-phase, divide the VA by √3 times the line voltage. For single-phase, divide the VA by the voltage. 1 kVA at 400 V three-phase is 1.443 A.</p>
+</details>
+<details class="ec-faq"><summary>Why √3 for three-phase?</summary>
+<p>Three phases each carry the line current at the phase voltage, which is the line voltage divided by √3. Adding up the three phases gives √3 × V × I.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between kVA and kW?</summary>
+<p>kVA is apparent power, voltage times current. kW is the real power doing work, kVA times the power factor. At 0.8 power factor, 100 kVA is 80 kW.</p>
+</details>
+<details class="ec-faq"><summary>How many amps is a 500 kVA generator?</summary>
+<p>At 400 V three-phase, 722 A; at 480 V, 601 A; at 690 V, 418 A.</p>
+</details>
+<details class="ec-faq"><summary>Why are generators rated in kVA?</summary>
+<p>Their windings are limited by current, whatever the power factor of the load. The engine is limited by kW, which is why both ratings appear on the plate.</p>
+</details>
+<details class="ec-faq"><summary>Do I use phase or line voltage?</summary>
+<p>Line-to-line voltage with the √3 formula, for example 400 V in Europe or 480 V in North America. Using phase voltage needs a factor of 3 instead.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — motor currents from the nameplate.</li>
+<li><a href="../transformer-sizing/index.html">Transformer sizing and voltage regulation</a> — choosing the transformer kVA.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — loading generators in kW and kVA.</li>
+<li><a href="../cable-sizing/index.html">Cable sizing and voltage drop</a> — the cable for the current found here.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

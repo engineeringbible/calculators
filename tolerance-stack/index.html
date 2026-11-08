@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tolerance stack-up — Engineering calculators</title>
+  <meta name="description" content="Worst-case, root-sum-square and Monte Carlo results of a dimension chain, with the share of each dimension and the yield against limits.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Tolerance stack-up</h1>
+    <p class="ec-summary">Add up a chain of dimensions by the worst case, the root sum of squares and a seeded Monte Carlo simulation, and see the yield against the limits and which dimension contributes most of the variation.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>When parts are assembled, their tolerances add up in the gap, clearance or overall length that matters for the assembly. The worst-case sum guarantees that every assembly fits but often demands tolerances that are needlessly tight. Statistical methods recognise that the extremes rarely coincide. This calculator adds up a chain of dimensions by the worst case and by the root sum of squares, runs a seeded Monte Carlo simulation with normal or uniform parts, and gives the yield against the limits and each dimension&#39;s share of the variation.</p>
+<p>It is for mechanical designers checking fits and clearances, manufacturing engineers setting tolerances, and anyone deciding how tight a tolerance really needs to be.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Mid-tolerance value:   mean = nominal + (plus − minus)/2,   half-width h = (plus + minus)/2
+Gap:                   Σ sign × mean
+Worst case:            ± Σ h
+Root sum of squares:   ± √(Σ h²)
+Standard deviation:    σ = √(Σ σ_i²),   σ_i = h/z (normal) or h/√3 (uniform)
+Capability:            Cpk = min(USL − μ, μ − LSL) / 3σ</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>One-dimensional chain of independent dimensions, each centred in its tolerance.</li>
+<li>Normal parts are spread over ±z σ; uniform parts evenly over the tolerance.</li>
+<li>The Monte Carlo uses a fixed seed, so a rerun repeats exactly.</li>
+<li>Mean shifts, correlated dimensions and geometric tolerances are not included.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A housing of 120 ± 0.10 mm holds a bearing of 25 ± 0.05, a spacer of 70 ± 0.08 and a shaft shoulder of 24.5 ± 0.06. The gap must be between 0.35 and 0.65 mm.</p>
+<ol>
+<li>Gap: 120 − 25 − 70 − 24.5 = 0.50 mm.</li>
+<li>Worst case: ±(0.10 + 0.05 + 0.08 + 0.06) = ±0.29 mm, from 0.21 to 0.79 mm, outside the limits.</li>
+<li>RSS: ±√(0.01 + 0.0025 + 0.0064 + 0.0036) = ±0.15 mm, exactly at the limits.</li>
+<li>With normal parts at ±3σ the gap has σ = 0.05 mm, so 99.73 % of assemblies fit (Cpk 1.0). The housing contributes 44 % of the variation.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which method should I use?</summary>
+<p>Worst case when every assembly must fit or the quantity is small; statistical methods for larger quantities from capable processes, accepting a small, known reject rate.</p>
+</details>
+<details class="ec-faq"><summary>Why is the RSS result smaller?</summary>
+<p>It is unlikely that all parts come out at the same extreme. Adding the squares reflects how independent variations combine.</p>
+</details>
+<details class="ec-faq"><summary>When is the Monte Carlo worth it?</summary>
+<p>When the parts are not normal (for example uniform, or with unequal tolerances), when there are few dimensions, or when the yield against limits matters more than a single ± figure.</p>
+</details>
+<details class="ec-faq"><summary>What does the variance share tell me?</summary>
+<p>Where to tighten a tolerance to the most effect. Halving the tolerance of the largest contributor reduces the variation far more than tightening a small one.</p>
+</details>
+<details class="ec-faq"><summary>What about asymmetric tolerances?</summary>
+<p>They are converted to a mid-tolerance value with a symmetric half-width; the gap shifts accordingly.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../quick-stats/index.html">Quick statistics of a series</a> — measured dimensions from production.</li>
+<li><a href="../gum-uncertainty/index.html">Measurement uncertainty (GUM)</a> — uncertainty of the measured gap.</li>
+<li><a href="../interference-fit/index.html">Interference fit</a> — fits where the stack sets the interference.</li>
+<li><a href="../thermal-expansion/index.html">Thermal expansion and restraint stress</a> — dimensions that change with temperature.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

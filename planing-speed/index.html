@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planing boat speed calculator (Crouch formula) — Engineering calculators</title>
+  <meta name="description" content="Top speed of a planing boat from shaft horsepower and weight by Crouch's formula, with C by hull type, and the power needed for a target speed.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Planing boat speed calculator (Crouch formula)</h1>
+    <p class="ec-summary">Planing boat speed from weight and shaft horsepower by Crouch's formula with Gerr's hull constants, and the power needed for a target speed.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A planing boat&#39;s speed depends mainly on how many pounds of boat each horsepower has to push. Crouch&#39;s formula puts this in one line: speed in knots equals a constant C divided by the square root of the weight in pounds per shaft horsepower. A 5 000 lb runabout with 200 shp carries 25 lb per horsepower, so with C = 150 it makes 150 / √25 = 30 kn.</p>
+<p>This calculator gives the speed of a planing boat from its loaded weight, shaft power and hull type, using the constants Dave Gerr tabulates in The Propeller Handbook. It also works the other way, giving the power for a target speed. It is for boat owners repowering or choosing an engine, and for anyone checking a dealer&#39;s speed claim.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Crouch&#39;s planing formula and its inverse:</p>
+<pre class="ec-formula" tabindex="0"><code>V = C / √(W / P)          V in kn, W in lb, P in shp
+P = W × (V / C)²</code></pre>
+<p>The same in metric units:</p>
+<pre class="ec-formula" tabindex="0"><code>V = 0.780 × C × √(P[kW] / W[kg])</code></pre>
+<p>Crouch constants C (Gerr):</p>
+<ul>
+<li>150 — average runabouts, cruisers and passenger vessels</li>
+<li>190 — high-speed runabouts and very light high-speed cruisers</li>
+<li>210 — race boats</li>
+<li>220 — three-point and stepped hydroplanes</li>
+<li>230 — racing power catamarans and sea sleds</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The formula applies to boats that are truly planing, above a speed–length ratio of about 3. Below that it overestimates the speed of displacement and semi-displacement hulls.</li>
+<li>W is the weight as the boat runs: hull, engines, fuel, water, crew and gear. Use a realistic load, not the brochure&#39;s dry weight.</li>
+<li>P is shaft horsepower at the propeller. Gearboxes and stern drives lose a few percent of the engine&#39;s rated power.</li>
+<li>C sums up hull form, propeller and trim. The table gives typical values. If you know the speed of a sister boat, work out its C and use that instead.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A runabout weighs 5 000 lb loaded and has 200 shaft horsepower. It is an average planing hull, C = 150. How fast will it go, and what power would give 35 kn?</p>
+<ol>
+<li>Weight per horsepower: 5 000 / 200 = 25.0 lb/hp.</li>
+<li>Speed: 150 / √25.0 = 150 / 5 = 30.0 kn, or about 34.5 mph.</li>
+<li>Power for 35 kn: 5 000 × (35 / 150)² = 5 000 × 0.0544 = 272 shp.</li>
+</ol>
+<p>So 36 % more power buys about 17 % more speed, because speed grows with the square root of power.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How fast will my boat go with a given engine?</summary>
+<p>Divide the loaded weight in pounds by the shaft horsepower, take the square root, and divide C by it. With C = 150 and 25 lb/hp the answer is 30 kn.</p>
+</details>
+<details class="ec-faq"><summary>How much horsepower do I need for 30 knots?</summary>
+<p>Multiply the weight by (30 / C)². A 5 000 lb boat with C = 150 needs 5 000 × 0.04 = 200 shp.</p>
+</details>
+<details class="ec-faq"><summary>Which constant C should I use?</summary>
+<p>Start with Gerr&#39;s value for your hull type. Better still, work out C from a similar boat whose speed and power you know: C = V × √(W / P).</p>
+</details>
+<details class="ec-faq"><summary>How much does extra weight slow a planing boat?</summary>
+<p>Speed falls with the square root of weight. Adding 10 % to the weight cuts the speed by about 4.7 %, all else equal.</p>
+</details>
+<details class="ec-faq"><summary>Does the formula work in kilograms and kilowatts?</summary>
+<p>Yes, with a conversion factor: V = 0.780 × C × √(kW / kg). The calculator converts units for you.</p>
+</details>
+<details class="ec-faq"><summary>Why does my boat not reach the predicted speed?</summary>
+<p>Common causes are more weight than assumed, a fouled bottom, the wrong propeller pitch, or an engine that does not reach its rated rpm. Check the propeller with the pitch calculator.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hull-speed/index.html">Hull speed calculator</a> — speed limits of displacement hulls.</li>
+<li><a href="../prop-pitch-speed/index.html">Propeller pitch and boat speed</a> — the pitch for the predicted speed.</li>
+<li><a href="../boat-fuel/index.html">Boat fuel consumption</a> — the fuel that power burns.</li>
+<li><a href="../froude-number/index.html">Froude number calculator</a> — when a hull starts to plane.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

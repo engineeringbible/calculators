@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compression ratio calculator — Engineering calculators</title>
+  <meta name="description" content="Static compression ratio from bore, stroke, chamber volume, head gasket, deck clearance and piston dome or dish, with swept and clearance volumes.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Compression ratio calculator</h1>
+    <p class="ec-summary">Static compression ratio of an engine from bore, stroke, chamber cc, head gasket, deck clearance and piston dome or dish, with every volume in cc.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The compression ratio of an engine is the volume above the piston at the bottom of its stroke divided by the volume at the top. To calculate it, add the swept volume of one cylinder to its clearance volume and divide by the clearance volume. A 350 small-block with a 4.030 in bore, 64 cc heads and a flat-top piston with valve reliefs comes out at about 9.75:1.</p>
+<p>This calculator adds up the clearance volume from the head chamber, the head gasket, the deck clearance and the piston dish or dome. It then gives the static compression ratio, each volume in cc and the engine displacement. It is for engine builders choosing heads, gaskets and pistons, and for anyone checking a build sheet.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Volumes of one cylinder:</p>
+<pre class="ec-formula" tabindex="0"><code>V_s = π/4 × b² × s
+V_gasket = π/4 × b_g² × t
+V_deck = π/4 × b² × d
+V_c = V_chamber + V_gasket + V_deck + V_piston</code></pre>
+<p>Static compression ratio:</p>
+<pre class="ec-formula" tabindex="0"><code>CR = (V_s + V_c) / V_c</code></pre>
+<ul>
+<li>b — cylinder bore; s — stroke</li>
+<li>b_g — head gasket bore; t — compressed gasket thickness</li>
+<li>d — deck clearance, positive when the piston stops below the deck</li>
+<li>V_chamber — head chamber volume in cc</li>
+<li>V_piston — dish and valve reliefs positive, dome negative</li>
+<li>1 in³ = 16.387 cc</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>This is the static ratio. The intake valve closes well after bottom dead centre, so the dynamic ratio that sets cylinder pressure is lower. Cam timing matters as much as the static number.</li>
+<li>Use the compressed gasket thickness from the gasket maker, not the free thickness of the gasket.</li>
+<li>A piston above the deck gives a negative deck volume. The calculator stops if the piston would touch the head.</li>
+<li>The volume beside the top ring land is not included. Measuring the chamber and piston with a burette is more accurate than catalogue figures.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 350 small-block is bored 0.030 in over to 4.030 in and keeps the 3.480 in stroke. The heads have 64 cc chambers. The gasket is 0.041 in thick with a 4.100 in bore. The pistons sit 0.025 in below the deck and have 5 cc of valve reliefs.</p>
+<ol>
+<li>Swept volume: π/4 × 4.030² × 3.480 = 44.39 in³ = 727.4 mL (cc).</li>
+<li>Gasket volume: π/4 × 4.100² × 0.041 = 0.541 in³ = 8.87 mL.</li>
+<li>Deck volume: π/4 × 4.030² × 0.025 = 0.319 in³ = 5.23 mL.</li>
+<li>Clearance volume: 64 + 8.87 + 5.23 + 5 = 83.1 mL.</li>
+<li>Compression ratio: (727.4 + 83.1) / 83.1 = 9.75:1.</li>
+</ol>
+<p>The eight cylinders displace 355.1 in³, or 5.82 L. A gasket 0.015 in thinner would raise the ratio to about 10.1:1.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate compression ratio?</summary>
+<p>Divide the swept volume plus the clearance volume by the clearance volume. The clearance volume is the chamber, gasket, deck and piston volumes added together.</p>
+</details>
+<details class="ec-faq"><summary>What compression ratio can I run on pump gas?</summary>
+<p>It depends on the cam timing, the chamber shape, the cooling and the fuel octane. Ask the piston or cam maker for the ratio that suits the combination.</p>
+</details>
+<details class="ec-faq"><summary>How does a thinner head gasket change compression?</summary>
+<p>It reduces the clearance volume. In the example, each 0.010 in of gasket thickness on a 4.100 in gasket bore is about 2.2 cc.</p>
+</details>
+<details class="ec-faq"><summary>Is a dome positive or negative?</summary>
+<p>Enter a dome as a negative volume, because it fills part of the chamber. Enter a dish and valve reliefs as positive volumes.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between static and dynamic compression ratio?</summary>
+<p>The static ratio uses the full stroke. The dynamic ratio uses only the stroke after the intake valve closes, so it is always lower.</p>
+</details>
+<details class="ec-faq"><summary>What is deck clearance?</summary>
+<p>The distance from the piston crown at top dead centre to the block deck. Adding it to the gasket thickness gives the piston-to-head distance.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../engine-displacement/index.html">Engine displacement</a> — cubic inches and litres from bore and stroke.</li>
+<li><a href="../horsepower/index.html">Horsepower calculator</a> — power from torque and rpm or drag-strip results.</li>
+<li><a href="../fuel-injector-size/index.html">Fuel injector size</a> — injector flow for the power target.</li>
+<li><a href="../engine-bmep/index.html">Engine BMEP</a> — mean effective pressure from power and displacement.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

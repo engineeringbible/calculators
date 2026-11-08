@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Battery capacity and runtime — Engineering calculators</title>
+  <meta name="description" content="Runtime of a battery bank under a constant load with Peukert correction, or the capacity for a target runtime; C-rate, usable energy, recharge Ah and time.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Battery capacity and runtime</h1>
+    <p class="ec-summary">Runtime of a battery bank under a constant DC or inverter load with Peukert's rate correction and a chosen depth of discharge, or the rated capacity needed for a target runtime; C-rate, effective and usable capacity, energy, derating for age and temperature, recharge ampere-hours and time.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A 200 Ah battery does not deliver 200 Ah at any current: the faster you discharge it, the less you get, and you should not take all of it anyway if you want the battery to last. Emergency lighting, radio and GMDSS batteries, lifeboat starting batteries, UPS banks and the house bank of a small vessel are all sized with the same three corrections: the rate effect (Peukert&#39;s law), the depth of discharge chosen for cycle life, and derating for temperature and age. This calculator applies them to find the runtime of a given bank under a constant load, or the rated capacity needed for a target runtime, and adds the C-rate, energy, and the ampere-hours and time to recharge.</p>
+<p>It is for marine and plant electricians, system designers and students; for critical installations the manufacturer&#39;s discharge tables and the applicable rules (SOLAS emergency sources, IEEE 485) take precedence.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Load current (DC, or AC through an inverter of efficiency η_inv):</p>
+<pre class="ec-formula" tabindex="0"><code>I = P / (η_inv V)</code></pre>
+<p>Peukert&#39;s law (capacity C rated over H hours, exponent k):</p>
+<pre class="ec-formula" tabindex="0"><code>t_empty = H (C_derated / (I H))^k,     C_derated = C × derating
+effective capacity = I t_empty
+runtime = DoD × t_empty
+Ah removed = I × runtime</code></pre>
+<p>Required rated capacity for a target runtime t_target:</p>
+<pre class="ec-formula" tabindex="0"><code>C = I H (t_target / (DoD H))^(1/k) / derating</code></pre>
+<p>Energy and recharge:</p>
+<pre class="ec-formula" tabindex="0"><code>E_nominal = V C,    E_usable = V × Ah removed
+Ah to recharge = Ah removed / η_charge,    t_recharge (bulk) = Ah to recharge / I_charger
+C-rate = I / C</code></pre>
+<p>Typical presets: flooded lead-acid k 1.25, DoD 50 %, charge efficiency 85 %; AGM k 1.12; gel k 1.15; LiFePO4 k 1.03, DoD 80 %, 97 %; NiCd k 1.10, DoD 80 %, 80 %.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Constant current at nominal voltage. Real loads draw more current as the voltage sags, and intermittent loads recover part of the rate loss, so treat the result as a planning figure.</li>
+<li>Peukert&#39;s law is an empirical fit for lead-acid at moderate rates. It overstates capacity at very low currents, is unreliable above about 1 C, and barely applies to lithium chemistries (k near 1). The exponent should come from the manufacturer&#39;s discharge tables when available.</li>
+<li>The capacity rating basis matters: most lead-acid batteries are rated at 20 h, stationary batteries at 10 h (IEC 60896), lithium at 1 h or 0.5 h. Enter the matching rated time.</li>
+<li>Depth of discharge is a life choice: 50 % for lead-acid roughly doubles the cycle life compared with 80 %; lithium tolerates 80–90 %.</li>
+<li>Derating is a single factor for temperature and ageing (lead-acid about −1 % per °C below 25 °C; end of life at 80 % of rated capacity, i.e. the IEEE 485 ageing factor 1.25).</li>
+<li>Recharge time covers the bulk phase only; lead-acid absorption tapering can double the real time, and the charge efficiency itself varies with state of charge.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>House bank: 24 V, 200 Ah (C20) AGM, supplying a 1 000 W AC load through a 90 % efficient inverter; 40 A charger.</p>
+<ol>
+<li>Load current: 1 000 / (0.9 × 24) = 46.3 A — a C-rate of 0.23, well above the rated 10 A (C/20).</li>
+<li>Peukert (k = 1.12): time to empty 20 × (200 / (46.3 × 20))^1.12 = 3.59 h, i.e. an effective 166 Ah instead of 200 (17 % lost to the rate).</li>
+<li>Runtime to 50 % DoD: 1.80 h, removing 83 Ah (2.0 kWh of the 4.8 kWh nominal).</li>
+<li>Recharge: 83 / 0.90 = 92 Ah to put back, 2.3 h of bulk charging at 40 A plus the absorption phase.</li>
+<li>For a 10 h runtime at the same load the bank would need 926 Ah rated capacity (20 h to empty at 46.3 A: at the rated rate Peukert&#39;s correction vanishes and C = I H).</li>
+</ol>
+<p>The same bank in LiFePO4 (k 1.03, 80 % DoD) would run 3.3 h.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the battery deliver less than its rating?</summary>
+<p>Internal resistance and diffusion limits: at high currents the active material near the plate surface is used up before the bulk can react, so the voltage reaches the cut-off earlier. Peukert&#39;s exponent captures this empirically.</p>
+</details>
+<details class="ec-faq"><summary>Should I size on C20 or C10?</summary>
+<p>Use whatever rate the manufacturer rated the battery at, and enter that time. A C10 rating is about 8–10 % lower than the C20 rating of the same lead-acid battery.</p>
+</details>
+<details class="ec-faq"><summary>What depth of discharge should I plan for?</summary>
+<p>Lead-acid: 50 % for daily cycling, up to 80 % for occasional emergency use. Lithium iron phosphate: 80–90 %. Deeper discharges shorten life roughly in proportion to the square of the depth for lead-acid.</p>
+</details>
+<details class="ec-faq"><summary>How do I size an emergency battery for class?</summary>
+<p>Rules specify the loads and durations (for example 18 h or 36 h of emergency lighting). Use the capacity mode with the total load, the required hours, a conservative depth of discharge and the ageing factor, then check the manufacturer&#39;s discharge table at the resulting current.</p>
+</details>
+<details class="ec-faq"><summary>Does temperature matter?</summary>
+<p>Yes: lead-acid capacity falls about 1 % per °C below 25 °C and the Peukert effect worsens in the cold; at 0 °C expect 20–25 % less. Hot batteries give slightly more capacity but age much faster.</p>
+</details>
+<details class="ec-faq"><summary>Why is the recharge time longer in practice?</summary>
+<p>Lead-acid accepts the full charger current only up to about 80 % state of charge; the absorption phase at constant voltage with falling current can take as long again.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this for a 12 V starting battery?</summary>
+<p>Starting batteries are rated in cold-cranking amps, not Ah at a 20 h rate; their Peukert behaviour at hundreds of amps is outside this calculator.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — AC loads to be supplied through the inverter.</li>
+<li><a href="../cable-sizing/index.html">Cable sizing and voltage drop</a> — DC cables at these currents, where voltage drop governs.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — the charger&#39;s supply and the alternative to battery storage.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — Wh, kWh and energy units.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Optimal hull cleaning interval — Engineering calculators</title>
+  <meta name="description" content="Cleaning interval that minimises fuel penalty plus cleaning cost, from the fouling growth rate, fuel and ETS prices and the cost per cleaning.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Optimal hull cleaning interval</h1>
+    <p class="ec-summary">How often to clean the hull (or polish the propeller): the cost of each percentage point of fouling penalty from fuel and CO₂ allowance prices, the cost of a cleaning including off-hire, the interval that minimises the average cost, the penalty reached before each cleaning, the fuel and CO₂ wasted, and the saving against the interval you use today.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Fouling costs fuel every day and cleaning costs money every time; somewhere between &quot;never&quot; and &quot;monthly&quot; there is an interval that minimises the sum. If the penalty grows roughly linearly with time since the last cleaning, the problem is the classic replacement-interval optimisation and has a closed-form answer: the optimal interval is the square root of twice the cleaning cost divided by the cost growth rate. This calculator prices each percentage point of penalty from the ship&#39;s consumption, the fuel price and the CO₂ allowance cost, adds off-hire to the cleaning cost, and returns the optimal interval, the penalty it allows to build up, the fuel and CO₂ wasted and the saving against the interval in use.</p>
+<p>It is for technical superintendents and performance managers planning in-water cleaning, charterers negotiating hull-performance clauses, and students of maritime economics.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>c₁ = F × d × (p + s C_F e) / 100          cost per month of a 1 % penalty
+C  = cleaning cost + off-hire days × hire
+A(T) = C/T + c₁ p₀ + c₁ r T/2              average monthly cost of a T-month cycle
+T*  = √( 2C / (c₁ r) ),   A(T*) = c₁ p₀ + √(2 C c₁ r)
+fuel wasted per year = F d 12 (p₀ + r T/2)/100</code></pre>
+<p>F clean consumption at sea (t/day), d sea days per month, p fuel price, e allowance price per t CO₂, C_F carbon factor, s ETS share, p₀ residual penalty after cleaning (%), r penalty growth (% per month).</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Linear average fouling growth; real growth is seasonal and jumps during idle periods in warm water.</li>
+<li>Cleaning restores the hull to p₀ instantly and is feasible wherever the ship is; port rules, capture requirements and coating damage are outside the model.</li>
+<li>Fuel and allowance costs only; CII rating and FuelEU consequences are not priced.</li>
+<li>No discounting within the cycle; one currency.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A tanker burning 30 t/day at sea, 22 sea days a month, fuel 550 per tonne, allowances 70 per t CO₂ with half the emissions under the ETS, penalty growing 1 % per month after a full clean; cleaning costs 60 000 plus one day off-hire at 20 000; current policy: clean yearly.</p>
+<ol>
+<li>c₁ = 30 × 22 × (550 + 0.5 × 3.114 × 70)/100 = 4 349 per percentage point per month; C = 80 000.</li>
+<li>T* = √(2 × 80 000/4 349) = 6.1 months, about two cleanings a year, with the penalty reaching 6.1 % just before each.</li>
+<li>Average cost 26 400 per month (317 000 per year), of which half is cleaning and half fuel penalty, as the optimum always balances them.</li>
+<li>Yearly cleaning: 32 800 per month (393 000 per year), 475 t of fuel and 1 480 t of CO₂ wasted. Moving to the six-month interval saves about 76 600 per year.</li>
+</ol>
+<p>If the growth rate were 0.05 % per month (a good coating on an active ship) the optimum would be 27 months, beyond a 24-month docking interval, and the answer is to clean only at docking.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the optimum balance cleaning and penalty costs?</summary>
+<p>At the minimum of C/T + aT/2 the two terms are equal; cleaning more often than that spends more on divers than it saves in fuel.</p>
+</details>
+<details class="ec-faq"><summary>Where do I get the growth rate?</summary>
+<p>From the performance monitoring trend (speed loss or power increase per month after a cleaning, ISO 19030-style), or from the hull-roughness-penalty calculator applied to the expected fouling states.</p>
+</details>
+<details class="ec-faq"><summary>What is the residual penalty?</summary>
+<p>The part of the penalty a cleaning does not remove: coating damage, residual roughness, or a hull only partially cleaned. It raises the cost but does not change the interval.</p>
+</details>
+<details class="ec-faq"><summary>Should propeller polishing use the same model?</summary>
+<p>Yes, with the propeller&#39;s own growth rate and polishing cost; propellers foul faster and are cheaper to polish, so the interval is shorter.</p>
+</details>
+<details class="ec-faq"><summary>Does the ETS matter?</summary>
+<p>At 70 per tonne of CO₂ and a 50 % share it adds about 20 % to the effective fuel price, shortening the optimal interval by about 10 %.</p>
+</details>
+<details class="ec-faq"><summary>Why cap at the docking interval?</summary>
+<p>Recoating in dock resets the roughness anyway, so an economic optimum longer than the docking cycle means &quot;do not clean in water&quot;.</p>
+</details>
+<details class="ec-faq"><summary>Can I include CII?</summary>
+<p>Not directly; if a rating band is at stake, treat the fuel saved as worth more than its price, or shorten the interval for that reason.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hull-roughness-penalty/index.html">Hull roughness and fouling penalty</a> — the penalty per fouling state that sets the growth rate.</li>
+<li><a href="../esd-payback/index.html">Energy-saving device payback</a> — the same economics for a one-off investment.</li>
+<li><a href="../eu-ets-fueleu/index.html">EU ETS and FuelEU Maritime</a> — the allowance cost.</li>
+<li><a href="../cii-rating/index.html">CII rating</a> — what the wasted fuel does to the rating.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel and voyage cost</a> — consumption at the clean-hull baseline.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

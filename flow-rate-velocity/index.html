@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flow rate and pipe velocity — Engineering calculators</title>
+  <meta name="description" content="Velocity from flow rate and pipe bore, flow from velocity, or the bore needed for a flow at a target velocity, checked against usual design velocities.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Flow rate and pipe velocity</h1>
+    <p class="ec-summary">The velocity in a full pipe from the flow rate and the bore, the flow from the velocity, or the bore needed for a flow at a target velocity, compared with the usual design velocities for water, pump suctions and oil lines.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Flow rate, velocity and pipe size are tied together by the simplest equation in fluid mechanics: the flow equals the velocity times the bore area. Engineers use it every day, to check the velocity in an existing line, to see how much a pipe can carry at a sensible velocity, or to pick a pipe size for a new flow.</p>
+<p>This calculator works it in all three directions. Give it the flow and the bore to get the velocity, the velocity and the bore to get the flow, or the flow and a target velocity to get the bore you need. It then compares the velocity with the usual ranges for general water lines, pump suctions and oil lines, because too high a velocity means noise, erosion and pressure drop, and too low a velocity means an oversized, expensive pipe. It is for mechanical, process, building-services and marine engineers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Continuity for a full pipe:</p>
+<pre class="ec-formula" tabindex="0"><code>Q = V × A,   A = π × D² / 4</code></pre>
+<p>Each unknown in turn:</p>
+<pre class="ec-formula" tabindex="0"><code>V = Q / A = 4 Q / (π D²)
+Q = V × π D² / 4
+D = √(4 Q / (π V))</code></pre>
+<p>Usual design velocities for liquids, in m/s:</p>
+<pre class="ec-formula" tabindex="0"><code>general water and pump discharge  1.0 to 3.0
+pump suction                      0.6 to 1.5
+fuel and lubricating oil          0.5 to 2.0</code></pre>
+<ul>
+<li>Q — volume flow rate, m³/s (1 m³/h = 1/3600 m³/s)</li>
+<li>V — mean velocity, m/s</li>
+<li>D — inside diameter, m</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The pipe runs full and the fluid is incompressible. For gases, use the flow at the actual pressure and temperature in the pipe.</li>
+<li>V is the mean velocity over the cross-section. The velocity at the centre is higher, by about 20 % in turbulent flow and twice the mean in laminar flow.</li>
+<li>The design ranges are common practice, not code limits. The allowable pressure drop, noise, water hammer and erosion of the pipe material decide the final size.</li>
+<li>The bore mode returns the exact diameter. Choose the next standard pipe whose bore is at least this large; bores depend on the pipe standard and the wall thickness.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A pump delivers 50 m³/h into a pipe with a 100 mm bore. What is the velocity, and is it reasonable?</p>
+<ol>
+<li>Flow in SI units: Q = 50 / 3600 = 0.01389 m³/s.</li>
+<li>Bore area: A = π × 0.1² / 4 = 0.007854 m² = 78.5 cm².</li>
+<li>Velocity: V = 0.01389 / 0.007854 = 1.77 m/s.</li>
+<li>That is within the usual 1 to 3 m/s for a water discharge line.</li>
+</ol>
+<p>If the same flow should run at 2 m/s, the bore would need to be D = √(4 × 0.01389 / (π × 2)) = 94.0 mm, so a DN 100 pipe of about 100 mm bore suits it.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What velocity should water flow at in a pipe?</summary>
+<p>Typically 1 to 3 m/s for discharge lines, lower in small and quiet domestic pipes, and 0.6 to 1.5 m/s at a pump suction to protect against cavitation.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert m³/h to m/s in a pipe?</summary>
+<p>Divide the flow by 3600 to get m³/s, then divide by the bore area in m². The calculator does both steps.</p>
+</details>
+<details class="ec-faq"><summary>Why is the suction velocity lower than the discharge?</summary>
+<p>Pressure is lowest at the pump inlet, and a lower velocity there keeps the friction loss small, leaving more NPSH available against cavitation.</p>
+</details>
+<details class="ec-faq"><summary>How do I size a pipe for a given flow?</summary>
+<p>Choose a target velocity for the service, find the bore with D = √(4Q/πV), then take the next standard pipe size up. Check the pressure drop over the whole run with the pipe flow calculator.</p>
+</details>
+<details class="ec-faq"><summary>Does doubling the pipe diameter halve the velocity?</summary>
+<p>No, it quarters it, because the area grows with the square of the diameter.</p>
+</details>
+<details class="ec-faq"><summary>Is this valid for gases?</summary>
+<p>Yes, at the actual flow, the volume flow at the pipe&#39;s own pressure and temperature, not at standard conditions. Gas lines run at much higher velocities, often 10 to 20 m/s.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — the pressure drop at this velocity.</li>
+<li><a href="../pipe-volume/index.html">Pipe volume and mass of contents</a> — the volume of the same pipe.</li>
+<li><a href="../reynolds-number/index.html">Reynolds number and flow regime</a> — whether the flow is laminar or turbulent.</li>
+<li><a href="../pump-affinity/index.html">Pump and fan affinity laws</a> — how the flow changes with pump speed.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

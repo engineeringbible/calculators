@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Building heat loss calculator (U-values) — Engineering calculators</title>
+  <meta name="description" content="Heat loss of a room or house through walls, windows, roof and floor from U- or R-values, plus ventilation, in W, kW and Btu/h, with yearly heating energy.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">HVAC</span>
+    <h1 class="ec-title">Building heat loss calculator (U-values)</h1>
+    <p class="ec-summary">Design heat loss of a room or house from U- or R-values of walls, windows, roof and floor plus ventilation, in W, kW and Btu/h, with yearly heating energy.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How big must a boiler, heat pump or radiator be? It must replace the heat a building loses on a cold day. Heat leaks through every wall, window, roof and floor in proportion to its area, its U-value and the temperature difference, and more is lost with the air that leaks or is ventilated out. A small, reasonably insulated house loses about 2.7 kW when it is 21 °C inside and −3 °C outside.</p>
+<p>This calculator adds up those losses from a list of building elements, with U-values in metric or US units or R-values, and the ventilation loss from the air changes. It gives the design heat loss in W, kW and Btu/h, shows which element loses the most, and estimates the heat needed in a year from heating degree-days. It is for heat pump and boiler sizing, radiator selection and comparing insulation upgrades.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Transmission (fabric) loss and ventilation loss at the design temperatures:</p>
+<pre class="ec-formula" tabindex="0"><code>Φ_T = Σ U_i × A_i × (θ_int − θ_ext)
+Φ_V = ρ c_p × n × V × (1 − η) × (θ_int − θ_ext) / 3600</code></pre>
+<p>Heat loss coefficient and yearly heat:</p>
+<pre class="ec-formula" tabindex="0"><code>H = Σ U_i A_i + ρ c_p n V (1 − η) / 3600      W/K
+E = H × HDD × 24 / 1000                          kWh</code></pre>
+<ul>
+<li>U — thermal transmittance, W/(m²·K) or Btu/(h·ft²·°F); U = 1/R</li>
+<li>A — area of the element; n — air changes per hour; V — heated volume</li>
+<li>ρ c_p — 1 211 J/(m³·K) for air, i.e. 0.336 W per m³/h per K, or 1.08 Btu/h per cfm per °F</li>
+<li>η — efficiency of any heat recovery; HDD — heating degree-days for the location</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>U-values must include all layers and surface resistances. Thermal bridges at junctions, lintels and balconies can add 10 to 20 % in older buildings; add them as an extra element if known.</li>
+<li>Ground floors and walls to unheated garages lose heat to a temperature above the outdoor design value. Using the full temperature difference errs on the safe side; EN 12831 applies reduction factors for them.</li>
+<li>Air changes cover both ventilation and leakage: about 0.5 ACH for a typical modern home, 1 or more for an old draughty one, and 0.1 to 0.3 with tight construction and heat recovery.</li>
+<li>The degree-day estimate ignores sun through windows and heat from people and appliances, so actual heating bills are usually lower.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A small house has 100 m² of walls at U = 0.30, 20 m² of windows at 1.4, 60 m² of roof at 0.18, a 60 m² floor at 0.25 and a 2 m² door at 1.8 W/(m²·K). Its 150 m³ have 0.5 air changes an hour. The design temperatures are 21 °C inside and −3 °C outside.</p>
+<ol>
+<li>Temperature difference: 21 − (−3) = 24 K.</li>
+<li>Fabric: 100 × 0.30 + 20 × 1.4 + 60 × 0.18 + 60 × 0.25 + 2 × 1.8 = 87.4 W/K, so 87.4 × 24 = 2 098 W.</li>
+<li>Ventilation: 1 211 × 0.5 × 150 / 3600 = 25.2 W/K, so 25.2 × 24 = 606 W.</li>
+<li>Total: 2 098 + 606 = 2 703 W.</li>
+</ol>
+<p>The house needs about 2.7 kW of heating at the design temperature. The walls are the largest single loss, 720 W, but the windows lose almost as much from a fifth of the area.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the heat loss of a room?</summary>
+<p>For each wall, window, ceiling and floor, multiply its area by its U-value and by the difference between inside and outside temperature, then add the ventilation loss. The sum is the heat the radiator or heater must supply.</p>
+</details>
+<details class="ec-faq"><summary>What is a U-value?</summary>
+<p>The heat that passes through one square metre of a building element for each degree of temperature difference, in W/(m²·K). Lower is better: a modern wall is 0.15 to 0.30, a double-glazed window 1.2 to 2.8.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between R-value and U-value?</summary>
+<p>R is the resistance to heat flow and U is its inverse, U = 1/R, once all layers are added up. US R-values are in ft²·°F·h/Btu; R13 is U = 0.077 Btu/(h·ft²·°F), or 0.44 W/(m²·K).</p>
+</details>
+<details class="ec-faq"><summary>What outdoor temperature should I design for?</summary>
+<p>The local design temperature, which most countries publish: for example −3 °C in much of the UK, −10 to −15 °C in central Europe, and the ASHRAE 99 % heating design temperature in the US.</p>
+</details>
+<details class="ec-faq"><summary>How do I size a heat pump from the heat loss?</summary>
+<p>Choose a heat pump whose output at the outdoor design temperature covers the design heat loss, plus any domestic hot water load. Oversizing a heat pump makes it cycle and lowers its efficiency.</p>
+</details>
+<details class="ec-faq"><summary>What are heating degree-days?</summary>
+<p>The sum over a year of how far the daily mean temperature falls below a base temperature, usually 15.5 or 18 °C. Multiplied by the heat loss coefficient and 24 hours, they give the yearly heat demand.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../btu-ac-size/index.html">BTU calculator: AC size for a room</a> — the cooling side.</li>
+<li><a href="../air-changes/index.html">Air changes per hour and CFM</a> — ventilation rates.</li>
+<li><a href="../pipe-insulation/index.html">Pipe insulation</a> — heat loss of pipes.</li>
+<li><a href="../electricity-cost/index.html">Electricity cost</a> — running cost of electric heating.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

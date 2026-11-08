@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Steel and metal weight calculator — Engineering calculators</title>
+  <meta name="description" content="Weight of steel, stainless, aluminium, copper and brass plate, bar, tube, pipe, angle, beam and channel, per metre or foot, per piece and in total.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Structural</span>
+    <h1 class="ec-title">Steel and metal weight calculator</h1>
+    <p class="ec-summary">Weight of steel and other metals in plate, bar, tube, pipe, angle, beam and channel, per metre or foot, per piece and in total.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The weight of a steel bar, plate or tube is its cross-section area times its length times the density of the metal. Steel weighs 7 850 kg per cubic metre, so a 20 mm round bar weighs 2.47 kg per metre, and a 10 mm plate 78.5 kg per square metre. The numbers matter for ordering, transport, lifting and the dead load in a structure.</p>
+<p>This calculator gives the cross-section, weight per metre and per foot, weight per piece and total weight of the common shapes: plate, round, square, hex and flat bar, round and rectangular tube, angle, I-beam and channel. It covers carbon and stainless steel, aluminium, copper, brass, bronze, cast iron, titanium and lead, or any density you enter.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Weight of n pieces of length L:</p>
+<pre class="ec-formula" tabindex="0"><code>m = ρ × A × L × n</code></pre>
+<p>Cross-section areas:</p>
+<pre class="ec-formula" tabindex="0"><code>plate, flat bar:   A = w t
+round bar:         A = π d² / 4
+hex bar:           A = (√3 / 2) s²          s across flats
+round tube:        A = π t (D − t)
+rectangular tube:  A = b h − (b − 2t)(h − 2t)
+angle:             A = t (a + b − t)
+I-beam, channel:   A = 2 b t_f + (h − 2 t_f) t_w</code></pre>
+<ul>
+<li>ρ — density: carbon steel 7 850, stainless 304 7 900, aluminium 2 700, copper 8 940 kg/m³</li>
+<li>D, t — outside diameter and wall of a tube; b, h — width and height</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Weights are theoretical, for sharp-cornered shapes. Hot-rolled angles, beams and channels have root fillets, and tubes have rounded corners, so catalogue weights differ by a few percent. Use the catalogue weight for standard sections where it matters.</li>
+<li>Mill tolerances on thickness allow the real weight to vary by up to about 5 %.</li>
+<li>Enter the actual outside diameter of a pipe, not its nominal size: 2 in pipe is 60.3 mm (2.375 in) outside.</li>
+<li>Alloy densities vary by one or two percent. Enter a measured or catalogue density for exact work.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>What does a 6 m length of 20 mm diameter steel round bar weigh?</p>
+<ol>
+<li>Area: π × 20² / 4 = 314.2 mm² = 0.0003142 m².</li>
+<li>Weight per metre: 7 850 × 0.0003142 = 2.466 kg/m, or 1.657 lb/ft.</li>
+<li>Weight of the bar: 2.466 × 6 = 14.80 kg.</li>
+</ol>
+<p>A bundle of 20 such bars weighs 296 kg.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the weight of steel?</summary>
+<p>Multiply the volume in cubic metres by 7 850 kg/m³. For a bar, the volume is the cross-section area times the length.</p>
+</details>
+<details class="ec-faq"><summary>How much does a steel plate weigh per square metre?</summary>
+<p>7.85 kg per millimetre of thickness: 78.5 kg/m² for 10 mm, 157 kg/m² for 20 mm. In US units, 40.8 lb/ft² per inch of thickness.</p>
+</details>
+<details class="ec-faq"><summary>Is stainless steel heavier than carbon steel?</summary>
+<p>Slightly: 304 is about 7 900 kg/m³ and 316 about 8 000 kg/m³, against 7 850 for carbon steel.</p>
+</details>
+<details class="ec-faq"><summary>How much lighter is aluminium?</summary>
+<p>About a third of the weight of steel for the same shape: 2 700 against 7 850 kg/m³.</p>
+</details>
+<details class="ec-faq"><summary>What is the weight of steel pipe per metre?</summary>
+<p>Use the outside diameter and wall: 60.3 × 3.9 mm (2 in Schedule 40) is 5.43 kg/m.</p>
+</details>
+<details class="ec-faq"><summary>Why does my supplier&#39;s weight differ?</summary>
+<p>Catalogue weights include root fillets and corner radii, and suppliers sometimes quote the maximum weight within tolerance. Differences of 2 to 5 % are normal.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../rebar-weight/index.html">Rebar weight and quantity</a> — reinforcing bars by size.</li>
+<li><a href="../moment-of-inertia/index.html">Moment of inertia (section properties)</a> — stiffness of the same shapes.</li>
+<li><a href="../concrete-volume/index.html">Concrete volume and rebar weight</a> — concrete with its reinforcement.</li>
+<li><a href="../lifting-sling/index.html">Lifting sling</a> — rigging for the weight.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

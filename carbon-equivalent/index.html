@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carbon equivalent calculator (CE, Pcm, CET) and preheat — Engineering calculators</title>
+  <meta name="description" content="Weldability of steel from its composition: IIW carbon equivalent, AWS CE with silicon, Pcm and CET, with the EN 1011-2 minimum preheat temperature.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Carbon equivalent calculator (CE, Pcm, CET) and preheat</h1>
+    <p class="ec-summary">Carbon equivalents CE (IIW and AWS), Pcm and CET from a steel's composition, with the EN 1011-2 method B minimum preheat temperature.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>When steel is welded, the heat-affected zone cools fast and can harden. Hard zones with hydrogen from the weld can crack hours after welding. The carbon equivalent rolls carbon and the alloying elements into one number that measures this hardenability. The S355 plate of the worked example has a CE of 0.44, and at 30 mm thickness it needs about 110 °C of preheat by EN 1011-2.</p>
+<p>This calculator gives four carbon equivalents from the mill certificate: the IIW CE, the AWS D1.1 version with silicon, Ito and Bessyo&#39;s Pcm, and the CET of EN 1011-2. With the plate thickness, the hydrogen level and the heat input, it also gives the minimum preheat temperature by EN 1011-2 method B. It is for welding engineers, inspectors and fabricators writing or checking a welding procedure.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Carbon equivalents, with element contents in mass %:</p>
+<pre class="ec-formula" tabindex="0"><code>CE(IIW) = C + Mn/6 + (Cr + Mo + V)/5 + (Ni + Cu)/15
+CE(AWS) = C + (Mn + Si)/6 + (Cr + Mo + V)/5 + (Ni + Cu)/15
+Pcm = C + Si/30 + (Mn + Cu + Cr)/20 + Ni/60 + Mo/15 + V/10 + 5 B
+CET = C + (Mn + Mo)/10 + (Cr + Cu)/20 + Ni/40</code></pre>
+<p>Minimum preheat, EN 1011-2 Annex C, method B:</p>
+<pre class="ec-formula" tabindex="0"><code>T_p = 697 CET + 160 tanh(d/35) + 62 HD^0.35 + (53 CET − 32) Q − 328    °C</code></pre>
+<ul>
+<li>d — plate thickness, mm (10 to 90)</li>
+<li>HD — diffusible hydrogen of the weld metal, ml/100 g (1 to 20)</li>
+<li>Q — effective heat input, kJ/mm (0.5 to 4.0): arc energy times the thermal efficiency of the process</li>
+<li>The formula holds for CET 0.20 to 0.50 % and C 0.05 to 0.32 %, Mn 0.5 to 1.9 %, Si up to 0.8 %, Cr up to 1.5 %, Cu up to 0.7 %, Mo up to 0.75 %, Ni up to 2.5 %, V up to 0.18 %, Nb up to 0.06 %, Ti up to 0.12 % and B up to 0.005 %</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The composition comes from the mill certificate. An element left at zero counts as absent, which understates the result if it is actually there.</li>
+<li>CE(IIW) suits carbon and carbon-manganese steels. Pcm was derived for low-carbon, low-alloy steels such as modern pipeline grades, where CE(IIW) is less reliable.</li>
+<li>The preheat is the minimum to avoid hydrogen cracking. Restraint, hardness limits and the governing code may require more, and the calculator refuses inputs outside the validity range of the formula.</li>
+<li>Heat input Q must already include the thermal efficiency of the process. EN 1011-1 gives the efficiency factors.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An S355 plate 30 mm thick has C 0.18, Mn 1.40, Si 0.30, Cr 0.05, Mo 0.02, V 0.01, Ni 0.05 and Cu 0.10 %. It is welded with consumables of HD 5 ml/100 g at an effective heat input of 1.0 kJ/mm.</p>
+<ol>
+<li>CE(IIW) = 0.18 + 0.2333 + 0.016 + 0.010 = 0.439.</li>
+<li>CE(AWS) adds 0.30/6 = 0.05: 0.489.</li>
+<li>Pcm = 0.18 + 0.010 + 0.0775 + 0.0008 + 0.0013 + 0.001 = 0.271.</li>
+<li>CET = 0.18 + 0.142 + 0.0075 + 0.0013 = 0.331.</li>
+<li>Preheat: 697 × 0.331 + 160 tanh(30/35) + 62 × 5^0.35 + (53 × 0.331 − 32) × 1.0 − 328 = 108 °C.</li>
+</ol>
+<p>So this joint needs a preheat of at least 110 °C. Thinner plate, lower-hydrogen consumables or a higher heat input would lower it.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the carbon equivalent of steel?</summary>
+<p>A single number that weighs carbon and the alloying elements by their effect on hardenability. The higher it is, the more the heat-affected zone hardens and the greater the risk of cold cracking.</p>
+</details>
+<details class="ec-faq"><summary>Which carbon equivalent formula should I use?</summary>
+<p>The one your code names. EN 1011-2 uses CE or CET, AWS D1.1 uses CE with silicon or Pcm, and pipeline specifications often give a limit on Pcm.</p>
+</details>
+<details class="ec-faq"><summary>What CE value needs preheat?</summary>
+<p>There is no single limit, because thickness, hydrogen and heat input matter as much. Use a method such as EN 1011-2, which combines all of them.</p>
+</details>
+<details class="ec-faq"><summary>What is diffusible hydrogen HD?</summary>
+<p>The hydrogen that the weld metal releases after welding, in ml per 100 g of deposited metal. Consumables are classified by it: H5 means at most 5 ml/100 g, H10 at most 10.</p>
+</details>
+<details class="ec-faq"><summary>Why does a higher heat input lower the preheat?</summary>
+<p>More heat slows the cooling of the joint. The heat-affected zone hardens less and hydrogen has more time to escape.</p>
+</details>
+<details class="ec-faq"><summary>Can I use these formulas for stainless steel?</summary>
+<p>No. Austenitic stainless steels do not harden this way, and their weldability is judged by other means such as the ferrite content.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../fillet-weld/index.html">Fillet weld strength</a> — throat and strength of the weld itself.</li>
+<li><a href="../hardness-conversion/index.html">Hardness conversion</a> — heat-affected-zone hardness in other scales.</li>
+<li><a href="../material-properties/index.html">Material properties</a> — strength of structural steels.</li>
+<li><a href="../weld-fatigue/index.html">Weld fatigue damage</a> — fatigue life of welded details.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solar battery bank calculator — Engineering calculators</title>
+  <meta name="description" content="Battery bank for solar or backup power from daily energy, autonomy, depth of discharge and temperature: Ah needed, batteries in series and parallel.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Solar battery bank calculator</h1>
+    <p class="ec-summary">Size a solar or backup battery bank in kWh and Ah from daily use, days of autonomy, depth of discharge and temperature, and count the batteries.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How big a battery bank do you need? Start with the energy you use per day and the number of days the bank must last without sun. Divide by the inverter efficiency and by the depth of discharge, and allow for cold, which cuts the capacity of lead-acid batteries. A cabin using 3 kWh a day for 3 days needs a 24 kWh lead-acid bank at 10 °C, eight times its daily use.</p>
+<p>This calculator sizes the bank in kWh and in Ah at your system voltage. It then counts how many of a chosen battery go in series and in parallel, and what the finished bank delivers. It is for off-grid and backup solar owners, installers and students. The solar PV sizing calculator sizes the array that charges the bank.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Energy the bank must deliver, and the nominal capacity:</p>
+<pre class="ec-formula" tabindex="0"><code>E_bank = E_day × N_days / η_inv
+C_nom = E_bank × k_T × (1 + m) / DoD
+Ah = C_nom / V_sys</code></pre>
+<p>Batteries:</p>
+<pre class="ec-formula" tabindex="0"><code>N_series = V_sys / V_bat
+N_parallel = ceil(Ah / Ah_bat)
+usable energy = N_parallel × Ah_bat × V_sys × DoD / k_T</code></pre>
+<ul>
+<li>E_day — energy used per day; N_days — days of autonomy</li>
+<li>η_inv — inverter efficiency, 1 for DC loads</li>
+<li>DoD — depth of discharge: 50 % for lead-acid, 80 % for LiFePO4 by default</li>
+<li>k_T — temperature correction factor of IEEE 485, 1.00 at 25 °C (77 °F)</li>
+<li>m — ageing and design margin</li>
+<li>V_sys, V_bat — bank voltage and the voltage of one battery; Ah_bat — capacity of one battery</li>
+</ul>
+<p>Selected IEEE 485 temperature correction factors for vented lead-acid cells:</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Temperature</th><th scope="col">Factor</th></tr></thead>
+<tbody>
+<tr><td>−3.9 °C (25 °F)</td><td>1.52</td></tr>
+<tr><td>4.4 °C (40 °F)</td><td>1.30</td></tr>
+<tr><td>10 °C (50 °F)</td><td>1.19</td></tr>
+<tr><td>15.6 °C (60 °F)</td><td>1.11</td></tr>
+<tr><td>21.1 °C (70 °F)</td><td>1.04</td></tr>
+<tr><td>25 °C (77 °F)</td><td>1.00</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The bank carries the load for the days of autonomy with no charging at all. Shorter cloudy spells with some sun need less.</li>
+<li>The default depths of discharge favour a long life. Manufacturer data show about 600 cycles at 50 % for AGM batteries and about 2 500 cycles at 80 % for LiFePO4.</li>
+<li>The IEEE 485 table is for vented lead-acid cells. The page uses it for AGM and gel batteries as an estimate. For LiFePO4, enter the capacity factor from the data sheet instead.</li>
+<li>No credit is taken for batteries warmer than 25 °C. Heat raises the capacity a little but shortens the life.</li>
+<li>Capacity is the rating at the battery&#39;s standard discharge rate, often 20 hours for lead-acid. Heavy loads draw it down faster.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A cabin uses 3 kWh a day and must run for 3 days without sun. The inverter is 90 % efficient. The bank is flooded lead-acid at 24 V in a shed that falls to 10 °C (50 °F). How many 12 V 200 Ah batteries are needed?</p>
+<ol>
+<li>Energy from the bank: 3 × 3 / 0.90 = 10.0 kWh.</li>
+<li>Temperature correction factor at 50 °F: 1.19.</li>
+<li>Nominal capacity at 50 % depth of discharge: 10.0 × 1.19 / 0.50 = 23.8 kWh.</li>
+<li>At 24 V: 23 800 / 24 = 992 Ah.</li>
+<li>Two 12 V batteries make one 24 V string. Five strings give 1 000 Ah, so 10 batteries in total.</li>
+<li>The bank holds 24.0 kWh. At 10 °C and 50 % depth of discharge, 10.1 kWh of it is usable, a little over 3 days.</li>
+</ol>
+<p>Five parallel strings are a lot. The page warns about it, because the strings share current unevenly. Twelve 2 V cells of 1 000 Ah in a single string avoid parallel strings altogether.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many batteries do I need for my solar system?</summary>
+<p>Multiply your daily use by the days of autonomy and divide by the depth of discharge and the inverter efficiency. Then divide by the energy of one battery, its volts times its amp-hours.</p>
+</details>
+<details class="ec-faq"><summary>What depth of discharge should I use?</summary>
+<p>About 50 % for lead-acid and 80 % for LiFePO4 if you cycle the bank daily. Deeper discharges are possible but cost cycle life.</p>
+</details>
+<details class="ec-faq"><summary>How many days of autonomy should a battery bank have?</summary>
+<p>Enough to cover the longest cloudy spell you expect in the darkest month. A backup generator lets you choose fewer days.</p>
+</details>
+<details class="ec-faq"><summary>Does cold weather affect battery capacity?</summary>
+<p>Yes. A lead-acid battery at 10 °C needs a bank 19 % larger than one at 25 °C, and at 4.4 °C the factor is 1.30.</p>
+</details>
+<details class="ec-faq"><summary>Should batteries be wired in series or parallel?</summary>
+<p>In series to reach the system voltage, and in parallel only to add capacity. Fewer parallel strings are better, so choose larger batteries where you can.</p>
+</details>
+<details class="ec-faq"><summary>What is the ageing factor?</summary>
+<p>IEEE 485 sizes lead-acid batteries 25 % larger so they still carry the load when worn down to 80 % of their rated capacity. Enter it as a margin of 25 %.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../solar-pv-sizing/index.html">Solar PV array and storage sizing</a> — the array that recharges the bank.</li>
+<li><a href="../inverter-size/index.html">Inverter size calculator</a> — the inverter and its battery current.</li>
+<li><a href="../battery-runtime/index.html">Battery capacity and runtime</a> — runtime at a given load with Peukert&#39;s correction.</li>
+<li><a href="../battery-charge-time/index.html">Battery charge time</a> — how long a charger takes to refill the bank.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

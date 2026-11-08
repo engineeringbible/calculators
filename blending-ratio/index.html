@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blending ratio calculator (two liquids to a target property) — Engineering calculators</title>
+  <meta name="description" content="Fractions and volumes of two liquids to blend to a target concentration, density, sulphur content or viscosity (Refutas), by mass or by volume.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Process</span>
+    <h1 class="ec-title">Blending ratio calculator (two liquids to a target property)</h1>
+    <p class="ec-summary">Mass and volume fractions of two liquids for a target concentration, sulphur content, density or Refutas viscosity, and the quantity of each.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How much of each liquid do you need to reach a target? For a property that blends linearly, the fraction of liquid A is (target − B) / (A − B). Sulphur and concentration in % w/w blend by mass. Density and % v/v blend by volume. Viscosity does not blend linearly at all. It is first turned into a blending number, such as the Refutas index, which does blend by mass. Blending ISO VG 100 and VG 32 oils to VG 68 takes 69 % of the VG 100 by mass, not the 53 % a straight line between 32 and 100 suggests.</p>
+<p>This calculator gives the mass and volume fractions of two liquids that reach a target, and the volume and mass of each for a batch. It handles mass-linear properties, volume-linear properties and kinematic viscosity by the Refutas method. It is for process, fuel and lubricant engineers, and for anyone mixing two stocks to a specification.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Fraction of liquid A for a linear property, on its blending basis:</p>
+<pre class="ec-formula" tabindex="0"><code>f_A = (P_target − P_B) / (P_A − P_B)</code></pre>
+<p>Refutas viscosity blending number, blended by mass fraction:</p>
+<pre class="ec-formula" tabindex="0"><code>VBN = 14.534 × ln(ln(ν + 0.8)) + 10.975
+w_A = (VBN_target − VBN_B) / (VBN_A − VBN_B)
+ν = exp(exp((VBN − 10.975) / 14.534)) − 0.8</code></pre>
+<p>Mass and volume fractions, with additive volumes:</p>
+<pre class="ec-formula" tabindex="0"><code>φ_A = (w_A / ρ_A) / (w_A / ρ_A + w_B / ρ_B)
+ρ_blend = φ_A ρ_A + φ_B ρ_B</code></pre>
+<ul>
+<li>P — property value; f_A — fraction of A by mass or by volume</li>
+<li>ν — kinematic viscosity in cSt, all at the same temperature</li>
+<li>w — mass fraction; φ — volume fraction; ρ — density</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Choose the basis that matches the property. Sulphur, ash and concentration in % w/w blend by mass. Density and % v/v blend by volume.</li>
+<li>Both viscosities and the target must be at the same temperature. The Refutas method is accurate to a few per cent for miscible petroleum oils.</li>
+<li>Volumes are taken as additive. Alcohol and water shrink by up to about 4 % on mixing, so the batch comes out short.</li>
+<li>The calculator does not check compatibility. Some residual and distillate fuels form sludge when mixed, so test before blending different fuel types.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A workshop has ISO VG 100 and ISO VG 32 hydraulic oil, of densities 880 and 860 kg/m³, and wants 1 000 L of VG 68. All viscosities are at 40 °C.</p>
+<ol>
+<li>Blending numbers: VBN(100 cSt) = 33.196, VBN(32 cSt) = 29.143, VBN(68 cSt) = 31.940.</li>
+<li>Mass fraction of VG 100: (31.940 − 29.143) / (33.196 − 29.143) = 69.0 %.</li>
+<li>Volume fraction of VG 100: (0.690 / 880) / (0.690 / 880 + 0.310 / 860) = 68.5 %.</li>
+<li>Quantities: 685 L of VG 100 and 315 L of VG 32.</li>
+</ol>
+<p>A straight-line mix by viscosity would have used only about 530 L of VG 100 and given an oil of about 57 cSt.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate a blending ratio?</summary>
+<p>For a linear property, the fraction of A is (target − B) / (A − B). To blend 3.5 % and 0.1 % sulphur fuels to 0.5 %, use 0.4 / 3.4 = 11.8 % of the high-sulphur fuel by mass.</p>
+</details>
+<details class="ec-faq"><summary>Why can&#39;t I average viscosities?</summary>
+<p>Viscosity changes roughly exponentially with composition, so a thin oil lowers the blend&#39;s viscosity far more than a straight line predicts. A 50/50 mass blend of 10 and 100 cSt oils is about 26.7 cSt.</p>
+</details>
+<details class="ec-faq"><summary>What is the Refutas method?</summary>
+<p>A viscosity blending index developed at Shell: VBN = 14.534 ln(ln(ν + 0.8)) + 10.975. The VBN of a blend is the mass-weighted mean of the components&#39; VBN.</p>
+</details>
+<details class="ec-faq"><summary>Should I blend by mass or by volume?</summary>
+<p>Blend by the basis the property is defined on. Sulphur in % m/m blends by mass. Density blends by volume. The calculator converts between the two with the densities.</p>
+</details>
+<details class="ec-faq"><summary>Does density blend linearly?</summary>
+<p>By volume, yes, if the volumes add. A 30.5 % by volume blend of 991 and 860 kg/m³ fuels has a density of 900 kg/m³.</p>
+</details>
+<details class="ec-faq"><summary>Can I blend more than two components?</summary>
+<p>Not on this page. With three or more, the target fixes only one equation, so you must choose the other ratios first.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../mass-balance/index.html">Mass balance mixing</a> — flow, concentration and temperature of mixed streams.</li>
+<li><a href="../fuel-blend-heating/index.html">Fuel blending and heating viscosity</a> — marine fuel blends and injection temperature.</li>
+<li><a href="../specific-gravity/index.html">Specific gravity</a> — density, SG and API gravity of the components.</li>
+<li><a href="../viscosity-sus/index.html">cSt to SSU viscosity converter</a> — viscosities quoted in Saybolt seconds.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

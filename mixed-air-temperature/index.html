@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mixed air temperature calculator (outdoor and return air) — Engineering calculators</title>
+  <meta name="description" content="Mixed air dry bulb, humidity ratio, enthalpy, RH and wet bulb of outdoor and return air streams by psychrometric mass balance, and the outdoor-air fraction.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">HVAC</span>
+    <h1 class="ec-title">Mixed air temperature calculator (outdoor and return air)</h1>
+    <p class="ec-summary">Mixed dry bulb, humidity ratio, enthalpy, RH and wet bulb of outdoor and return air by psychrometric mass balance, and the outdoor-air fraction.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Most air handlers mix some outdoor air with air returned from the building before it reaches the coil. The mixed air temperature is close to the flow-weighted average of the two streams. Mixing 2 000 cfm of outdoor air at 95 °F with 8 000 cfm of return air at 75 °F gives 78.9 °F.</p>
+<p>This calculator does the full psychrometric mass balance of dry air, water vapour and energy. It gives the mixed dry bulb, humidity ratio, enthalpy, relative humidity, wet bulb and dew point, and the outdoor-air fraction by mass and by volume. A second mode finds the outdoor-air fraction from measured outdoor, return and mixed temperatures. It is for HVAC designers, test and balance technicians and students.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Dry air mass flow of each stream, then the mass balances:</p>
+<pre class="ec-formula" tabindex="0"><code>ṁ_i = Q_i / v_i
+W_mix = (ṁ_OA W_OA + ṁ_RA W_RA) / (ṁ_OA + ṁ_RA)
+h_mix = (ṁ_OA h_OA + ṁ_RA h_RA) / (ṁ_OA + ṁ_RA)</code></pre>
+<p>Mixed dry bulb from enthalpy and humidity ratio (SI, ASHRAE eq. 30):</p>
+<pre class="ec-formula" tabindex="0"><code>h = 1.006 t + W (2 501 + 1.86 t)   →   t_mix = (h_mix − 2 501 W_mix) / (1.006 + 1.86 W_mix)</code></pre>
+<p>Outdoor-air fraction from measured temperatures:</p>
+<pre class="ec-formula" tabindex="0"><code>x_OA = (t_RA − t_MA) / (t_RA − t_OA)</code></pre>
+<ul>
+<li>Q — airflow at the stream&#39;s own condition; v — specific volume per kg of dry air</li>
+<li>W — humidity ratio, kg of water per kg of dry air; h — enthalpy, kJ/kg of dry air</li>
+<li>t_OA, t_RA, t_MA — outdoor, return and mixed air dry bulb temperatures</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Mixing is adiabatic at constant pressure. On a psychrometric chart the mixed state lies on the straight line between the two stream states.</li>
+<li>Each airflow is the actual volume at its own temperature. The calculator converts it to dry air mass, so a cold dense outdoor stream counts for more than its volume suggests.</li>
+<li>Properties follow ASHRAE Fundamentals Chapter 1 at the standard pressure for the altitude entered.</li>
+<li>The temperature method for the outdoor-air fraction needs a clear difference between outdoor and return air. With 10 °F between them, a 1 °F sensor error shifts the fraction by 10 points.</li>
+<li>If the mixed state falls beyond saturation, the extra moisture forms fog and the calculator warns.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>ASHRAE Fundamentals Chapter 1 mixes 2 m³/s of outdoor air at 4 °C dry bulb and 2 °C wet bulb with 6.25 m³/s of return air at 25 °C and 50 % relative humidity, at sea level.</p>
+<ol>
+<li>Outdoor air: W = 3.55 g/kg, v = 0.790 m³/kg, h = 12.9 kJ/kg.</li>
+<li>Return air: W = 9.88 g/kg, v = 0.858 m³/kg, h = 50.3 kJ/kg.</li>
+<li>Dry air flows: 2 / 0.790 = 2.533 kg/s and 6.25 / 0.858 = 7.284 kg/s. Outdoor air is 25.8 % by mass.</li>
+<li>Humidity ratio: 0.258 × 3.55 + 0.742 × 9.88 = 8.25 g/kg.</li>
+<li>Enthalpy: 0.258 × 12.9 + 0.742 × 50.3 = 40.7 kJ/kg.</li>
+<li>Dry bulb: (40.68 − 2 501 × 0.00825) / (1.006 + 1.86 × 0.00825) = 19.6 °C.</li>
+<li>Wet bulb of the mixture: 14.6 °C.</li>
+</ol>
+<p>ASHRAE reads 19.5 °C and 14.6 °C from the chart. A plain volume average would give 19.9 °C.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate mixed air temperature?</summary>
+<p>For a quick answer, take the flow-weighted average: (Q_OA × t_OA + Q_RA × t_RA) / (Q_OA + Q_RA). For an exact answer, weight by dry air mass and work through enthalpy, as this calculator does.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the outdoor-air percentage from temperatures?</summary>
+<p>Divide (return − mixed) by (return − outdoor). With 75 °F return, 95 °F outdoor and 79 °F mixed, the outdoor air is 4 / 20 = 20 %.</p>
+</details>
+<details class="ec-faq"><summary>Why does the calculator use mass instead of volume?</summary>
+<p>Cold air is denser than warm air, so a cubic foot of it carries more air. In the ASHRAE example the volume average is 0.3 K too high.</p>
+</details>
+<details class="ec-faq"><summary>Can mixing two airstreams make fog?</summary>
+<p>Yes. Very cold outdoor air mixed with warm, humid return air can land beyond the saturation curve, and the excess water condenses. Preheating the outdoor air avoids it.</p>
+</details>
+<details class="ec-faq"><summary>What is the mixed air enthalpy used for?</summary>
+<p>It sets the cooling coil load: the dry air mass flow times the drop in enthalpy across the coil. The latent and sensible heat calculator splits that load.</p>
+</details>
+<details class="ec-faq"><summary>Does altitude change the result?</summary>
+<p>Lower pressure raises the humidity ratio for the same relative humidity and makes the air less dense. Enter the altitude so the moisture content and mass flows are right.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../latent-sensible-heat/index.html">Latent and sensible heat</a> — the coil load from the mixed air state.</li>
+<li><a href="../dew-point/index.html">Dew point</a> — dew point and humidity of one air state.</li>
+<li><a href="../air-density/index.html">Air density</a> — density of moist air at any altitude.</li>
+<li><a href="../air-changes/index.html">Air changes per hour</a> — ventilation airflow for a room.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

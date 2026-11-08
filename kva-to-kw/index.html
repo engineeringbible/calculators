@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>kVA to kW — Engineering calculators</title>
+  <meta name="description" content="Real power in kW from a kVA rating at the power factor, with the kvar and the rated line current of a generator, transformer or UPS.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">kVA to kW</h1>
+    <p class="ec-summary">Real power in kW from a kVA rating at the load power factor, with the reactive power and rated current of a generator, transformer or UPS.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A generator plate says 500 kVA. How many kilowatts of load can it actually run? The answer depends on the power factor of what is connected. At the usual 0.8 the answer is 400 kW; at a lower power factor it is less, and at a higher one the engine, not the alternator, becomes the limit.</p>
+<p>This calculator converts an apparent power rating in kVA into the real power in kW at a given power factor. It also gives the reactive power in kvar and the rated line current at the supply voltage. It is for engineers and electricians matching loads to generators, transformers and UPS units.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Real and reactive power from apparent power:</p>
+<pre class="ec-formula" tabindex="0"><code>P = S × cos φ
+Q = S × sin φ = S × √(1 − cos² φ)</code></pre>
+<p>Rated line current:</p>
+<pre class="ec-formula" tabindex="0"><code>three-phase:   I = S / (√3 × V)
+single-phase:  I = S / V</code></pre>
+<ul>
+<li>S — apparent power, kVA</li>
+<li>P — real power, kW</li>
+<li>cos φ — power factor of the load</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The kW available depend on the load&#39;s power factor, not on the equipment. A transformer of 1000 kVA delivers 1000 kW to a resistive load and 700 kW at a power factor of 0.7.</li>
+<li>A generator&#39;s engine is rated at the kW for a power factor of 0.8 (ISO 8528-1). Even at unity power factor, a 500 kVA set delivers no more than its 400 kW engine rating.</li>
+<li>Non-linear loads draw harmonic current, which uses up kVA without adding kW.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A standby generator is rated 500 kVA, and the site load has a power factor of 0.8. How much real load can it take, and what is its full-load current at 400 V?</p>
+<ol>
+<li>Real power: P = 500 × 0.8 = 400 kW.</li>
+<li>Reactive power: Q = 500 × 0.6 = 300 kvar.</li>
+<li>Rated current: I = 500 000 / (1.732 × 400) = 722 A.</li>
+</ol>
+<p>So the site&#39;s running load must stay below 400 kW, and the generator&#39;s circuit breaker and cables are sized for 722 A.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I convert kVA to kW?</summary>
+<p>Multiply the kVA by the power factor. At 0.8, 100 kVA is 80 kW; at 0.9, 90 kW.</p>
+</details>
+<details class="ec-faq"><summary>Is 1 kVA equal to 1 kW?</summary>
+<p>Only at a power factor of 1. For motors and mixed loads it is less, typically 0.8 kW per kVA.</p>
+</details>
+<details class="ec-faq"><summary>How many kW is a 1000 kVA transformer?</summary>
+<p>At a power factor of 0.8, 800 kW; at 0.9, 900 kW. The transformer&#39;s limit is its current, so the kW depend on the load.</p>
+</details>
+<details class="ec-faq"><summary>Why can&#39;t a generator give more kW at unity power factor?</summary>
+<p>The engine limits the real power. Its rating matches the alternator&#39;s kVA at 0.8 power factor, so above that the engine is the bottleneck.</p>
+</details>
+<details class="ec-faq"><summary>What is the current of a 500 kVA generator?</summary>
+<p>At 400 V three-phase, 722 A; at 480 V, 601 A.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the power factor of my load?</summary>
+<p>Read it from a power analyser or the energy meter, or estimate it: about 0.8 for mixed industrial loads, close to 1 for heaters, 0.95 or more for modern electronics with correction.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../kw-to-kva/index.html">kW to kVA</a> — the kVA needed for a load in kW.</li>
+<li><a href="../kva-to-amps/index.html">kVA to amps</a> — the current of a kVA rating at any voltage.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — loading of one or several generator sets.</li>
+<li><a href="../transformer-sizing/index.html">Transformer sizing and voltage regulation</a> — choosing and checking a transformer.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

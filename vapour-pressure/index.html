@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vapour pressure calculator (Antoine equation) — Engineering calculators</title>
+  <meta name="description" content="Vapour pressure at a temperature, or boiling point at a pressure, of water, alcohols, acetone, aromatics, alkanes, ammonia and more by the Antoine equation.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Process</span>
+    <h1 class="ec-title">Vapour pressure calculator (Antoine equation)</h1>
+    <p class="ec-summary">Vapour pressure or boiling point of 14 common liquids by the Antoine equation with NIST constants, used only inside their published ranges.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Vapour pressure is the pressure at which a liquid and its vapour are in balance at a given temperature. It rises steeply as the liquid warms, and the liquid boils when its vapour pressure reaches the surrounding pressure. The Antoine equation, log10 P = A − B / (T + C), describes this rise with three constants per liquid. With the NIST constants, ethanol has a vapour pressure of 29.5 kPa at 50 °C and boils at 78.3 °C at sea level.</p>
+<p>This calculator gives the vapour pressure of a pure liquid at a temperature, or its boiling point at a pressure, for 14 common fluids. It uses the published constants only inside their temperature range and shows which set it used. For water it also shows the IAPWS-IF97 value for comparison. It is for process engineers, chemists and students checking evaporation, distillation, pump suction and storage conditions.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Antoine equation, with the NIST convention of P in bar and T in kelvin:</p>
+<pre class="ec-formula" tabindex="0"><code>log10(P / bar) = A − B / (T / K + C)</code></pre>
+<p>Boiling point at a pressure, from the same constants:</p>
+<pre class="ec-formula" tabindex="0"><code>T = B / (A − log10 P) − C</code></pre>
+<ul>
+<li>P — vapour pressure, bar (1 bar = 100 kPa = 14.504 psi)</li>
+<li>T — temperature, K (°C + 273.15)</li>
+<li>A, B, C — Antoine constants of the liquid, valid over a stated temperature range</li>
+</ul>
+<p>Water above 100 °C uses the Dortmund Data Bank constants A = 8.14019, B = 1810.94, C = 244.485 for P in mmHg and T in °C. The calculator converts them to bar and kelvin.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Antoine constants are fits to measurements. Each set is valid only over its stated temperature range, so the calculator refuses temperatures and pressures outside it.</li>
+<li>Most fluids agree with the NIST reference equations of state within 0.3 %. Water above 100 °C is within 1.3 % of IAPWS-IF97, n-butane within 2.6 %, propane within 3 % and ammonia within 5 %.</li>
+<li>Where a fluid has two or three ranges, the curve can step by up to 3 % where they meet.</li>
+<li>The liquid must be pure. Mixtures need Raoult&#39;s law with activity coefficients, and dissolved salts lower the vapour pressure.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>What is the vapour pressure of ethanol at 50 °C?</p>
+<ol>
+<li>Temperature: 50 + 273.15 = 323.15 K, inside the NIST range of 292.77 to 366.63 K.</li>
+<li>Constants for that range: A = 5.24677, B = 1598.673, C = −46.424.</li>
+<li>log10 P = 5.24677 − 1598.673 / (323.15 − 46.424) = −0.5303.</li>
+<li>P = 10^−0.5303 = 0.2949 bar = 29.49 kPa.</li>
+</ol>
+<p>The same constants put the normal boiling point at 351.45 K, against the measured 351.44 K.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the Antoine equation?</summary>
+<p>An empirical relation between the vapour pressure and temperature of a pure liquid: log10 P = A − B / (T + C). It fits measured data closely, but only over the temperature range its constants were fitted to.</p>
+</details>
+<details class="ec-faq"><summary>What is the vapour pressure of water at 25 °C?</summary>
+<p>3.17 kPa, or 23.8 mmHg. At 100 °C it reaches 101.3 kPa, which is why water boils at that temperature at sea level.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the boiling point at a lower pressure?</summary>
+<p>Solve the Antoine equation for T at that pressure. Water at 70 kPa, about 3 000 m above sea level, boils at about 90 °C.</p>
+</details>
+<details class="ec-faq"><summary>Why do Antoine constants come in different units?</summary>
+<p>Older tables give P in mmHg and T in °C, while NIST uses bar and kelvin. Mixing them gives nonsense, so always check the units with the constants.</p>
+</details>
+<details class="ec-faq"><summary>Can I use the Antoine equation outside its range?</summary>
+<p>Not safely. The error grows quickly beyond the fitted range, especially towards the critical point. Use another set of constants or a reference equation of state.</p>
+</details>
+<details class="ec-faq"><summary>Why does vapour pressure matter for pumps?</summary>
+<p>A pump cavitates when the suction pressure falls to the liquid&#39;s vapour pressure. The NPSH available is the margin above it.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../steam-table/index.html">Steam table</a> — exact saturation properties of water by IAPWS-IF97.</li>
+<li><a href="../gas-compressibility/index.html">Gas compressibility factor Z</a> — real-gas behaviour of the vapour.</li>
+<li><a href="../pump-npsh/index.html">Pump NPSH</a> — cavitation margin over the vapour pressure.</li>
+<li><a href="../ppm-concentration/index.html">PPM concentration converter</a> — vapour concentrations in ppmv and mg/m³.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

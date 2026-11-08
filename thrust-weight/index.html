@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thrust-to-weight, wing loading and stall speed calculator — Engineering calculators</title>
+  <meta name="description" content="Thrust-to-weight ratio, wing loading, power loading and stall speed for aircraft, drones and rockets, with the vertical acceleration at full thrust.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Thrust-to-weight, wing loading and stall speed calculator</h1>
+    <p class="ec-summary">Thrust-to-weight ratio, wing loading, power loading and stall speed of aircraft, drones and rockets, with the vertical acceleration.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The thrust-to-weight ratio compares the push of the engines with the weight they must move. Above 1, a rocket or drone can climb straight up. Wing loading is the weight carried by each square foot of wing, and it sets the stall speed. A four-seat trainer of 2 550 lb with 174 ft² of wing carries 14.66 lb/ft² and stalls at about 54 kn with a maximum lift coefficient of 1.5.</p>
+<p>This calculator gives the thrust-to-weight ratio and the net vertical acceleration, the wing loading, the power loading and the stall speed at an altitude. Each part is optional, so it serves aircraft, drones and rockets. It is for pilots, students, drone builders and model-rocket fliers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Ratios and loadings:</p>
+<pre class="ec-formula" tabindex="0"><code>W = m × g
+T/W = thrust / W
+a_vertical = g × (T/W − 1)
+wing loading = W / S
+power loading = W / P</code></pre>
+<p>Stall speed:</p>
+<pre class="ec-formula" tabindex="0"><code>V_s = √(2 W / (ρ S CL_max))</code></pre>
+<ul>
+<li>m — mass; g = 9.81 m/s²; S — wing area; P — engine power</li>
+<li>ρ — air density from the standard atmosphere at the altitude</li>
+<li>CL_max — maximum lift coefficient of the wing, from the aircraft data</li>
+<li>In US units 1 lb of mass weighs 1 lbf, so wing loading in lb/ft² is the same number in lbf/ft²</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Thrust is the static thrust. Propeller thrust falls as the aircraft speeds up, and jet thrust changes with speed and altitude.</li>
+<li>The vertical acceleration ignores drag and the mass burned off. It is the value at lift-off or the start of a climb.</li>
+<li>The stall speed is for level flight at the weight entered. In a banked turn the load factor raises it by the square root of the load factor.</li>
+<li>CL_max depends on the wing, the flaps and the Reynolds number. Use the value from the aircraft or wing-section data.</li>
+<li>The stall speed shown is a true airspeed. The indicated stall speed stays about the same at every altitude.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A four-seat trainer weighs 2 550 lb at gross weight, has 174 ft² of wing and a 180 hp engine. Its wing reaches a CL_max of 1.5 without flaps. What are its loadings and its stall speed at sea level?</p>
+<ol>
+<li>Wing loading: 2 550 / 174 = 14.66 psf, or 1 156.7 kg / 16.17 m² = 71.6 kg/m².</li>
+<li>Power loading: 2 550 / 180 = 14.17 lb per hp.</li>
+<li>Wing loading in SI: 11 343 N / 16.17 m² = 701.7 Pa.</li>
+<li>Stall speed: √(2 × 701.7 / (1.225 × 1.5)) = 27.64 m/s = 53.7 kn.</li>
+</ol>
+<p>At a density altitude of 5 000 ft the same aircraft stalls at 57.9 kn true airspeed, at about the same indicated airspeed.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is a good thrust-to-weight ratio?</summary>
+<p>Above 1 for anything that must climb vertically, such as a rocket or a multirotor drone. Airliners and light aircraft fly with ratios well below 1 because the wing carries the weight.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate wing loading?</summary>
+<p>Divide the weight by the wing area. A 2 550 lb aircraft with 174 ft² of wing carries 14.66 lb/ft².</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate stall speed?</summary>
+<p>Take the square root of 2 × weight / (air density × wing area × CL_max). Use consistent units, such as N, kg/m³ and m².</p>
+</details>
+<details class="ec-faq"><summary>Why does stall speed increase with altitude?</summary>
+<p>The air is thinner, so the wing must move faster through it to make the same lift. The indicated stall speed stays about the same.</p>
+</details>
+<details class="ec-faq"><summary>What is power loading?</summary>
+<p>The weight per unit of engine power, in lb/hp or kg/kW. A lower number means better climb and take-off performance.</p>
+</details>
+<details class="ec-faq"><summary>How does weight change the stall speed?</summary>
+<p>It grows with the square root of the weight. Ten percent more weight raises the stall speed by about 4.9 %.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../drag-lift/index.html">Drag and lift force</a> — lift and drag at any speed.</li>
+<li><a href="../rocket-equation/index.html">Rocket equation</a> — delta-v from the propellant load.</li>
+<li><a href="../density-altitude/index.html">Density altitude</a> — the altitude to use on a hot or high day.</li>
+<li><a href="../true-airspeed/index.html">True airspeed</a> — TAS from calibrated airspeed.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

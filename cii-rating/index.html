@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CII rating estimator — Engineering calculators</title>
+  <meta name="description" content="Attained and required operational CII with the A–E rating, from ship type, capacity, annual fuel or CO₂ and distance.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">CII rating estimator</h1>
+    <p class="ec-summary">Attained and required operational CII with the A–E rating, from ship type, capacity, annual fuel or CO₂ and distance. Reference lines, reduction factors to 2030 and rating boundaries are taken from the IMO resolution texts.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Since 2023 every cargo, ro-ro and cruise ship of 5 000 GT and above receives an annual Carbon Intensity Indicator rating from A to E under MARPOL Annex VI regulation 28. The attained CII is the year&#39;s CO₂ divided by capacity and distance; the required CII is a reference line for the ship type, tightened every year by a reduction factor; the rating depends on where the attained value falls between four boundaries around the required value.</p>
+<p>This calculator reproduces that chain with the parameters from the IMO guidelines themselves: the 2019 reference lines (MEPC.353(78)), the reduction factors for 2023–2030 (MEPC.338(76) and MEPC.400(83)), the rating boundaries (MEPC.354(78)) and the carbon factors (MEPC.364(79)). Technical superintendents and performance analysts use it to check where a ship stands mid-year and how much CO₂ is left before the rating slips; charterers and students use it to understand what a required value actually means for a given ship.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Attained CII (g CO₂ per capacity unit and nautical mile):</p>
+<pre class="ec-formula" tabindex="0"><code>CII_attained = Σ(FC_j × C_F,j) × 10⁶ / (Capacity × D_t)</code></pre>
+<ul>
+<li>FC_j — mass of fuel j consumed in the calendar year, t</li>
+<li>C_F,j — carbon factor of fuel j, t CO₂ / t fuel: HFO 3.114, LFO/VLSFO 3.151, MGO/MDO 3.206, LNG 2.750, LPG propane 3.000, methanol 1.375</li>
+<li>Capacity — DWT for bulk carriers, gas and LNG carriers, tankers, container, general cargo, refrigerated and combination carriers; GT for ro-ro and passenger ships</li>
+<li>D_t — distance travelled over ground in the year, nmi</li>
+</ul>
+<p>Reference line (median 2019 performance of the ship type):</p>
+<pre class="ec-formula" tabindex="0"><code>CII_ref = a × Capacity_ref^(−c)</code></pre>
+<p>with a and c from the table below. Capacity_ref is the ship&#39;s capacity except where the table caps or floors it.</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Ship type</th><th scope="col">Capacity_ref</th><th scope="col">a</th><th scope="col">c</th></tr></thead>
+<tbody>
+<tr><td>Bulk carrier</td><td>DWT, capped at 279 000</td><td>4745</td><td>0.622</td></tr>
+<tr><td>Gas carrier ≥ 65 000 DWT</td><td>DWT</td><td>14405 × 10⁷</td><td>2.071</td></tr>
+<tr><td>Gas carrier &lt; 65 000 DWT</td><td>DWT</td><td>8104</td><td>0.639</td></tr>
+<tr><td>Tanker</td><td>DWT</td><td>5247</td><td>0.610</td></tr>
+<tr><td>Container ship</td><td>DWT</td><td>1984</td><td>0.489</td></tr>
+<tr><td>General cargo ≥ 20 000 DWT</td><td>DWT</td><td>31948</td><td>0.792</td></tr>
+<tr><td>General cargo &lt; 20 000 DWT</td><td>DWT</td><td>588</td><td>0.3885</td></tr>
+<tr><td>Refrigerated cargo carrier</td><td>DWT</td><td>4600</td><td>0.557</td></tr>
+<tr><td>Combination carrier</td><td>DWT</td><td>5119</td><td>0.622</td></tr>
+<tr><td>LNG carrier ≥ 100 000 DWT</td><td>DWT</td><td>9.827</td><td>0</td></tr>
+<tr><td>LNG carrier 65 000–100 000 DWT</td><td>DWT</td><td>14479 × 10¹⁰</td><td>2.673</td></tr>
+<tr><td>LNG carrier &lt; 65 000 DWT</td><td>65 000</td><td>14779 × 10¹⁰</td><td>2.673</td></tr>
+<tr><td>Ro-ro vehicle carrier ≥ 57 700 GT</td><td>57 700</td><td>3627</td><td>0.590</td></tr>
+<tr><td>Ro-ro vehicle carrier 30 000–57 700 GT</td><td>GT</td><td>3627</td><td>0.590</td></tr>
+<tr><td>Ro-ro vehicle carrier &lt; 30 000 GT</td><td>GT</td><td>330</td><td>0.329</td></tr>
+<tr><td>Ro-ro cargo ship</td><td>GT</td><td>1967</td><td>0.485</td></tr>
+<tr><td>Ro-ro passenger ship</td><td>GT</td><td>2023</td><td>0.460</td></tr>
+<tr><td>Ro-ro passenger high-speed craft</td><td>GT</td><td>4196</td><td>0.460</td></tr>
+<tr><td>Cruise passenger ship</td><td>GT</td><td>930</td><td>0.383</td></tr>
+</tbody></table>
+</div>
+<p>Required CII:</p>
+<pre class="ec-formula" tabindex="0"><code>CII_required = (1 − Z/100) × CII_ref</code></pre>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Year</th><th scope="col">2023</th><th scope="col">2024</th><th scope="col">2025</th><th scope="col">2026</th><th scope="col">2027</th><th scope="col">2028</th><th scope="col">2029</th><th scope="col">2030</th></tr></thead>
+<tbody>
+<tr><td>Z, %</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13.625</td><td>16.25</td><td>18.875</td><td>21.5</td></tr>
+</tbody></table>
+</div>
+<p>Rating boundaries and rating:</p>
+<pre class="ec-formula" tabindex="0"><code>A/B = exp(d1) × CII_required,  B/C = exp(d2) × …,  C/D = exp(d3) × …,  D/E = exp(d4) × …</code></pre>
+<p>Rating A below A/B, B up to B/C, C up to C/D, D up to D/E, E above. The exp(d) vectors are ship-type specific (bulk carrier 0.86 / 0.94 / 1.06 / 1.18; tanker 0.82 / 0.93 / 1.08 / 1.28; container 0.83 / 0.94 / 1.07 / 1.19; full table in calc.js).</p>
+<p>Derived quantities:</p>
+<pre class="ec-formula" tabindex="0"><code>CO₂ allowed for C = (C/D boundary) × Capacity × D_t / 10⁶
+Margin to D [%] = (C/D boundary − CII_attained) / (C/D boundary) × 100</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>This is an estimate of the regulatory calculation, not the verified statement of compliance. The Administration or recognised organisation verifies the DCS data and issues the rating.</li>
+<li>No voyage adjustments or correction factors (MEPC.355(78), G5: ice class, shuttle tankers, STS operations, electrical cargo consumers, excluded voyage segments) are applied. They can only lower the attained value, so this calculator is conservative for ships entitled to them.</li>
+<li>All fuel is assumed consumed on board for propulsion and auxiliaries; fuel delivered as cargo or used for cargo heating in port counts unless a correction applies.</li>
+<li>Distance is the total distance over ground reported to the DCS, including ballast and waiting time at anchor (zero distance but non-zero fuel: this is why port and anchorage time hurts the rating).</li>
+<li>The LNG carrier reference line is discontinuous at 65 000 DWT because the guideline prints different a parameters for the two rows; the values are reproduced as printed.</li>
+<li>Reduction factors beyond 2030 do not exist yet; the IMO will decide them in the next review.</li>
+<li>The rating thresholds use strict comparisons; a value exactly on a boundary is rated in the better band, which is immaterial at realistic precision.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Bulk carrier, 80 000 DWT, reporting year 2026, 60 000 nmi sailed, 5 000 t HFO consumed, no other fuel.</p>
+<ol>
+<li>CO₂: 5 000 × 3.114 = 15 570 t.</li>
+<li>Attained CII: 15 570 × 10⁶ / (80 000 × 60 000) = 3.244 g/(DWT·nmi).</li>
+<li>Reference: 4745 × 80 000^−0.622 = 4.232 g/(DWT·nmi).</li>
+<li>Required 2026 (Z = 11 %): 0.89 × 4.232 = 3.766.</li>
+<li>Boundaries: 0.86 × 3.766 = 3.239 (A/B); 0.94 × 3.766 = 3.540 (B/C); 1.06 × 3.766 = 3.992 (C/D); 1.18 × 3.766 = 4.444 (D/E).</li>
+<li>Attained 3.244 lies just above 3.239 → rating B. With 4 800 t HFO the attained value is 3.114 and the rating is A.</li>
+<li>Maximum CO₂ for a C: 3.992 × 80 000 × 60 000 / 10⁶ = 19 162 t, so the margin to D is 3 592 t of CO₂, about 1 150 t of HFO.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which capacity do I use?</summary>
+<p>DWT for cargo ships and gas/LNG carriers, GT for ro-ro and passenger ships. Use the DWT at summer load line from the tonnage and load line certificates, not the actual cargo carried.</p>
+</details>
+<details class="ec-faq"><summary>Why does a ship rate worse in a year with a lot of waiting time?</summary>
+<p>Waiting adds CO₂ (auxiliaries, boilers) without adding distance. The attained CII only counts distance travelled, so idle time is pure penalty unless a G5 correction applies.</p>
+</details>
+<details class="ec-faq"><summary>How much does slow steaming help?</summary>
+<p>Fuel per mile falls roughly with the square of speed, so a 10 % speed cut lowers the attained CII by about 19 % at sea; auxiliary fuel per mile rises, so the net gain is somewhat less.</p>
+</details>
+<details class="ec-faq"><summary>Does a D or E rating stop the ship from trading?</summary>
+<p>Not directly. Three consecutive D ratings or a single E require a corrective action plan in SEEMP Part III, verified by the Administration. Charterers increasingly set rating clauses, which is the commercial effect.</p>
+</details>
+<details class="ec-faq"><summary>Are the 2027–2030 factors final?</summary>
+<p>Yes. MEPC 83 adopted them in April 2025 through resolution MEPC.400(83): 13.625 % in 2027 rising by 2.625 % per year to 21.5 % in 2030. Factors after 2030 are not yet set.</p>
+</details>
+<details class="ec-faq"><summary>What about EEXI?</summary>
+<p>EEXI is a one-off design-efficiency certificate verified at the first survey after 1 January 2023; it does not change year to year and is not part of this estimate.</p>
+</details>
+<details class="ec-faq"><summary>Can I enter CO₂ instead of fuel?</summary>
+<p>Yes, switch &quot;Emissions from&quot; to total CO₂, for example with the output of the fuel consumption calculator scaled to a year.</p>
+</details>
+<details class="ec-faq"><summary>Why is my attained value different from my class society&#39;s tool?</summary>
+<p>Check the capacity (DWT vs GT, and the caps for very large bulk carriers and vehicle carriers), the distance definition, and whether the class tool applies G5 corrections or voyage exclusions.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../fuel-voyage-cost/index.html">Fuel consumption and voyage cost</a> — CO₂ per passage with the same carbon factors.</li>
+<li><a href="../admiralty-coefficient/index.html">Admiralty coefficient and speed–power scaling</a> — how a speed change moves fuel per mile.</li>
+<li><a href="../propeller-slip/index.html">Propeller slip and speed through water</a> — checking the speed assumptions behind a voyage plan.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — tonnes, nautical miles.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

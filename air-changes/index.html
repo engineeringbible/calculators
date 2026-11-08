@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Air changes per hour (ACH) and CFM calculator — Engineering calculators</title>
+  <meta name="description" content="Air changes per hour from a room’s airflow, or the CFM, m³/h and L/s for a target ACH, plus the ASHRAE 62.2 whole-house ventilation rate.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">HVAC</span>
+    <h1 class="ec-title">Air changes per hour (ACH) and CFM calculator</h1>
+    <p class="ec-summary">Air changes per hour from a room's airflow, the CFM, m³/h and L/s for a target ACH, and the ASHRAE 62.2 whole-house ventilation rate.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Air changes per hour (ACH) is how many times the air in a room is replaced in an hour. It turns an airflow, in cubic feet per minute (CFM), cubic metres per hour or litres per second, into something comparable between rooms of any size. A 12 × 15 ft bedroom with an 8 ft ceiling holds 1 440 ft³ of air; supplying 144 CFM replaces it six times an hour.</p>
+<p>This calculator works both ways: the airflow needed for a target ACH, or the ACH a known airflow gives. It also gives the ASHRAE 62.2 ventilation rate for a whole house from its floor area and bedrooms. It is for HVAC designers, contractors sizing fans and air purifiers, and anyone checking a room&#39;s ventilation.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Air changes and airflow for a room of volume V:</p>
+<pre class="ec-formula" tabindex="0"><code>ACH = 60 × CFM / V_ft³ = Q_m³/h / V_m³
+CFM = ACH × V_ft³ / 60</code></pre>
+<p>Whole-dwelling ventilation (ASHRAE 62.2):</p>
+<pre class="ec-formula" tabindex="0"><code>Q = 0.03 × A_floor + 7.5 × (N_br + 1)    cfm, A in ft²
+Q = 0.15 × A_floor + 3.5 × (N_br + 1)    L/s, A in m²</code></pre>
+<ul>
+<li>V — room volume, length × width × ceiling height</li>
+<li>A_floor — conditioned floor area; N_br — number of bedrooms</li>
+<li>1 CFM = 1.699 m³/h = 0.4719 L/s</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The volume is the empty room. ACH counts the air supplied and assumes it mixes through the room; poor mixing leaves stagnant corners.</li>
+<li>Ventilation codes rarely set a single ACH. ASHRAE 62.1 and 62.2 and the European EN 16798-1 give rates per person and per floor area, which you can convert to ACH here. Hospitals, labs and clean rooms have their own ACH tables.</li>
+<li>The ASHRAE 62.2 rate is the total mechanical ventilation of the house. Credit for natural infiltration and the kitchen and bathroom exhaust requirements are separate.</li>
+<li>For air purifiers, the clean air delivery rate (CADR) in CFM takes the place of the airflow.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A bedroom is 15 ft long, 12 ft wide and 8 ft high. What airflow gives six air changes an hour?</p>
+<ol>
+<li>Volume: 15 × 12 × 8 = 1 440 ft³.</li>
+<li>Airflow: 6 × 1 440 / 60 = 144 cfm.</li>
+<li>In metric: 144 × 1.699 = 245 m³/h, or 144 × 0.4719 = 68.0 L/s.</li>
+</ol>
+<p>Six air changes means the air is replaced every 10 minutes.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many air changes per hour do I need?</summary>
+<p>It depends on the room and the code. Homes need about 0.35 ACH or more of fresh air overall, with exhaust fans of 50 cfm in bathrooms and 100 cfm in kitchens under ASHRAE 62.2. Hospital rooms, laboratories and clean rooms have their own, much higher, ACH requirements.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert CFM to ACH?</summary>
+<p>Multiply the CFM by 60 and divide by the room volume in cubic feet.</p>
+</details>
+<details class="ec-faq"><summary>What is ASHRAE 62.2?</summary>
+<p>The US standard for ventilation in homes. It sets the continuous whole-house fresh air from the floor area and number of bedrooms: a 2 000 ft² three-bedroom house needs 90 cfm.</p>
+</details>
+<details class="ec-faq"><summary>What ACH does an air purifier give?</summary>
+<p>Divide its CADR by the room volume and multiply by 60. The US Environmental Protection Agency suggests a CADR of at least two thirds of the room&#39;s floor area in square feet.</p>
+</details>
+<details class="ec-faq"><summary>Is a higher ACH always better?</summary>
+<p>More fresh air dilutes pollutants and moisture, but it also costs energy to heat or cool. Balanced systems with heat recovery give high ventilation at low energy cost.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert m³/h to CFM?</summary>
+<p>Divide by 1.699. 300 m³/h is 177 cfm.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../air-density/index.html">Air density calculator</a> — the mass of the air moved.</li>
+<li><a href="../btu-ac-size/index.html">BTU calculator: AC size for a room</a> — cooling capacity.</li>
+<li><a href="../heat-loss/index.html">Building heat loss calculator</a> — heat lost to ventilation.</li>
+<li><a href="../dew-point/index.html">Dew point calculator</a> — humidity of the room air.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

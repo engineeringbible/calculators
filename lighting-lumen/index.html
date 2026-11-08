@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lighting design (lumen method) — Engineering calculators</title>
+  <meta name="description" content="Number of luminaires for a target illuminance from room index, utilisation and maintenance factors; power density.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Lighting design (lumen method)</h1>
+    <p class="ec-summary">General lighting of a room by the lumen method: room index, utilisation factor from a typical table or the luminaire's photometric data, maintenance factor, the number of luminaires for an EN 12464-1 maintained illuminance, a grid layout with the spacing-to-height check, the achieved and initial illuminance, installed power, power density, efficacy and annual energy.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How many light fittings does a room need? The lumen method answers for general lighting in a few steps: the room&#39;s proportions give a room index, the index and the surface reflectances give the fraction of each luminaire&#39;s light that reaches the working plane (the utilisation factor), dirt and lamp ageing take their share (the maintenance factor), and the rest is arithmetic against the illuminance the task requires. This calculator does that for EN 12464-1 task levels, lays the luminaires out in a grid, checks the spacing against the mounting height for uniformity, and reports the power density and energy, so an office, a workshop or an engine room can be lit to standard without a photometric program.</p>
+<p>It is for electrical engineers and designers at concept stage, facility and ship managers checking an existing installation, and students; final designs use the manufacturer&#39;s photometric data in a lighting program.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>K = L W / (h_m (L + W))                      room index (h_m above the working plane)
+N = E A / (Φ UF MF)                          luminaires for the maintained illuminance E
+E_achieved = N Φ UF MF / A,   E_initial = E_achieved / MF
+SHR = max(spacing) / h_m  ≤ SHR_max          uniformity criterion
+power density = N P / A,   energy = N P × hours</code></pre>
+<p>Typical UF (direct luminaire, ceiling/walls/floor 70/50/20): K 1.0 → 0.45, 1.5 → 0.54, 2.0 → 0.59, 3.0 → 0.65, 5.0 → 0.70 (darker surfaces 10–15 % less). MF 0.8 clean, 0.67 dirty, 0.9 sealed LED in clean rooms. EN 12464-1: offices 500 lx, drawing 750, corridors 100, rough workshop 300, fine bench work 500; engine rooms 200 lx.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Average horizontal illuminance of a uniform grid; uniformity, glare (UGR), colour rendering, vertical illuminance, task and emergency lighting are not assessed.</li>
+<li>The built-in utilisation factors are indicative for a direct distribution; the luminaire&#39;s own UF table (for the actual reflectances) should replace them.</li>
+<li>The room-index formula needs L &lt; 4 W; long corridors and L-shaped rooms are split into zones.</li>
+<li>Daylight and obstructions are ignored; dark machinery and racks lower the real illuminance.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An open-plan office 12 × 8 m, luminaires 3.05 m above the floor (2.3 m above the 0.75 m working plane), 500 lx maintained, 4 000 lm / 36 W LED panels, UF 0.55 from the photometric table, MF 0.8.</p>
+<ol>
+<li>K = 96/(2.3 × 20) = 2.09.</li>
+<li>N = 500 × 96/(4 000 × 0.55 × 0.8) = 27.3 → 28 luminaires in 4 rows × 7 columns.</li>
+<li>Spacing 2.0 m across and 1.71 m along; SHR = 2.0/2.3 = 0.87, below the 1.5 limit: good uniformity.</li>
+<li>Achieved 513 lx maintained (642 lx when new); power 1 008 W = 10.5 W/m², efficacy 111 lm/W, 2 520 kWh/year at 2 500 h.</li>
+</ol>
+<p>The typical UF table for 70/50/20 reflectances would give UF 0.60 and 25.1 luminaires required (the 4 × 7 grid still installs 28, now at 557 lx); using the table for a budget and the manufacturer&#39;s data for the design is normal practice.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why a maintenance factor?</summary>
+<p>Lamps lose output, luminaires and room surfaces get dirty; the installation is designed so that the illuminance never falls below the maintained value just before cleaning and relamping.</p>
+</details>
+<details class="ec-faq"><summary>What is the utilisation factor?</summary>
+<p>The fraction of the luminaire&#39;s lumens that reach the working plane after interreflections; it rises with room index (large, low rooms) and bright surfaces and falls for narrow, tall or dark rooms.</p>
+</details>
+<details class="ec-faq"><summary>Where does the working plane sit?</summary>
+<p>0.75–0.85 m above the floor for desks and benches, floor level for circulation and storage; h_m is measured from it, not from the floor.</p>
+</details>
+<details class="ec-faq"><summary>Why check the spacing-to-height ratio?</summary>
+<p>If luminaires are too far apart for their height, the average may be fine but there will be dark patches between them; EN 12464-1 requires E_min/E_avg ≥ 0.6 on task areas.</p>
+</details>
+<details class="ec-faq"><summary>How do I use a manufacturer&#39;s data sheet?</summary>
+<p>Read the luminaire lumens and the UF for your room index and reflectances, enter both, and the result matches a lumen-method program to a few per cent.</p>
+</details>
+<details class="ec-faq"><summary>What illuminance for an engine room?</summary>
+<p>ISO 8995 and class practice use 200 lx general, with 300–500 lx at control stations and workbenches; corridors and stores 100 lx.</p>
+</details>
+<details class="ec-faq"><summary>Is 10 W/m² good?</summary>
+<p>For a 500 lx office with LED, 8–12 W/m² is the current benchmark; fluorescent installations were 12–18 W/m².</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — lighting load on the distribution board.</li>
+<li><a href="../cable-sizing/index.html">Cable sizing and voltage drop</a> — lighting circuits.</li>
+<li><a href="../solar-pv-sizing/index.html">Solar PV array and storage sizing</a> — supplying the lighting load off-grid.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — the hotel load on board.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>True wind from apparent wind — Engineering calculators</title>
+  <meta name="description" content="True and relative wind conversion per ISO 15016 with the anemometer height correction to the 10 m reference height of wind data.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">True wind from apparent wind</h1>
+    <p class="ec-summary">Convert the relative wind measured on board into the true wind and back with the formulas of ISO 15016:2025 Annex C, move it between the anemometer height and the 10 m reference height, and get the head and cross components that a wind resistance estimate needs.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The anemometer on the mast measures the wind the ship feels: the true wind combined with the wind of the ship&#39;s own motion. Weather reports, the Beaufort scale and wind resistance coefficients all need the true wind, at a standard height of 10 m above the sea. This calculator converts between the two using the formulas of ISO 15016:2025 Annex C, and moves the wind between the anemometer height and the 10 m reference height with the standard&#39;s boundary-layer profile. It also gives the head and cross components of the relative wind, the inputs of a wind resistance calculation.</p>
+<p>It is for officers filling in weather observations, performance analysts correcting speed trials and noon reports for wind, and anyone comparing an onboard wind reading with a forecast.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>True wind from relative wind (C.3, C.4):
+    V_WT = √(V_WR² + V_G² − 2 V_WR V_G cos α_WR)
+    α_WT = atan2(V_WR sin(α_WR + ψ) − V_G sin ψ,  V_WR cos(α_WR + ψ) − V_G cos ψ)
+Height correction (C.9):
+    V_WT,ref = V_WT (Z_ref / Z_a)^p,   p = 1/9 (ISO 15016:2025) or 1/7 (earlier editions)
+Relative wind from true wind (C.10, C.11):
+    V_WR = √(V_WT² + V_G² + 2 V_WT V_G cos(α_WT − ψ))
+    α_WR = atan2(V_WT sin(α_WT − ψ),  V_G + V_WT cos(α_WT − ψ))</code></pre>
+<ul>
+<li>V_WR, α_WR — relative wind speed and direction off the bow, 0° on the bow, positive from starboard</li>
+<li>V_WT, α_WT — true wind speed and the true direction it comes from</li>
+<li>ψ — heading; V_G — speed over ground; Z_a — anemometer height; Z_ref — reference height, 10 m</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Speed over ground gives the meteorological true wind; speed through the water gives the wind over the water.</li>
+<li>Directions are where the wind comes from.</li>
+<li>The power-law profile is an average; atmospheric stability changes the exponent between about 0.10 and 0.20.</li>
+<li>The superstructure disturbs the anemometer, especially with following winds.</li>
+<li>Inputs are steady means; gusts are not modelled.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A ship heads 090° at 15 kn over the ground. The anemometer, 35 m above the sea, shows 25 kn from the starboard beam (relative direction +90°).</p>
+<ol>
+<li>True wind speed: √(25² + 15² − 2·25·15·cos 90°) = √850 = 29.15 kn.</li>
+<li>True direction: atan2(25 sin 180° − 15 sin 90°, 25 cos 180° − 15 cos 90°) = atan2(−15, −25) = 211.0°. The wind blows from the south-south-west, abaft the starboard beam.</li>
+<li>At 10 m: 29.15 × (10/35)^(1/9) = 29.15 × 0.870 = 25.4 kn, Beaufort force 6.</li>
+<li>Relative wind at 10 m: 21.8 kn from 85° off the starboard bow, which is the input of a wind resistance estimate.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does ISO 15016 use speed over ground?</summary>
+<p>The true wind is defined relative to the earth, the frame of weather observations. The ship&#39;s own wind depends on its motion through the air, which is its motion over the ground when the air mass is at rest relative to the earth.</p>
+</details>
+<details class="ec-faq"><summary>Why correct the height at all?</summary>
+<p>Wind speed grows with height above the sea. Wind tunnel coefficients and the Beaufort scale refer to 10 m, while anemometers sit 30–50 m up on large ships, where the wind is 10–15 % stronger.</p>
+</details>
+<details class="ec-faq"><summary>1/7 or 1/9?</summary>
+<p>ISO 15016:2025 prescribes 1/9; earlier editions and the 2017 ITTC procedure used 1/7. The difference is about 4 % for a 40 m anemometer.</p>
+</details>
+<details class="ec-faq"><summary>How are relative directions over 180° entered?</summary>
+<p>Either way: 330 and −30 both mean 30° on the port bow.</p>
+</details>
+<details class="ec-faq"><summary>Can I trust a following wind reading?</summary>
+<p>Less than others: the anemometer is then in the wake of the funnel and accommodation, and with a small relative wind a few degrees of error swing the true direction widely.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../beaufort-sea-state/index.html">Beaufort force and sea state</a> — the force and sea that go with the true wind.</li>
+<li><a href="../cpa-tcpa/index.html">CPA and TCPA from radar plots</a> — the same vector triangle applied to ships.</li>
+<li><a href="../course-to-steer/index.html">Course to steer with set and drift</a> — the vector triangle for current.</li>
+<li><a href="../stawave-added-resistance/index.html">STAwave-1 added wave resistance</a> — the wave part of the weather correction.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

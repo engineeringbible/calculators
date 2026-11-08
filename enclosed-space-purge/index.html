@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enclosed space purge time — Engineering calculators</title>
+  <meta name="description" content="Ventilation time for a tank or enclosed space to reach the entry criteria for oxygen, flammable and toxic gas, by dilution with a mixing factor.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Enclosed space purge time</h1>
+    <p class="ec-summary">Estimate how long to ventilate a tank or enclosed space before testing it for entry: oxygen, flammable gas and a toxic gas are diluted with fresh air, with a mixing factor for real spaces, against the entry criteria of the IMO recommendations.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Enclosed spaces on ships — tanks, cofferdams, holds, void spaces — can lack oxygen or hold flammable or toxic gas, and entering them unprepared continues to cost lives. Before anyone goes in, the space is ventilated with fresh air and the atmosphere is tested. This calculator estimates how long the ventilation must run. It treats the space as a mixed volume diluted by the fan, with a mixing factor for real spaces where the air does not reach every corner, and tracks oxygen, flammable gas and a toxic gas against the entry criteria of the IMO recommendations.</p>
+<p>It is for officers and crew planning an entry, safety officers writing entry procedures, and superintendents checking whether a portable fan is big enough. The result is an estimate: only the gas test decides whether the space is safe.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Time constant:      K V / Q
+Concentration:      C(t) = C_fresh + (C_0 − C_fresh) e^(−Q t / (K V))
+Time to target:     t = (K V / Q) ln((C_0 − C_fresh) / (C_target − C_fresh))
+Air changes:        Q t / V</code></pre>
+<ul>
+<li>V — volume of the space; Q — fresh air supplied; K — mixing factor (1 = perfect mixing).</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The space is a mixed volume; no new gas is released while ventilating.</li>
+<li>The mixing factor is a judgement, from 1 for perfect mixing to about 10 for poorly ventilated spaces.</li>
+<li>Oxygen approaches 20.9 % only gradually, so its target is entered just below.</li>
+<li>Displacement of stratified gas by a well-placed duct can be faster and is not modelled.</li>
+<li>Entry criteria (MSC.581(110)): 20.9 % oxygen, less than 0.5 % CO₂, less than 1 % LFL, less than 50 % of the OEL of any toxic gas.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 1200 m³ tank is ventilated with 5000 m³/h of fresh air; the mixing factor is 3. The tank holds 18 % oxygen, 10 % LFL of flammable gas and 50 ppm of a toxic gas with a 25 ppm exposure limit.</p>
+<ol>
+<li>Time constant: 3 × 1200 / 5000 h = 43.2 min.</li>
+<li>Oxygen to 20.8 %: 43.2 × ln(2.9 / 0.1) = 145.5 min.</li>
+<li>Flammable gas to 1 % LFL: 43.2 × ln(10) = 99.5 min; toxic gas to 12.5 ppm: 43.2 × ln(4) = 59.9 min.</li>
+<li>Oxygen governs: ventilate for about 145 min, 10.1 air changes, then stop the fan and test at several levels.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does oxygen take longest?</summary>
+<p>The last few tenths of a per cent are the slowest: dilution only approaches the 20.9 % of fresh air. Contaminants that must fall to a fraction of their value need fewer air changes.</p>
+</details>
+<details class="ec-faq"><summary>What mixing factor should I use?</summary>
+<p>A factor of 1 assumes the fresh air mixes perfectly with the whole space, which rarely happens. Tanks with webs, stringers and a single duct need more air; factors of 3 to 10 are used in practice, the higher values where the airflow cannot reach all parts, and the choice remains a judgement.</p>
+</details>
+<details class="ec-faq"><summary>Why stop the ventilation before testing?</summary>
+<p>With the fan running, the meter reads the fresh air near the duct. The IMO recommendations ask for testing with the ventilation stopped and conditions settled, at several levels and as far into the space as possible.</p>
+</details>
+<details class="ec-faq"><summary>Can the atmosphere change after ventilation?</summary>
+<p>Yes. Rusting steel, some cargoes and residues keep consuming oxygen or releasing gas. Ventilation should continue while people are inside, and the atmosphere should be tested again at intervals.</p>
+</details>
+<details class="ec-faq"><summary>Where should the fan duct go?</summary>
+<p>Heavy gases such as hydrogen sulphide, carbon dioxide and hydrocarbon vapour collect low; light gases such as methane collect high. Supply the fresh air to where the gas collects and exhaust from the opposite end.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../engine-room-ventilation/index.html">Engine-room ventilation (ISO 8861)</a> — airflow for combustion and heat removal.</li>
+<li><a href="../cargo-ventilation-dewpoint/index.html">Cargo ventilation and dew point</a> — ventilating a hold without sweat.</li>
+<li><a href="../co2-fire-system/index.html">Fixed CO₂ fire-extinguishing system</a> — the gas a released system leaves in the space.</li>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — the volume of the space.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

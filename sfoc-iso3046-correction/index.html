@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engine power and SFOC to ISO 3046 conditions — Engineering calculators</title>
+  <meta name="description" content="ISO 3046-1 power adjustment factor α and fuel consumption factor β between reference and site ambient conditions, with the fuel LCV correction.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Engine power and SFOC to ISO 3046 conditions</h1>
+    <p class="ec-summary">How much power a diesel or gas engine loses, and how much its specific fuel consumption rises, between the ISO reference conditions and the site ambient: the ISO 3046-1 ratio of indicated power from pressure, temperature and charge-air coolant ratios with the Table 2 exponents, the power adjustment factor, the fuel consumption factor β = k/α, and the mass consumption with a fuel of another calorific value.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Engine makers declare power and fuel consumption at the ISO reference conditions: 100 kPa, 25 °C air, 30 % humidity and 25 °C charge-air coolant. An engine room in the tropics offers 45 °C air and 36 °C cooling water, and the engine can neither make the declared power nor burn fuel at the declared rate. ISO 3046-1 gives the standard way to move between the two: a ratio of indicated power built from the pressure, temperature and coolant ratios with exponents that depend on the engine type, a power adjustment factor that allows for the friction power which does not scale, and the fuel consumption factor β = k/α. This calculator applies it for the eight formula references with recommended values and adds the calorific-value scaling that every shop-test comparison needs.</p>
+<p>It is for marine and power-plant engineers comparing shop tests with site performance, performance analysts normalising SFOC data, and students of internal combustion engines.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>k = [(p_x − a φ_x p_sx)/(p_r − a φ_r p_sr)]^m (T_r/T_x)^n (T_cr/T_cx)^s     ISO 3046-1 (3), T in K
+α = k − 0.7 (1 − k)(1/η_m − 1),   P_x = α P_r                                 (2), (1)
+β = k/α,   b_x = β b_r                                                         clause 10.4
+b_fuel = b_x × 42 700 / LCV                                                     equal energy per kWh</code></pre>
+<p>Table 2 (a, m, n, s): A 1, 1, 0.75, 0 · B 0, 1, 1, 0 · C 0, 0.7, 2, 0 · D 0, 0.7, 1.2, 1 · F and J 0, 0.57, 0.55, 1.75 · G 0, 0.7, 1.2, 1 · I 1, 0.86, 0.55, 0. Reference conditions: 100 kPa, 298 K, 30 %, 298 K.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Guideline factors (Table 2 note 2); the manufacturer may declare its own, and low-speed two-stroke engines (E, H) have none.</li>
+<li>β = k/α is the ISO default; electronically controlled engines may behave differently.</li>
+<li>Humidity matters only where a = 1 (A, I); the Magnus vapour pressure is used.</li>
+<li>η_m at the declared power, 0.8 when none is declared; s = 0 when the charge air is jacket-water cooled.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A medium-speed four-stroke diesel (reference D) declared at 10 000 kW and 175 g/kWh, mechanical efficiency 0.8, operating at 100 kPa, 45 °C engine-room air and 36 °C charge-air coolant.</p>
+<ol>
+<li>k = (298.15/318.15)^1.2 × (298.15/309.15)^1 = 0.9250 × 0.9644 = 0.8921.</li>
+<li>α = 0.8921 − 0.7 × 0.1079 × 0.25 = 0.8733 → 8 733 kW available, 12.7 % less.</li>
+<li>β = 0.8921/0.8733 = 1.0216 → 178.8 g/kWh, 2.2 % more fuel per kWh.</li>
+<li>Burning a 40 500 kJ/kg residual fuel instead of the 42 700 kJ/kg reference: 178.8 × 42 700/40 500 = 188.5 g/kWh, i.e. 1 646 kg/h at the site power.</li>
+</ol>
+<p>For a non-turbocharged engine (reference A) the humidity enters: at 60 % humidity and 45 °C the dry-air pressure is 94.2 kPa against 99.0 kPa at reference, which alone costs 5 % of power.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the power fall more than the indicated power?</summary>
+<p>Friction does not shrink with the air density, so the brake power loses a larger share: that is what the 0.7(1 − k)(1/η_m − 1) term represents.</p>
+</details>
+<details class="ec-faq"><summary>Which formula reference is my engine?</summary>
+<p>The manufacturer states it; D (turbocharged, charge-air cooled, medium speed) is the common marine four-stroke case; for two-stroke main engines use the maker&#39;s own derating curves.</p>
+</details>
+<details class="ec-faq"><summary>Why does the SFOC rise?</summary>
+<p>The fuel per indicated kWh stays the same while the brake kWh fall, so fuel per brake kWh rises by k/α.</p>
+</details>
+<details class="ec-faq"><summary>What are the reference conditions?</summary>
+<p>ISO 15550: 100 kPa total pressure, 298 K air, 30 % relative humidity, 298 K charge-air coolant. Manufacturers may declare substitute conditions; enter them in the reference fields.</p>
+</details>
+<details class="ec-faq"><summary>How does this relate to ISO 19030?</summary>
+<p>Performance monitoring compares service SFOC with the shop test; both must be on the same fuel energy basis, which the 42 700 kJ/kg scaling provides.</p>
+</details>
+<details class="ec-faq"><summary>Why is humidity ignored for turbocharged engines?</summary>
+<p>The standard sets a = 0 for them: the charge air cooler and turbocharger largely compensate; the effect exists but is small.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — the loads this power serves.</li>
+<li><a href="../engine-bmep/index.html">Engine BMEP, torque and power</a> — the mechanical side of the same engine.</li>
+<li><a href="../fuel-lcv-co2/index.html">Fuel net specific energy and CO₂ factor</a> — the LCV from the bunker delivery note.</li>
+<li><a href="../engine-room-ventilation/index.html">Engine room ventilation (ISO 8861)</a> — the air that sets T_x.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel and voyage cost</a> — consumption at sea.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

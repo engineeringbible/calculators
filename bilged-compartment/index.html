@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bilged compartment (lost buoyancy) — Engineering calculators</title>
+  <meta name="description" content="Sinkage, end drafts, trim, freeboard and the new GM of a box-shaped vessel after a compartment is bilged, by the lost buoyancy method.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Bilged compartment (lost buoyancy)</h1>
+    <p class="ec-summary">Flood a compartment of a box-shaped vessel and find the parallel sinkage, the new KB, BM and GM, the shift of the centre of flotation, the trim and end drafts, and the freeboard that remains, by the lost buoyancy method with permeability.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>When a compartment is holed below the waterline, the sea floods it and the buoyancy it provided is lost. The vessel sinks until the intact hull makes up the lost volume, trims towards the damage if the compartment is not amidships, and its stability changes because part of the waterplane is gone. The lost buoyancy method treats the flooded space as no longer part of the ship: displacement and KG stay the same while KB, BM and the waterplane change. This calculator applies it to a box-shaped vessel, the standard case of examinations and a useful first estimate for barges and pontoons.</p>
+<p>It is for deck officers and cadets studying damage stability, and for anyone making a quick estimate for a barge or pontoon.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Lost volume:            v = μ l b d
+Intact waterplane:      A&#39; = L B − μ l b
+Parallel sinkage:       s = v / A&#39;
+New KB:                 KB&#39; = d/2 + v (d + s) / (2 V)
+Transverse inertia:     I_T&#39; = L B³/12 − μ l b³/12,   BM&#39; = I_T&#39; / V
+GM after bilging:       GM&#39; = KB&#39; + BM&#39; − KG
+Centre of flotation:    x_F = −μ l b x / A&#39;
+Longitudinal inertia:   I_L&#39; = B L³/12 − μ b l³/12 − μ l b x² − A&#39; x_F²
+Trim:                   tan τ = v (x − x_F) / I_L&#39;
+End drafts:             T_F = d + s + tan τ (L/2 − x_F),   T_A = d + s − tan τ (L/2 + x_F)</code></pre>
+<ul>
+<li>μ — permeability; l, b — compartment length and breadth; x — compartment centre from amidships, positive forward; V = L B d.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Box-shaped vessel; the compartment is centred on the centreline and open from the keel to above the final waterline.</li>
+<li>Small trims; a wing compartment that also causes list is not covered.</li>
+<li>Initial GM only; damage stability rules assess the whole GZ curve and intermediate flooding.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A box-shaped vessel 75 m long and 10 m wide floats at 6 m draft with KG 4 m. A midship compartment 15 m long is bilged, permeability 1.</p>
+<ol>
+<li>Lost volume 15 × 10 × 6 = 900 m³; intact waterplane 60 × 10 = 600 m²; sinkage 1.5 m, new draft 7.5 m.</li>
+<li>KB rises from 3.0 m to 3.75 m.</li>
+<li>BM falls from 1.389 m to (60 × 10³/12)/4500 = 1.111 m.</li>
+<li>GM rises from 0.389 m to 0.861 m: for a box, the rise of KB outweighs the lost waterplane.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Lost buoyancy or added weight?</summary>
+<p>Both give the same final waterline. Lost buoyancy keeps displacement and KG fixed, so the GM it gives is directly comparable with the intact one; added weight treats the water as cargo and changes both.</p>
+</details>
+<details class="ec-faq"><summary>What is permeability?</summary>
+<p>The fraction of a compartment&#39;s volume that water can occupy. An empty void is close to 1; machinery spaces about 0.85; stores about 0.60.</p>
+</details>
+<details class="ec-faq"><summary>Why can GM increase after bilging?</summary>
+<p>In a box, KB rises by half the sinkage while BM falls only by the lost waterplane share. For real hull forms, and especially for wing compartments, the result can be the opposite.</p>
+</details>
+<details class="ec-faq"><summary>Why does an end compartment trim the ship so much?</summary>
+<p>The lost buoyancy is far from the centre of flotation, and the intact waterplane&#39;s centre moves away from the damage, so the trimming lever is long.</p>
+</details>
+<details class="ec-faq"><summary>Is this a damage stability assessment?</summary>
+<p>No. It gives the floating position and initial GM. Rules require the whole GZ curve, heel limits and the margin line to be checked for each damage case.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../initial-stability/index.html">Initial stability</a> — GM, free surface and list.</li>
+<li><a href="../hydrostatics/index.html">Hydrostatics</a> — drafts and trim of the intact ship.</li>
+<li><a href="../drydock-critical-instant/index.html">Dry-docking critical instant</a> — another case of a force at the keel.</li>
+<li><a href="../gz-criteria/index.html">GZ curve and intact stability criteria</a> — the intact stability standard.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

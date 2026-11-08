@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V-belt length and centre distance calculator — Engineering calculators</title>
+  <meta name="description" content="V-belt pitch length from sheave pitch diameters and centre distance, or the centre distance for a standard belt, with the exact formula as a check.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">V-belt length and centre distance calculator</h1>
+    <p class="ec-summary">V-belt pitch length from sheave pitch diameters and centre distance, and the centre distance for a standard belt, checked against the exact geometry.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>V-belts are sold in standard pitch lengths, so a drive design has two questions: what length fits a given centre distance, and what centre distance a standard belt gives. Shigley&#39;s approximate formula answers the first. Sheaves of 100 and 250 mm pitch diameter on 600 mm centres need a pitch length of about 1 759 mm.</p>
+<p>This calculator gives the pitch length from the centre distance, or the centre distance for a belt length you choose from a catalogue. It shows the standard approximate result next to the exact geometry, so you can see how close the approximation is. It also gives the wrap angle on the small sheave. It is for engineers and maintenance staff selecting or replacing V-belts.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Approximate pitch length (Shigley eq. 17-16a):</p>
+<pre class="ec-formula" tabindex="0"><code>L_p = 2C + π (D + d) / 2 + (D − d)² / (4C)</code></pre>
+<p>Centre distance for a pitch length (eq. 17-16b):</p>
+<pre class="ec-formula" tabindex="0"><code>C = ¼ { [L_p − π (D + d)/2] + √( [L_p − π (D + d)/2]² − 2 (D − d)² ) }</code></pre>
+<p>Exact open-belt length (eq. 17-1), used as the check:</p>
+<pre class="ec-formula" tabindex="0"><code>φ = asin((D − d) / (2C))
+L = √(4C² − (D − d)²) + ½ [D (π + 2φ) + d (π − 2φ)]</code></pre>
+<ul>
+<li>D, d — pitch diameters of the large and small sheaves</li>
+<li>C — centre distance; L_p — belt pitch length</li>
+<li>Wrap on the small sheave: θ = π − 2φ</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Use pitch diameters and pitch lengths. Catalogues may also list inside or outside lengths, which differ from the pitch length by an amount that depends on the belt section.</li>
+<li>The approximate formula keeps only the first terms of a series. For normal drives it is within a fraction of a millimetre; for large ratios on short centres the error reaches millimetres.</li>
+<li>The centre distance is the nominal value with the belt fitted. Allow adjustment below it to fit the belt and above it for take-up as the belt stretches.</li>
+<li>The drive has two sheaves and no idler. Below about 120° of wrap on the small sheave, the belt&#39;s power rating must be reduced.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A drive has sheaves of 100 and 250 mm pitch diameter. The nearest standard belt has a pitch length of 1 800 mm. What centre distance does it give?</p>
+<ol>
+<li>Term in brackets: 1 800 − π × 350 / 2 = 1 800 − 549.78 = 1 250.22 mm.</li>
+<li>Square root: √(1 250.22² − 2 × 150²) = √(1 563 050 − 45 000) = 1 232.09 mm.</li>
+<li>Centre distance: ¼ × (1 250.22 + 1 232.09) = 620.58 mm.</li>
+<li>Exact geometry, solved for the same 1 800 mm: 620.57 mm.</li>
+</ol>
+<p>The two answers differ by less than 0.01 mm. Set the motor base to give about 621 mm, with adjustment either side for fitting and take-up.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I measure a V-belt&#39;s length?</summary>
+<p>Read the size code printed on the belt and look it up in the maker&#39;s table. A tape round the outside of a used belt gives the outside length, which is longer than the pitch length.</p>
+</details>
+<details class="ec-faq"><summary>What is the pitch diameter of a sheave?</summary>
+<p>The diameter at the belt&#39;s neutral layer, where it neither stretches nor shortens. It is smaller than the outside diameter of the sheave.</p>
+</details>
+<details class="ec-faq"><summary>How accurate is the approximate formula?</summary>
+<p>For the example drive it is 0.012 mm short of the exact length. It becomes less accurate when the sheaves differ a lot and the centres are close.</p>
+</details>
+<details class="ec-faq"><summary>What centre distance should a V-belt drive have?</summary>
+<p>Shigley suggests at least the large sheave diameter and at most three times the sum of the diameters. Longer drives can whip; shorter ones lose wrap.</p>
+</details>
+<details class="ec-faq"><summary>What wrap angle is acceptable?</summary>
+<p>180° on equal sheaves. Below about 120° on the small sheave, the power a belt can carry falls and slip becomes likely.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the belt length for a new drive?</summary>
+<p>Choose the centre distance, calculate the pitch length, pick the nearest standard length, then recalculate the centre distance for that belt.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../belt-pulley/index.html">Belt and pulley calculator</a> — speeds, belt speed and crossed belts.</li>
+<li><a href="../chain-sprocket/index.html">Chain and sprocket drive</a> — the same problem with roller chain.</li>
+<li><a href="../gear-ratio/index.html">Gear ratio, rpm and torque</a> — speed ratios with gears.</li>
+<li><a href="../torque-power-rpm/index.html">Torque, power and speed</a> — torque on each shaft.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

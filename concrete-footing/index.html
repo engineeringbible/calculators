@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Concrete footing calculator — Engineering calculators</title>
+  <meta name="description" content="Concrete for strip footings under walls or square pad footings under posts, in cubic yards or m³ with waste, premix bags, weight and cost.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Concrete footing calculator</h1>
+    <p class="ec-summary">Concrete for strip footings under walls or pad footings under posts, in cubic yards or m³, with waste, premix bags, weight and cost.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Footings spread the weight of a building into the ground. Walls sit on continuous strip footings, and posts or columns sit on square pad footings. Both are simple boxes of concrete, so the volume is length times width times depth, but two mistakes are common: counting the corners of a strip footing twice, and forgetting that trenches are never dug exactly to size.</p>
+<p>This calculator gives the concrete for a strip footing or a set of identical pads, in cubic yards, cubic feet or cubic metres, with a waste allowance. It also gives the number of premix bags, the weight, and the cost at your local prices. It is for builders and homeowners ordering concrete for a garage, an extension, a deck or a garden wall.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Strip footing, measured along its centreline:</p>
+<pre class="ec-formula" tabindex="0"><code>V = L_c × B × D</code></pre>
+<p>Pad footings, n of them:</p>
+<pre class="ec-formula" tabindex="0"><code>V = n × L × B × D</code></pre>
+<p>Order volume and bags:</p>
+<pre class="ec-formula" tabindex="0"><code>V_order = V × (1 + waste)
+bags = V_order / bag yield, rounded up</code></pre>
+<ul>
+<li>L_c — centreline length; for a rectangle of outside size a × b, 2 × (a + b) − 4 × B</li>
+<li>B — width of the footing; D — depth of concrete; L — length of one pad</li>
+<li>waste — 10 % is usual when pouring into an earth trench</li>
+<li>bag yield — 0.60 ft³ per 80 lb bag, 0.45 ft³ per 60 lb, 11.7 L per 25 kg</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Measure a strip footing along its centreline. The outside perimeter counts each corner twice and overstates the volume.</li>
+<li>The trench is assumed to be dug to the drawn size. Over-dig, stepped footings and stem walls are not included; raise the waste allowance for rough trenches.</li>
+<li>The size of a footing comes from the loads and the soil bearing capacity, and its depth from the local frost line. This page only estimates quantities. The International Residential Code sets 12 in wide and 6 in thick as the minimum for light-frame buildings.</li>
+<li>Premix bag yields are those printed on US bags. The weight uses 2 400 kg/m³.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A garage has walls that form a 24 × 24 ft square on their centrelines. The strip footing under them is 16 in wide and 8 in deep. How much concrete is needed with 10 % waste?</p>
+<ol>
+<li>Centreline length: 4 × 24 = 96 ft.</li>
+<li>Section: 16/12 × 8/12 = 0.889 ft².</li>
+<li>Volume: 96 × 0.889 = 85.3 ft³, which is 85.3 / 27 = 3.16 yd³.</li>
+<li>With 10 % waste: 93.9 ft³, or 3.48 yd³.</li>
+<li>In 80 lb bags: 93.9 / 0.60 = 156.4, so 157 bags.</li>
+</ol>
+<p>At almost 3.5 yd³, this is a job for a ready-mix truck: order 3.5 yd³.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate concrete for a footing?</summary>
+<p>Multiply the length by the width by the depth, all in feet, and divide by 27 for cubic yards. Add 10 % for waste.</p>
+</details>
+<details class="ec-faq"><summary>How big should a footing be?</summary>
+<p>The engineer or the building code sets it from the load and the soil. For light-frame houses, the IRC minimum is 12 in wide and 6 in thick, and wider for two-storey buildings or weak soil.</p>
+</details>
+<details class="ec-faq"><summary>How deep should footings be?</summary>
+<p>Below the frost line, which ranges from about 12 in in mild climates to 48 in or more in cold ones. The local building department publishes the depth.</p>
+</details>
+<details class="ec-faq"><summary>How much concrete do I need for a deck footing?</summary>
+<p>A 24 × 24 × 12 in pad takes 4 ft³, about 7 bags of 80 lb. For round piers use the column and post hole calculator.</p>
+</details>
+<details class="ec-faq"><summary>Why measure along the centreline?</summary>
+<p>At each corner the two outside lengths overlap by one footing width. Using the centreline counts that corner block exactly once.</p>
+</details>
+<details class="ec-faq"><summary>Should footings have rebar?</summary>
+<p>Most codes require reinforcement in footings under walls in seismic areas and for wide footings. Follow the drawings or the local code.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../concrete-slab/index.html">Concrete slab calculator</a> — the floor slab on top of the footings.</li>
+<li><a href="../concrete-column/index.html">Concrete column and post hole calculator</a> — round piers and post holes.</li>
+<li><a href="../concrete-bags/index.html">Concrete bag calculator</a> — bags of each size for any volume.</li>
+<li><a href="../concrete-volume/index.html">Concrete volume and rebar weight</a> — mix materials and reinforcement weight.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

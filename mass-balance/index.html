@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mass balance calculator: mixing streams (flow, concentration, temperature) — Engineering calculators</title>
+  <meta name="description" content="Mix two or three streams to find the combined flow, concentration and temperature, or find the stream 2 flow that reaches a target concentration or temperature.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Process</span>
+    <h1 class="ec-title">Mass balance calculator: mixing streams (flow, concentration, temperature)</h1>
+    <p class="ec-summary">Combined flow, concentration and temperature of two or three mixed streams, or the stream 2 flow that reaches a target concentration or temperature.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A mass balance says that what flows in must flow out when nothing builds up or reacts. When streams mix, the total flow is the sum of the flows. The flow of each component is the sum of its flows too. So the mixed concentration is the flow-weighted mean of the stream concentrations. Mixing 200 kg of 40 % methanol with 150 kg of 70 % methanol gives 350 kg at 52.9 %, not the 55 % a simple average suggests.</p>
+<p>This calculator mixes two or three streams and gives the combined flow, concentration and temperature. It also runs the balance backwards: it finds the flow of a second stream that brings the first to a target concentration or temperature. It is for process engineers and operators blending, diluting or tempering streams, and for students learning material and energy balances.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Total and component balances at steady state:</p>
+<pre class="ec-formula" tabindex="0"><code>ṁ_mix = ṁ1 + ṁ2 + ṁ3
+x_mix = (ṁ1 x1 + ṁ2 x2 + ṁ3 x3) / ṁ_mix</code></pre>
+<p>Energy balance with no heat of mixing:</p>
+<pre class="ec-formula" tabindex="0"><code>T_mix = (ṁ1 c_p1 T1 + ṁ2 c_p2 T2 + ṁ3 c_p3 T3) / (ṁ1 c_p1 + ṁ2 c_p2 + ṁ3 c_p3)</code></pre>
+<p>Flow of stream 2 to reach a target:</p>
+<pre class="ec-formula" tabindex="0"><code>ṁ2 = ṁ1 (x1 − x_t) / (x_t − x2)
+ṁ2 = ṁ1 c_p1 (T1 − T_t) / (c_p2 (T_t − T2))</code></pre>
+<ul>
+<li>ṁ — mass flow of each stream; x — mass fraction of the component, % w/w / 100</li>
+<li>T — temperature; c_p — specific heat; x_t, T_t — target concentration and temperature</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The process is steady, with no reaction, no accumulation and no losses. A batch mix follows the same equations with masses in place of flows.</li>
+<li>Concentrations are mass fractions and flows are mass flows. With volume flows and mg/L the result is right only if the densities are equal.</li>
+<li>The temperature balance ignores heat of mixing, phase change and heat loss. Diluting sulphuric acid or caustic soda releases a lot of heat, so the real mix is hotter.</li>
+<li>For a target, stream 2 must lie on the other side of it from stream 1. You cannot dilute 10 % to 5 % with a 20 % stream.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A plant has 1 000 kg/h of saturated brine at 26 % salt and needs a 10 % brine. How much water must it add?</p>
+<ol>
+<li>Salt in: 1 000 × 0.26 = 260 kg/h, and the water adds none.</li>
+<li>Water flow: 1 000 × (0.26 − 0.10) / (0.10 − 0) = 1 600 kg/h.</li>
+<li>Product: 1 000 + 1 600 = 2 600 kg/h.</li>
+<li>Check: 260 / 2 600 = 10 %.</li>
+</ol>
+<p>The water-to-brine ratio is 1.600, so each tonne of brine needs 1.6 t of water.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is a mass balance?</summary>
+<p>An accounting of mass for a process: input = output + accumulation, with reaction terms added if anything reacts. At steady state without reaction, input equals output for the total and for each component.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate the concentration after mixing two streams?</summary>
+<p>Multiply each flow by its concentration, add them, and divide by the total flow. 1 000 kg/h at 10 % plus 500 kg/h at 2 % gives 7.33 %.</p>
+</details>
+<details class="ec-faq"><summary>How much water do I need to dilute a solution?</summary>
+<p>Water = flow × (C_start − C_target) / C_target. To bring 500 kg of 30 % solution down to 20 %, add 250 kg of water.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the temperature when two streams mix?</summary>
+<p>Weight each temperature by flow × specific heat. Equal flows of water at 60 °C and 20 °C mix at 40 °C.</p>
+</details>
+<details class="ec-faq"><summary>Can I use volume flows instead of mass flows?</summary>
+<p>Yes, if all streams have about the same density, as for dilute water solutions. For brines, acids or oils, convert to mass flows first.</p>
+</details>
+<details class="ec-faq"><summary>Why is my mixed temperature higher than calculated?</summary>
+<p>Some substances release heat when they mix, such as acids, caustic soda and alcohol in water. The simple balance leaves that heat out.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../blending-ratio/index.html">Blending ratio</a> — two liquids to a target property, including viscosity.</li>
+<li><a href="../dilution/index.html">Dilution C1V1 = C2V2</a> — laboratory dilutions and serial dilutions.</li>
+<li><a href="../chemical-dosing/index.html">Chemical dosing</a> — feed rate for a dose in mg/L.</li>
+<li><a href="../specific-heat/index.html">Specific heat</a> — heat needed to change the temperature.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

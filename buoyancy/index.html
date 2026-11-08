@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buoyancy calculator (Archimedes) — Engineering calculators</title>
+  <meta name="description" content="Buoyant force, net force and whether an object floats, the draft of a floating box or cylinder, and the load a pontoon or raft can carry.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Buoyancy calculator (Archimedes)</h1>
+    <p class="ec-summary">Archimedes buoyant force, whether a body floats, the draught of boxes, drums and pontoon tubes, and the load a raft can carry at a set freeboard.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A body in water is pushed up by a force equal to the weight of the water it displaces. That is Archimedes&#39; principle: buoyant force = water density × gravity × displaced volume. A sealed 0.2 m³ drum held under sea water is pushed up with 1 025 × 9.81 × 0.2 = 2 010 N, enough to support 205 kg. If the body weighs less than that, it floats and sinks only until it displaces its own weight.</p>
+<p>This calculator gives the buoyant force, the net force and whether an object floats in fresh or sea water. For boxes, upright cylinders and horizontal cylinders such as pontoon tubes and drums, it gives the draught and freeboard, and the load the floats can carry while keeping a chosen freeboard. It is for boaters, raft and jetty builders, divers and students.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Archimedes&#39; principle:</p>
+<pre class="ec-formula" tabindex="0"><code>F_B = ρ g V
+floats when m &lt; ρ V,     share under water = m / (ρ V)</code></pre>
+<p>Draught of n identical floats carrying a total mass m:</p>
+<pre class="ec-formula" tabindex="0"><code>box:                  T = m / (ρ n L B)
+upright cylinder:     T = m / (ρ n π D² / 4)
+horizontal cylinder:  ρ n L A(T) = m
+A(T) = r² acos((r − T) / r) − (r − T) √(2 r T − T²)</code></pre>
+<p>Payload to a freeboard f, for floats of height H:</p>
+<pre class="ec-formula" tabindex="0"><code>m_max = ρ n × (volume immersed to H − f)</code></pre>
+<ul>
+<li>ρ — water density: 1 000 kg/m³ fresh, 1 025 kg/m³ sea; g = 9.81 m/s²</li>
+<li>V — volume of the body; r = D/2 — radius of a cylinder; A — submerged segment area</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The floats are rigid and watertight, the water is still, and the load is shared equally so the floats sit level.</li>
+<li>Stability is not checked. A raft can have plenty of buoyancy and still capsize if it is narrow or the load is high.</li>
+<li>The ends of a horizontal cylinder are taken as flat. Rounded or pointed pontoon ends add a little volume.</li>
+<li>Keep a working margin beyond the freeboard limit for people moving about, waves and water on deck.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A small raft floats on two pontoon tubes, each 0.6 m in diameter and 6 m long, in fresh water. Tubes, deck and people together weigh 1 500 kg. How deep do the tubes sink, and how much can the raft carry with 0.15 m of freeboard?</p>
+<ol>
+<li>Volume of the two tubes: 2 × π × 0.3² × 6 = 3.39 m³, so they can never carry more than 3 393 kg.</li>
+<li>Each tube carries 750 kg, which needs 0.75 m³ of displaced water: 0.75 / 6 = 0.125 m² of submerged section.</li>
+<li>Solving the segment area for 0.125 m² gives a draught of 0.273 m, leaving 0.327 m of freeboard.</li>
+<li>With 0.15 m freeboard the tubes are immersed 0.45 m. The segment area is then 0.2275 m², so the tubes carry 2 × 0.2275 × 6 × 1 000 = 2 730 kg.</li>
+<li>Extra payload: 2 730 − 1 500 = 1 230 kg.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate buoyant force?</summary>
+<p>Multiply the water density by gravity and by the volume under water. One cubic metre fully submerged in fresh water gives 9.81 kN, enough to support 1 000 kg.</p>
+</details>
+<details class="ec-faq"><summary>How do I know if an object will float?</summary>
+<p>Compare its mass with the mass of water it would displace fully submerged. A steel block sinks, but a steel hull floats because it encloses far more volume than its steel.</p>
+</details>
+<details class="ec-faq"><summary>How much weight can a 55 gallon drum hold up?</summary>
+<p>A 55 US gallon drum holds 0.208 m³, so fully submerged it supports 208 kg in fresh water or 213 kg in sea water, less the drum&#39;s own mass.</p>
+</details>
+<details class="ec-faq"><summary>Do things float better in sea water?</summary>
+<p>Yes. Sea water is about 2.5 % denser than fresh water, so the same float carries 2.5 % more, or floats a little higher with the same load.</p>
+</details>
+<details class="ec-faq"><summary>Does a submerged object get more buoyant deeper down?</summary>
+<p>Not if it is rigid: the displaced volume, and so the force, stays the same. Bodies that compress, such as foam, air pockets or a diver&#39;s suit, lose buoyancy with depth.</p>
+</details>
+<details class="ec-faq"><summary>Why keep a freeboard on a raft or pontoon?</summary>
+<p>A float loaded to the waterline has no reserve for waves, wake or people stepping to one side. The reserve buoyancy above the water is what keeps the deck dry and the raft upright.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../block-coefficient/index.html">Block coefficient and hull form</a> — displacement of a ship&#39;s hull.</li>
+<li><a href="../hydrostatic-pressure/index.html">Hydrostatic pressure</a> — the pressure that makes buoyancy.</li>
+<li><a href="../hydrostatics/index.html">Hydrostatics basics</a> — TPC and fresh water allowance of ships.</li>
+<li><a href="../metal-weight/index.html">Metal weight calculator</a> — the mass of steel or aluminium floats.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

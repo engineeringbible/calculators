@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Total dynamic head (TDH) calculator — Engineering calculators</title>
+  <meta name="description" content="Total dynamic head for pump selection from static lift, tank pressures, pipe friction and fitting losses, with the system curve and hydraulic power.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Total dynamic head (TDH) calculator</h1>
+    <p class="ec-summary">Total dynamic head for pump selection from static lift, vessel pressures, pipe friction and fitting losses, with the system curve.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>To choose a pump you need two numbers: the flow, and the head the pump must add at that flow, the total dynamic head (TDH). The head has three parts: lifting the liquid from one level to another, any pressure difference between the vessels, and the losses to friction in the pipe and its fittings. The lift is fixed; the losses grow with the square of the flow, which gives the rising system curve that the pump curve must cross.</p>
+<p>This calculator adds up the three parts for a single pipe size. It gives the velocity, Reynolds number and friction factor, each head component, the total dynamic head and the hydraulic power, and the system curve as a simple equation. It is for engineers and contractors selecting centrifugal pumps for water and other liquids.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Total dynamic head:</p>
+<pre class="ec-formula" tabindex="0"><code>TDH = (z_d − z_s) + (p_d − p_s) / (ρ g) + (f L / D + ΣK) × v² / (2g)</code></pre>
+<p>Friction factor (Darcy–Weisbach with Colebrook):</p>
+<pre class="ec-formula" tabindex="0"><code>Re = v D / ν
+1/√f = −2 log10( ε/(3.7 D) + 2.51/(Re √f) ),   f = 64/Re if laminar</code></pre>
+<p>System curve:</p>
+<pre class="ec-formula" tabindex="0"><code>H(Q) ≈ H_static + C Q²,   C = (f L/D + ΣK) / (2 g A²)</code></pre>
+<ul>
+<li>z_d − z_s — static lift from the suction surface to the discharge surface</li>
+<li>p_d − p_s — difference in gauge pressure between the two vessels</li>
+<li>f — Darcy friction factor; L — pipe length; D — inside diameter; ΣK — fittings</li>
+<li>ν — kinematic viscosity; ε — pipe roughness</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The liquid moves between two vessels whose surfaces are the reference points, so the velocity there is zero and the exit loss belongs in ΣK.</li>
+<li>The pipe is one size throughout. For a system with several sizes, calculate each section&#39;s losses separately and add them.</li>
+<li>The Colebrook equation covers turbulent flow; between Re 2 300 and 4 000 the flow is transitional and the friction factor uncertain.</li>
+<li>The system curve assumes the friction factor stays close to its design value as the flow changes, which is accurate in fully turbulent flow.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A pump moves 20 m³/h of water at 20 °C from a sump to a tank 15 m higher, through 100 m of 3 in steel pipe (77.9 mm bore) with fittings totalling K = 8. What head must the pump deliver?</p>
+<ol>
+<li>Velocity: (20 / 3 600) / (π × 0.0779² / 4) = 1.166 m/s; velocity head 0.0693 m.</li>
+<li>Reynolds number: 1.166 × 0.0779 / 1.004 × 10⁻⁶ = 90 440, turbulent.</li>
+<li>Friction factor from Colebrook with ε = 0.046 mm: f = 0.0210.</li>
+<li>Pipe friction: 0.0210 × 100 / 0.0779 × 0.0693 = 1.86 m. Fittings: 8 × 0.0693 = 0.55 m.</li>
+<li>Total dynamic head: 15 + 1.86 + 0.55 = 17.42 m.</li>
+</ol>
+<p>Choose a pump whose curve passes through 20 m³/h at about 17.5 m, near its best efficiency point.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is total dynamic head?</summary>
+<p>The total head a pump adds to the liquid: the static lift, the pressure difference between the vessels, and all friction and fitting losses, in metres or feet of the liquid pumped.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate TDH?</summary>
+<p>Add the vertical lift, the pressure difference converted to head, and the friction and fitting losses. Friction is f L / D × v² / 2g and fittings are ΣK × v² / 2g.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between static head and dynamic head?</summary>
+<p>Static head is the lift and pressure difference, which exist even at zero flow. Dynamic head adds the losses that appear when liquid flows.</p>
+</details>
+<details class="ec-faq"><summary>What is a system curve?</summary>
+<p>The head the system needs at each flow. The pump operates where its own curve crosses the system curve.</p>
+</details>
+<details class="ec-faq"><summary>Does suction lift add to TDH?</summary>
+<p>Yes. If the pump lifts from a sump below it, the static lift is measured from the sump surface to the discharge surface, which includes the suction lift. Check NPSH too.</p>
+</details>
+<details class="ec-faq"><summary>Why does head matter more than pressure for pumps?</summary>
+<p>A pump adds the same head whatever the liquid&#39;s density, but the pressure it produces scales with density. Pump curves are therefore drawn in head.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../pump-power/index.html">Pump power</a> — the power for the flow and head.</li>
+<li><a href="../minor-losses/index.html">Minor losses</a> — add up K for the fittings.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — friction in pipes in detail.</li>
+<li><a href="../pump-npsh/index.html">Pump NPSH</a> — checking the suction side.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

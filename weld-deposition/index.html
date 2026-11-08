@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weld metal and filler consumption calculator — Engineering calculators</title>
+  <meta name="description" content="Weld metal mass of fillet, single-V and double-V welds, filler needed for SMAW, GMAW, FCAW or SAW, electrodes or wire length and arc time.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Manufacturing</span>
+    <h1 class="ec-title">Weld metal and filler consumption calculator</h1>
+    <p class="ec-summary">Weld metal and filler needed for fillet, single-V and double-V welds by SMAW, GMAW, FCAW or SAW, with electrodes or wire length and arc time.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The weld metal in a joint is its cross-section times its length times the density of steel. The filler you buy is more, because part of it never ends up in the weld. Stick electrodes lose their stubs, slag and spatter, so only about 55 % of their mass is deposited. Solid MIG wire deposits about 95 %. A 1/4 in fillet weld holds 0.106 lb of steel per foot.</p>
+<p>This calculator gives the cross-section, the deposited mass and the filler metal needed for fillet, single-V and double-V butt welds with root gap and reinforcement. It then works out the number of stick electrodes or the length of wire, and the arc time at the deposition rate of your procedure. It is for welding engineers, estimators and fabricators planning consumables and welding time.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Weld cross-section without reinforcement:</p>
+<pre class="ec-formula" tabindex="0"><code>fillet (equal legs):   A = z² / 2
+single V:              A = g t + (t − f)² tan(α/2)
+double V (symmetric):  A = g t + (t − f)² tan(α/2) / 2</code></pre>
+<p>Mass, filler and time:</p>
+<pre class="ec-formula" tabindex="0"><code>m = A × (1 + r) × L × ρ
+filler = m / E
+wire length = filler / (ρ π d² / 4)
+arc time = m / deposition rate</code></pre>
+<ul>
+<li>z — fillet leg; t — plate thickness; g — root gap; f — root face; α — included groove angle</li>
+<li>r — reinforcement and convexity allowance; L — weld length; ρ — weld metal density, 7 850 kg/m³ for steel</li>
+<li>E — deposition efficiency: 55 % SMAW, 95 % GMAW, 90 % FCAW, 100 % SAW (Kobe Steel)</li>
+<li>d — wire diameter</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Fillet welds have equal legs and a flat face. Convexity and the cap on butt welds are added as a percentage of the area.</li>
+<li>The double-V joint is symmetric: both sides have the same bevel and depth.</li>
+<li>The efficiencies are typical values from a filler maker. Long stub ends, spatter and the welder&#39;s habits move them. Measure your own if you buy in bulk.</li>
+<li>Wire length assumes a solid wire. Flux-cored wire has less metal per metre, so it needs a longer length for the same mass.</li>
+<li>Arc time counts only the time the arc burns. Slag removal, interpass cleaning and handling add to the real welding time.</li>
+<li>SAW flux is not included. The flux maker gives its consumption per kilogram of wire.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 10 mm plate has a single-V butt weld 1 m long. The groove has a 60° included angle, a 2 mm root gap and a 2 mm root face. The allowance for the cap is 10 %. It is welded by GMAW with 1.2 mm wire at 3 kg/h.</p>
+<ol>
+<li>Gap: 2 × 10 = 20 mm². Bevel: (10 − 2)² × tan 30° = 36.95 mm².</li>
+<li>With the 10 % cap: 56.95 × 1.1 = 62.65 mm².</li>
+<li>Weld metal: 62.65 mm² × 1 m × 7 850 kg/m³ = 0.4918 kg.</li>
+<li>Filler at 95 %: 0.4918 / 0.95 = 0.5176 kg.</li>
+<li>1.2 mm wire weighs 8.88 g/m, so 0.5176 kg is 58.3 m of wire.</li>
+<li>Arc time: 0.4918 kg at 3 kg/h is 9.8 min.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the weight of weld metal?</summary>
+<p>Multiply the weld&#39;s cross-section by its length and by the density of the metal. Add an allowance for the cap or convexity.</p>
+</details>
+<details class="ec-faq"><summary>What is deposition efficiency?</summary>
+<p>The share of the filler that ends up in the weld. The rest is lost as stub ends, slag, spatter and fume.</p>
+</details>
+<details class="ec-faq"><summary>How many welding rods do I need?</summary>
+<p>Divide the deposited mass by 0.55 for stick electrodes. Then divide by the mass of one rod, which is the box mass divided by the number of rods.</p>
+</details>
+<details class="ec-faq"><summary>Why does a double-V joint use less filler?</summary>
+<p>Each side is bevelled only half the plate depth. The bevel area grows with the square of its depth, so two half-depth bevels hold half the metal of one full-depth bevel.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between deposition rate and travel speed?</summary>
+<p>Deposition rate is the mass of weld metal laid per hour. Travel speed is how fast the torch moves. A larger joint at the same deposition rate needs a slower travel speed.</p>
+</details>
+<details class="ec-faq"><summary>Does the calculator work for stainless steel or aluminium?</summary>
+<p>Yes, if you change the density: about 7 900 kg/m³ for austenitic stainless steel and 2 700 kg/m³ for aluminium.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../fillet-weld/index.html">Fillet weld strength</a> — the size the fillet needs for its load.</li>
+<li><a href="../weld-fatigue/index.html">Weld fatigue damage</a> — fatigue life of welded details.</li>
+<li><a href="../bend-allowance/index.html">Bend allowance calculator</a> — blanks for the parts being welded.</li>
+<li><a href="../machining-time/index.html">Machining time calculator</a> — job time for machining after welding.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

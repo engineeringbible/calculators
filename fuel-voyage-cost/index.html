@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fuel consumption and voyage cost — Engineering calculators</title>
+  <meta name="description" content="Fuel burned, time at sea, bunker cost and CO₂ for a passage from distance, speed and engine power or daily consumption.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Fuel consumption and voyage cost</h1>
+    <p class="ec-summary">Fuel burned, time at sea, bunker cost and CO₂ for a passage from distance, speed and engine power or daily consumption.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>This calculator turns a planned passage into tonnes of fuel, dollars and CO₂. You give it the distance, the speed you intend to keep, and either the main-engine power with its specific fuel oil consumption (SFOC) or a daily consumption figure from noon reports or the ship&#39;s speed–consumption table. It adds auxiliary and port consumption, applies an optional weather margin, and prices the total at the bunker price.</p>
+<p>It is used by masters and chief engineers planning bunkers, by operators and charterers estimating voyage costs, and by cadets learning how power, SFOC and time relate. It is also the first step of a CII estimate, because the CO₂ output uses the same IMO carbon factors as the CII rules.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Time at sea:</p>
+<pre class="ec-formula" tabindex="0"><code>t_sea [days] = D / (V × 24)</code></pre>
+<ul>
+<li>D — voyage distance over ground, nautical miles (nmi)</li>
+<li>V — average speed over ground, knots (1 knot = 1 nmi/h)</li>
+</ul>
+<p>Main-engine daily consumption from power (basis &quot;Engine power × SFOC&quot;):</p>
+<pre class="ec-formula" tabindex="0"><code>m_ME [t/day] = P × SFOC × 24 / 10⁶</code></pre>
+<ul>
+<li>P — main-engine brake power actually developed on passage, kW</li>
+<li>SFOC — specific fuel oil consumption at that load, g/kWh</li>
+</ul>
+<p>With a margin:</p>
+<pre class="ec-formula" tabindex="0"><code>m_ME,used = m_ME × (1 + M / 100)</code></pre>
+<ul>
+<li>M — weather / fouling margin, %</li>
+</ul>
+<p>Fuel quantities:</p>
+<pre class="ec-formula" tabindex="0"><code>F_ME  = m_ME,used × t_sea
+F_AUX = m_AUX × t_sea
+F_PORT = m_PORT × t_port
+F_total = F_ME + F_AUX + F_PORT</code></pre>
+<ul>
+<li>m_AUX — auxiliary consumption at sea (generators, boiler), t/day</li>
+<li>m_PORT — consumption in port, t/day; t_port — time in port, days</li>
+</ul>
+<p>Cost and emissions:</p>
+<pre class="ec-formula" tabindex="0"><code>Cost = F_total × price            [currency, price in currency/t]
+CO₂  = F_total × C_F              [t CO₂]
+Fuel per mile = (F_ME + F_AUX) × 1000 / D     [kg/nmi]</code></pre>
+<ul>
+<li>C_F — carbon factor of the fuel, t CO₂ per t fuel (IMO MEPC.364(79) Table 1): HFO 3.114, VLSFO/LFO 3.151, MGO/MDO 3.206, LNG 2.750, LPG propane 3.000, LPG butane 3.030, methanol 1.375, ethanol 1.913.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Speed and power are treated as constant over the passage. Real voyages have speed changes, canal transits and port approaches; split the voyage into legs if those matter.</li>
+<li>The SFOC you enter must correspond to the power you enter. Shop-test SFOC is measured on a reference fuel of 42 700 kJ/kg lower calorific value (ISO 3046-1 convention); for a fuel with a different LCV multiply SFOC by 42 700 / LCV. Service SFOC is typically 3–6 % higher than shop test because of ambient conditions, wear and fuel quality.</li>
+<li>The margin is applied to main-engine fuel only. It stands in for weather, hull and propeller fouling and manoeuvring. Design practice uses 10–15 %; if you entered a daily figure from recent noon reports, use 0.</li>
+<li>Auxiliary and port consumption are flat daily rates; reefer cargo, cargo pumps, tank heating or inert gas generation can raise them a lot.</li>
+<li>CO₂ is tank-to-wake (combustion only), using the IMO factors. Well-to-wake factors are different and larger.</li>
+<li>Cost ignores port dues, canal fees, lubricating oil and hire. Price is in any single currency; there is no exchange-rate conversion.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 3 000 nmi passage at 14 knots. The main engine develops 8 000 kW at 175 g/kWh. Auxiliaries burn 2.5 t/day. No margin, no port time, HFO at 550 $/t.</p>
+<ol>
+<li>Time at sea: 3 000 / (14 × 24) = 8.929 days (214.3 h).</li>
+<li>Main-engine daily consumption: 8 000 × 175 × 24 / 10⁶ = 33.6 t/day.</li>
+<li>Main-engine fuel: 33.6 × 8.929 = 300.0 t.</li>
+<li>Auxiliary fuel: 2.5 × 8.929 = 22.3 t.</li>
+<li>Total fuel: 322.3 t.</li>
+<li>Cost: 322.3 × 550 = 177 277 $.</li>
+<li>Fuel per mile: 322.3 × 1000 / 3 000 = 107.4 kg/nmi; cost per mile 59.1 $/nmi.</li>
+<li>CO₂: 322.3 × 3.114 = 1 003.7 t.</li>
+</ol>
+<p>Adding a 10 % margin lifts the main-engine fuel to 330 t and the total to 352.3 t.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is SFOC and where do I get it?</summary>
+<p>Specific fuel oil consumption is the fuel mass burned per unit of energy delivered at the crankshaft, in g/kWh. The shop-test record gives it at 25/50/75/85/100 % load on reference fuel. Service values come from the engine performance report or fuel-flow meters.</p>
+</details>
+<details class="ec-faq"><summary>Should I use MCR or the actual power?</summary>
+<p>Actual brake power on passage. A 12 000 kW MCR engine running at 65 % load develops 7 800 kW, and that is what burns fuel.</p>
+</details>
+<details class="ec-faq"><summary>Why does speed matter so much?</summary>
+<p>Power rises roughly with the cube of speed, so fuel per day rises with the cube while time falls only linearly. Fuel per voyage therefore rises roughly with the square of speed. Slowing from 14 to 12 knots saves about 25 % of the main-engine fuel for the same distance.</p>
+</details>
+<details class="ec-faq"><summary>Which fuel type should I pick for CO₂?</summary>
+<p>The one actually burned. If a passage uses HFO at sea and MGO in ECAs or port, run the calculator twice or use a weighted factor.</p>
+</details>
+<details class="ec-faq"><summary>Does this give me the CII?</summary>
+<p>Not directly. CII divides the CO₂ by capacity × distance over a calendar year. Use the CII rating estimator with the CO₂ figure from here.</p>
+</details>
+<details class="ec-faq"><summary>How accurate is the result?</summary>
+<p>As accurate as the inputs. With a measured daily consumption and a realistic speed the voyage total is typically within ±5 %. With shop-test SFOC and no margin it will be optimistic by 10–15 %.</p>
+</details>
+<details class="ec-faq"><summary>Can I use long tons or imperial gallons?</summary>
+<p>Yes. Every quantity has a unit dropdown; the calculation runs in metric and converts for display.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../cii-rating/index.html">CII rating estimator</a> — turns the CO₂ figure into a carbon-intensity rating.</li>
+<li><a href="../propeller-slip/index.html">Propeller slip and speed through water</a> — check the speed assumption against engine revolutions.</li>
+<li><a href="../admiralty-coefficient/index.html">Admiralty coefficient and speed–power scaling</a> — estimate power at a different speed or draft.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — tonnes, long tons, knots, nautical miles.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

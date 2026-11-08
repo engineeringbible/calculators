@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Filter cutoff frequency calculator (RC, RL, LC) — Engineering calculators</title>
+  <meta name="description" content="Cutoff frequency of RC, RL, LC and RLC low-pass and high-pass filters, with Q, attenuation in dB and phase at a frequency, or the component for a target cutoff.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Filter cutoff frequency calculator (RC, RL, LC)</h1>
+    <p class="ec-summary">Cutoff frequency of RC, RL, LC and RLC low-pass and high-pass filters, with Q, gain in dB and phase at any frequency, or the part for a target.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The cutoff frequency of a filter is where its output falls to 0.707 of the input, which is −3 dB or half the power. For a first-order RC filter it is f_c = 1 / (2π R C). A 1 kΩ resistor with a 100 nF capacitor gives 1.59 kHz. Beyond the cutoff, a first-order filter loses 20 dB per decade, and a second-order LC filter 40 dB.</p>
+<p>This calculator gives the cutoff frequency of RC and RL filters, and the natural frequency, Q and −3 dB frequency of series RLC and loaded LC filters, both low-pass and high-pass. It also gives the gain in dB and the phase at any frequency, and finds the capacitor or inductor for a target frequency. It is for students, hobbyists and engineers designing audio, sensor, power-supply and radio filters.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>First-order RC and RL filters, with x = f / f_c:</p>
+<pre class="ec-formula" tabindex="0"><code>f_c = 1 / (2π R C)   or   f_c = R / (2π L)
+low-pass:   |H| = 1 / √(1 + x²),   φ = −arctan x
+high-pass:  |H| = x / √(1 + x²),   φ = 90° − arctan x</code></pre>
+<p>Second-order filters, with x = f / f0:</p>
+<pre class="ec-formula" tabindex="0"><code>f0 = 1 / (2π √(L C))
+Q = √(L / C) / R  (series RLC),   Q = R √(C / L)  (LC with load R)
+low-pass:   H = 1 / (1 − x² + j x / Q)
+high-pass:  H = −x² / (1 − x² + j x / Q)</code></pre>
+<p>The −3 dB frequency of a second-order filter:</p>
+<pre class="ec-formula" tabindex="0"><code>u = [(2 − 1/Q²) + √((2 − 1/Q²)² + 4)] / 2
+f_3dB = f0 √u  (low-pass),   f0 / √u  (high-pass)</code></pre>
+<ul>
+<li>R — resistance, Ω; C — capacitance, F; L — inductance, H (entered in µH)</li>
+<li>|H| — output over input voltage; gain in dB = 20 log10 |H|; φ — phase</li>
+<li>Q — quality factor; 0.707 gives the flattest passband</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The components are ideal. A real coil has resistance, which can be added to R in the series RLC circuit.</li>
+<li>The source has zero impedance and the output feeds an open circuit. A load across the output of an RC or RL filter lowers the effective resistance and moves the cutoff.</li>
+<li>In the loaded LC filter, the load resistor sits across the output component. Its value sets the Q, so the filter must be designed for the load it drives.</li>
+<li>A second-order filter has its −3 dB point at f0 only when Q = 0.707. Above that it peaks near f0, below that it rolls off early.</li>
+<li>For a target frequency, the second-order component is chosen so that f0 equals the target.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An RC low-pass filter has R = 1 kΩ and C = 100 nF. What is its cutoff frequency, and how much does it attenuate a 10 kHz signal?</p>
+<ol>
+<li>f_c = 1 / (2π × 1 000 × 100 × 10⁻⁹) = 1 / 6.283 × 10⁻⁴ = 1.59 kHz.</li>
+<li>Frequency ratio: x = 10 000 / 1 591.5 = 6.283.</li>
+<li>Output ratio: |H| = 1 / √(1 + 6.283²) = 1 / 6.362 = 0.157.</li>
+<li>Gain: 20 × log10(0.157) = −16.1 dB.</li>
+<li>Phase: −arctan(6.283) = −81.0°.</li>
+</ol>
+<p>So a 10 kHz signal comes out at about one sixth of its input amplitude.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the cutoff frequency of an RC filter?</summary>
+<p>Use f_c = 1 / (2π R C) with ohms and farads. For 10 kΩ and 10 nF the cutoff is 1.59 kHz.</p>
+</details>
+<details class="ec-faq"><summary>Why is the cutoff called the −3 dB point?</summary>
+<p>At the cutoff the output voltage is 1/√2 = 0.707 of the input. That is half the power, and 10 log10(0.5) = −3.01 dB.</p>
+</details>
+<details class="ec-faq"><summary>How fast does a filter roll off?</summary>
+<p>A first-order filter falls 20 dB per decade, or 6 dB per octave. A second-order filter falls 40 dB per decade, or 12 dB per octave.</p>
+</details>
+<details class="ec-faq"><summary>What Q should a second-order filter have?</summary>
+<p>Q = 0.707 gives the flattest passband, the Butterworth response. Higher Q gives a peak near f0, and Q = 1 already peaks by 1.25 dB.</p>
+</details>
+<details class="ec-faq"><summary>What is the phase shift at the cutoff?</summary>
+<p>45° for a first-order filter, lagging for low-pass and leading for high-pass. A second-order filter shifts 90° at its natural frequency f0.</p>
+</details>
+<details class="ec-faq"><summary>How do I choose a capacitor for a given cutoff?</summary>
+<p>For an RC filter, C = 1 / (2π f_c R). With 10 kΩ, a 1 kHz cutoff needs 15.9 nF, so the nearest standard value is 15 nF or 16 nF.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../rc-time-constant/index.html">RC time constant</a> — the step response of the same RC circuit.</li>
+<li><a href="../lc-resonance/index.html">LC resonant frequency</a> — resonance, Q and bandwidth of the LC pair.</li>
+<li><a href="../decibels/index.html">Decibel calculator</a> — converting the gain to ratios and absolute levels.</li>
+<li><a href="../coil-inductance/index.html">Air-core coil inductance</a> — winding the inductor.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conduit fill calculator (NEC) — Engineering calculators</title>
+  <meta name="description" content="Percent fill and the smallest EMT or PVC conduit for THHN wires under NEC Chapter 9, with how many wires of one size fit in each trade size.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Conduit fill calculator (NEC)</h1>
+    <p class="ec-summary">How many THHN wires fit in EMT or PVC conduit: percent fill, the NEC limit, the smallest trade size and the maximum number of one wire size.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How many wires can go in a conduit? The National Electrical Code (NEC) limits the share of the conduit&#39;s inside area that the wires may take up, so that they can be pulled without damage and do not overheat. For three or more wires the limit is 40 %. A ¾ in EMT therefore holds sixteen 12 AWG THHN wires, and a 1 in EMT holds twenty-six.</p>
+<p>This calculator adds up the area of up to three groups of THHN/THWN-2 wires, applies the NEC limit, and checks a chosen size of EMT or PVC Schedule 40 conduit. It also finds the smallest trade size that complies, and how many wires of one size fit on their own. It is for electricians, estimators and engineers laying out raceways.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Total conductor area and percent fill:</p>
+<pre class="ec-formula" tabindex="0"><code>A_wires = Σ n_i × A_i
+fill = A_wires / A_conduit</code></pre>
+<p>The fill must not exceed the NEC Chapter 9 Table 1 limit:</p>
+<pre class="ec-formula" tabindex="0"><code>1 conductor:           53 %
+2 conductors:          31 %
+3 or more conductors:  40 %
+nipple ≤ 24 in:        60 % (Note 4)</code></pre>
+<p>Most conductors of one size:</p>
+<pre class="ec-formula" tabindex="0"><code>N = 0.40 × A_conduit / A_wire, rounded down, or up when the decimal is 0.8 or more (Note 7)</code></pre>
+<ul>
+<li>n_i, A_i — number and area of each wire size, from Chapter 9 Table 5</li>
+<li>A_conduit — total inside area of the conduit, from Chapter 9 Table 4</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The wires are THHN, THWN or THWN-2. XHHW is larger in the small sizes and slightly smaller in the large ones, and RHW and USE are larger, so they need their own areas from Table 5.</li>
+<li>Ground wires count in the fill. Bare grounds use their bare area from Table 8; this calculator treats every wire as insulated, which errs on the safe side.</li>
+<li>Conduit areas are those of EMT (Article 358) and PVC Schedule 40 (Article 352). Rigid metal conduit, IMC and flexible conduit have different inside areas.</li>
+<li>The fill limit is a maximum, not a target. Long runs and many bends pull more easily at lower fill. Ampacity derating for more than three current-carrying conductors in one raceway applies separately.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 1 in EMT will carry three 12 AWG, four 10 AWG and eight 8 AWG THWN conductors. Is it large enough?</p>
+<ol>
+<li>Wire areas from Table 5: 3 × 0.0133 + 4 × 0.0211 + 8 × 0.0366 = 0.0399 + 0.0844 + 0.2928 = 0.4171 in².</li>
+<li>There are 15 conductors, so the limit is 40 %.</li>
+<li>1 in EMT has 0.864 in² inside, so 40 % allows 0.3456 in².</li>
+<li>0.4171 in² exceeds 0.3456 in²: the fill would be 48.3 %, too full.</li>
+<li>1-1/4 in EMT has 1.496 in², and 40 % is 0.5984 in², which is enough.</li>
+</ol>
+<p>So the run needs 1-1/4 in EMT. This is the worked example published by the Steel Tube Institute.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many 12 AWG wires fit in ½ in EMT?</summary>
+<p>Nine THHN wires. In ¾ in EMT sixteen, and in 1 in EMT twenty-six.</p>
+</details>
+<details class="ec-faq"><summary>How many 10 AWG wires fit in ¾ in conduit?</summary>
+<p>Ten THHN in ¾ in EMT, and nine in ¾ in PVC Schedule 40.</p>
+</details>
+<details class="ec-faq"><summary>Why is the limit 40 % and not more?</summary>
+<p>Round wires in a round pipe leave gaps, and a fuller conduit makes pulling hard and can strip insulation. The 53 % and 31 % limits for one and two wires reflect the jamming risk of those layouts.</p>
+</details>
+<details class="ec-faq"><summary>Do ground wires count toward conduit fill?</summary>
+<p>Yes. NEC Chapter 9 Note 3 counts equipment grounding and bonding conductors, insulated or bare.</p>
+</details>
+<details class="ec-faq"><summary>Is PVC conduit the same size inside as EMT?</summary>
+<p>No. PVC Schedule 40 has thicker walls, so its inside area is slightly smaller: 0.832 in² against 0.864 in² for 1 in, which is why it sometimes holds one wire fewer.</p>
+</details>
+<details class="ec-faq"><summary>What about a short nipple between two boxes?</summary>
+<p>A nipple of 24 in or less may be filled to 60 %, and its wires need no ampacity derating.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../wire-size/index.html">Wire size calculator</a> — the gauge for the voltage drop.</li>
+<li><a href="../breaker-size/index.html">Breaker size calculator</a> — the breaker for each circuit.</li>
+<li><a href="../awg-wire-gauge/index.html">AWG wire gauge chart</a> — bare conductor sizes and resistance.</li>
+<li><a href="../cable-sizing/index.html">Cable sizing and voltage drop</a> — IEC cables and metric sizes.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

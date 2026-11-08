@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inverter size calculator — Engineering calculators</title>
+  <meta name="description" content="What size power inverter you need: running watts and VA of your loads, motor starting surge, design margin, the next common size and the DC battery current.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Inverter size calculator</h1>
+    <p class="ec-summary">Choose a power inverter from your load list: running watts and VA, motor surge, design margin, the next common size and the battery current.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>What size inverter do you need? Add up the running watts of everything that can be on at the same time, allow for the power factor of motors, and add a margin. Then check that the inverter&#39;s surge rating covers the largest motor starting. The battery side matters too: a 1 000 W load on a 12 V battery draws about 93 A through a 90 % efficient inverter.</p>
+<p>This calculator sums your loads in watts and volt-amperes, adds the starting surge, and recommends the next common inverter size. It also gives the battery current at the nominal and at the low-cutoff voltage, which sets the cable and fuse sizes. It is for owners of off-grid cabins, vans, boats and backup systems, and for the installers who size them.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Loads:</p>
+<pre class="ec-formula" tabindex="0"><code>W_run = Σ W_i
+S_run = Σ W_i / PF_i
+surge = max(W_start,i − W_i)    (one motor at a time)
+W_peak = W_run + surge</code></pre>
+<p>Inverter and battery:</p>
+<pre class="ec-formula" tabindex="0"><code>rating ≥ S_run × (1 + m)   and   rating ≥ W_peak / k_surge
+I_dc = W / (V_bat × η)</code></pre>
+<ul>
+<li>W_i, W_start,i — running and starting watts of each load</li>
+<li>PF_i — power factor of each load, 1 for heaters, lights and electronics with power factor correction</li>
+<li>m — design margin; k_surge — the inverter&#39;s surge rating as a multiple of its continuous rating</li>
+<li>V_bat — battery voltage; η — inverter efficiency</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Take running and starting watts from the nameplate or manual. The default list is an illustrative example only.</li>
+<li>The VA of the loads are added directly. This ignores their different phase angles and errs on the safe side.</li>
+<li>By default only one motor starts at a time. Choose &quot;all together&quot; if several motors can start at once, for example when power returns.</li>
+<li>Surge ratings vary widely between inverters and last only a few seconds. Take the multiple from the data sheet.</li>
+<li>Inverter ratings are not a standard series. The page picks the next common catalogue size, so check what the maker offers.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A cabin runs a refrigerator (150 W, starting 750 W, power factor 0.8), a 1/2 hp well pump (800 W, starting 2 400 W, power factor 0.75), a microwave (1 000 W), lights (200 W), a TV and router (150 W) and a laptop (60 W). The battery is 24 V, the inverter is 90 % efficient and can surge to twice its rating. What size inverter is needed?</p>
+<ol>
+<li>Running watts: 150 + 800 + 1 000 + 200 + 150 + 60 = 2 360 W.</li>
+<li>Apparent power: 150 / 0.8 + 800 / 0.75 + 1 410 = 2 664 VA, an overall power factor of 0.89.</li>
+<li>Largest surge: the pump, 2 400 − 800 = 1 600 W, so the peak is 3 960 W.</li>
+<li>Continuous need with a 25 % margin: 2 664 × 1.25 = 3 330 VA.</li>
+<li>Surge need: 3 960 / 2 = 1 980 W, below the continuous need.</li>
+<li>The next common size is 3 500 W.</li>
+<li>Battery current: 2 360 / (24 × 0.9) = 109 A running. At the peak and a 21 V cutoff it is 3 960 / (21 × 0.9) = 209.5 A.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What size inverter do I need?</summary>
+<p>At least the running watts of everything on at the same time, plus a margin of about 25 %. Its surge rating must also cover the largest motor starting.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate inverter size from watts?</summary>
+<p>Add the watts of all loads that run together and divide motor loads by their power factor. Multiply by 1.25 and choose the next size up.</p>
+</details>
+<details class="ec-faq"><summary>What is inverter surge power?</summary>
+<p>The power an inverter can deliver for a few seconds while a motor starts. Many inverters manage about twice their continuous rating, but check the data sheet.</p>
+</details>
+<details class="ec-faq"><summary>How many amps does an inverter draw from the battery?</summary>
+<p>Watts divided by battery volts and by the efficiency. A 2 000 W load on 12 V at 90 % draws 185 A.</p>
+</details>
+<details class="ec-faq"><summary>Should I use a 12 V, 24 V or 48 V battery?</summary>
+<p>A higher voltage halves the current each time it doubles. Above about 2 kW, 24 V or 48 V keeps the cables and fuses a practical size.</p>
+</details>
+<details class="ec-faq"><summary>Do I need a pure sine wave inverter?</summary>
+<p>For motors, compressors, chargers and most modern electronics, yes. Modified sine wave output makes many motors run hotter and noisier.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../solar-battery-bank/index.html">Solar battery bank calculator</a> — the battery bank behind the inverter.</li>
+<li><a href="../generator-size/index.html">Generator size calculator</a> — the same load list for a generator.</li>
+<li><a href="../battery-runtime/index.html">Battery capacity and runtime</a> — how long the battery carries the load.</li>
+<li><a href="../wire-size/index.html">Wire size calculator (AWG and mm²)</a> — the DC cable for the battery current.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

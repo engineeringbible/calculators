@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watts to amps — Engineering calculators</title>
+  <meta name="description" content="Amps drawn by a load from its watts and the voltage, for DC, single-phase and three-phase circuits, with the power factor for AC loads.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Watts to amps</h1>
+    <p class="ec-summary">Convert watts to amps for DC, single-phase and three-phase circuits at the supply voltage and power factor.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Appliances and equipment are labelled in watts, but fuses, breakers, cables and extension leads are rated in amps. To know whether a heater can share a socket with a kettle, which fuse a plug needs, or how much current a battery inverter must supply, the watts have to be turned into amps, and that depends on the voltage.</p>
+<p>This calculator converts watts to amps for DC, single-phase AC and three-phase AC supplies. For AC loads it includes the power factor, which raises the current of motors and electronic equipment above what the watts alone suggest. It is for homeowners, electricians, caravan and boat owners, and engineers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Current from power:</p>
+<pre class="ec-formula" tabindex="0"><code>DC:            I = P / V
+single-phase:  I = P / (V × cos φ)
+three-phase:   I = P / (√3 × V × cos φ)</code></pre>
+<p>Apparent power:</p>
+<pre class="ec-formula" tabindex="0"><code>S = P / cos φ</code></pre>
+<ul>
+<li>P — real power, W</li>
+<li>V — voltage, V (line-to-line for three-phase)</li>
+<li>cos φ — power factor: 1 for heaters and kettles, about 0.8 to 0.9 for motors</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The watts are the power the load takes from the supply. A motor&#39;s nameplate kW is its shaft output, so the input is higher by its efficiency.</li>
+<li>AC values are RMS at a constant power factor. Loads with poor power-factor correction, such as some LED drivers and chargers, draw more current than their watts suggest.</li>
+<li>For three-phase the load is balanced, and the voltage is the line-to-line voltage, for example 400 V or 480 V.</li>
+<li>Inrush and starting currents are not included. Motors start at 5 to 8 times their running current, and lamps and power supplies have a brief inrush.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 1500 W electric kettle runs on a 230 V supply. How many amps does it draw?</p>
+<ol>
+<li>A kettle is a resistive heater, so its power factor is 1.</li>
+<li>Current: I = P / V = 1500 / 230 = 6.52 A.</li>
+<li>On a 120 V North American supply the same kettle would draw 1500 / 120 = 12.5 A.</li>
+</ol>
+<p>So in Europe the kettle can share a 16 A circuit with other small loads. On a 15 A circuit at 120 V it uses most of the capacity by itself.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many amps is 1000 watts?</summary>
+<p>At 230 V, 4.35 A; at 120 V, 8.33 A; at 12 V DC, 83 A. The lower the voltage, the higher the current for the same power.</p>
+</details>
+<details class="ec-faq"><summary>Why do I need the voltage?</summary>
+<p>Watts are volts times amps, so the same power can mean very different currents. A 12 V camping appliance draws nearly twenty times the current of a 230 V one of the same power.</p>
+</details>
+<details class="ec-faq"><summary>What power factor should I use?</summary>
+<p>Use 1 for heaters, kettles, toasters and incandescent lamps. Use about 0.85 for motors and compressors, and 0.9 to 0.99 for electronics with power-factor correction. Check the label or data sheet if it matters.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert watts to amps for three-phase?</summary>
+<p>Divide the watts by √3 times the line voltage times the power factor. 11 kW at 400 V and 0.85 is 18.7 A per line.</p>
+</details>
+<details class="ec-faq"><summary>Which fuse does my plug need?</summary>
+<p>At least the running current found here, rounded up to the next fuse size. A 2 kW heater at 230 V draws 8.7 A, so it needs a 13 A fuse in a UK plug, not a 5 A one.</p>
+</details>
+<details class="ec-faq"><summary>Does a higher wattage always mean more amps?</summary>
+<p>At the same voltage and power factor, yes, in direct proportion.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../amps-to-watts/index.html">Amps to watts</a> — the conversion the other way.</li>
+<li><a href="../kw-to-amps/index.html">kW to amps</a> — larger loads in kilowatts, and motors.</li>
+<li><a href="../ohms-law/index.html">Ohm&#39;s law and electrical power</a> — voltage, current, resistance and power together.</li>
+<li><a href="../cable-sizing/index.html">Cable sizing and voltage drop</a> — the cable for the current found here.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

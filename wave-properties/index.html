@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wave properties and encounter period — Engineering calculators</title>
+  <meta name="description" content="Linear wave theory: wavelength, celerity, group velocity, deep/shallow regime, orbital velocities and the encounter period for a ship speed and heading.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Wave properties and encounter period</h1>
+    <p class="ec-summary">Linear wave theory in any depth: wavelength or period from the dispersion relation, phase and group velocity, depth regime, steepness and the Miche breaking limit, orbital velocities at the surface, at a chosen depth and at the bottom, energy flux per metre of crest, and the encounter period for a ship's speed and heading compared with the IMO circular's approximation.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Almost every question about waves at sea starts with the same relation: how long and how fast is a wave of a given period, and how does the bottom change that. Linear (Airy) theory answers it with the dispersion relation, and from the wavenumber everything else follows: the speed at which crests travel, the slower speed at which the wave energy travels, the water velocities that act on a hull, a pipeline or a diver, the power carried per metre of crest, the height at which the wave must break, and the period at which a moving ship meets successive crests. This calculator solves the dispersion relation exactly for any depth and reports all of these.</p>
+<p>It is for naval architects and seakeeping analysts (encounter frequency, wave length to ship length), coastal and offshore engineers (shoaling, bottom velocities, breaking), masters checking the IMO heavy-weather guidance, and students.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Dispersion relation and kinematics (depth h, wavenumber k = 2π/λ, ω = 2π/T):</p>
+<pre class="ec-formula" tabindex="0"><code>ω² = g k tanh(kh)        λ₀ = g T²/2π (deep water)
+c = λ/T = ω/k            c_g = n c,  n = ½ (1 + 2kh / sinh 2kh)   (n → ½ deep, → 1 shallow)
+regime: deep h/λ &gt; 0.5,  shallow h/λ &lt; 0.05,  intermediate between</code></pre>
+<p>Velocities, energy, breaking (amplitude a = H/2):</p>
+<pre class="ec-formula" tabindex="0"><code>u(z) = a ω cosh(k(h − z)) / sinh(kh)      (z measured down from the surface; deep water a ω e^(−kz))
+P = ρ g H² c_g / 8  per metre of crest     (deep water: ρ g² H² T / 32π)
+H_max = 0.142 λ tanh(kh)                   (Miche)</code></pre>
+<p>Encounter period for a ship at speed V with α between heading and wave direction (0° head seas):</p>
+<pre class="ec-formula" tabindex="0"><code>ω_e = ω + k V cos α,   T_e = 2π / |ω_e|
+deep-water check (MSC.1/Circ.1228): T_e ≈ 3T² / (3T + V_kn cos α)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Linear theory: small steepness, flat bottom, no current. Second-order effects sharpen crests and raise crest velocities above the linear value at steepness beyond about 1/20; in very shallow water cnoidal or solitary theory applies.</li>
+<li>One regular wave stands for the sea. For a spectrum use H_s and the peak or energy period and read velocities as representative. For irregular seas the energy flux is about half the regular-wave value for the same height and period.</li>
+<li>The Miche limit is a kinematic criterion; actual breaking depends on bottom slope and wave groupiness.</li>
+<li>The encounter formula is kinematic; wave speed in a current and refraction are not included.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 10 s swell, 3 m high, met by a ship doing 15 knots into it.</p>
+<ol>
+<li>Deep water: λ₀ = 9.807 × 100 / 2π = 156.1 m; c = 15.6 m/s (30 knots); c_g = 7.8 m/s. Steepness 3/156 = 0.019, far from the 0.142 breaking limit (22 m).</li>
+<li>Surface orbital velocity π H/T = 0.94 m/s; at 10 m depth 0.94 × e^(−0.0402 × 10) = 0.63 m/s.</li>
+<li>Energy flux: 1 025 × 9.807 × 9 × 7.8/8 = 88 kW per metre of crest.</li>
+<li>Encounter: ω_e = 0.628 + 0.0402 × 7.72 = 0.939 rad/s → T_e = 6.7 s. The IMO circular&#39;s formula gives 300/(30 + 15) = 6.67 s.</li>
+<li>Same swell entering 30 m of water (h/λ ≈ 0.2, intermediate): λ shortens to about 140 m, c to 14 m/s, the group velocity rises to 10.2 m/s and the bottom velocity is 0.2 m/s; in 2 m of water the wave would already have broken (limit about 1.7 m).</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why are the phase and group velocities different?</summary>
+<p>Deep-water waves are dispersive: long waves travel faster than short ones, and the energy (and the visible group of waves) travels at half the crest speed. In shallow water all waves travel at √(gh) and the two speeds coincide.</p>
+</details>
+<details class="ec-faq"><summary>When is water &quot;deep&quot;?</summary>
+<p>When the depth exceeds half the wavelength the bottom has no influence; below a twentieth of the wavelength the wave is &quot;shallow&quot;. For a 10 s wave that means deeper than 78 m or shallower than 8 m.</p>
+</details>
+<details class="ec-faq"><summary>What do I enter for an irregular sea?</summary>
+<p>The significant height H_s and the peak period (or the energy period for power). The orbital velocities then represent the significant waves; individual waves reach about 1.8 H_s.</p>
+</details>
+<details class="ec-faq"><summary>What is the encounter period used for?</summary>
+<p>Ship motions respond to the frequency at which waves are met, not the wave frequency. Resonance with the roll or pitch period, slamming and parametric rolling are all judged on T_e; see the roll-period calculator.</p>
+</details>
+<details class="ec-faq"><summary>Why does the IMO formula differ slightly?</summary>
+<p>MSC.1/Circ.1228 uses λ = 1.56 T² and speed in knots with rounded constants; the exact deep-water result differs by about 1.5 %.</p>
+</details>
+<details class="ec-faq"><summary>How fast does a swell cross an ocean?</summary>
+<p>At the group velocity: a 15 s swell travels at 11.7 m/s, about 1 000 km per day, which is why long-period swell arrives before the storm.</p>
+</details>
+<details class="ec-faq"><summary>Does the calculator handle currents?</summary>
+<p>No. A following current lengthens the waves for a fixed absolute period and an opposing one shortens and steepens them; that needs the Doppler-shifted dispersion relation.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../roll-period/index.html">Roll period and synchronous rolling</a> — resonance checks using the encounter period.</li>
+<li><a href="../beaufort-sea-state/index.html">Beaufort, wind speed and sea state converter</a> — height and period from the sea state.</li>
+<li><a href="../ship-squat/index.html">Ship squat and under-keel clearance</a> — shallow-water effects on the ship itself.</li>
+<li><a href="../tidal-height/index.html">Tidal height (rule of twelfths)</a> — the water depth to use.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

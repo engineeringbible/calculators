@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heat exchanger effectiveness–NTU calculator — Engineering calculators</title>
+  <meta name="description" content="Effectiveness, NTU, duty and both outlet temperatures of a heat exchanger from UA and the inlet conditions: counter, parallel, shell-and-tube, cross-flow.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Heat exchanger effectiveness–NTU calculator</h1>
+    <p class="ec-summary">Effectiveness, NTU, duty and outlet temperatures of counterflow, parallel, shell-and-tube and cross-flow heat exchangers by the ε-NTU method.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The effectiveness–NTU method predicts how much heat an existing exchanger transfers when you know only the inlet temperatures. The effectiveness ε is the actual duty divided by the largest duty the two streams could exchange, C_min (T_h,in − T_c,in). It depends only on the number of transfer units, NTU = UA / C_min, the capacity ratio C_r and the flow arrangement. An oil cooler with UA = 197 W/K, oil at 100 °C and cooling water at 30 °C transfers 8.52 kW in counterflow, an effectiveness of 57 %.</p>
+<p>This calculator gives C_min, C_r, NTU, the effectiveness, the duty and both outlet temperatures for counterflow, parallel flow, shell-and-tube, three cross-flow arrangements and condensing or boiling streams. It is for engineers rating an exchanger at new flow rates or temperatures, and for students working the relations of Incropera Table 11.3.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Heat capacity rates, NTU and the duty:</p>
+<pre class="ec-formula" tabindex="0"><code>C_h = ṁ_h c_p,h,   C_c = ṁ_c c_p,c,   C_r = C_min / C_max
+NTU = U A / C_min
+q = ε C_min (T_h,in − T_c,in)
+T_h,out = T_h,in − q / C_h,   T_c,out = T_c,in + q / C_c</code></pre>
+<p>Effectiveness (Incropera, Table 11.3):</p>
+<pre class="ec-formula" tabindex="0"><code>Parallel:      ε = [1 − exp(−NTU (1 + C_r))] / (1 + C_r)
+Counterflow:   ε = [1 − exp(−NTU (1 − C_r))] / [1 − C_r exp(−NTU (1 − C_r))],   ε = NTU / (1 + NTU) at C_r = 1
+One shell:     ε₁ = 2 {1 + C_r + √(1 + C_r²) [1 + exp(−NTU₁ √(1 + C_r²))] / [1 − exp(−NTU₁ √(1 + C_r²))]}⁻¹
+n shells:      ε = [((1 − ε₁ C_r)/(1 − ε₁))ⁿ − 1] / [((1 − ε₁ C_r)/(1 − ε₁))ⁿ − C_r],   NTU₁ = NTU / n
+Cross, both unmixed:   ε ≈ 1 − exp{(1/C_r) NTU^0.22 [exp(−C_r NTU^0.78) − 1]}
+Cross, C_max mixed:    ε = (1/C_r) {1 − exp[−C_r (1 − exp(−NTU))]}
+Cross, C_min mixed:    ε = 1 − exp{−(1/C_r) [1 − exp(−C_r NTU)]}
+Any, C_r = 0:          ε = 1 − exp(−NTU)</code></pre>
+<ul>
+<li>ṁ — mass flow; c_p — specific heat; U — overall heat transfer coefficient; A — area</li>
+<li>C_min, C_max — the smaller and larger of C_h and C_c</li>
+<li>n — number of shell passes, each with 2, 4 or more tube passes</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The exchanger runs steadily, loses no heat to the surroundings, and has constant specific heats and a uniform U. Large property changes call for splitting it into zones.</li>
+<li>The cross-flow relation with both fluids unmixed is an approximation. It is within 4 % of the exact series from NTU 0.25 to 5 and is exact as C_r approaches zero.</li>
+<li>A condensing or boiling stream stays at its inlet temperature, so C_r = 0. Superheat and subcooling zones are not included.</li>
+<li>U must already include fouling, wall resistance and fin efficiency. Enter a service value rather than a clean one when sizing for the long term.</li>
+<li>For the mixed cross-flow cases, choose which fluid is mixed. The calculator then picks the C_max mixed or C_min mixed relation from the flow rates.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Incropera Example 11.1 is a counterflow oil cooler. Oil flows at 0.1 kg/s with c_p = 2 131 J/(kg·K) and enters at 100 °C. Water flows at 0.2 kg/s with c_p = 4 178 J/(kg·K) and enters at 30 °C. U = 38.1 W/(m²·K) on an area of 5.176 m². What are the duty and the outlet temperatures?</p>
+<ol>
+<li>Capacity rates: C_h = 0.1 × 2 131 = 213.1 W/K and C_c = 0.2 × 4 178 = 835.6 W/K, so the oil is C_min.</li>
+<li>C_r = 213.1 / 835.6 = 0.255.</li>
+<li>UA = 38.1 × 5.176 = 197.2 W/K, so NTU = 197.2 / 213.1 = 0.925.</li>
+<li>Counterflow: ε = (1 − e^−0.689) / (1 − 0.255 e^−0.689) = 0.571.</li>
+<li>q = 0.571 × 213.1 × (100 − 30) = 8.52 kW.</li>
+<li>Oil out: 100 − 8 521 / 213.1 = 60.0 °C. Water out: 30 + 8 521 / 835.6 = 40.2 °C.</li>
+</ol>
+<p>These are the temperatures the example started from, so the LMTD method gives the same exchanger. With the same UA, one shell pass would transfer 8.34 kW and parallel flow 8.17 kW.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>When should I use ε-NTU instead of LMTD?</summary>
+<p>Use ε-NTU to rate an exchanger when only the inlet temperatures are known. LMTD needs all four temperatures, so it suits sizing an exchanger for a set duty.</p>
+</details>
+<details class="ec-faq"><summary>What does NTU mean physically?</summary>
+<p>It compares the exchanger&#39;s conductance UA with the smaller capacity rate. A large NTU means a large exchanger for the flow, and the effectiveness approaches its upper limit.</p>
+</details>
+<details class="ec-faq"><summary>How much area does a higher effectiveness need?</summary>
+<p>The area rises steeply near the top. A counterflow exchanger with C_r = 0.5 needs NTU 2.2 for 80 %, 3.4 for 90 % and 4.7 for 95 %.</p>
+</details>
+<details class="ec-faq"><summary>Why can parallel flow never reach 100 %?</summary>
+<p>Both streams leave at nearly the same temperature, which caps the effectiveness at 1/(1 + C_r). For equal capacity rates that is 50 %.</p>
+</details>
+<details class="ec-faq"><summary>What is C_r = 0?</summary>
+<p>A stream that condenses or boils keeps a constant temperature, so its capacity rate is infinite. Then every arrangement gives ε = 1 − e^−NTU.</p>
+</details>
+<details class="ec-faq"><summary>What does mixed and unmixed mean in cross-flow?</summary>
+<p>A mixed fluid can move across the flow passage and evens out its temperature, like air over a bare tube bank. An unmixed fluid is held in separate channels, like air between plate fins.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../heat-exchanger-lmtd/index.html">Heat exchanger LMTD</a> — the sizing method from four temperatures.</li>
+<li><a href="../heat-transfer/index.html">Heat transfer calculator</a> — conduction, convection and U-values.</li>
+<li><a href="../specific-heat/index.html">Specific heat calculator</a> — the heat to warm a fluid.</li>
+<li><a href="../pipe-insulation/index.html">Pipe insulation</a> — heat loss from the pipes in between.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

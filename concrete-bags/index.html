@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Concrete bag calculator — Engineering calculators</title>
+  <meta name="description" content="How many 80, 60, 50 or 40 lb bags (or 20 to 30 kg) of premixed concrete you need for any volume, with the yield per bag, the weight to carry and the cost.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Concrete bag calculator</h1>
+    <p class="ec-summary">How many bags of premixed concrete make a cubic yard, a cubic metre or any volume, in 80, 60, 50 and 40 lb or 20 to 30 kg bags.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A bag of premixed concrete is sold by weight, but a job is measured by volume. An 80 lb bag makes 0.60 cubic feet of concrete once water is added, so one cubic yard takes 45 of them, and 3 600 lb of mix to carry from the store. Smaller bags are easier to lift but you need more of them.</p>
+<p>This calculator turns any volume, in cubic yards, cubic feet, cubic metres or litres, into the number of bags of each common size. It also gives the yield of one bag, the bags per cubic yard and per cubic metre, the weight of the bags and their cost. Use it with a volume you already know, or start from the slab, footing or post hole calculators.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Bags for a volume:</p>
+<pre class="ec-formula" tabindex="0"><code>bags = V × (1 + waste) / yield, rounded up</code></pre>
+<p>Yield of a bag of mass m, from 0.60 ft³ per 80 lb:</p>
+<pre class="ec-formula" tabindex="0"><code>yield = m × 0.0075 ft³/lb</code></pre>
+<p>Common bag yields:</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Bag</th><th scope="col">Yield</th><th scope="col">Bags per yd³</th><th scope="col">Bags per m³</th></tr></thead>
+<tbody>
+<tr><td>80 lb</td><td>0.60 ft³ (17.0 L)</td><td>45</td><td>58.9</td></tr>
+<tr><td>60 lb</td><td>0.45 ft³ (12.7 L)</td><td>60</td><td>78.5</td></tr>
+<tr><td>50 lb</td><td>0.375 ft³ (10.6 L)</td><td>72</td><td>94.2</td></tr>
+<tr><td>40 lb</td><td>0.30 ft³ (8.5 L)</td><td>90</td><td>117.7</td></tr>
+<tr><td>30 kg</td><td>0.496 ft³ (14.0 L)</td><td>54.4</td><td>71.2</td></tr>
+<tr><td>25 kg</td><td>0.413 ft³ (11.7 L)</td><td>65.3</td><td>85.4</td></tr>
+<tr><td>20 kg</td><td>0.331 ft³ (9.4 L)</td><td>81.6</td><td>106.8</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The yields are those printed on standard US premixed concrete bags. Metric bags are converted with the same yield per kilogram, so check the label of your brand.</li>
+<li>Mortar, sand mix, high-strength, fast-setting and lightweight products yield different volumes. Use the figure on their bag.</li>
+<li>The weight is the dry weight you carry. The water added on site is extra.</li>
+<li>Above about one cubic yard, ready-mix delivered by truck is usually cheaper and much less work.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>How many 80 lb bags make one cubic yard of concrete, and how much do they weigh?</p>
+<ol>
+<li>One cubic yard is 27 ft³.</li>
+<li>One 80 lb bag yields 0.600 ft³.</li>
+<li>Bags: 27 / 0.600 = 45 bags.</li>
+<li>Weight: 45 × 80 = 3 600 lb of dry mix.</li>
+<li>Per cubic metre: 1 / 0.01699 m³ = 58.9 bags.</li>
+</ol>
+<p>So a cubic yard is 45 bags of 80 lb and almost two tons to lift, which is why larger pours use ready-mix.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many 80 lb bags of concrete are in a yard?</summary>
+<p>45 bags. A yard is 27 cubic feet and each 80 lb bag makes 0.60 cubic feet.</p>
+</details>
+<details class="ec-faq"><summary>How many 60 lb bags make a yard?</summary>
+<p>60 bags, at 0.45 cubic feet each.</p>
+</details>
+<details class="ec-faq"><summary>How much does an 80 lb bag of concrete cover?</summary>
+<p>0.60 cubic feet: 1.8 square feet at 4 in thick, or 3.6 square feet at 2 in thick.</p>
+</details>
+<details class="ec-faq"><summary>How many bags of concrete are in a cubic metre?</summary>
+<p>About 59 bags of 80 lb, or 86 bags of 25 kg.</p>
+</details>
+<details class="ec-faq"><summary>Is it cheaper to buy bags or ready-mix?</summary>
+<p>For a few bags, buying them is simpler. Past about one cubic yard, ready-mix usually costs less per yard than 45 bags, and saves hours of mixing.</p>
+</details>
+<details class="ec-faq"><summary>How much water does a bag of concrete need?</summary>
+<p>Follow the amount printed on the bag, adding it gradually. Too much water makes the mix easier to place but weakens the finished concrete.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../concrete-slab/index.html">Concrete slab calculator</a> — volume of a slab, patio or driveway.</li>
+<li><a href="../concrete-footing/index.html">Concrete footing calculator</a> — strip and pad footings.</li>
+<li><a href="../concrete-column/index.html">Concrete column and post hole calculator</a> — fence posts, piers and tube forms.</li>
+<li><a href="../concrete-volume/index.html">Concrete volume and rebar weight</a> — mixing your own with cement, sand and gravel.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

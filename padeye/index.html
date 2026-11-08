@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Padeye design check — Engineering calculators</title>
+  <meta name="description" content="Plate geometry around the hole, bearing, and shear and bending of the shackle pin of a lifting padeye to EN 1993-1-8 pin connections.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Structural</span>
+    <h1 class="ec-title">Padeye design check</h1>
+    <p class="ec-summary">Check a lifting padeye and its shackle pin as a pin connection to Eurocode 3 Part 1-8: the material around the hole, bearing, shear and bending of the pin, and the serviceability checks that keep a shackle pin replaceable.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A padeye is a plate with a hole welded to a structure, so that a shackle can lift it. Under load the plate can tear out beyond the hole or split at its sides, the pin can crush the plate or be crushed itself, and the shackle pin can bend or shear. This calculator checks the padeye and pin as a pin connection to Eurocode 3 Part 1-8: the minimum material around the hole, bearing, shear and bending of the pin in double shear, and, because a shackle pin is meant to be removed, the serviceability checks that keep the pin replaceable.</p>
+<p>It is for engineers designing lifting points for equipment and modules, surveyors checking padeye drawings, and anyone who needs a quick, traceable check of a lifting lug.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Geometry (Table 3.9, type A):  a ≥ F γM0 / (2 t fy) + 2 d0/3,   c ≥ F γM0 / (2 t fy) + d0/3
+Bearing:                       Fb,Rd = 1.5 t d fy / γM0
+Pin shear (each plane):        Fv,Rd = 0.6 A fup / γM2
+Pin bending (Figure 3.11):     MEd = F (b + 4c + 2a) / 8,   MRd = 1.5 Wel fyp / γM0
+Combined:                      (MEd/MRd)² + (Fv,Ed/Fv,Rd)² ≤ 1
+Replaceable pin:               σh,Ed = 0.591 √(E Fser (d0 − d) / (d² t)) ≤ 2.5 fy / γM6,ser</code></pre>
+<ul>
+<li>a, c — material beyond the hole in the load direction and at the sides; t — plate thickness; d0, d — hole and pin diameters; in the pin moment, b is the padeye thickness, a the jaw thickness and c the gap.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>EN 1993-1-8:2005 with its corrigenda; recommended partial factors, which a National Annex may change.</li>
+<li>The design force already includes the factors of the lifting standard used.</li>
+<li>The load acts in the plane of the padeye along its axis.</li>
+<li>Welds, cheek plate connections, out-of-plane loads and the supporting structure are checked separately.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 30 mm padeye with a 53 mm hole carries a factored 250 kN through a 50 mm shackle pin (yield 640 MPa, ultimate 800 MPa) between 25 mm jaws with 5 mm gaps. The plate is S355.</p>
+<ol>
+<li>Required material: a ≥ 11.7 + 35.3 = 47.1 mm beyond the hole and c ≥ 29.4 mm at the sides; 73.5 mm is provided.</li>
+<li>Bearing: 1.5 × 30 × 50 × 355 = 798.8 kN against 250 kN.</li>
+<li>Pin shear: 754.0 kN per plane against 125 kN; pin bending 3.13 kN·m against 11.78 kN·m.</li>
+<li>With the shackle pin replaceable, the contact stress under the 170 kN service load is 706 MPa against 887.5 MPa: utilisation 0.80, which governs.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why is a replaceable pin checked separately?</summary>
+<p>A pin that must come out after the lift should not deform the hole or itself. Eurocode 3 limits the bearing force, the pin moment and the contact stress under the characteristic load more strictly than the ultimate checks.</p>
+</details>
+<details class="ec-faq"><summary>What force should I enter?</summary>
+<p>The design force from the lifting standard you work to, including dynamic amplification, skew load and consequence factors, and any load factor of the Eurocode design. The serviceability force is the characteristic load without the partial factors.</p>
+</details>
+<details class="ec-faq"><summary>Do cheek plates count?</summary>
+<p>Welded cheek plates add to the thickness at the hole if their welds can carry their share of the load. If they are smaller than the main plate, check the main plate alone for the edge distances.</p>
+</details>
+<details class="ec-faq"><summary>Why does the gap between padeye and shackle matter?</summary>
+<p>The pin bends between the jaws of the shackle. A wider gap or thicker jaws increase the lever arm and the bending moment in the pin.</p>
+</details>
+<details class="ec-faq"><summary>What about the shackle itself?</summary>
+<p>Shackles are rated by their maker for a working load limit; choose one with a WLL above the sling load and a pin that fits the hole closely.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../lifting-sling/index.html">Lifting sling and wire rope load</a> — the sling force that reaches the padeye.</li>
+<li><a href="../fillet-weld/index.html">Fillet weld strength</a> — the weld between the padeye and the structure.</li>
+<li><a href="../stiffener-section/index.html">Stiffener with attached plating</a> — the structure under the padeye.</li>
+<li><a href="../weld-fatigue/index.html">Weld fatigue damage (DNV-RP-C203)</a> — padeyes used for repeated lifts.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

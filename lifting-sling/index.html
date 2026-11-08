@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lifting sling and wire rope load — Engineering calculators</title>
+  <meta name="description" content="Leg tension from load, legs and sling angle or geometry, with dynamic and hitch factors; chain, wire-rope or rated sling WLL; utilisation and the maximum load for the sling.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Lifting sling and wire rope load</h1>
+    <p class="ec-summary">Tension in each leg of a 1- to 4-leg sling from the load, the leg angle (or the spread and leg length), a dynamic factor and the hitch; the working load limit of Grade 8 chain, 6×36 wire rope or a tag-rated sling; utilisation and the maximum load the arrangement may lift.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A sling leg carries more than its share of the load as soon as it leans: at 30° from the vertical each of two legs carries 58 % of the load, at 60° the full load. Most sling failures trace back to that angle factor, to assuming four legs share equally, or to a choke hitch used at its straight-pull rating. This calculator computes the tension in each leg from the load, the number of legs assumed to carry it, the angle (entered directly or from the spread and leg length), a dynamic factor and the hitch, then compares it with the working load limit of a Grade 8 chain sling, a 6×36 wire rope sling or any tag-rated sling, and gives the maximum load the arrangement may lift.</p>
+<p>It is for riggers, deck and engine officers planning lifts with ship&#39;s cranes and chain blocks, superintendents checking a lift plan, and students learning the sling-angle rule.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Leg angle from geometry (two legs, or the diagonal of four):</p>
+<pre class="ec-formula" tabindex="0"><code>sin β = (spread / 2) / leg length</code></pre>
+<p>Loads:</p>
+<pre class="ec-formula" tabindex="0"><code>Hook load   F = W g × DAF
+Leg tension T = F / (n_eff cos β)
+Compression on the load per leg = T sin β
+Angle factor = 1 / cos β</code></pre>
+<p>Working load limits (single leg, straight pull):</p>
+<pre class="ec-formula" tabindex="0"><code>Grade 8 chain:  WLL ≈ 0.0314 d² tonnes (d in mm)                           EN 818-4
+Wire rope 6×36 IWRC 1770 MPa: MBL = 0.356 d² × 1770 / 1000 kN;  WLL = MBL × 0.9 / 5   EN 12385-4, EN 13414-1
+Rated sling: tag value</code></pre>
+<p>Capacity and utilisation:</p>
+<pre class="ec-formula" tabindex="0"><code>Leg capacity = WLL × hitch factor   (straight 1.0, choke 0.8, basket with vertical legs 2.0)
+Utilisation  = T / (leg capacity × g)
+Maximum load W_max = leg capacity × g × n_eff cos β / (g × DAF)</code></pre>
+<ul>
+<li>W — load mass; DAF — dynamic amplification factor; n_eff — legs assumed to carry the load (all for 1–2 legs, 3 for 3–4 legs by default); β — angle of each leg to the vertical</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Equal sharing between the effective legs and equal angles. Four-leg slings are rated on three legs unless the legs are adjustable or the load is rigid with exact geometry.</li>
+<li>The centre of gravity is under the hook. An offset CoG overloads the near legs; use a moment balance for the actual leg loads.</li>
+<li>β ≤ 60° by EN 13414-1 and ASME B30.9, 45° or less recommended; the calculator warns above both limits.</li>
+<li>WLL formulas are for Grade 8 chain and 6×36 IWRC 1770 MPa rope with ferrule-secured eyes; other grades, constructions and terminations differ. The sling tag governs.</li>
+<li>Hitch factors are the standard ones; bending over small diameters (D/d below about 20 for wire rope), sharp edges and knots reduce capacity further and are not covered.</li>
+<li>Shackles, hooks, master links, lifting lugs and the crane hook block need their own checks against the leg tension or total load.</li>
+<li>The dynamic factor is an input; the calculator does not derive it from crane speed or sea state.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 10 t engine part is lifted with a two-leg Grade 8 chain sling of 16 mm chain, leg length 4 m, lift points 4 m apart, straight hitch, in the engine room with the overhead crane (DAF 1.1).</p>
+<ol>
+<li>Angle: sin β = 2 / 4 → β = 30°, included angle 60°.</li>
+<li>Hook load: 10 000 × 9.81 × 1.1 = 107.9 kN.</li>
+<li>Leg tension: 107.9 / (2 × cos 30°) = 62.3 kN = 6.35 t per leg (angle factor 1.155). Each leg also pushes 31.1 kN horizontally into the part.</li>
+<li>Chain WLL: 0.0314 × 16² = 8.04 t per leg (EN 818-4 table 8.0 t); straight hitch factor 1.0.</li>
+<li>Utilisation: 6.35 / 8.04 = 79 % — acceptable. Maximum load for this arrangement: 8.04 × 2 × cos 30° / 1.1 = 12.7 t.</li>
+</ol>
+<p>Shortening the legs to 2.5 m would make β = 53°, tension 8.9 t per leg and the lift not permitted with this sling; a choke hitch at 30° would reduce the capacity to 6.4 t per leg and also fail.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the leg angle matter so much?</summary>
+<p>The vertical components of the leg tensions must add up to the load, so each leg&#39;s tension is its share divided by cos β. At 60° cos β = 0.5 and each leg carries the whole load; beyond that the tension rises faster than the load.</p>
+</details>
+<details class="ec-faq"><summary>My sling tag shows several WLLs. Which one applies?</summary>
+<p>Tags give the straight single-leg WLL and the multi-leg WLL at 0–45° and 45–60°; those already include the angle factor and the three-leg rule. Enter the straight single-leg value here and let the calculator apply the angle.</p>
+</details>
+<details class="ec-faq"><summary>Why only three legs for a four-leg sling?</summary>
+<p>Unless the legs are adjustable or the load is perfectly rigid and the lift points level, one leg goes slack and the load is carried by three. Standards therefore rate four-leg slings as three-leg.</p>
+</details>
+<details class="ec-faq"><summary>What dynamic factor should I use?</summary>
+<p>Workshop and engine-room cranes 1.1–1.25; ship&#39;s cranes in port 1.2–1.3; offshore lifts per DNV-ST-N001 1.3 and more depending on the sea state and the lift. Snatching a load can exceed all of these.</p>
+</details>
+<details class="ec-faq"><summary>Can I use the compression output for a spreader beam?</summary>
+<p>Yes. The horizontal components of the leg tensions compress a spreader beam between the lift points; check it as a column with the column-buckling calculator.</p>
+</details>
+<details class="ec-faq"><summary>Does a choke hitch really lose 20 %?</summary>
+<p>Yes, the standard factor is 0.8, and more is lost if the choke angle is tight or the sling bends over a sharp edge. A basket hitch with vertical legs gains a factor of 2 because two parts of the sling share the load.</p>
+</details>
+<details class="ec-faq"><summary>What about the shackles?</summary>
+<p>Each shackle must have a WLL at least equal to the leg tension when loaded in line, with reductions for side loading per the manufacturer; the master link must carry the total hook load.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../anchor-catenary/index.html">Anchor cable catenary and scope</a> — chain weights and cable loads.</li>
+<li><a href="../hydraulic-cylinder/index.html">Hydraulic cylinder force and speed</a> — crane and winch drives.</li>
+<li><a href="../column-buckling/index.html">Column buckling (Euler and Johnson)</a> — spreader beams in compression.</li>
+<li><a href="../beam-deflection/index.html">Beam deflection and bending stress</a> — lifting beams in bending.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

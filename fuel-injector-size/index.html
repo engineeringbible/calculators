@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fuel injector size calculator — Engineering calculators</title>
+  <meta name="description" content="Fuel injector size in lb/hr and cc/min from horsepower, BSFC, injector count and duty cycle, or the horsepower injectors support, with fuel pressure.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Fuel injector size calculator</h1>
+    <p class="ec-summary">Fuel injector size in lb/hr and cc/min from horsepower, BSFC, injector count and duty cycle, or the horsepower that injectors support.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How big do fuel injectors need to be? Multiply the target horsepower by the brake specific fuel consumption to get the total fuel flow. Then divide by the number of injectors and by the maximum duty cycle. A 450 hp naturally aspirated V8 on gasoline needs eight injectors of about 35 lb/hr each, or about 370 cc/min.</p>
+<p>This calculator sizes injectors in lb/hr and cc/min for gasoline or E85, naturally aspirated or boosted, and corrects for a fuel pressure different from the rating. It also works the other way, giving the horsepower a set of injectors supports. It is for engine builders and tuners planning an upgrade.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Injector size and horsepower supported:</p>
+<pre class="ec-formula" tabindex="0"><code>flow per injector = hp × BSFC / (n × DC)
+hp = flow × n × DC / BSFC</code></pre>
+<p>Fuel pressure and units:</p>
+<pre class="ec-formula" tabindex="0"><code>flow at p2 = flow at p1 × √(p2 / p1)
+cc/min = lb/hr × 453.6 / 60 / ρ</code></pre>
+<ul>
+<li>hp — flywheel horsepower; BSFC — lb of fuel per hp per hour</li>
+<li>n — number of injectors; DC — maximum duty cycle, such as 0.80</li>
+<li>p — pressure across the injector, fuel pressure minus manifold pressure</li>
+<li>ρ — fuel density in g/cm³: 0.72 for gasoline, which gives 10.5 cc/min per lb/hr, and 0.78 for E85</li>
+</ul>
+<p>Typical BSFC values, lb/(hp·h):</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Engine</th><th scope="col">Gasoline</th><th scope="col">E85 (× 1.5)</th></tr></thead>
+<tbody>
+<tr><td>Naturally aspirated</td><td>0.45 to 0.50</td><td>0.75</td></tr>
+<tr><td>Supercharged</td><td>0.55 to 0.75</td><td>0.90</td></tr>
+<tr><td>Turbocharged</td><td>0.55 to 0.75</td><td>0.975</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>BSFC depends on the engine, the tune and the air-fuel ratio. Boosted engines run richer to control knock, so they use more fuel per horsepower.</li>
+<li>E85 needs about 1.5 times the fuel mass of gasoline, because its stoichiometric air-fuel ratio is 9.8 instead of 14.7.</li>
+<li>Injector makers generally suggest a duty cycle of 85 % at most. The default of 80 % leaves a margin.</li>
+<li>Flow follows the pressure across the injector. With a 1:1 boost-referenced regulator that difference stays at the base pressure.</li>
+<li>Diesel and direct-injection engines are sized differently. Enter a BSFC only if you have one from the engine builder.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An engine builder plans a 450 hp naturally aspirated V8 on gasoline. It has eight injectors, and the maximum duty cycle is 80 %. The injectors are rated at 43.5 psi (3 bar) and will run at that pressure.</p>
+<ol>
+<li>Total fuel flow: 450 × 0.50 = 225.0 lb/h.</li>
+<li>Per injector: 225.0 / (8 × 0.80) = 35.2 lb/h.</li>
+<li>In cc/min: 35.16 × 453.6 / 60 / 0.72 = 369.1 cc/min.</li>
+</ol>
+<p>Choose the next size up that is available, to leave a margin for a richer tune. Eight 42 lb/hr injectors would support 537.6 hp at the same duty cycle.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate injector size?</summary>
+<p>Multiply horsepower by BSFC, then divide by the number of injectors and the maximum duty cycle. The result is in lb/hr.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert lb/hr to cc/min?</summary>
+<p>Multiply by about 10.5 for gasoline. The exact factor is 453.6 / 60 divided by the fuel density in g/cm³.</p>
+</details>
+<details class="ec-faq"><summary>What BSFC should I use?</summary>
+<p>About 0.50 for a naturally aspirated gasoline engine and 0.60 to 0.65 for a supercharged or turbo engine. For E85, multiply by 1.5.</p>
+</details>
+<details class="ec-faq"><summary>How much horsepower will my injectors support?</summary>
+<p>Multiply the injector flow by the number of injectors and the duty cycle, then divide by BSFC. Eight 42 lb/hr injectors at 80 % support 537.6 hp at BSFC 0.50.</p>
+</details>
+<details class="ec-faq"><summary>Does raising fuel pressure increase injector flow?</summary>
+<p>Yes, with the square root of the pressure. Going from 43.5 to 58 psi raises the flow by 15.5 %.</p>
+</details>
+<details class="ec-faq"><summary>How much bigger do injectors need to be for E85?</summary>
+<p>About 50 % bigger by mass, because E85 needs 1.5 times as much fuel for the same air.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../horsepower/index.html">Horsepower calculator</a> — the power to size for.</li>
+<li><a href="../engine-displacement/index.html">Engine displacement</a> — cubic inches and litres.</li>
+<li><a href="../compression-ratio/index.html">Compression ratio</a> — static compression for the build.</li>
+<li><a href="../quarter-mile/index.html">Quarter-mile ET and trap speed</a> — the performance the power gives.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

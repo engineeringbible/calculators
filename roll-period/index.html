@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roll period and synchronous rolling — Engineering calculators</title>
+  <meta name="description" content="Natural roll period from GM and beam (IS Code) or GM from an observed period, encounter period for speed and heading, synchronous and parametric roll checks.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Roll period and synchronous rolling</h1>
+    <p class="ec-summary">Natural roll period from the IS Code approximation (or GM from an observed roll period), wave length and encounter period for the ship's speed and heading by MSC.1/Circ.1228, and the circular's checks for synchronous rolling, parametric rolling, surf-riding and successive high-wave attack.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A ship rolls at its own natural period, set by its beam and metacentric height; waves arrive at an encounter period set by their length, the ship&#39;s speed and the heading. When the two coincide the roll builds up (synchronous rolling); when the encounter period is half the roll period, or equal to it in waves about as long as the ship, the stability itself pulses with the passing crests (parametric rolling). In following seas a fast ship can also be caught by a wave and broach. IMO&#39;s MSC.1/Circ.1228 gives the master simple formulas and zones for all of these, and the 2008 Intact Stability Code gives the roll period approximation they rely on. This calculator puts them together: roll period or GM, wave length, encounter period, and the four checks with the speed that would bring the ship into resonance on the present heading.</p>
+<p>It is for masters and officers planning course and speed in heavy weather, naval architects and surveyors estimating GM from a rolling test, and students of seakeeping.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Natural roll period (IS Code 2008 §2.3.4):</p>
+<pre class="ec-formula" tabindex="0"><code>T_R = 2 C B / √GM,    C = 0.373 + 0.023 (B/d) − 0.043 (L_WL / 100)
+inverse (rolling test):  GM = (2 C B / T_R)²</code></pre>
+<p>Waves and encounter (Circ.1228 §1.5–1.6, deep water):</p>
+<pre class="ec-formula" tabindex="0"><code>λ = 1.56 T_W²  [m],   T_W = 0.8 √λ  [s]
+T_E = 3 T_W² / (3 T_W + V cos α)   with V in knots, α = 0° head seas, 90° beam, 180° following</code></pre>
+<p>Checks (Circ.1228 §4.2):</p>
+<pre class="ec-formula" tabindex="0"><code>synchronous rolling:   T_E ≈ T_R   (flagged within ±10 %, caution within ±20 %)
+parametric rolling:    T_E ≈ T_R or T_E ≈ 0.5 T_R, with λ/L between 0.6 and 2.3
+surf-riding:           135° &lt; α &lt; 225° and V &gt; 1.8 √L / cos(180° − α)  (marginal above 1.4 √L / cos(180° − α))
+high-wave attack:      λ &gt; 0.8 L, H_s &gt; 0.04 L and 1.8 ≤ T_E/T_W ≤ 3.0</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The IS Code roll-period formula is an approximation offered for use without better data; it corresponds to a roll radius of gyration near 0.35–0.40 B. Real ships differ by 10–15 % depending on the mass distribution, and the roll period lengthens at large angles. Enter an observed period when you have one.</li>
+<li>GM must be the fluid GM (free surfaces corrected).</li>
+<li>Deep-water waves and a single period and height. Real seas are spectra: treat the bands as zones.</li>
+<li>The surf-riding and high-wave criteria use L between perpendiculars, as in the circular.</li>
+<li>The ±10 % and ±20 % bands around resonance are this calculator&#39;s reading of &quot;nearly equal&quot;; the circular gives no numbers.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 200 m ship (L_WL 205 m, B 32 m, d 10 m) with a fluid GM of 1.5 m steams at 15 knots.</p>
+<ol>
+<li>Roll period: C = 0.373 + 0.023 × 3.2 − 0.043 × 2.05 = 0.358; T_R = 2 × 0.358 × 32 / √1.5 = 18.7 s. (Conversely, if the ship were observed to roll at 18.7 s, GM = 1.5 m.)</li>
+<li>Head seas of 10 s period: λ = 156 m; T_E = 300 / (30 + 15) = 6.7 s. T_E/T_R = 0.36: no roll resonance.</li>
+<li>Alter to stern-quartering seas (α = 135°) in a 14 s swell: T_E = 588 / (42 − 10.6) = 18.7 s = T_R. Synchronous rolling: danger. The critical speed on this heading is exactly 15 knots; slowing to 10 knots gives T_E = 17.1 s (ratio 0.91, still caution), altering course to beam seas gives T_E = 14 s (ratio 0.75, clear).</li>
+<li>Head seas of 13 s period: T_E = 9.4 s = T_R/2, λ = 263 m = 1.3 L: parametric rolling danger.</li>
+<li>Following seas at 26 knots: above 1.8 √200 = 25.5 knots, surf-riding danger; at 22 knots marginal.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which heading and speed get me out of resonance?</summary>
+<p>Change whichever is easier: in following or quartering seas a speed change moves T_E strongly; in head seas the encounter period is short and roll resonance is rare but parametric rolling at T_R/2 is possible, so alter course off the wave direction.</p>
+</details>
+<details class="ec-faq"><summary>Why does a tender ship roll more comfortably but more dangerously?</summary>
+<p>A low GM gives a long roll period and gentle accelerations, but it is more easily matched by long swells and leaves less righting energy; a very stiff ship (short period) snaps and suffers cargo and crew.</p>
+</details>
+<details class="ec-faq"><summary>Can I measure the roll period on board?</summary>
+<p>Yes: time ten full roll cycles in calm water (or beam swell) and divide; the IS Code uses this rolling test to estimate GM for small ships.</p>
+</details>
+<details class="ec-faq"><summary>What is parametric rolling and why container ships?</summary>
+<p>The waterplane, and so GM, changes as crests and troughs pass a flared hull; when this happens twice per roll period the roll is pumped up. Large container ships with pronounced bow flare and flat sterns in head seas are the classic case.</p>
+</details>
+<details class="ec-faq"><summary>What is broaching?</summary>
+<p>A sudden yaw to beam-on while surfing a following wave, with a large heel; the circular&#39;s speed limit 1.8 √L cos⁻¹ marks the zone to avoid.</p>
+</details>
+<details class="ec-faq"><summary>Does water depth matter?</summary>
+<p>The wave relations assume deep water (depth &gt; λ/2). In shallow water waves are shorter and slower for the same period and the celerity formula changes; use the wave-properties calculator.</p>
+</details>
+<details class="ec-faq"><summary>Why both T_E ≈ T_R and T_E ≈ 0.5 T_R for parametric rolling?</summary>
+<p>The stability can vary once (encounter ratio 1:1, typical in following seas) or twice (1:0.5, typical in head seas) per roll period; both excite the roll parametrically.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../initial-stability/index.html">Initial stability GM and list</a> — the fluid GM used here.</li>
+<li><a href="../wave-properties/index.html">Wave properties and encounter period</a> — finite-depth waves and orbital velocities.</li>
+<li><a href="../beaufort-sea-state/index.html">Beaufort, wind speed and sea state converter</a> — wave height and period from the sea state.</li>
+<li><a href="../hydrostatics/index.html">Hydrostatics basics</a> — KM and the particulars behind GM.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

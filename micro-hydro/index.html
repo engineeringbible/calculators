@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Micro-hydro power calculator — Engineering calculators</title>
+  <meta name="description" content="Hydro power from flow and head: penstock friction by Darcy or Hazen–Williams, net head, electrical power, yearly energy and turbine types for the head.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Micro-hydro power calculator</h1>
+    <p class="ec-summary">Power and yearly energy of a micro-hydro plant from flow and head, with penstock friction, net head and the turbine types that suit it.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How much power can a stream make? Hydro power is water density × gravity × flow × head × efficiency. A stream that sends 50 L/s down a 40 m drop carries 19.6 kW. After the losses in the pipe and a turbine and generator that are 60 % efficient together, it gives about 11 kW of electricity, around the clock.</p>
+<p>This calculator works out the friction loss in the penstock, the net head, the hydraulic and electrical power and the yearly energy. It lists the turbine types whose head range covers your net head. It is for landowners, small hydro developers and students making a first assessment of a site.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Power and net head:</p>
+<pre class="ec-formula" tabindex="0"><code>P = ρ g Q H_n η
+H_n = H_g − h_f − K v² / (2g)</code></pre>
+<p>Friction loss in the penstock:</p>
+<pre class="ec-formula" tabindex="0"><code>Darcy–Weisbach:  h_f = f (L / D) v² / (2g),  f from Colebrook
+Hazen–Williams:  h_f = 10.67 L Q^1.852 / (C^1.852 D^4.8704)</code></pre>
+<ul>
+<li>ρ — water density, 1 000 kg/m³; g = 9.81 m/s²; Q — design flow</li>
+<li>H_g — gross head; H_n — net head at the turbine</li>
+<li>η — overall efficiency from water to wire</li>
+<li>L, D — penstock length and inside diameter; v — water velocity; f — Darcy friction factor</li>
+<li>K — sum of the fitting loss coefficients; C — Hazen–Williams coefficient</li>
+</ul>
+<p>Turbine types by net head, from ESHA Table 6.3:</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Turbine</th><th scope="col">Net head range</th></tr></thead>
+<tbody>
+<tr><td>Kaplan and propeller</td><td>2 to 40 m</td></tr>
+<tr><td>Crossflow</td><td>5 to 200 m</td></tr>
+<tr><td>Francis</td><td>25 to 350 m</td></tr>
+<tr><td>Turgo</td><td>50 to 250 m</td></tr>
+<tr><td>Pelton</td><td>50 to 1 300 m</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The gross head is the vertical drop from the intake water level to the turbine. Measure it with a level survey or GPS, not a map.</li>
+<li>The overall efficiency covers the turbine, the drive and the generator. ESHA gives best turbine efficiencies of 85 % for Turgo to 94 % for Francis. The generator, the drive and running at part flow lower the overall figure, and the page defaults to 60 %.</li>
+<li>The yearly energy assumes the design flow for the share of the year you enter. A real stream varies with the season, and some water must stay in the stream.</li>
+<li>The turbine list uses head only. Flow, speed and cost narrow the choice, and manufacturers&#39; charts use head and flow together.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A stream supplies 50 L/s to a 200 m penstock of 200 mm plastic pipe, with a roughness of 0.0015 mm. The gross head is 40 m and the water is at 10 °C, 1.307 mm²/s. The turbine and generator are 60 % efficient and run 80 % of the year. What does the plant deliver?</p>
+<ol>
+<li>Velocity: 0.05 / (π × 0.2² / 4) = 1.59 m/s.</li>
+<li>Reynolds number: 1.59 × 0.2 / 1.307 × 10⁻⁶ = 243 500, so f = 0.0151 from Colebrook.</li>
+<li>Friction loss: 0.0151 × (200 / 0.2) × 1.59² / (2 × 9.81) = 1.95 m.</li>
+<li>Net head: 40 − 1.95 = 38.05 m.</li>
+<li>Hydraulic power: 1 000 × 9.81 × 0.05 × 38.05 = 18.66 kW.</li>
+<li>Electrical output: 18.66 × 0.60 = 11.19 kW.</li>
+<li>Energy per year: 11.19 × 8 760 × 0.80 = 78 400 kWh.</li>
+</ol>
+<p>At 38 m net head, ESHA lists Kaplan, crossflow and Francis turbines. The flow, the speed and the cost then decide between them.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do you calculate hydro power?</summary>
+<p>Multiply 9.81 by the flow in m³/s, the net head in metres and the efficiency to get kW. 50 L/s at 38 m and 60 % gives 11.2 kW.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between gross head and net head?</summary>
+<p>Gross head is the vertical drop. Net head is what remains at the turbine after the friction and fitting losses in the pipe.</p>
+</details>
+<details class="ec-faq"><summary>How big should the penstock be?</summary>
+<p>Large enough to keep the friction loss a small share of the gross head, which the page shows. Beyond a loss of one third of the gross head, more flow gives less power.</p>
+</details>
+<details class="ec-faq"><summary>Which turbine should I use?</summary>
+<p>Pelton and Turgo turbines suit high heads, Francis and crossflow medium heads, and Kaplan or propeller turbines low heads. The table above gives ESHA&#39;s ranges.</p>
+</details>
+<details class="ec-faq"><summary>How much power do I get from 1 L/s?</summary>
+<p>About 0.0098 kW per metre of net head before efficiency. At 60 % overall, 1 L/s over 100 m gives about 0.59 kW.</p>
+</details>
+<details class="ec-faq"><summary>Is Hazen–Williams or Darcy–Weisbach better?</summary>
+<p>Darcy–Weisbach works for any fluid, pipe and temperature. Hazen–Williams is a simpler formula for water at ordinary temperatures, and the two agree closely for this example.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — friction in any pipe, with fittings.</li>
+<li><a href="../wind-turbine-power/index.html">Wind turbine power calculator</a> — power from the wind instead.</li>
+<li><a href="../solar-payback/index.html">Solar panel payback calculator</a> — the payback of a renewable system.</li>
+<li><a href="../pump-power/index.html">Pump power calculator</a> — the same equation run backwards for a pump.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

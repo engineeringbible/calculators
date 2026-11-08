@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ohm's law and electrical power — Engineering calculators</title>
+  <meta name="description" content="Voltage, current, resistance and power from any two of them, with Ohm's law V = I R and P = V I, for DC and resistive AC circuits.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Ohm's law and electrical power</h1>
+    <p class="ec-summary">Voltage, current, resistance and power of a resistive element from any two of them, using Ohm's law V = I R and the power law P = V I = I² R = V² / R, with the conductance.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Ohm&#39;s law is the first relation every electrician and engineer learns, and the one used most: the voltage across a resistor is the current through it times its resistance. Together with the power law P = V I it ties four quantities together, so any two of them fix the other two. This calculator takes whichever pair you know, voltage and current, voltage and resistance, current and resistance, or power with any one of the others, and returns the rest.</p>
+<p>Typical uses are checking the current a heater or a solenoid coil will draw, the resistance a load must have to dissipate a given power, the voltage drop across a known resistance, or the power rating a resistor needs. It is for electricians, technicians, students and anyone sizing a simple DC or resistive AC circuit.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Ohm&#39;s law and the power law:</p>
+<pre class="ec-formula" tabindex="0"><code>V = I R
+P = V I = I² R = V² / R</code></pre>
+<p>From each pair of known values:</p>
+<pre class="ec-formula" tabindex="0"><code>V and I:  R = V / I,        P = V I
+V and R:  I = V / R,        P = V² / R
+I and R:  V = I R,          P = I² R
+P and V:  I = P / V,        R = V² / P
+P and I:  V = P / I,        R = P / I²
+P and R:  I = √(P / R),     V = √(P R)</code></pre>
+<p>Conductance is the inverse of resistance:</p>
+<pre class="ec-formula" tabindex="0"><code>G = 1 / R   (siemens)</code></pre>
+<ul>
+<li>V — voltage across the element, volts (RMS for AC)</li>
+<li>I — current through it, amperes (RMS for AC)</li>
+<li>R — resistance, ohms</li>
+<li>P — power dissipated, watts</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The element is a linear resistor. Lamps, diodes, heating elements at switch-on and semiconductors change their resistance with current, so a single value only describes one operating point.</li>
+<li>For AC the values are RMS and the load is purely resistive. Motors, transformers and electronic loads have a power factor below 1, and then P = V I cos φ; use the three-phase power calculator for those.</li>
+<li>The resistance is the value at operating temperature. A copper winding is about 4 % more resistive for every 10 K it warms up, so a cold measurement understates the running resistance.</li>
+<li>All four quantities belong to the same element. In a circuit with several resistors, apply the law to each one separately, or first reduce the network to its equivalent resistance.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 24 V DC solenoid valve coil measures 48 Ω. What current does it draw, and how much heat does it produce?</p>
+<ol>
+<li>Known values: voltage and resistance, V = 24 V and R = 48 Ω.</li>
+<li>Current: I = V / R = 24 / 48 = 0.5 A.</li>
+<li>Power: P = V² / R = 24² / 48 = 576 / 48 = 12 W, the same as V × I = 24 × 0.5 = 12 W.</li>
+<li>Conductance: G = 1 / 48 = 0.0208 S.</li>
+</ol>
+<p>So the coil draws 0.5 A and turns 12 W into heat. A supply for four such valves switched together needs at least 2 A, and the coil&#39;s 12 W is what its housing must shed when it is held energised for long periods.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Does Ohm&#39;s law work for AC?</summary>
+<p>Yes, with RMS values and a purely resistive load such as a heater. When the load has inductance or capacitance, the ratio of voltage to current is the impedance, and the power is V I cos φ rather than V I.</p>
+</details>
+<details class="ec-faq"><summary>Why do I get a different resistance when I measure a lamp cold?</summary>
+<p>A tungsten filament&#39;s resistance rises roughly tenfold from cold to working temperature. Ohm&#39;s law still holds at each instant, but the resistance itself depends on the current, so use the hot value for running power.</p>
+</details>
+<details class="ec-faq"><summary>What power rating should a resistor have?</summary>
+<p>At least the power from this calculator, and commonly twice it, so the resistor runs well below its maximum temperature. A resistor dissipating 0.25 W should be a 0.5 W part.</p>
+</details>
+<details class="ec-faq"><summary>How is power related to energy on a bill?</summary>
+<p>Energy is power multiplied by time. A 1 kW heater running for 3 hours uses 3 kWh, whatever its voltage.</p>
+</details>
+<details class="ec-faq"><summary>Why does a thin cable get hot?</summary>
+<p>Its resistance turns current into heat at a rate of I² R. Doubling the current quadruples the heating, which is why cable sizes rise quickly with load current.</p>
+</details>
+<details class="ec-faq"><summary>What is conductance?</summary>
+<p>The inverse of resistance, in siemens. It is convenient when resistors are in parallel, because conductances in parallel simply add.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — for loads with a power factor and for three-phase supplies.</li>
+<li><a href="../cable-sizing/index.html">Cable sizing and voltage drop</a> — the cable that carries the current found here.</li>
+<li><a href="../battery-runtime/index.html">Battery capacity and runtime</a> — how long a battery supplies this current.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — adding loads up on a generator.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EU ETS and FuelEU Maritime — Engineering calculators</title>
+  <meta name="description" content="EU ETS allowances and cost with phase-in and voyage scope; FuelEU Maritime GHG intensity against the yearly limit, compliance balance and penalty.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">EU ETS and FuelEU Maritime</h1>
+    <p class="ec-summary">For one reporting year and up to three fossil fuels: the FuelEU Maritime well-to-wake GHG intensity from the Annex II default factors against the year's limit, the compliance balance and penalty with the consecutive-deficit multiplier and wind reward factor, and the EU ETS emissions in scope, allowances to surrender with the phase-in, and their cost at an allowance price.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Since 2024 a ship calling at European ports pays twice for its fuel&#39;s carbon: through the EU Emissions Trading System, which requires allowances for the CO₂ (and from 2026 also methane and nitrous oxide) emitted on voyages to, from and between EEA ports, and from 2025 through FuelEU Maritime, which caps the well-to-wake greenhouse-gas intensity of the energy used and charges a penalty per tonne of VLSFO-equivalent shortfall. Both use the same voyage scope and the same default emission factors, so one set of fuel figures answers both questions. This calculator takes up to three fossil fuels with their annual tonnage, the share burned inside and to/from the EEA, the reporting year and an allowance price, and returns the attained GHG intensity against the limit, the compliance balance and penalty, the ETS emissions, allowances and cost, and the combined cost per tonne of fuel.</p>
+<p>It is for technical and commercial managers budgeting the regulations, charterers splitting costs, and students of maritime decarbonisation policy.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Scope (both regulations):</p>
+<pre class="ec-formula" tabindex="0"><code>scope factor = share_intra-EEA &amp; at berth + 0.5 × share_extra-EEA</code></pre>
+<p>FuelEU GHG intensity (Annex I, GWP₁₀₀: CH₄ 25, N₂O 298):</p>
+<pre class="ec-formula" tabindex="0"><code>TtW_i = [(1 − C_slip,i)(Cf_CO2,i + 25 Cf_CH4,i + 298 Cf_N2O,i) + 25 C_slip,i] / LCV_i      [gCO₂e/MJ]
+GHGIE = f_wind × Σ E_i (WtT_i + TtW_i) / Σ E_i,     E_i = M_i × LCV_i
+limit(year) = 91.16 × (1 − r),  r = 2 % (2025), 6 % (2030), 14.5 % (2035), 31 % (2040), 62 % (2045), 80 % (2050)</code></pre>
+<p>Compliance balance and penalty (Annex IV):</p>
+<pre class="ec-formula" tabindex="0"><code>CB = (limit − GHGIE) × E_scope                       [gCO₂e]
+penalty = |CB| / (GHGIE × 41 000 MJ/t) × 2 400 EUR × (1 + (N − 1)/10)   when CB &lt; 0</code></pre>
+<p>EU ETS:</p>
+<pre class="ec-formula" tabindex="0"><code>CO₂e_i per gram = (1 − C_slip)(Cf_CO2 + 28 Cf_CH4 + 265 Cf_N2O) + 28 C_slip   (CO₂ only before 2026)
+emissions in scope = Σ M_i × CO₂e_i × scope factor
+allowances = emissions × phase-in (40 % for 2024, 70 % for 2025, 100 % from 2026),   cost = allowances × EUA price</code></pre>
+<p>Annex II defaults (LCV MJ/g; WtT gCO₂e/MJ; Cf CO₂ g/g; CH₄; N₂O; slip): HFO 0.0405 / 13.5 / 3.114 / 0.00005 / 0.00018; LFO 0.0410 / 13.2 / 3.151; MGO 0.0427 / 14.4 / 3.206; LNG 0.0491 / 18.5 / 2.750 / 0 / 0.00011 with slip 3.1 % (Otto MS), 1.7 % (Otto SS), 0.2 % (Diesel SS), 2.6 % (LBSI); LPG 0.046 / 7.8 / 3.00–3.03; methanol 0.0199 / 31.3 / 1.375.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Fossil fuels only. Biofuels, RFNBO (reward factor 2 until 2033), onshore power, the 2034 RFNBO sub-target and the banking/borrowing arithmetic are not modelled; a surplus is reported as bankable, a deficit as payable.</li>
+<li>The voyage shares are entered per ship, not per voyage; the result is as good as that split.</li>
+<li>LPG and fossil methanol have no default CH₄ and N₂O factors in Annex II yet; they are taken as zero.</li>
+<li>The ETS treats methane slip with the same engine-class percentages as FuelEU, at GWP 28; the actual MRV monitoring plan may use certified values.</li>
+<li>Exemptions and special cases (transhipment ports, outermost regions, small islands, public-service routes, ice-class adjustments) are not applied, and the ETS non-surrender penalty (100 EUR/t plus the allowances) is not included.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A bulk carrier burns 5 000 t of VLSFO and 400 t of MGO in 2025; 30 % of the fuel is used on intra-EEA voyages and in EEA ports, 50 % on voyages to or from non-EEA ports, 20 % elsewhere. No wind assistance, first year of FuelEU, EUA at 70 EUR.</p>
+<ol>
+<li>Scope factor 0.30 + 0.25 = 0.55. Energy in scope: (5 000 × 0.0410 + 400 × 0.0427) × 10⁶ × 0.55 = 122.1 TJ.</li>
+<li>Intensities: VLSFO 13.2 + (3.151 + 0.00125 + 0.05364)/0.041 = 91.4; MGO 90.8. Energy-weighted attained intensity 91.3 gCO₂e/MJ against the 2025 limit of 89.34: a deficit of 2.2 %.</li>
+<li>Compliance balance (89.34 − 91.34) × 122.1 TJ = −245 t CO₂e. Penalty 245 × 10⁶ / (91.34 × 41 000) × 2 400 = 157 100 EUR.</li>
+<li>ETS: CO₂ = (5 000 × 3.151 + 400 × 3.206) × 0.55 = 9 371 t in scope; 70 % phase-in → 6 559 allowances, 459 200 EUR.</li>
+<li>Total 616 300 EUR, about 208 EUR per tonne of in-scope fuel, on top of the fuel itself.</li>
+</ol>
+<p>The same ship in 2030 (limit 85.69) would owe about 480 000 EUR of FuelEU penalty and surrender 100 % of its CO₂e; switching the main fuel to LNG in a slow-speed Diesel engine (76.1 gCO₂e/MJ) would turn the FuelEU balance into a surplus.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why is the intensity the same whatever the tonnage?</summary>
+<p>GHG intensity is per megajoule; the tonnage sets the energy and therefore the size of the compliance balance and the penalty, not the intensity.</p>
+</details>
+<details class="ec-faq"><summary>How does a blend of fuels count?</summary>
+<p>By energy: each fuel&#39;s well-to-wake intensity is weighted by its energy (mass × LCV) in scope.</p>
+</details>
+<details class="ec-faq"><summary>What exactly is a tonne of VLSFO-equivalent?</summary>
+<p>41 000 MJ, the energy content the regulation assigns to a tonne of VLSFO. The penalty converts the deficit in gCO₂e into the energy of compliant fuel that would have fixed it, then charges 2 400 EUR per tonne of that energy.</p>
+</details>
+<details class="ec-faq"><summary>Why does the penalty rise in consecutive years?</summary>
+<p>Annex IV adds 10 % for each additional consecutive year with a deficit, so the third year in a row costs 1.2 times the formula value.</p>
+</details>
+<details class="ec-faq"><summary>Can I pool with other ships?</summary>
+<p>Yes: compliance balances of ships under the same or different companies can be pooled if the pool total is positive. This calculator shows the ship-level balance; pooling is an allocation on top.</p>
+</details>
+<details class="ec-faq"><summary>How do LNG engine types differ so much?</summary>
+<p>Methane slip. An Otto-cycle medium-speed dual-fuel engine slips about 3.1 % of its fuel as methane (GWP 25), a Diesel-cycle slow-speed engine 0.2 %; the difference is 13 gCO₂e/MJ.</p>
+</details>
+<details class="ec-faq"><summary>Does the ETS cover the same voyages as FuelEU?</summary>
+<p>Yes, the 100 %/50 % voyage scope is the same, and both apply to ships of 5 000 GT and above. The ETS phases in over 2024–2026 and adds CH₄ and N₂O from 2026; FuelEU applies from 2025 in full.</p>
+</details>
+<details class="ec-faq"><summary>Where does the allowance price come from?</summary>
+<p>The market; enter the price you budget. Free allocation does not exist for shipping.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../cii-rating/index.html">CII rating estimator</a> — the IMO operational carbon intensity of the same fuel.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel consumption and voyage cost</a> — the fuel tonnage per voyage.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — the auxiliary share of the fuel.</li>
+<li><a href="../bunker-quantity/index.html">Bunker quantity and density correction</a> — the tonnes actually received.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

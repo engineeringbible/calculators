@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quick statistics of a series — Engineering calculators</title>
+  <meta name="description" content="Mean, standard deviation, confidence interval, quartiles, trend with significance and outliers (Tukey, Chauvenet, Grubbs) of a pasted series.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">General</span>
+    <h1 class="ec-title">Quick statistics of a series</h1>
+    <p class="ec-summary">Paste a column of numbers (or x y pairs) and get the mean, median, standard deviation, the confidence interval of the mean, quartiles, skewness and kurtosis, a least-squares trend with its p-value, and the values flagged by Tukey's fences, Chauvenet's criterion and Grubbs' test, with the mean and spread recomputed without the Grubbs outlier.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Engineers constantly look at short columns of numbers: daily fuel figures, repeated readings of a gauge, test results, a month of noon-report speeds. The first questions are always the same. What is the typical value and how much does it scatter? How sure are we of the average? Is there a trend? Is that one odd value an outlier? This page answers them from a paste: descriptive statistics, the Student-t confidence interval of the mean, quartiles and shape, a least-squares trend with its significance, and three outlier tests side by side.</p>
+<p>It is for engineers, surveyors, analysts and students who need a fast, transparent check without opening a statistics package.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>x̄ = Σx/n,   s = √(Σ(x − x̄)²/(n − 1)),   SE = s/√n
+CI = x̄ ± t(1 − α/2, n − 1) SE
+Q1, Q3: linear interpolation between order statistics (type 7),   IQR = Q3 − Q1
+G1 = √(n(n−1))/(n−2) · m₃/m₂^1.5,   G2 = [(n+1) g₂ + 6](n−1)/((n−2)(n−3)),  g₂ = m₄/m₂² − 3
+trend: y = a + b x (least squares),  t = b/SE(b),  p = 2[1 − F_t(|t|, n − 2)]
+Tukey: x &lt; Q1 − 1.5 IQR or x &gt; Q3 + 1.5 IQR
+Chauvenet: n · P(|Z| &gt; |x − x̄|/s) &lt; 0.5
+Grubbs: G = max|x − x̄|/s &gt; ((n − 1)/√n) √(t²/(n − 2 + t²)),  t = t(1 − α/(2n), n − 2)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Independent values from one population; serial correlation makes intervals too narrow.</li>
+<li>Normal-theory interval, Chauvenet and Grubbs; skewed data are better described by median and quartiles.</li>
+<li>Outlier tests flag, they do not delete; Grubbs is applied once.</li>
+<li>Decimal point, at most 100 000 values.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Ten days of fuel consumption (t/day): 31.2, 30.8, 31.5, 30.9, 31.1, 31.4, 30.7, 31.0, 31.3, 34.2.</p>
+<ol>
+<li>Mean 31.41, median 31.15, s 1.014, standard error 0.321.</li>
+<li>95 % interval of the mean: 31.41 ± 2.262 × 0.321 = 30.69 … 32.13.</li>
+<li>Quartiles 30.93 and 31.38, IQR 0.45, fences 30.25 and 32.05.</li>
+<li>34.2 lies above the upper fence; its z = 2.75 gives n·P = 0.06 (Chauvenet) and exceeds the Grubbs critical value 2.290 for n = 10: flagged by all three tests.</li>
+<li>Without it the mean is 31.10 t/day and s 0.27 t/day — the day with 34.2 deserves a look in the log (bad weather, a different fuel, a meter fault).</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Sample or population standard deviation?</summary>
+<p>The sample value (n − 1) estimates the spread of the process the data come from; the population value (n) describes only these numbers.</p>
+</details>
+<details class="ec-faq"><summary>Why is the confidence interval narrower than the scatter?</summary>
+<p>It describes the uncertainty of the mean, which shrinks with √n; the scatter of single values is s.</p>
+</details>
+<details class="ec-faq"><summary>Which outlier test should I believe?</summary>
+<p>Grubbs is the ISO 5725-2 test for laboratory data, Tukey needs no distribution, Chauvenet is the classic of error analysis. When all three agree, investigate; when only one flags, be cautious.</p>
+</details>
+<details class="ec-faq"><summary>Can I paste from Excel?</summary>
+<p>Yes: a column, a row or two columns (choose x y pairs) pasted directly; convert decimal commas first.</p>
+</details>
+<details class="ec-faq"><summary>What does a significant trend mean?</summary>
+<p>That a straight line explains more than random scatter would at the chosen level; it does not prove the cause, and a step change can look like a trend.</p>
+</details>
+<details class="ec-faq"><summary>Why warn about serial correlation?</summary>
+<p>Consecutive readings are often similar; the effective number of independent values is smaller than n, so the true uncertainty of the mean is larger than shown.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../gum-uncertainty/index.html">Measurement uncertainty (GUM)</a> — combining uncertainty components.</li>
+<li><a href="../admiralty-coefficient/index.html">Admiralty coefficient</a> — speed-power data that this page can screen.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel and voyage cost</a> — consumption figures in context.</li>
+<li><a href="../unit-converter/index.html">Unit converter</a> — converting the data before pasting.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

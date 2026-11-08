@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stair calculator: risers, treads and stringer — Engineering calculators</title>
+  <meta name="description" content="Number of risers and treads, riser height, total run, stringer length and stair angle from the total rise, checked against IRC or IBC stair limits.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Stair calculator: risers, treads and stringer</h1>
+    <p class="ec-summary">Risers, treads, riser height, total run, stringer length and angle of a straight stair, checked against IRC and IBC riser, tread and headroom limits.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How do you calculate stairs? Divide the total rise by the tallest riser you allow and round up to get the number of risers. Divide the rise by that number to get the equal riser height. A rise of 108 in with risers of at most 7.5 in needs 15 risers of 7.2 in and 14 treads. With 10 in treads the stair runs 140 in and the stringer is 176.8 in long.</p>
+<p>This calculator lays out a straight flight from the total rise, the maximum riser and the tread depth. It gives the risers and treads, the total run, the stringer length, the angle and the 2R + T comfort figure. It then checks the result against the International Residential Code for homes or the International Building Code for other buildings. It is for carpenters, builders, designers and homeowners planning a deck, basement or porch stair.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Risers, treads and run:</p>
+<pre class="ec-formula" tabindex="0"><code>n = H / R_max, rounded up
+R = H / n
+treads = n − 1
+run = treads × T</code></pre>
+<p>Stringer, angle and comfort:</p>
+<pre class="ec-formula" tabindex="0"><code>stringer = √(H² + run²)
+θ = atan(R / T)
+comfort = 2R + T</code></pre>
+<ul>
+<li>H — total rise from finished floor to finished floor</li>
+<li>R_max — the tallest riser you allow; R — the actual, equal riser height</li>
+<li>T — tread depth, nosing to nosing</li>
+<li>n — number of risers; the top riser lands on the upper floor, so there is one tread fewer</li>
+</ul>
+<p>Code limits checked:</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Item</th><th scope="col">IRC R311.7 (dwellings)</th><th scope="col">IBC §1011 (other buildings)</th></tr></thead>
+<tbody>
+<tr><td>Riser height</td><td>7¾ in maximum</td><td>4 to 7 in</td></tr>
+<tr><td>Tread depth</td><td>10 in minimum</td><td>11 in minimum</td></tr>
+<tr><td>Headroom</td><td>6 ft 8 in</td><td>80 in</td></tr>
+<tr><td>Rise of one flight</td><td>151 in</td><td>12 ft</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The stair is a straight flight. Winders, spiral stairs and landings are not designed here.</li>
+<li>All risers are equal. The IRC allows them to differ by no more than ⅜ in, so measure the rise between finished floor surfaces.</li>
+<li>The stringer length runs along the nosing line. Cut the board longer to allow for the seat cut at the bottom and the hanger at the top.</li>
+<li>The checks cover risers, treads, headroom and the rise of a flight. Width, handrails, guards and nosings also have code rules, and local amendments may change them.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A basement stair climbs 108 in from floor to floor. The builder wants risers of at most 7.5 in and treads of 10 in. Lay out the stair and check it against the IRC.</p>
+<ol>
+<li>Risers: 108 / 7.5 = 14.4, so 15 risers.</li>
+<li>Riser height: 108 / 15 = 7.2 in, below the IRC maximum of 7¾ in.</li>
+<li>Treads: 15 − 1 = 14 treads of 10 in, meeting the 10 in minimum.</li>
+<li>Total run: 14 × 10 = 140 in, or 11 ft 8 in.</li>
+<li>Stringer length: √(108² + 140²) = 176.8 in, or 14.7 ft.</li>
+<li>Comfort: 2 × 7.2 + 10 = 24.4 in, inside the 24 to 25 in range.</li>
+</ol>
+<p>The stair angle is 35.8°. With 14 risers instead, each would be 7.71 in and 2R + T would be 25.4 in, steeper than comfortable.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the maximum riser height for stairs?</summary>
+<p>7¾ in for homes under the IRC and 7 in for other buildings under the IBC. The IBC also sets a minimum riser of 4 in.</p>
+</details>
+<details class="ec-faq"><summary>What is the minimum tread depth?</summary>
+<p>10 in in homes under the IRC and 11 in under the IBC, measured horizontally from nosing to nosing.</p>
+</details>
+<details class="ec-faq"><summary>How many steps do I need for an 8 ft rise?</summary>
+<p>96 in divided by 7¾ in is 12.4, so 13 risers of 7.38 in and 12 treads under the IRC.</p>
+</details>
+<details class="ec-faq"><summary>What is the 2R + T rule?</summary>
+<p>Two risers plus one tread should equal one comfortable stride, 24 to 25 in. It goes back to François Blondel in 1675.</p>
+</details>
+<details class="ec-faq"><summary>How long should a stair stringer be?</summary>
+<p>At least the length along the nosing line, √(rise² + run²), plus extra for the cuts at the top and bottom.</p>
+</details>
+<details class="ec-faq"><summary>How much headroom does a stair need?</summary>
+<p>6 ft 8 in clear above the nosing line under the IRC, and 80 in under the IBC.</p>
+</details>
+<details class="ec-faq"><summary>What angle should a stair have?</summary>
+<p>The codes set it through the riser and tread limits. The steepest IRC stair, 7¾ in on 10 in, is 37.8°; the IBC limit of 7 in on 11 in is 32.5°.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../roof-pitch/index.html">Roof pitch calculator</a> — rise and run of a roof, laid out the same way.</li>
+<li><a href="../slope/index.html">Slope calculator</a> — ramps, percent grade and angle.</li>
+<li><a href="../concrete-slab/index.html">Concrete slab calculator</a> — the landing pad at the foot of the stair.</li>
+<li><a href="../concrete-block/index.html">Concrete block calculator</a> — block walls that support a stair or landing.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

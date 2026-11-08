@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cargo tank heating time and steam — Engineering calculators</title>
+  <meta name="description" content="Heat-up energy, heat losses through deck, shell and bulkheads, heating power or time, steam consumption and heating coil area for a cargo or fuel tank.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Cargo tank heating time and steam</h1>
+    <p class="ec-summary">Heating a cargo or fuel oil tank: the sensible heat to raise the cargo, the losses through deck, shell and bulkheads at the mean and the target temperature, the heating power for a given time (or the time for a given power), the steam consumption at the coil pressure, the total steam, the steam to hold the temperature and the heating coil area the steam-to-cargo temperature difference requires.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Heavy fuel oil, crude, bitumen and many chemical cargoes must be kept warm enough to pump, and heating them is one of the largest energy users on a tanker after propulsion. The calculation is an energy balance: the sensible heat to raise the cargo, plus what leaks out through the deck to the air, the shell to the sea and the bulkheads to neighbouring tanks while heating goes on. This calculator does the balance for a given heating time or a given heating power, converts the power into steam at the coil pressure, and sizes the heating coil from the temperature difference between the steam and the cargo.</p>
+<p>It is for chief engineers and cargo officers planning a heat-up before discharge, superintendents checking boiler capacity and fuel for heating, and students of marine engineering.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>E = m c_p (T_target − T_initial)
+Q_loss(T) = U_deck A_deck (T − T_air) + U_shell A_shell (T − T_sea) + U_bhd A_bhd (T − T_adjacent)
+P = E/t + Q_loss(T_mean)        (or t = E/(P − Q_loss(T_mean)))
+ṁ_steam = P / h_fg,   total steam = ṁ t,   maintaining: ṁ = Q_loss(T_target)/h_fg
+A_coil = P / (U_coil (T_sat − T_mean))</code></pre>
+<p>Saturated steam: 5 bar g 158.8 °C / 2 085 kJ/kg; 7 bar g 170.4 / 2 047; 10 bar g 184.1 / 1 999; 16 bar g 204.3 / 1 919. Typical U: shell to sea 6–8, deck to air 5–7, to adjacent empty tanks 2–4, insulated 0.5–1.5 W/(m²·K); coil 100–150 for crude, 60–90 for heavy oils.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Well-mixed cargo heated linearly; heavy oils stratify and heat more slowly.</li>
+<li>Overall U values entered by the user dominate the uncertainty (±30 %).</li>
+<li>Saturated steam fully condensed, no condensate flash or sub-cooling, no solar gain, constant ambients.</li>
+<li>Cargo temperature limits (specification, flash point, coating) are the user&#39;s check.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>5 000 t of heavy fuel oil (c_p 1.9 kJ/kg·K) heated from 30 to 55 °C in 48 h; 400 m² of deck at U 6 to 15 °C air, 600 m² of shell at U 6 to 18 °C sea, 500 m² of bulkheads at U 3 to 30 °C adjacent tanks; 7 bar g steam, coil U 100 W/(m²·K).</p>
+<ol>
+<li>Sensible heat 5 000 × 1.9 × 25 = 237.5 GJ → 1 374 kW over 48 h.</li>
+<li>Losses at the 42.5 °C mean: 66 + 88 + 19 = 173 kW → heating power 1 547 kW; 12.5 K per day.</li>
+<li>Steam at 2 047 kJ/kg: 2 721 kg/h (65 t/day), 131 t in total; losses are 11 % of the heat supplied.</li>
+<li>Coil: 1 547 kW/(100 × (170.4 − 42.5)) = 121 m². Holding 55 °C afterwards needs 267 kW, 469 kg/h and 23 m² of coil.</li>
+</ol>
+<p>With only 1 000 kW available the heat-up takes 80 h; with 16 bar g steam the coil shrinks but the steam mass flow rises 6.7 % because the latent heat is lower.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why evaluate the losses at the mean temperature?</summary>
+<p>The cargo warms linearly, so the average loss over the heat-up is the loss at the average temperature; the final-temperature loss is what the boiler must supply to hold it.</p>
+</details>
+<details class="ec-faq"><summary>Where do the U values come from?</summary>
+<p>From the heating-system design (class and oil-major guidance tabulate uninsulated steel to sea and air) or, better, from the ship&#39;s own heating records; wind and sea state change the deck and shell values.</p>
+</details>
+<details class="ec-faq"><summary>Why does higher steam pressure give a smaller coil but more steam?</summary>
+<p>Hotter steam increases the temperature difference driving the coil, but its latent heat per kilogram is lower, so slightly more mass is condensed per kilowatt.</p>
+</details>
+<details class="ec-faq"><summary>What limits the heating rate?</summary>
+<p>Thermal stress on structure and coatings, coil surface temperature (coking of heavy oils) and the boiler; 10–15 K per day is common practice for heavy cargoes.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this for a fuel oil settling tank?</summary>
+<p>Yes; enter the tank mass and surfaces. For small tanks the coil and bulkhead terms dominate.</p>
+</details>
+<details class="ec-faq"><summary>How do I include a deck heat exchanger with circulation?</summary>
+<p>Enter the exchanger duty as the available power in the power mode; its own losses and pumping energy are extra.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../heat-exchanger-lmtd/index.html">Heat exchanger LMTD</a> — the deck heater or steam-to-oil exchanger.</li>
+<li><a href="../pipe-insulation/index.html">Pipe insulation heat loss</a> — steam line losses on deck.</li>
+<li><a href="../fuel-blend-heating/index.html">Fuel blend viscosity and heating</a> — the pumping temperature the heating is for.</li>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — cargo quantity.</li>
+<li><a href="../thermal-expansion/index.html">Thermal expansion</a> — cargo volume change with temperature.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

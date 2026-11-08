@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Optimal speed under charter — Engineering calculators</title>
+  <meta name="description" content="Cost-minimising speed on time charter and profit-maximising speed on a voyage charter from the fuel-speed law, prices, hire or freight and port time.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Optimal speed under charter</h1>
+    <p class="ec-summary">The economic speed of a ship: on time charter the speed that minimises hire plus fuel per voyage (Ronen's closed form), on a voyage charter the speed that maximises profit per day including port time and operating cost (numeric optimum within the speed bounds), with the fuel-speed power law, the ETS cost in the effective fuel price, fuel and CO₂ per voyage, the comparison with the reference speed and the annual figure.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Fuel consumption rises roughly with the cube of speed while hire and operating costs run by the day, so every ship has an economic speed: slow enough to save fuel, fast enough not to waste days. Who pays what decides the answer. A time charterer pays hire and fuel and wants the cheapest voyage; an owner on a voyage charter earns a fixed freight and wants the most profit per day, which makes port time matter. This calculator solves both cases from the ship&#39;s fuel curve, the prices, the hire or freight and the port days, shows Ronen&#39;s closed-form result next to the numeric optimum, and compares the result with sailing at the reference speed.</p>
+<p>It is for operators and chartering managers, performance engineers advising on slow steaming, and students of maritime economics.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>F(v) = F₀ (v/v₀)ⁿ,   sea days = D/(24 v),   p_eff = p + s C_F e_EUA
+Time charter:    C(v) = H (D/24v + T_p) + p_eff F(v) D/24v
+                 v* = v₀ [H / ((n − 1) p_eff F₀)]^(1/n)                       (Ronen)
+Voyage charter:  Π(v) = [R − p_eff F(v) D/24v − c_op (D/24v + T_p)] / (D/24v + T_p)
+                 numeric maximum within [v_min, v_max];
+                 T_p = 0, c_op = 0:  v* = [24 R v₀ⁿ / (n p_eff F₀ D)]^(1/(n−1))</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Power-law fuel curve valid near the reference speed; below about 60 % of design speed fuel per mile rises again.</li>
+<li>Time charter: charterer pays hire and fuel. Voyage charter: owner earns a fixed freight and pays fuel and daily operating cost.</li>
+<li>Laycan, weather, canal dues, cargo inventory cost, FuelEU and CII are outside the model.</li>
+<li>Port fuel is a constant per port day and does not move the optimum.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A tanker burning 35 t/day at 14 kn, voyage 5 000 nmi with 4 port days, fuel 550 per tonne.</p>
+<p><em>Time charter at 18 000 per day.</em> v* = 14 × (18 000/(2 × 550 × 35))^(1/3) = 10.87 kn. Sea days 19.2, fuel 16.4 t/day → 314 t at sea plus 12 t in port; voyage cost 417 000 hire + 179 000 fuel = 596 000, against 633 000 at 14 kn: 5.8 % cheaper, at the price of 4.3 more days.</p>
+<p><em>Voyage charter earning 1.2 million per voyage, operating cost 7 000 per day.</em> Without port time the closed form gives 16.5 kn; with 4 port days the profit-per-day optimum drops to 15.1 kn, because the fixed freight is now spread over more days and each sea day saved is worth less. If the ship cannot exceed 16 kn and there is no port time, the answer is the bound, and the page says so.</p>
+<p>Adding ETS allowances at 70 per tonne of CO₂ with a 50 % share raises the effective fuel price to 659 and lowers the time-charter optimum to 10.2 kn.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the time-charter optimum not depend on distance?</summary>
+<p>Both hire and fuel are proportional to sea days times a function of speed; distance cancels. Only the hire-to-fuel-price ratio and the fuel curve matter.</p>
+</details>
+<details class="ec-faq"><summary>Why does port time lower the voyage-charter optimum?</summary>
+<p>Profit per day is the fixed freight divided by the whole cycle; port days dilute it, so a sea day saved raises the profit rate by less than it would on a port-free voyage, and the fuel saved by slowing down weighs relatively more.</p>
+</details>
+<details class="ec-faq"><summary>Where does the exponent come from?</summary>
+<p>Fit it to the ship&#39;s speed-consumption curve (noon reports or the Admiralty-coefficient calculator); 3 is the textbook value, 3.5–4 for container ships near design speed.</p>
+</details>
+<details class="ec-faq"><summary>How does the ETS enter?</summary>
+<p>As an addition to the fuel price: share × carbon factor × allowance price per tonne of fuel. Dearer fuel means slower optimum.</p>
+</details>
+<details class="ec-faq"><summary>What if the freight depends on speed (demurrage, laycan)?</summary>
+<p>Then this model does not apply directly; use the time-charter form with the hire replaced by the daily value of time, or run the voyage model for the feasible speed window only.</p>
+</details>
+<details class="ec-faq"><summary>Is slow steaming always profitable?</summary>
+<p>Only when the saving in fuel outweighs the extra days; at high hire rates and cheap fuel the optimum moves back toward design speed.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../fuel-voyage-cost/index.html">Fuel and voyage cost</a> — the consumption and cost of one voyage at a given speed.</li>
+<li><a href="../admiralty-coefficient/index.html">Admiralty coefficient</a> — fit the fuel-speed exponent.</li>
+<li><a href="../esd-payback/index.html">Energy-saving device payback</a> — the capital alternative to slowing down.</li>
+<li><a href="../eu-ets-fueleu/index.html">EU ETS and FuelEU Maritime</a> — the allowance cost in the effective price.</li>
+<li><a href="../great-circle-distance/index.html">Great-circle distance</a> — the voyage distance.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

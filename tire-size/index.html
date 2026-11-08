@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tire size calculator and comparison — Engineering calculators</title>
+  <meta name="description" content="Tire diameter, sidewall, circumference and revs per mile from size codes like 225/45R17, comparing two sizes for speedometer error and true speed.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Tire size calculator and comparison</h1>
+    <p class="ec-summary">Tire diameter, sidewall, circumference and revolutions per mile from size codes like 225/45R17, and the speedometer error between two sizes.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A tire size such as 225/45R17 gives the section width in millimetres, the sidewall height as a percentage of the width, and the rim diameter in inches. To find the overall diameter, multiply the width by the aspect ratio to get the sidewall height. Then add two sidewalls to the rim diameter. For 225/45R17 the sidewall is 101.25 mm and the tire stands 634.3 mm, or 24.97 in, tall.</p>
+<p>This calculator reads two size codes and gives the width, sidewall, diameter, circumference and revolutions per mile of each. It then compares them: the diameter difference, and the true speed when the speedometer was set for the original tire. It is for drivers choosing new wheels and tires, and for anyone checking a plus-size fitment.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Metric sizes, width W in mm, aspect ratio AR in %, rim d in inches:</p>
+<pre class="ec-formula" tabindex="0"><code>H = W × AR / 100
+D = d × 25.4 + 2 H        mm</code></pre>
+<p>Flotation sizes such as 33x12.50R15 give D and W in inches:</p>
+<pre class="ec-formula" tabindex="0"><code>H = (D − d) / 2</code></pre>
+<p>Circumference, revolutions and speedometer:</p>
+<pre class="ec-formula" tabindex="0"><code>C = π D
+revs per mile = 63 360 / (π D[in])
+true speed = reading × D_B / D_A</code></pre>
+<ul>
+<li>H — sidewall height; D — overall diameter</li>
+<li>D_A — the original tire the speedometer was set for; D_B — the new tire</li>
+<li>P, LT and ST prefixes, ZR and R construction letters and the load and speed index do not change the size</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The dimensions are the nominal design values of the size code. Real tires of the same size differ slightly between brands and with tread wear.</li>
+<li>Revolutions per mile are geometric. Tire makers measure them rolling under load, so their figures are a little higher.</li>
+<li>A change in diameter alters the speedometer, the odometer and the inputs to the traction and stability systems. Check the clearance to the body and suspension too.</li>
+<li>Codes without an aspect ratio, such as 195R14, are not accepted. Enter the full size.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A car on 225/45R17 tires is moving to 245/40R18. How much taller is the new tire, and what is the true speed when the speedometer shows 60 mph?</p>
+<ol>
+<li>Old sidewall: 225 × 0.45 = 101.25 mm, or 3.99 in.</li>
+<li>Old diameter: 17 × 25.4 + 2 × 101.25 = 634.3 mm, or 24.97 in, and 807.6 revolutions per mile.</li>
+<li>New sidewall: 245 × 0.40 = 98.0 mm.</li>
+<li>New diameter: 18 × 25.4 + 2 × 98.0 = 653.2 mm, or 25.72 in, and 784.2 revolutions per mile.</li>
+<li>Difference: 653.2 / 634.3 − 1 = 2.98 %.</li>
+<li>True speed at an indicated 60 mph: 60 × 653.2 / 634.3 = 61.8 mph.</li>
+</ol>
+<p>A closer match is 245/40R17 or 225/40R18, depending on the wheel chosen.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What do the numbers on a tire mean?</summary>
+<p>In 225/45R17, 225 is the section width in mm, 45 is the sidewall height as a percentage of the width, R means radial and 17 is the rim diameter in inches.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate tire diameter?</summary>
+<p>Multiply the width by the aspect ratio for the sidewall height. Add twice that to the rim diameter, converting inches to millimetres with 25.4.</p>
+</details>
+<details class="ec-faq"><summary>How much bigger can I go without affecting the speedometer?</summary>
+<p>Every change affects it in proportion to the diameter. Keep the new diameter as close to the original as you can; this calculator warns above 3 %.</p>
+</details>
+<details class="ec-faq"><summary>Will bigger tires make my speedometer read faster or slower?</summary>
+<p>Slower. With a larger tire the car travels further per turn, so the true speed is higher than the reading.</p>
+</details>
+<details class="ec-faq"><summary>What does a 33x12.50R15 tire size mean?</summary>
+<p>It is a flotation size: 33 in tall, 12.5 in wide, for a 15 in rim. The sidewall is (33 − 15) / 2 = 9 in.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between P and LT sizes?</summary>
+<p>P-metric tires are for passenger cars and LT-metric tires for light trucks with heavier loads. The dimensions follow the same formula.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../gear-speed/index.html">Gear ratio and vehicle speed</a> — rpm and speed with the new tire diameter.</li>
+<li><a href="../quarter-mile/index.html">Quarter-mile ET and trap speed</a> — performance estimates.</li>
+<li><a href="../stopping-distance/index.html">Stopping distance</a> — braking distance on different surfaces.</li>
+<li><a href="../horsepower/index.html">Horsepower calculator</a> — power from torque and rpm.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

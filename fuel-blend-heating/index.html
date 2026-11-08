@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fuel blending and heating viscosity — Engineering calculators</title>
+  <meta name="description" content="Blend viscosity (Refutas), density and sulphur of two fuels, and the injection or preheating temperature from ASTM D341.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Fuel blending and heating viscosity</h1>
+    <p class="ec-summary">Viscosity, density and sulphur of a blend of two marine fuels by the Refutas blending-index method, the mass fraction of fuel A needed for a target viscosity or sulphur, and the fuel temperature required for a target injection viscosity or for transfer pumping from the ASTM D341 (Walther) viscosity–temperature relation.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Marine fuel is managed by viscosity. A residual fuel of 380 cSt at 50 °C must be heated to around 130 °C before the injectors see the 10–15 cSt they need; a transfer pump wants it below 1 000 cSt; and when a parcel is cut with distillate to meet a sulphur limit or a viscosity, the result does not follow a simple average. Two long-established methods handle this: the Refutas blending index, which turns viscosities into numbers that blend linearly by mass, and the ASTM D341 (Walther) equation, which draws the straight line of viscosity against temperature on the chart every engineer has seen in the fuel-oil module. This calculator applies both: blend viscosity, density and sulphur for a given mixing ratio, the ratio needed for a target viscosity or sulphur, and the temperatures for injection and pumping.</p>
+<p>It is for chief engineers and fuel managers planning blends and heating, superintendents checking bunker certificates, and students of marine fuel systems.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Refutas blending (all viscosities at the same temperature, fractions by mass):</p>
+<pre class="ec-formula" tabindex="0"><code>VBI_i = 14.534 ln(ln(ν_i + 0.8)) + 10.975
+VBI_blend = w_A VBI_A + w_B VBI_B
+ν_blend = exp(exp((VBI_blend − 10.975)/14.534)) − 0.8
+fraction for a target: w_A = (VBI_target − VBI_B) / (VBI_A − VBI_B)</code></pre>
+<p>Ideal mixing:</p>
+<pre class="ec-formula" tabindex="0"><code>1/ρ_blend = w_A/ρ_A + w_B/ρ_B        S_blend = w_A S_A + w_B S_B        volume fraction of A = (w_A/ρ_A) ρ_blend</code></pre>
+<p>Viscosity–temperature (ASTM D341, Walther, T in kelvin):</p>
+<pre class="ec-formula" tabindex="0"><code>log10 log10(ν + 0.7) = A − B log10 T
+A and B from two known points; T(ν_target) = 10^((A − log10 log10(ν_target + 0.7))/B)</code></pre>
+<p>Typical targets: injection 10–15 cSt (engine makers 12–14), transfer pumping ≤ 1 000 cSt, separator inlet ≈ 98 °C for residual fuels.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Refutas is accurate to a few per cent for miscible petroleum fuels; it says nothing about stability or compatibility. A paraffinic distillate added to an aromatic residual fuel can precipitate asphaltenes: run a spot test (ASTM D4740) or TSP before blending on board.</li>
+<li>Density and sulphur blend ideally; water, ash, CCAI, pour point and calorific value are not blended here.</li>
+<li>The Walther line needs two reliable points. With only the ISO 8217 value (50 °C for residual grades), the default second point (35 cSt at 100 °C, typical of a 380 cSt fuel) gives heating temperatures within about ±5 °C; enter the certificate value when you have it.</li>
+<li>The blend&#39;s heating uses the slope of fuel A through the blend viscosity; the true slope lies between the components.</li>
+<li>Heater outlet temperatures above about 150 °C are impractical; distillates are limited by minimum viscosity at the injection pump (about 2 cSt), not by heating.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Fuel A: VLSFO, 380 cSt at 50 °C, 991 kg/m³, 0.50 % S (35 cSt at 100 °C from the certificate). Fuel B: MGO, 2.5 cSt at 50 °C, 860 kg/m³, 0.10 % S.</p>
+<ol>
+<li>Indices: VBI_A = 14.534 ln(ln 380.8) + 10.975 = 36.88; VBI_B = 14.534 ln(ln 3.3) + 10.975 = 13.55.</li>
+<li>80/20 by mass: VBI = 0.8 × 36.88 + 0.2 × 13.55 = 32.21 → ν = 73.7 cSt at 50 °C. The viscosity collapses with a fifth of distillate. Density 1/(0.8/991 + 0.2/860) = 962 kg/m³; sulphur 0.42 %; MGO is 22.4 % by volume.</li>
+<li>To reach 180 cSt instead, w_A = (34.93 − 13.55)/(36.88 − 13.55) = 0.917: only 8.3 % MGO by mass.</li>
+<li>Heating fuel A: Walther B = 3.53, A = 9.27. For 13 cSt at the engine: T = 10^((9.27 − log log 13.7)/3.53) = 407 K = 134 °C; 15 cSt at 128 °C, 12 cSt at 138 °C. Transfer pumping below 1 000 cSt needs about 37 °C.</li>
+<li>The 80/20 blend, heated with the same slope from 73.7 cSt at 50 °C, reaches 13 cSt at about 100 °C.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why not average the viscosities?</summary>
+<p>Viscosity blends on a double-logarithmic scale: a little distillate thins a residual fuel far more than its proportion suggests. The Refutas index linearises that.</p>
+</details>
+<details class="ec-faq"><summary>Mass or volume fractions?</summary>
+<p>Refutas blends by mass; bunker quantities are in tonnes. The calculator reports the volume fraction too because tanks are gauged in cubic metres.</p>
+</details>
+<details class="ec-faq"><summary>Can I blend any two fuels?</summary>
+<p>Only if they are compatible. Residual fuels with high asphaltene content are the risk when cut with paraffinic distillates; test before blending, and avoid blending across ISO 8217 categories without a compatibility test.</p>
+</details>
+<details class="ec-faq"><summary>What injection viscosity should I use?</summary>
+<p>The engine maker&#39;s figure, usually 10–15 cSt (12–14 cSt common). Too thick gives poor atomisation and deposits; too thin loses lubricity and leaks past the pump plungers.</p>
+</details>
+<details class="ec-faq"><summary>Where does the second viscosity point come from?</summary>
+<p>The bunker delivery note gives viscosity at 50 °C (residual) or 40 °C (distillate); a laboratory analysis often adds 100 °C. Without it the default typical slope applies, with a warning.</p>
+</details>
+<details class="ec-faq"><summary>Does sulphur blending work for compliance?</summary>
+<p>Arithmetically yes, but the result must be verified by analysis of the blended sample; small dosing errors and tank residues shift the result, and the 0.50 % and 0.10 % limits leave little margin.</p>
+</details>
+<details class="ec-faq"><summary>What about blending to reduce density for a purifier?</summary>
+<p>Density blends ideally here; keep the blend below the gravity-disc limit of the separator (usually 991 or 1 010 kg/m³ at 15 °C).</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../bunker-quantity/index.html">Bunker quantity and density correction</a> — the tonnes and temperatures of the parcels being blended.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel consumption and voyage cost</a> — how much of the blend is burned.</li>
+<li><a href="../eu-ets-fueleu/index.html">EU ETS and FuelEU Maritime</a> — the regulatory cost of the fuel chosen.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — transfer-line losses at the pumping viscosity.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

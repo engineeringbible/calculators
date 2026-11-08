@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Starting air receivers and compressors — Engineering calculators</title>
+  <meta name="description" content="Receiver capacity for the consecutive engine starts of IACS UR M61 and the compressor capacity to charge the receivers from atmospheric pressure in one hour.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Starting air receivers and compressors</h1>
+    <p class="ec-summary">Size the starting air receivers for the twelve or six consecutive starts of IACS UR M61 from the engine maker's air per start, check the installed receivers, and find the compressor capacity that charges them from atmospheric pressure within one hour.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A main engine that starts on compressed air must be able to start many times in a row without the compressors running, for example during a long manoeuvre. IACS Unified Requirement M61, which the IACS class societies apply, sets that number: twelve starts alternately ahead and astern for each reversible engine and six for each non-reversible engine with a controllable pitch propeller. This calculator turns the air per start from the engine maker into the receiver volume between the maximum and the minimum starting pressure, checks the installed receivers, and sizes the compressors that must charge them from atmospheric pressure within one hour.</p>
+<p>It is for marine engineers specifying or checking a starting air system, students of marine engineering, and surveyors verifying receiver and compressor capacity.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Starts required:          engines × 12 (reversible) or × 6 (non-reversible)
+Free air required:        A = starts × air per start + other consumers
+Usable air per m³:        u = p1 (1 − (p2/p1)^(1/n)) / p_atm   (absolute pressures)
+Receiver volume:          V = A / u   (n = 1: V = A p_atm / (p1 − p2))
+Pressure for the starts:  p such that V_installed u(p) = A
+Compressor capacity:      V_installed (p − p_atm) / p_atm per hour</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>IACS UR M61 Rev.3: at least two receivers of about equal capacity, at least two compressors, one of them independent of the main engine with at least half the capacity.</li>
+<li>Air per start and minimum starting pressure from the engine maker; free air at atmospheric pressure.</li>
+<li>Isothermal expansion by default; n = 1.4 represents a rapid sequence of starts.</li>
+<li>Charging is isothermal; the capacity of the compressors is their free air delivery.</li>
+<li>Fewer starts per engine in multi-engine plants need the class society&#39;s agreement.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>One reversible main engine uses 3 m³ of free air per start; the receivers work between 30 and 12 bar gauge; 2.5 m³ of receivers are installed and two compressors charge them.</p>
+<ol>
+<li>12 starts need 12 × 3 = 36 m³ of free air.</li>
+<li>Receiver volume: 36 × 1.013 / 18 = 2.03 m³, two receivers of 1.01 m³.</li>
+<li>The installed 2.5 m³ give 2.5 × 18 / 1.013 / 3 = 14.8 starts.</li>
+<li>They hold the 12 starts when charged to 12 + 36 × 1.013 / 2.5 = 26.6 bar; from atmospheric pressure that is 2.5 × 26.6 / 1.013 = 65.6 m³ of free air, so 65.6 m³/h in one hour, 32.8 m³/h per compressor.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why twelve starts?</summary>
+<p>A reversible two-stroke engine must stop and restart in the opposite direction for every change between ahead and astern. Twelve consecutive starts cover a demanding manoeuvre without relying on the compressors.</p>
+</details>
+<details class="ec-faq"><summary>Where does the air per start come from?</summary>
+<p>From the engine maker&#39;s project guide, which gives the air consumption per start for each engine type. If it is given in normal cubic metres, convert it to free air at atmospheric pressure and the receiver temperature.</p>
+</details>
+<details class="ec-faq"><summary>Why does the expansion exponent matter?</summary>
+<p>During rapid starts the air in the receivers expands and cools, so its pressure drops faster than the mass of air drawn off. Over a slow sequence it warms back to ambient. The isothermal case gives the most air; n = 1.4 is the conservative limit.</p>
+</details>
+<details class="ec-faq"><summary>Why is the compressor capacity given twice?</summary>
+<p>UR M61 requires the compressors to supply, within one hour, the air needed for the required starts by charging the receivers from atmospheric pressure. That means reaching the pressure that holds those starts. Reaching the full working pressure in the same time needs more.</p>
+</details>
+<details class="ec-faq"><summary>Does the receiver air matter for fire fighting?</summary>
+<p>Yes. The FSS Code adds the free air of the receivers to the engine room volume when sizing a CO₂ system, unless the receiver safety valves discharge to the open air.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../co2-fire-system/index.html">Fixed CO₂ fire-extinguishing system</a> — the engine room CO₂ quantity including the receiver air.</li>
+<li><a href="../engine-bmep/index.html">Engine BMEP, torque and power</a> — the engine whose starts the receivers serve.</li>
+<li><a href="../pressure-vessel/index.html">Thin-wall pressure vessel</a> — the wall thickness of a receiver.</li>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — the volume of a receiver from its dimensions.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

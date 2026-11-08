@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mechanical advantage calculator (lever, pulley, screw jack) — Engineering calculators</title>
+  <meta name="description" content="Ideal and actual mechanical advantage and effort for levers, pulley blocks, inclined planes, screw jacks with friction, and wheel and axle.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Mechanical advantage calculator (lever, pulley, screw jack)</h1>
+    <p class="ec-summary">Ideal and actual mechanical advantage, effort and efficiency of levers, pulley blocks, inclined planes, screw jacks and winches.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Mechanical advantage is the ratio of the load a machine lifts to the effort you apply. The ideal value is the ratio of the distances the effort and the load move. Friction makes the actual value smaller. A crowbar with a 1.5 m handle and the load 0.3 m from the fulcrum multiplies your force by 5, so 1 280 N moves a 6.4 kN load.</p>
+<p>This calculator covers the five classic machines: levers of all three classes, pulley blocks, the inclined plane, the screw jack and the wheel and axle. It gives the ideal and actual mechanical advantage, the effort force and the efficiency, and for a screw jack the raising and lowering torques with thread and collar friction. It is for students, technicians and anyone planning a lift.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Ideal mechanical advantage (distance ratio) and actual mechanical advantage:</p>
+<pre class="ec-formula" tabindex="0"><code>AMA = W / F,    efficiency η = AMA / IMA</code></pre>
+<p>Lever, pulley block, wheel and axle:</p>
+<pre class="ec-formula" tabindex="0"><code>lever:   IMA = a_e / a_l,   F = W a_l / a_e
+pulley:  IMA = n,           F = W / (η n)
+winch:   IMA = R / r,       F = W / (η R / r)</code></pre>
+<p>Inclined plane, effort along the slope:</p>
+<pre class="ec-formula" tabindex="0"><code>IMA = 1 / sin θ,    F = W (sin θ + μ cos θ)</code></pre>
+<p>Screw jack (Shigley eqs. 8-1, 8-5, 8-6):</p>
+<pre class="ec-formula" tabindex="0"><code>T_R = (W d_m / 2) (l + π μ d_m sec α) / (π d_m − μ l sec α) + W μ_c d_c / 2
+T_L = (W d_m / 2) (π μ d_m sec α − l) / (π d_m + μ l sec α) + W μ_c d_c / 2
+IMA = 2π R / l,    F = T_R / R</code></pre>
+<ul>
+<li>W — load; F — effort; a_e, a_l — effort and load arms from the fulcrum</li>
+<li>n — rope parts supporting the moving block; R, r — wheel and axle radii</li>
+<li>θ — slope angle; μ — friction coefficient on the slope or thread</li>
+<li>d_m — mean thread diameter; l — lead; α — thread flank half-angle (0° square, 14.5° Acme)</li>
+<li>μ_c, d_c — collar friction and mean collar diameter; R — handle radius for the screw jack</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The load moves slowly at steady speed, so inertia is ignored. The effort is the force that just keeps it moving upward.</li>
+<li>Levers are rigid with a frictionless fulcrum, so their actual and ideal advantage are equal.</li>
+<li>For a pulley block, enter the overall efficiency of the block. It falls as more sheaves are added.</li>
+<li>The screw jack follows Shigley&#39;s power-screw equations. The thread is self-locking when the thread term of T_L is positive.</li>
+<li>These are statics results. Lifting gear also needs its rated load, a safety factor and an inspection.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A screw jack has a square thread of 32 mm major diameter, 4 mm pitch and two starts, so d_m = 30 mm and the lead is 8 mm. It lifts 6.4 kN. Thread and collar friction are both 0.08, the collar mean diameter is 40 mm, and the handle radius is 300 mm. These are the data of Shigley Example 8-1.</p>
+<ol>
+<li>Thread torque to raise: 96 × (8 + 7.54) / (94.25 − 0.64) = 15.94 N·m.</li>
+<li>Collar torque: 6 400 × 0.08 × 0.040 / 2 = 10.24 N·m, so the raising torque is 26.18 N·m.</li>
+<li>Lowering torque: −0.466 + 10.24 = 9.77 N·m. The thread alone would run down, but the collar holds the load.</li>
+<li>Effort at the handle: 26.18 / 0.300 = 87.3 N.</li>
+<li>IMA = 2π × 300 / 8 = 235.6; AMA = 6 400 / 87.3 = 73.3; efficiency 31.1 %.</li>
+</ol>
+<p>More than two-thirds of the effort goes into friction, and the collar friction is what stops the jack running down.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the difference between ideal and actual mechanical advantage?</summary>
+<p>The ideal value assumes no friction and is the ratio of distances moved. The actual value is load over effort, and is smaller because of friction.</p>
+</details>
+<details class="ec-faq"><summary>What are the three classes of lever?</summary>
+<p>Class 1 has the fulcrum between load and effort, like a crowbar. Class 2 has the load in the middle, like a wheelbarrow. Class 3 has the effort in the middle, like tweezers, and always needs more effort than the load.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the mechanical advantage of a pulley system?</summary>
+<p>Count the rope parts that hold up the moving block. Four parts give an ideal advantage of 4; friction in the sheaves reduces the actual value.</p>
+</details>
+<details class="ec-faq"><summary>Why is a screw jack self-locking?</summary>
+<p>When the friction torque on the thread exceeds the torque the load creates through the thread&#39;s lead, the load cannot turn the screw. A small lead and a high friction coefficient make a screw self-locking.</p>
+</details>
+<details class="ec-faq"><summary>What efficiency does a screw jack have?</summary>
+<p>The jack in the example has 31 %. A ball thrust bearing at the collar raises it; a ball screw raises it much further but is not self-locking.</p>
+</details>
+<details class="ec-faq"><summary>Does an inclined plane save work?</summary>
+<p>No. It lowers the force but lengthens the distance, and friction adds work. The ideal advantage is the slope length over the height.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../torque-power-rpm/index.html">Torque, power and speed</a> — power to drive a winch or screw.</li>
+<li><a href="../gear-ratio/index.html">Gear ratio, rpm and torque</a> — mechanical advantage of gear trains.</li>
+<li><a href="../bolt-torque/index.html">Bolt torque and preload</a> — another screw under friction.</li>
+<li><a href="../lifting-sling/index.html">Lifting sling and wire rope load</a> — loads in slings and rigging.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

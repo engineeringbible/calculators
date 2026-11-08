@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stopping distance calculator — Engineering calculators</title>
+  <meta name="description" content="Car stopping distance from speed as reaction plus braking distance, with AASHTO design values, road friction for dry, wet, snow or ice, and grade.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Stopping distance calculator</h1>
+    <p class="ec-summary">Stopping distance as reaction plus braking distance, with AASHTO design values or road friction for dry, wet, snow and ice, and road grade.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Stopping distance is the distance a vehicle covers from the moment a driver sees a hazard until it stops. It has two parts. The reaction distance is covered at full speed while the driver perceives and reacts. The braking distance follows, while the brakes slow the car. With the US highway design values of 2.5 s and 11.2 ft/s², a car at 60 mph needs about 570 ft to stop.</p>
+<p>This calculator adds the reaction distance and the braking distance, in feet and metres. Braking uses either a deceleration rate, such as the AASHTO design value, or the tire-road friction of a surface from dry asphalt to ice. It allows for an uphill or downhill grade. It is for drivers, driving instructors, students and road designers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Stopping distance:</p>
+<pre class="ec-formula" tabindex="0"><code>d = v × t + v² / (2 × (a + g G))</code></pre>
+<p>With a friction coefficient:</p>
+<pre class="ec-formula" tabindex="0"><code>a = μ × g</code></pre>
+<p>AASHTO form in US units, V in mph:</p>
+<pre class="ec-formula" tabindex="0"><code>SSD = 1.47 V t + V² / (30 × (a/32.2 + G))     ft</code></pre>
+<ul>
+<li>v — speed; t — perception-reaction time, 2.5 s in AASHTO design</li>
+<li>a — deceleration on a level road, 3.4 m/s² (11.2 ft/s²) in AASHTO design</li>
+<li>G — grade as a decimal, positive uphill</li>
+<li>μ — tire-road friction coefficient; g = 9.81 m/s²</li>
+</ul>
+<p>Average sliding friction coefficients (Wong):</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Surface</th><th scope="col">μ</th></tr></thead>
+<tbody>
+<tr><td>Asphalt or concrete, dry</td><td>0.75</td></tr>
+<tr><td>Concrete, wet</td><td>0.70</td></tr>
+<tr><td>Earth road, dry</td><td>0.65</td></tr>
+<tr><td>Gravel</td><td>0.55</td></tr>
+<tr><td>Asphalt, wet</td><td>0.45 to 0.60</td></tr>
+<tr><td>Earth road, wet</td><td>0.40 to 0.50</td></tr>
+<tr><td>Snow, hard-packed</td><td>0.15</td></tr>
+<tr><td>Ice</td><td>0.07</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The deceleration is constant from the end of the reaction time until the car stops. Brake build-up and air drag are ignored.</li>
+<li>The AASHTO deceleration of 3.4 m/s² is a comfortable rate that most drivers reach on wet pavement while keeping steering control. Hard emergency braking on dry pavement is stronger.</li>
+<li>The friction values are sliding values for locked wheels. With ABS the peak values, 0.8 to 0.9 on dry asphalt, apply.</li>
+<li>Worn tires, standing water and loose surfaces give less friction than the table.</li>
+<li>The results are estimates for one vehicle. They are not an accident reconstruction.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A car travels at 60 mph on a level road. Using the AASHTO design values of 2.5 s and 3.4 m/s², how far does it travel before it stops?</p>
+<ol>
+<li>Speed: 60 mph = 88 ft/s = 26.82 m/s.</li>
+<li>Reaction distance: 88 × 2.5 = 220.0 ft.</li>
+<li>Braking distance: 26.82² / (2 × 3.4) = 105.8 m = 347.1 ft.</li>
+<li>Total stopping distance: 220.0 + 347.1 = 567.1 ft, or 172.9 m.</li>
+<li>Time to stop: 2.5 + 26.82 / 3.4 = 10.39 s.</li>
+</ol>
+<p>On a 5 % downgrade the braking distance grows to 405.6 ft. The AASHTO table, which rounds the deceleration to 11.2 ft/s², gives a design stopping sight distance of 570 ft at this speed.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate stopping distance?</summary>
+<p>Add the reaction distance, speed × reaction time, to the braking distance, speed² / (2 × deceleration). Use consistent units, such as ft/s and ft/s².</p>
+</details>
+<details class="ec-faq"><summary>What is the stopping distance at 60 mph?</summary>
+<p>About 567 ft with the AASHTO design values. A driver braking hard on dry asphalt with locked wheels needs 220 ft to react and 160 ft to brake.</p>
+</details>
+<details class="ec-faq"><summary>What reaction time should I use?</summary>
+<p>AASHTO designs roads for 2.5 s, which covers nearly all drivers in a surprise situation. An alert driver who expects to brake reacts faster.</p>
+</details>
+<details class="ec-faq"><summary>How much does speed affect stopping distance?</summary>
+<p>The braking distance grows with the square of speed. Going from 60 to 70 mph adds 36 % to the braking distance.</p>
+</details>
+<details class="ec-faq"><summary>How much longer is stopping on a wet road?</summary>
+<p>With Wong&#39;s sliding values, braking on wet asphalt (0.45) takes 1.67 times as far as on dry asphalt (0.75).</p>
+</details>
+<details class="ec-faq"><summary>Does a downhill slope increase stopping distance?</summary>
+<p>Yes. Gravity works against the brakes, so a 5 % downgrade cuts the effective deceleration by 0.49 m/s².</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../tire-size/index.html">Tire size calculator</a> — tire dimensions and speedometer error.</li>
+<li><a href="../gear-speed/index.html">Gear ratio and vehicle speed</a> — road speed from rpm.</li>
+<li><a href="../quarter-mile/index.html">Quarter-mile ET and trap speed</a> — acceleration performance.</li>
+<li><a href="../slope/index.html">Slope calculator</a> — grade as a percentage, an angle or a ratio.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

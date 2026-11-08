@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EV charging time and cost calculator — Engineering calculators</title>
+  <meta name="description" content="Electric car charging time and cost from battery size, state of charge, charger power and the car's limit, with charging losses and the range added per hour.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">EV charging time and cost calculator</h1>
+    <p class="ec-summary">How long an electric car takes to charge and what it costs, from battery size, state of charge, charger power and losses, with the range added.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How long does an electric car take to charge? Work out the energy the battery needs, add the charging losses, and divide by the charging power. Charging a 75 kWh battery from 20 to 80 % puts 45 kWh into it. At 90 % efficiency, a 7.2 kW home charger draws 50 kWh from the grid and takes just under 7 hours.</p>
+<p>This calculator gives the charging time, the energy drawn and lost, the cost at your electricity price, and the range added in total and per hour of charging. It handles Level 1 and Level 2 AC charging, limited by the car&#39;s onboard charger, and DC fast charging, limited by the car&#39;s maximum DC power. It is for EV drivers, fleet managers and anyone planning home or workplace charging.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Energy, time and cost:</p>
+<pre class="ec-formula" tabindex="0"><code>E_bat = C × (SoC_end − SoC_start)
+E_grid = E_bat / η
+P = min(P_charger, P_car)
+t = E_grid / P
+cost = E_grid × price</code></pre>
+<p>Range:</p>
+<pre class="ec-formula" tabindex="0"><code>range = E_bat / c
+range per hour = P × η / c</code></pre>
+<ul>
+<li>C — usable battery capacity; SoC — state of charge</li>
+<li>η — charging efficiency from the grid to the battery</li>
+<li>P_charger — charger power, volts × amps for AC</li>
+<li>P_car — onboard charger limit (AC) or maximum DC charging power</li>
+<li>c — consumption from the battery, in kWh per mile or per km</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The power is constant during the charge. DC fast charging slows down sharply above about 80 %, so a charge to 100 % takes longer than shown.</li>
+<li>The efficiency covers the onboard charger, cables, battery and cooling. Idaho National Laboratory measured 88.8 % on Level 1 and 90.8 % on Level 2 for one car&#39;s onboard charger. Plan with 85 to 90 %, and less in cold weather.</li>
+<li>The consumption is what the trip computer shows, taken from the battery. EPA label figures in kWh/100 mi are measured at the wall and already include the charging losses.</li>
+<li>The price is per kWh from the grid or the charging station. Standing charges, session fees and time-of-use rates are not included.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A car with a 75 kWh usable battery charges from 20 to 80 % on a 7.2 kW Level 2 charger, 240 V at 30 A. Its onboard charger accepts 11 kW. The efficiency is 90 %, electricity costs 0.15 per kWh, and the car drives 3.4 mi/kWh. How long does it take, and what does it cost?</p>
+<ol>
+<li>Energy into the battery: 75 × (0.80 − 0.20) = 45.0 kWh.</li>
+<li>Energy from the grid: 45.0 / 0.90 = 50.0 kWh, so 5 kWh is lost.</li>
+<li>Power: the charger&#39;s 7.2 kW is below the car&#39;s 11 kW, so 7.2 kW.</li>
+<li>Time: 50.0 / 7.2 = 6.94 h, or 6 h 57 min.</li>
+<li>Cost: 50.0 × 0.15 = 7.50.</li>
+<li>Range added: 45.0 × 3.4 = 153 mi.</li>
+<li>Range added per hour of charging: 7.2 × 0.90 × 3.4 = 22.0 mph, that is 22 miles for each hour on the charger.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How long does it take to charge an electric car?</summary>
+<p>Divide the energy needed, including losses, by the charging power. A 50 kWh charge takes about 7 hours at 7.2 kW and about 35 hours at 1.44 kW.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between Level 1 and Level 2 charging?</summary>
+<p>Level 1 uses a 120 V household outlet at 12 to 16 A, 1.4 to 1.9 kW. Level 2 uses 208 to 240 V at up to 80 A, up to 19.2 kW, and most home units deliver up to 7.2 kW.</p>
+</details>
+<details class="ec-faq"><summary>How much does it cost to charge an EV?</summary>
+<p>Multiply the energy drawn from the grid by the price per kWh. 50 kWh at 0.15 costs 7.50.</p>
+</details>
+<details class="ec-faq"><summary>Why does my car charge slower than the charger&#39;s rating?</summary>
+<p>The car&#39;s onboard charger limits AC charging. An 11 kW wallbox charges a car with a 7.4 kW onboard charger at only 7.4 kW.</p>
+</details>
+<details class="ec-faq"><summary>Why does DC fast charging slow down above 80 %?</summary>
+<p>The car reduces the current as the battery fills, to protect the cells. Each kWh near the top therefore takes much longer to add.</p>
+</details>
+<details class="ec-faq"><summary>How efficient is EV charging?</summary>
+<p>Typically 85 to 90 % from the wall to the battery. The losses heat the charger, the cables and the battery.</p>
+</details>
+<details class="ec-faq"><summary>How many miles of range does an hour of charging add?</summary>
+<p>Charging power × efficiency × miles per kWh. At 7.2 kW, 90 % and 3.4 mi/kWh it is 22 miles per hour.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../electricity-cost/index.html">Electricity cost and energy use</a> — the running cost of any load.</li>
+<li><a href="../battery-charge-time/index.html">Battery charge time</a> — charge time for any battery in Ah.</li>
+<li><a href="../kw-to-amps/index.html">kW to amps</a> — the circuit current of a charger.</li>
+<li><a href="../solar-payback/index.html">Solar panel payback calculator</a> — charging from your own panels.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Column buckling (Euler and Johnson) — Engineering calculators</title>
+  <meta name="description" content="Critical buckling load and stress of a compression member by Euler or the Johnson parabola, with end-condition factors, slenderness, allowable load and utilisation.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Structural</span>
+    <h1 class="ec-title">Column buckling (Euler and Johnson)</h1>
+    <p class="ec-summary">Critical load and stress of a compression member about its weak axis by the Euler formula or the Johnson parabola, with theoretical or recommended effective-length factors, slenderness and transition slenderness, allowable load for a chosen factor of safety and utilisation.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A slender member in compression fails not by crushing but by bowing sideways at a load that can be a small fraction of its squash load. Pillars under decks, pipe supports, jack-up legs, crane booms, connecting rods and restrained pipelines all have to be checked for buckling. Euler&#39;s formula gives the elastic critical load of a perfect column from its stiffness and effective length; for stockier columns the Johnson parabola bridges the gap between Euler and yielding. This calculator computes both, names the governing one, applies the end-condition factor and a factor of safety, and reports the slenderness ratio and utilisation.</p>
+<p>It is for marine and mechanical engineers sizing struts and supports, for naval architecture students checking pillars, and for anyone who needs to know how far a column is from its critical load.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Section and slenderness:</p>
+<pre class="ec-formula" tabindex="0"><code>r = √(I_min / A)            radius of gyration about the weak axis
+L_e = K L                   effective length; K from the end conditions
+λ = K L / r                 slenderness ratio</code></pre>
+<p>Euler (long columns):</p>
+<pre class="ec-formula" tabindex="0"><code>P_cr = π² E I_min / (K L)²,    σ_cr = π² E / λ²</code></pre>
+<p>Transition slenderness and Johnson parabola (intermediate columns, λ &lt; λ₁):</p>
+<pre class="ec-formula" tabindex="0"><code>λ₁ = π √(2 E / σ_y)
+σ_cr = σ_y − (σ_y² / (4 π² E)) λ²,    P_cr = σ_cr A</code></pre>
+<p>Allowable load and utilisation:</p>
+<pre class="ec-formula" tabindex="0"><code>P_allow = P_cr / FS,    utilisation = P / P_allow</code></pre>
+<p>Effective-length factors K (theoretical / recommended): pinned–pinned 1.0 / 1.0; fixed–fixed 0.5 / 0.65; fixed–pinned 0.7 / 0.8; fixed–free 2.0 / 2.1; fixed–guided 1.0 / 1.2.</p>
+<ul>
+<li>E — Young&#39;s modulus; σ_y — yield strength (compressive strength parallel to grain for timber); I_min — second moment of area about the weak axis; A — cross-section area</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Ideal column: straight, concentric load, homogeneous material. Real members have initial bow and eccentricity, which is why design codes (EN 1993-1-1 §6.3, AISC E3) use buckling curves that fall below Euler and Johnson. Treat the result as the theoretical capacity and apply the factor of safety or the code check.</li>
+<li>Flexural buckling about the weak axis over the full unbraced length. Intermediate bracing of the weak axis changes the governing axis and length; enter the braced length or the strong-axis I as a custom section.</li>
+<li>The Johnson parabola is the classical machine-design treatment of inelastic buckling; codes use different inelastic curves, but the trend is the same.</li>
+<li>Local buckling of thin walls and flanges, torsional and flexural-torsional buckling of open sections, and lateral-torsional buckling are outside the scope; the calculator warns for thin tubes and I-sections.</li>
+<li>Material presets are nominal; the I-section formula omits root fillets (about 1 % low on the weak axis, 5 % on the strong axis).</li>
+<li>Most codes limit compression members to λ ≤ 200; beyond that, imperfections dominate and the calculator warns.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 4 m pillar of hot-finished CHS 139.7 × 6 mm, S235 steel (E = 210 GPa), pinned at both ends, carrying 200 kN; factor of safety 1.92.</p>
+<ol>
+<li>Section: A = 25.2 cm², I = 564 cm⁴, r = √(564/25.2) = 4.73 cm (matching the section tables).</li>
+<li>Slenderness: K = 1.0, λ = 4 000 / 47.3 = 84.5. Transition for S235: π √(2 × 210 000 / 235) = 132.8, so this is an intermediate column.</li>
+<li>Euler would give σ_cr = π² × 210 000 / 84.5² = 290 MPa, above yield, so it cannot govern; P_Euler = 731 kN.</li>
+<li>Johnson: σ_cr = 235 − (235² / (4 π² × 210 000)) × 84.5² = 235 − 47.6 = 187.4 MPa; P_cr = 187.4 × 2 520 = 472 kN.</li>
+<li>Allowable: 472 / 1.92 = 246 kN; the 200 kN load uses 81 % of it. The squash load A σ_y = 592 kN is never reached.</li>
+</ol>
+<p>A 3 m pinned 50 mm solid rod in A36 steel, by contrast, has λ = 240 and buckles at the Euler load of 67 kN, only 34 MPa of stress against a yield of 250 MPa: a long column where stiffness, not strength, decides.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which K should I use?</summary>
+<p>The recommended design values unless the connections are truly rigid. Welded base plates on a stiff foundation rarely achieve full fixity; the AISC values (0.65, 0.8, 2.1, 1.2) allow for that.</p>
+</details>
+<details class="ec-faq"><summary>Why does the result not depend on the yield strength for long columns?</summary>
+<p>Above the transition slenderness the Euler load depends only on E, I and length: a high-strength steel column buckles at the same load as a mild-steel one of the same size. Stronger steel only helps short and intermediate columns.</p>
+</details>
+<details class="ec-faq"><summary>What factor of safety is appropriate?</summary>
+<p>AISC allowable-stress design uses 1.67 for stocky to 1.92 for slender members; machine design commonly uses 2–3 because loads and end conditions are less certain. Codes using partial factors handle this differently.</p>
+</details>
+<details class="ec-faq"><summary>Is the Johnson parabola a code method?</summary>
+<p>No, it is the classical machine-design formula (Shigley). Structural codes use their own inelastic buckling curves with imperfection factors; the Johnson value is a good estimate of the ideal inelastic capacity.</p>
+</details>
+<details class="ec-faq"><summary>How do I handle a pipe between anchors heated up?</summary>
+<p>Compute the thermal compressive force with the thermal-expansion calculator and compare it with the critical load here using the span between guides as the length; restrained pipelines almost always buckle before they yield.</p>
+</details>
+<details class="ec-faq"><summary>My column is braced at mid-height. What length do I enter?</summary>
+<p>The length between bracing points for buckling about the braced axis, and the full length for the other axis; check both, using a custom section with the corresponding I.</p>
+</details>
+<details class="ec-faq"><summary>Does this cover plate buckling of a bulkhead or deck?</summary>
+<p>No. Plates buckle differently (critical stress depends on the width-to-thickness ratio and edge restraint); use the plate buckling formulas of the classification rules.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../beam-deflection/index.html">Beam deflection and bending stress</a> — the same sections in bending.</li>
+<li><a href="../thermal-expansion/index.html">Thermal expansion and restraint stress</a> — the compressive force on a restrained pipe.</li>
+<li><a href="../shaft-torque/index.html">Shaft torque, power and diameter</a> — torsion of circular members.</li>
+<li><a href="../lifting-sling/index.html">Lifting sling and wire rope load</a> — compression in spreader beams.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heat transfer calculator: conduction, convection, radiation — Engineering calculators</title>
+  <meta name="description" content="Heat flow by conduction through a wall (Fourier), convection from a surface (Newton) and radiation (Stefan–Boltzmann), with heat flux and thermal resistance.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Heat transfer calculator: conduction, convection, radiation</h1>
+    <p class="ec-summary">Heat flow by conduction, convection and radiation through a wall or from a surface, with heat flux and thermal resistance.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Heat moves in three ways. It is conducted through solids, carried away by a moving fluid in convection, and radiated as infrared light from every warm surface. Each has a simple law: Fourier&#39;s law for conduction, Newton&#39;s law of cooling for convection, and the Stefan–Boltzmann law for radiation. Together they explain why a brick wall loses heat, a radiator warms a room and a hot pipe needs insulation.</p>
+<p>This calculator applies each law to a flat surface. It gives the heat flow in watts, the heat flux per square metre, the thermal resistance and the equivalent heat transfer coefficient. For conduction it lists the thermal conductivity of metals, building materials, insulation, water and air. It is for students, engineers and anyone estimating heat flow through walls, from surfaces or between them.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Conduction through a plane wall (Fourier):</p>
+<pre class="ec-formula" tabindex="0"><code>Q = k A (T₁ − T₂) / L</code></pre>
+<p>Convection from a surface (Newton):</p>
+<pre class="ec-formula" tabindex="0"><code>Q = h A (T_s − T_∞)</code></pre>
+<p>Radiation from a surface to large surroundings (Stefan–Boltzmann):</p>
+<pre class="ec-formula" tabindex="0"><code>Q = ε σ A (T_s⁴ − T_sur⁴),   σ = 5.670 × 10⁻⁸ W/(m²·K⁴), T in kelvin</code></pre>
+<p>Thermal resistance and heat flux:</p>
+<pre class="ec-formula" tabindex="0"><code>R = ΔT / Q,   q″ = Q / A</code></pre>
+<ul>
+<li>k — thermal conductivity, W/(m·K); L — wall thickness</li>
+<li>h — convection coefficient, W/(m²·K); ε — emissivity, 0 to 1</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Heat flow is steady and one-dimensional, with constant properties. Conduction is through a flat wall; for pipes and cylinders use the pipe insulation calculator.</li>
+<li>The convection coefficient depends on the fluid and its speed: about 2 to 25 W/(m²·K) for still air, 25 to 250 for moving air, and hundreds to thousands for water.</li>
+<li>Radiation is between a small surface and large surroundings that see each other fully. Two surfaces close together, such as panes of glass, exchange less.</li>
+<li>Conductivities are typical values near room temperature. Insulation loses much of its value when wet.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 200 mm solid brick wall of 10 m² has 20 °C on one face and 0 °C on the other. How much heat does it conduct?</p>
+<ol>
+<li>Conductivity of common brick: 0.72 W/(m·K).</li>
+<li>Heat flow: Q = 0.72 × 10 × (20 − 0) / 0.2 = 720 W.</li>
+<li>Heat flux: 720 / 10 = 72.00 W/m².</li>
+<li>Thermal resistance: 20 / 720 = 0.028 K/W.</li>
+</ol>
+<p>The surface films of air on each side add resistance, so a real wall loses somewhat less. With 100 mm of extruded polystyrene instead, the flow would be 54 W.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What are the three modes of heat transfer?</summary>
+<p>Conduction through solids and still fluids, convection by a moving fluid, and radiation by electromagnetic waves, which needs no medium.</p>
+</details>
+<details class="ec-faq"><summary>What is thermal conductivity?</summary>
+<p>The heat that flows through a 1 m thick slab of 1 m² for each kelvin of temperature difference. Copper conducts 401 W/(m·K), brick 0.72 and good insulation about 0.03.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate heat loss through a wall?</summary>
+<p>Divide the thermal conductivity by the thickness, multiply by the area and the temperature difference. For walls of several layers, add the resistances L / k of each layer, or use the U-value in the building heat loss calculator.</p>
+</details>
+<details class="ec-faq"><summary>What is a typical convection coefficient?</summary>
+<p>Around 5 to 10 W/(m²·K) for still air on a wall, 25 to 100 for air blown by a fan, and 500 to 10 000 for pumped water.</p>
+</details>
+<details class="ec-faq"><summary>How much heat does a hot surface radiate?</summary>
+<p>A black surface at 100 °C emits 1 099 W/m²; facing 20 °C surroundings it loses 681 W/m² net. Shiny metal with ε = 0.05 loses only a twentieth of that.</p>
+</details>
+<details class="ec-faq"><summary>What is emissivity?</summary>
+<p>How well a surface radiates compared with a perfect black body: about 0.9 for paint, brick and skin, 0.03 to 0.1 for polished metals.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../specific-heat/index.html">Specific heat (Q = mcΔT)</a> — the heat stored in a material.</li>
+<li><a href="../heat-loss/index.html">Building heat loss</a> — whole buildings with U-values.</li>
+<li><a href="../pipe-insulation/index.html">Pipe insulation</a> — heat loss of insulated pipes.</li>
+<li><a href="../heat-exchanger-lmtd/index.html">Heat exchanger LMTD</a> — heat transfer between two fluids.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

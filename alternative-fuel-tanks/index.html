@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alternative fuel tank volume — Engineering calculators</title>
+  <meta name="description" content="Mass, volume and tank capacity of LNG, methanol, ammonia, hydrogen, LPG or biofuels carrying the same energy as a quantity of oil fuel.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Alternative fuel tank volume</h1>
+    <p class="ec-summary">Find the mass, volume and tank capacity of an alternative fuel that does the same work as a quantity of oil fuel, from the FuelEU calorific values and the densities at the storage condition, and compare LNG, methanol, ammonia, hydrogen, LPG and biofuels side by side.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How much bigger do the tanks have to be when a ship changes fuel? The answer depends on two properties: the energy per kilogram (the lower calorific value) and the density at the storage condition. Methanol and ammonia carry less than half the energy of gas oil per kilogram, and hydrogen is so light that even as a liquid it needs several times the volume. This calculator takes a quantity of oil fuel, finds the mass and volume of an alternative fuel that does the same work, adds the filling limit and unpumpable volume to give the tank capacity, and compares all the listed fuels side by side.</p>
+<p>It is for naval architects and superintendents in early design or conversion studies, fleet planners comparing fuel options, and anyone checking an endurance claim for a new fuel.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Energy to carry:     E = m_ref × LCV_ref
+Alternative mass:    m = E / (η_rel × LCV)
+Volume:              V = m / ρ
+Tank capacity:       V_tank = V / (filling limit − unpumpable)
+Energy density:      LCV × ρ</code></pre>
+<ul>
+<li>η_rel — efficiency of the machinery on the alternative fuel relative to the reference fuel.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Calorific values: FuelEU Maritime Annex II defaults; ethanol, FAME and HVO from RED Annex III.</li>
+<li>Densities of the pure substances from NIST at the storage condition named; LNG is taken as methane, which understates the density of real LNG.</li>
+<li>The tank capacity includes the filling limit and the unpumpable volume or heel only.</li>
+<li>The tank system around the tank (insulation, cylindrical tanks in a prismatic hold, cofferdams, tank connection spaces), pilot fuel, boil-off and the mass of the tanks are not included.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A ship carries 1000 t of MGO at 860 kg/m³. How much methanol does the same work, with the same efficiency?</p>
+<ol>
+<li>Energy: 1000 t × 42.7 MJ/kg = 42 700 GJ.</li>
+<li>Methanol mass: 42 700 / 19.9 = 2145.7 t.</li>
+<li>Methanol volume: 2145.7 t / 795.7 kg/m³ = 2696.7 m³, against 1162.8 m³ of MGO: 2.32 times the volume.</li>
+<li>Tank capacity with a 98 % filling limit and 2 % unpumpable: 2696.7 / 0.96 = 2809.0 m³.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why compare by energy rather than by mass?</summary>
+<p>The engine needs energy, not tonnes. Methanol has 19.9 MJ/kg against 42.7 MJ/kg for gas oil, so the same voyage needs 2.15 times the mass of methanol.</p>
+</details>
+<details class="ec-faq"><summary>What does the relative efficiency do?</summary>
+<p>It adjusts for machinery that converts the fuel&#39;s energy more or less efficiently than on the reference fuel, for example a fuel cell or a different engine cycle. A value of 0.95 means 5 % more energy is needed for the same work.</p>
+</details>
+<details class="ec-faq"><summary>Why is liquid hydrogen worse than its 120 MJ/kg suggests?</summary>
+<p>Its density is only 71 kg/m³, so its energy per cubic metre is about a quarter of gas oil&#39;s. Compressed hydrogen at 700 bar holds less than 60 % of that.</p>
+</details>
+<details class="ec-faq"><summary>Is ammonia better refrigerated or pressurised?</summary>
+<p>Refrigerated ammonia at −33 °C is about 10 % denser than ammonia stored under pressure at 15 °C, so it takes less tank volume. The choice also depends on the tank type, boil-off handling and the ship&#39;s size.</p>
+</details>
+<details class="ec-faq"><summary>Why is the tank capacity not the space in the ship?</summary>
+<p>Cryogenic and pressurised fuels need cylindrical or insulated tanks, which waste space in a prismatic hold, plus cofferdams and tank connection spaces. Those depend on the design and are not included here.</p>
+</details>
+<details class="ec-faq"><summary>Can I use my own fuel data?</summary>
+<p>Yes. Choose the custom fuel and enter its calorific value and density, for example the density on an LNG bunker delivery note.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../fuel-lcv-co2/index.html">Fuel net specific energy and CO₂ factor</a> — the calorific value of an oil fuel from its properties.</li>
+<li><a href="../eu-ets-fueleu/index.html">EU ETS and FuelEU Maritime</a> — the regulatory cost of each fuel.</li>
+<li><a href="../bunker-quantity/index.html">Bunker quantity and density correction</a> — the mass of oil fuel in a tank.</li>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — the volume of a tank from its shape.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel consumption and voyage cost</a> — the fuel a passage needs.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

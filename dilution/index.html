@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dilution calculator (C1V1 = C2V2 and serial dilution) — Engineering calculators</title>
+  <meta name="description" content="Solve C1V1 = C2V2 for any one term, with the dilution factor, diluent volume and ratio, plus serial dilution steps and their concentrations.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Process</span>
+    <h1 class="ec-title">Dilution calculator (C1V1 = C2V2 and serial dilution)</h1>
+    <p class="ec-summary">C1V1 = C2V2 for any unknown, with dilution factor, diluent volume and stock-to-diluent ratio, plus serial dilution steps.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>When you dilute a solution, the amount of solute stays the same and only the volume grows. That gives the dilution formula C1V1 = C2V2: stock concentration times stock volume equals final concentration times final volume. To make 500 mL of 1 M hydrochloric acid from a 12 M stock, take 1 × 500 / 12 = 41.67 mL of stock and make it up to 500 mL. The dilution factor is C1 / C2, here 12.</p>
+<p>This calculator solves C1V1 = C2V2 for any one of the four terms. It gives the dilution factor, the volume of diluent to add and the stock-to-diluent ratio. It also plans a serial dilution of equal steps, with the total factor and the concentration after each step. It is for laboratory staff, microbiologists, students and process operators making working solutions and standards.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Dilution formula and its rearrangements:</p>
+<pre class="ec-formula" tabindex="0"><code>C1 V1 = C2 V2
+V1 = C2 V2 / C1,   C2 = C1 V1 / V2</code></pre>
+<p>Dilution factor, diluent and ratio:</p>
+<pre class="ec-formula" tabindex="0"><code>DF = C1 / C2 = V2 / V1
+diluent = V2 − V1
+ratio = 1 : (DF − 1)    stock : diluent</code></pre>
+<p>Serial dilution of n equal steps of factor f:</p>
+<pre class="ec-formula" tabindex="0"><code>DF_total = f^n
+C_k = C1 / f^k
+diluent per tube = (f − 1) × v_transfer</code></pre>
+<ul>
+<li>C1, V1 — concentration and volume of the stock</li>
+<li>C2, V2 — concentration and final volume of the diluted solution</li>
+<li>f — factor per step; n — number of steps; v_transfer — volume moved from tube to tube</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>C1 and C2 must be in the same unit: mol/L, mg/L, % w/v, ppm or cells/mL all work.</li>
+<li>V2 is the final volume after making up. Adding V2 − V1 of diluent gives the same result only when volumes add, which is close for dilute aqueous solutions.</li>
+<li>Concentrated acids, alcohols and other mixtures that shrink or swell on mixing should be made up to the mark in a volumetric flask.</li>
+<li>Concentrations by mass, such as % w/w, dilute by mass. Use masses instead of volumes for them.</li>
+<li>Large single-step dilutions need tiny stock volumes that are hard to measure. Beyond about 1 : 1 000, a serial dilution is more accurate.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A technician needs 500 mL of 1 M hydrochloric acid and has a 12 M stock.</p>
+<ol>
+<li>Stock volume: V1 = 1 × 500 / 12 = 41.67 mL.</li>
+<li>Diluent: 500 − 41.67 = 458.3 mL of water.</li>
+<li>Dilution factor: 12 / 1 = 12.0, a ratio of 1 : 11.</li>
+</ol>
+<p>Put about 400 mL of water in the flask, add the acid slowly, then make up to 500 mL once it has cooled.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do you use C1V1 = C2V2?</summary>
+<p>Fill in the three values you know and solve for the fourth. To dilute 10 mL of 0.5 M stock to 250 mL, C2 = 0.5 × 10 / 250 = 0.02 M.</p>
+</details>
+<details class="ec-faq"><summary>What is a dilution factor?</summary>
+<p>The ratio of the stock concentration to the final concentration, or of the final volume to the stock volume. A 1 mL sample made up to 100 mL has a dilution factor of 100.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between 1 : 10 and 1 in 10?</summary>
+<p>&quot;1 in 10&quot; usually means 1 part in a total of 10 parts, a factor of 10. &quot;1 : 10&quot; often means 1 part stock to 10 parts diluent, a factor of 11. State which you mean.</p>
+</details>
+<details class="ec-faq"><summary>How do I make a serial dilution?</summary>
+<p>Transfer a fixed volume into a tube holding (f − 1) times that volume of diluent, mix, and repeat. Six 1 : 10 steps with 1 mL transfers and 9 mL of diluent give a factor of one million.</p>
+</details>
+<details class="ec-faq"><summary>Why use a serial dilution instead of one big dilution?</summary>
+<p>Making 100 mL of a millionfold dilution in one step needs 0.1 µL of stock, which cannot be measured accurately. Several moderate steps keep every volume measurable and accurate.</p>
+</details>
+<details class="ec-faq"><summary>Does C1V1 = C2V2 work for mass concentrations?</summary>
+<p>Use masses instead of volumes for % w/w or mg/kg. With volumes it is exact only when the density does not change on dilution.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../molarity/index.html">Molarity</a> — preparing the stock solution from a solid.</li>
+<li><a href="../ppm-concentration/index.html">PPM concentration converter</a> — changing the concentration unit.</li>
+<li><a href="../mass-balance/index.html">Mass balance mixing</a> — dilution by mass with flows and temperatures.</li>
+<li><a href="../chemical-dosing/index.html">Chemical dosing</a> — feeding a diluted product into a flow.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

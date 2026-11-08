@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tidal height (rule of twelfths) — Engineering calculators</title>
+  <meta name="description" content="Height of tide and depth at any time between high and low water by the rule of twelfths or the cosine curve, and the time a required depth becomes available.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Tidal height (rule of twelfths)</h1>
+    <p class="ec-summary">Height of tide at any time between two turning points by the rule of twelfths or the cosine curve, the depth available over a charted depth, and the time at which a required depth becomes available. Times are decimal clock hours (14.5 = 14:30).</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Tide tables give the times and heights of high and low water; the navigator needs the height in between, and more often the time at which a required depth becomes available over a bar, a berth or a shoal. The rule of twelfths is the classic mental method: in the six hours between low and high water the tide rises one, two, three, three, two and one twelfths of the range per hour. The cosine curve is the continuous version the rule approximates. This calculator applies both, reports the height and depth at the time of interest, and inverts the curve to find when a required depth is reached on a rising tide or lost on a falling one.</p>
+<p>It is for watchkeepers planning arrivals and departures over tidal constraints, for pilots and port planners doing quick checks, and for cadets learning tidal calculations before the Admiralty tidal-curve method.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Interval between two turning points (first height h₁ at time t₁, second h₂ at t₂; R = |h₂ − h₁|; D = t₂ − t₁; f = (t − t₁)/D):</p>
+<p>Rule of twelfths (cumulative fraction of the range at the end of each sixth):</p>
+<pre class="ec-formula" tabindex="0"><code>sixth:      1      2      3      4      5      6
+cumulative: 1/12   3/12   6/12   9/12   11/12  12/12
+p(f) linear within each sixth;  h(t) = h₁ ± R p(f)</code></pre>
+<p>Cosine curve:</p>
+<pre class="ec-formula" tabindex="0"><code>p(f) = (1 − cos πf) / 2,          h(t) = h₁ ± R p(f)
+rate = ± π R sin(πf) / (2D)       (maximum π R / 2D at mid-tide)</code></pre>
+<p>Inverse (time at which a given height is reached): p = (h_req − h₁)/(±R), then f from the piecewise-linear inverse (twelfths) or f = acos(1 − 2p)/π (cosine), t = t₁ + f D.</p>
+<p>Depth:</p>
+<pre class="ec-formula" tabindex="0"><code>depth = charted depth + height of tide
+height needed = required depth − charted depth</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Regular, symmetric semidiurnal tide with a duration near 6 hours. For ports with double high waters, stands or strongly distorted curves (Southampton, Poole, many estuaries) use the Admiralty tidal curve for the standard port; the rule of twelfths can be wrong by a metre there.</li>
+<li>Both methods are approximations of each other and of reality: they differ from each other by up to about 1/60 of the range near the first and fifth hours; the real curve can differ more.</li>
+<li>No meteorological effects: a deep depression or an onshore gale can raise the sea level by several decimetres; high pressure lowers it.</li>
+<li>Heights are above chart datum as in the tide tables; the charted depth must be from the same datum. Negative heights (below datum) are permitted.</li>
+<li>Times are decimal hours in one time zone; the interval may pass midnight.</li>
+<li>The calculator does not read tide tables: enter the turning points from the tables (with secondary-port corrections already applied).</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Low water 1.0 m at 02:00, high water 5.0 m at 08:18, so the range is 4.0 m over 6.3 h. A berth has 8.0 m charted depth and the ship needs 10.5 m (draft plus clearance). What is the depth at 04:30 and from when is the berth usable?</p>
+<ol>
+<li>Elapsed at 04:30: 2.5 h of 6.3 h, f = 0.397 — in the third sixth (0.333–0.5).</li>
+<li>Rule of twelfths: cumulative at the end of the second sixth 3/12; within the third sixth (3/12 → 6/12) at (0.397 − 0.333)/0.167 = 0.38 of the way → p = 0.250 + 0.38 × 0.25 = 0.345. Height 1.0 + 4 × 0.345 = 2.38 m. Cosine gives 2.36 m.</li>
+<li>Depth at 04:30: 8.0 + 2.38 = 10.38 m, 0.12 m short.</li>
+<li>Height needed: 10.5 − 8.0 = 2.5 m, i.e. a rise of 1.5 m = 0.375 of the range. Twelfths inverse: 0.375 lies in the third sixth, (0.375 − 0.25)/0.25 = 0.5 → f = (2 + 0.5)/6 = 0.417 → 2.63 h after LW → 04:38. Cosine: acos(1 − 0.75)/π = 0.420 → 04:39.</li>
+<li>The berth is usable from about 04:38 until the ebb falls back through 2.5 m in the afternoon.</li>
+</ol>
+<p>Falling tide the same afternoon (HW 5.0 m 08:18 → LW 1.0 m 14:36): the required 2.5 m height is lost at 0.625 of the fall, 3.5/6 of 6.3 h = 3.68 h after HW, about 11:59.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which method should I use?</summary>
+<p>The cosine curve is slightly closer to a pure semidiurnal tide; the rule of twelfths is easier to do in your head and is what most examiners expect. Both are shown. Where the port has an Admiralty tidal curve, use it instead.</p>
+</details>
+<details class="ec-faq"><summary>Why does the calculator want decimal hours?</summary>
+<p>To keep the arithmetic unambiguous: 14:30 is 14.5, 08:18 is 8.3. Results are also given as HH:MM.</p>
+</details>
+<details class="ec-faq"><summary>Can I use it for a spring or neap range directly?</summary>
+<p>Yes, enter the actual predicted heights for the day. The rule applies to any range; what matters is that the duration is close to six hours.</p>
+</details>
+<details class="ec-faq"><summary>What about secondary ports?</summary>
+<p>Apply the time and height differences from the tide tables to the standard-port predictions first, then enter the corrected turning points here.</p>
+</details>
+<details class="ec-faq"><summary>How accurate is the result?</summary>
+<p>For a regular tide, within 0.1–0.2 m and 10–15 minutes. The weather and the port&#39;s true curve shape are the dominant errors, so keep a margin.</p>
+</details>
+<details class="ec-faq"><summary>What is a stand?</summary>
+<p>A period around high or low water when the level hardly changes; some ports have long stands or double high waters. The rule of twelfths does not model them.</p>
+</details>
+<details class="ec-faq"><summary>How do I combine this with squat?</summary>
+<p>Add the squat and allowances to the draft to get the required depth, then use this calculator for the time window; the ship squat calculator gives the squat for the planned speed.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../ship-squat/index.html">Ship squat and under-keel clearance</a> — the depth you actually need under way.</li>
+<li><a href="../great-circle-distance/index.html">Great-circle and rhumb-line distance</a> — passage time to the tidal gate.</li>
+<li><a href="../hydrostatics/index.html">Hydrostatics basics</a> — draft changes with loading and water density.</li>
+<li><a href="../draft-survey/index.html">Draft survey</a> — the actual drafts for the tidal window.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

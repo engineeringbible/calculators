@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roof pitch calculator: rafters, area and shingles — Engineering calculators</title>
+  <meta name="description" content="Roof pitch in x/12, degrees and percent, gable rafter length, ridge height, roof area from the footprint, and shingle squares and bundles.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Roof pitch calculator: rafters, area and shingles</h1>
+    <p class="ec-summary">Roof pitch in x/12, degrees and percent, with gable rafter length, ridge height, roof area and the shingle squares and bundles to order.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>What is roof pitch? It is the rise of the roof in inches for every 12 in of horizontal run. A 6/12 roof rises 6 in per foot, which is 26.6° or a 50 % grade. Multiply any plan length by the pitch multiplier, √(1 + (pitch/12)²), to get the length along the slope. For 6/12 that multiplier is 1.118, so a 24 × 40 ft house with 1 ft overhangs has 1 221 ft² of roof.</p>
+<p>This calculator converts pitch, angle and percent, and works out a gable roof from its footprint: rafter length, ridge height, roof area, roofing squares and shingle bundles. It is for roofers, framers and homeowners pricing a new roof. For general slopes, ramps and grades, use the slope calculator.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Pitch, angle and multiplier:</p>
+<pre class="ec-formula" tabindex="0"><code>s = pitch / 12 = tan θ
+k = √(1 + s²)</code></pre>
+<p>Gable roof:</p>
+<pre class="ec-formula" tabindex="0"><code>rafter = (span / 2 + eave overhang) × k
+ridge height = (span / 2) × s
+area = (span + 2 × eave) × (length + 2 × rake) × k
+squares = area × (1 + waste) / 100 ft²
+bundles = squares × 3, rounded up</code></pre>
+<ul>
+<li>pitch — rise in inches per 12 in of run; θ — roof angle; s — slope as a fraction</li>
+<li>span — building width from wall to wall; length — along the ridge</li>
+<li>eave, rake — horizontal overhangs at the eaves and at the gable ends</li>
+<li>k — pitch multiplier, slope length per unit of horizontal run</li>
+</ul>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Pitch</th><th scope="col">Angle</th><th scope="col">Multiplier</th></tr></thead>
+<tbody>
+<tr><td>4/12</td><td>18.4°</td><td>1.054</td></tr>
+<tr><td>6/12</td><td>26.6°</td><td>1.118</td></tr>
+<tr><td>8/12</td><td>33.7°</td><td>1.202</td></tr>
+<tr><td>12/12</td><td>45.0°</td><td>1.414</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The roof is a simple gable with two equal planes over a rectangle. Hips, valleys and dormers need each plane added on its own.</li>
+<li>The rafter length runs from the ridge centre line to the end of the overhang. Deduct half the ridge board thickness when you cut it.</li>
+<li>A square is 100 ft² of roof. Most three-tab and laminated shingles come three bundles to the square, but check your product.</li>
+<li>The waste allowance covers starter rows, ridge caps and cutting. A plain gable needs about 10 %; cut-up roofs need more.</li>
+<li>Asphalt shingles need a slope of at least 2/12. From 2/12 up to 4/12 the IRC requires two layers of underlayment.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A house is 24 ft wide and 40 ft long with a 6/12 gable roof and 1 ft overhangs at the eaves and the gables. Find the rafter length, the roof area and the shingles with 10 % waste.</p>
+<ol>
+<li>Multiplier: √(1 + 0.5²) = 1.118.</li>
+<li>Rafter: (24 / 2 + 1) × 1.118 = 14.53 ft.</li>
+<li>Ridge height above the wall plate: 12 × 0.5 = 6 ft.</li>
+<li>Plan area with overhangs: 26 × 42 = 1 092 ft².</li>
+<li>Roof area: 1 092 × 1.118 = 1 221 ft².</li>
+<li>Squares with waste: 1 221 × 1.10 / 100 = 13.43.</li>
+<li>Bundles: 13.43 × 3 = 40.3, so buy 41 bundles.</li>
+</ol>
+<p>The roof angle is 26.6°. Rafters are usually bought in 2 ft steps, so a 16 ft board covers the 14.53 ft rafter with room for the cuts.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I convert roof pitch to degrees?</summary>
+<p>Take the arctangent of the pitch divided by 12. A 4/12 roof is 18.4°, 6/12 is 26.6°, 8/12 is 33.7° and 12/12 is 45°.</p>
+</details>
+<details class="ec-faq"><summary>What is a pitch multiplier?</summary>
+<p>The length along the roof for each unit of horizontal run, √(1 + (pitch/12)²). Multiply the plan area by it to get the roof area.</p>
+</details>
+<details class="ec-faq"><summary>How many bundles of shingles are in a square?</summary>
+<p>Most standard shingles come three bundles to a square of 100 ft². Some heavier products take more bundles per square, so check the wrapper.</p>
+</details>
+<details class="ec-faq"><summary>How many squares is a 2 000 ft² roof?</summary>
+<p>20 squares, or 22 with 10 % waste, which is 66 bundles at three per square.</p>
+</details>
+<details class="ec-faq"><summary>What is the minimum pitch for asphalt shingles?</summary>
+<p>2/12 under IRC R905.2.2. Slopes from 2/12 up to 4/12 need a double layer of underlayment.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the pitch of an existing roof?</summary>
+<p>Hold a level 12 in long against the roof, horizontal, and measure the vertical distance from its end down to the roof. That distance in inches is the pitch.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../slope/index.html">Slope calculator</a> — percent grade, degrees, ratio and pitch for any slope.</li>
+<li><a href="../stair-stringer/index.html">Stair calculator</a> — rise and run of a stair.</li>
+<li><a href="../snow-load/index.html">Snow load calculator</a> — snow on the roof, which depends on its slope.</li>
+<li><a href="../wind-load/index.html">Wind load calculator</a> — wind pressure on the roof and walls.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

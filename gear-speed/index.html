@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gear ratio and vehicle speed calculator — Engineering calculators</title>
+  <meta name="description" content="Vehicle speed from rpm, gear ratio, final drive and tire diameter, the rpm at a speed, and speedometer error after changing tire size.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Gear ratio and vehicle speed calculator</h1>
+    <p class="ec-summary">Road speed from engine rpm, gear ratio, axle ratio and tire diameter, the rpm at a cruise speed, and the speedometer error after a tire change.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How fast is a car going at a given rpm? Divide the engine speed by the overall gear ratio to get the wheel speed, then multiply by the tire circumference. In US units the shortcut is mph = rpm × tire diameter in inches / (gear ratio × axle ratio × 336). At 3 000 rpm in direct drive with 3.73 gears and 28 in tires, a car does 67.0 mph.</p>
+<p>This calculator gives the road speed at an rpm or the rpm at a road speed, from the transmission gear, the final drive and the tire diameter. It also shows how far off the speedometer reads after fitting taller or shorter tires. It is for enthusiasts choosing axle gears and tires, and for anyone checking highway cruise rpm.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Road speed and engine speed:</p>
+<pre class="ec-formula" tabindex="0"><code>v = N × π D / (60 × i_g × i_f)
+mph = rpm × D[in] / (i_g × i_f × 336.13)</code></pre>
+<p>Tire revolutions and speedometer error:</p>
+<pre class="ec-formula" tabindex="0"><code>revs per mile = 63 360 / (π D[in])
+reading = true speed × D_cal / D
+error = D_cal / D − 1</code></pre>
+<ul>
+<li>N — engine speed in rpm</li>
+<li>D — tire overall diameter; D_cal — the diameter the speedometer was set for</li>
+<li>i_g — transmission gear ratio; i_f — final drive (axle) ratio</li>
+<li>336.13 = 63 360 / (60 π)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>There is no slip in the clutch, the torque converter or the tires. With an unlocked torque converter the engine turns faster than the result shows.</li>
+<li>The diameter is the unloaded tire diameter. Under load the rolling radius is a little smaller, so the true speed is slightly lower.</li>
+<li>The speedometer counts revolutions. A larger tire makes it read low, and a smaller one makes it read high.</li>
+<li>The odometer has the same percentage error as the speedometer.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A pickup turns 3 000 rpm in fourth gear, a direct 1.00 ratio, with 3.73 axle gears. The owner has fitted 28 in tires in place of the 26 in tires the speedometer was set for. What is the true speed and what does the speedometer show?</p>
+<ol>
+<li>Overall ratio: 1.00 × 3.73 = 3.730.</li>
+<li>True speed: 3 000 × 28 / (3.730 × 336.13) = 67.0 mph.</li>
+<li>Tire revolutions: 63 360 / (π × 28) = 720.3 per mile.</li>
+<li>Speedometer reading: 67.0 × 26 / 28 = 62.2 mph.</li>
+<li>Error: 26 / 28 − 1 = −7.1 %.</li>
+</ol>
+<p>The speedometer reads about 5 mph slow at this speed, so the driver is going faster than the dial shows.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate mph from rpm?</summary>
+<p>Multiply rpm by the tire diameter in inches and divide by the overall ratio times 336. Use the gear ratio times the axle ratio as the overall ratio.</p>
+</details>
+<details class="ec-faq"><summary>What rpm will I turn at 70 mph?</summary>
+<p>With a 0.70 overdrive, 3.73 gears and 28 in tires, about 2 194 rpm. Multiply mph by the overall ratio and by 336, then divide by the tire diameter.</p>
+</details>
+<details class="ec-faq"><summary>Do bigger tires make the speedometer read slower?</summary>
+<p>Yes. A larger tire covers more ground per turn, so the car goes faster than the speedometer shows.</p>
+</details>
+<details class="ec-faq"><summary>How do I correct the speedometer after a tire change?</summary>
+<p>Recalibrate the speedometer, or for older cars change the speedometer drive gear. The correction factor is the new diameter divided by the old.</p>
+</details>
+<details class="ec-faq"><summary>What does a higher numerical axle ratio do?</summary>
+<p>It turns the engine faster at a given road speed. A 4.10 axle gives quicker acceleration and higher cruise rpm than a 3.73.</p>
+</details>
+<details class="ec-faq"><summary>How many revolutions per mile does my tire make?</summary>
+<p>Divide 63 360 by π times the diameter in inches. A 28 in tire makes about 720.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../tire-size/index.html">Tire size calculator</a> — diameter from a size code like 225/45R17.</li>
+<li><a href="../gear-ratio/index.html">Gear ratio, rpm and torque</a> — generic gear trains from tooth counts.</li>
+<li><a href="../quarter-mile/index.html">Quarter-mile ET and trap speed</a> — trap speed to check gearing against.</li>
+<li><a href="../horsepower/index.html">Horsepower calculator</a> — power from torque and rpm.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

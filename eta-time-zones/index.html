@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ETA calculator with time zones — Engineering calculators</title>
+  <meta name="description" content="Passage ETA in local time at the destination from departure time and UTC offset, distance and speed, with clock changes and the date line.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">ETA calculator with time zones</h1>
+    <p class="ec-summary">Passage ETA in UTC and destination local time from departure time, UTC offsets, distance and speed, with clock changes and the date line.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>To find the ETA of a passage across time zones, convert the departure time to UTC, add the passage time, then convert to the local time of the destination. The passage time is the distance divided by the speed. A ship leaving Yokohama at 14:00 on 8 November (UTC+9) for a 3 400 nmi passage at 15 kn is under way for 226 h 40 min. It arrives at 15:40 UTC on 17 November, which is 05:40 the same day in Honolulu at UTC−10.</p>
+<p>This calculator does that arithmetic, including the date rollover, leap years and the International Date Line. It takes one distance and speed or a list of legs at different speeds, adds stops, and gives the ETA in UTC, in destination local time and in the departure zone. It also describes the clock changes on the way. It is for navigators planning a passage, yacht skippers and anyone booking crew changes or berths across time zones.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Passage time and arrival:</p>
+<pre class="ec-formula" tabindex="0"><code>t = Σ (d_i / V_i) + stops
+UTC_departure = local_departure − offset_departure
+UTC_arrival = UTC_departure + t
+local_arrival = UTC_arrival + offset_arrival</code></pre>
+<p>Clock change on the way:</p>
+<pre class="ec-formula" tabindex="0"><code>Δclock = offset_arrival − offset_departure       (+ = clocks advanced)</code></pre>
+<ul>
+<li>d_i, V_i — distance and speed over the ground of each leg</li>
+<li>offset — hours from UTC, east positive: UTC+9 is 9, UTC−5 is −5, India 5.5</li>
+<li>A net change of more than 12 hours means the shorter route crosses the date line: eastbound the date is repeated, westbound a day is skipped</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Speeds are planned speeds over the ground. Allow separately for current, weather, slow steaming and pilot or canal waiting time, or enter them as stops.</li>
+<li>The ETA in UTC and in local time does not depend on where the clocks are changed on passage. Only the description of the clock changes depends on the direction.</li>
+<li>Daylight saving time is not applied. Enter the offset in force on the day, such as UTC+2 for Central European summer time.</li>
+<li>Offsets are as the clocks show them. A ship&#39;s zone description has the opposite sign, so UTC+9 is ZD −9.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A ship leaves Yokohama at 2026-11-08 14:00 local time, UTC+9, bound for Honolulu, UTC−10. The passage is 3 400 nmi at 15 kn.</p>
+<ol>
+<li>Passage time: 3 400 / 15 = 226.7 h, which is 9 d 10 h 40 min.</li>
+<li>Departure in UTC: 14:00 − 9 h = 05:00 UTC on 8 November.</li>
+<li>Arrival in UTC: 05:00 + 226 h 40 min = 15:40 UTC on 17 November.</li>
+<li>Local arrival at UTC−10: 15:40 − 10 h = 05:40 on 17 November.</li>
+<li>Clock change: −10 − 9 = −19 h. The ship goes east across the date line: it advances its clocks 5 h zone by zone and repeats one date.</li>
+</ol>
+<p>The local calendar shows 9 days from departure to arrival, although the ship is at sea for 9 days and 10 hours.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate an ETA?</summary>
+<p>Divide the distance by the speed for the passage time, add it to the departure time in UTC, and convert the result to the destination&#39;s local time.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert local time to UTC?</summary>
+<p>Subtract the UTC offset. 14:00 at UTC+9 is 05:00 UTC, and 14:00 at UTC−5 is 19:00 UTC.</p>
+</details>
+<details class="ec-faq"><summary>Do ships advance or retard their clocks going east?</summary>
+<p>Going east, the clocks are advanced one hour for each time zone. Going west they are retarded, which gives the crew a 25-hour day.</p>
+</details>
+<details class="ec-faq"><summary>What happens at the International Date Line?</summary>
+<p>Crossing it westbound, the date jumps forward one day. Crossing it eastbound, the same date is repeated, so the calendar shows the same day twice.</p>
+</details>
+<details class="ec-faq"><summary>Can I enter legs at different speeds?</summary>
+<p>Yes. Choose legs and enter one line per leg, &quot;distance; speed&quot;, such as &quot;120; 10&quot; for a slow pilotage leg and &quot;3000; 15&quot; for the ocean passage.</p>
+</details>
+<details class="ec-faq"><summary>Does the calculator handle daylight saving time?</summary>
+<p>No. Enter the offset in force at departure and at arrival. For example, the UK is UTC+0 in winter and UTC+1 in summer.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../passage-plan/index.html">Passage plan from waypoints</a> — leg distances and ETAs from a route.</li>
+<li><a href="../great-circle-distance/index.html">Great circle distance</a> — the distance for the passage.</li>
+<li><a href="../boat-fuel/index.html">Boat fuel consumption</a> — fuel for a small-craft passage.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel consumption and voyage cost</a> — fuel and cost for a ship.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

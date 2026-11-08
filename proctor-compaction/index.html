@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soil compaction calculator (Proctor relative compaction) — Engineering calculators</title>
+  <meta name="description" content="Field dry density from wet density and moisture, relative compaction against the Proctor maximum, saturation, air voids and the zero-air-voids density.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Soil compaction calculator (Proctor relative compaction)</h1>
+    <p class="ec-summary">Relative compaction from field wet density and moisture against the Proctor maximum, with saturation, air voids and the zero-air-voids density.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Fill under roads, slabs and foundations is specified by relative compaction: the field dry density as a percentage of the laboratory Proctor maximum. A field test gives the wet density and the moisture content. Dividing the wet density by one plus the moisture content gives the dry density. Soil at 124.0 lb/ft³ wet and 12 % moisture has a dry density of 110.7 lb/ft³, which is 96.3 % of a 115.0 lb/ft³ Proctor maximum.</p>
+<p>This calculator gives the field dry density and the relative compaction, and says whether it meets the specification. It adds the void ratio, porosity, degree of saturation, air voids and the zero-air-voids density, which show whether the test result is physically possible. It is for earthwork inspectors, geotechnical technicians, contractors and students.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Dry density and relative compaction:</p>
+<pre class="ec-formula" tabindex="0"><code>ρ_d = ρ / (1 + w)
+RC = ρ_d / ρ_d,max × 100 %</code></pre>
+<p>Weight–volume relations:</p>
+<pre class="ec-formula" tabindex="0"><code>e = G_s ρ_w / ρ_d − 1,    n = e / (1 + e)
+S = w G_s / e
+V_a = 1 − (ρ_d / ρ_w)(1/G_s + w)</code></pre>
+<p>Zero-air-voids density, the upper limit at moisture w:</p>
+<pre class="ec-formula" tabindex="0"><code>ρ_zav = G_s ρ_w / (1 + w G_s)</code></pre>
+<ul>
+<li>ρ — wet (bulk) density; w — moisture content as a decimal</li>
+<li>ρ_d,max — maximum dry density from the Proctor test</li>
+<li>G_s — specific gravity of the soil solids; ρ_w = 1 000 kg/m³ = 62.43 lb/ft³</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Field tests are the sand cone (ASTM D1556) or the nuclear gauge (ASTM D6938). Check gauge moisture against oven-dried samples.</li>
+<li>The Proctor test must be on the same soil and at the specified effort. Standard Proctor (ASTM D698) uses 12 400 ft·lbf/ft³ and modified Proctor (ASTM D1557) 56 000 ft·lbf/ft³.</li>
+<li>Gravel removed from the laboratory sample makes the field density look too high. Apply the oversize correction of ASTM D4718.</li>
+<li>G_s affects only the saturation, void ratio and zero-air-voids values, not the relative compaction. Use a measured value; 2.65 to 2.75 covers most soils.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A nuclear gauge on a compacted fill reads a wet density of 124.0 lb/ft³ and a moisture content of 12.0 %. The standard Proctor test gave 115.0 lb/ft³ at 11.5 % moisture. G_s is 2.70 and the specification asks for 95 %.</p>
+<ol>
+<li>Dry density: 124.0 / 1.12 = 110.714, or 110.7 lb/ft³.</li>
+<li>Relative compaction: 110.7 / 115.0 = 96.3 %. The fill passes; the lowest passing dry density is 0.95 × 115.0 = 109.3 lb/ft³.</li>
+<li>Void ratio: 2.70 × 62.43 / 110.714 − 1 = 0.5224, or 0.522.</li>
+<li>Saturation: 0.12 × 2.70 / 0.5224 = 62.0 %. The air voids are 13.0 % of the volume.</li>
+<li>Zero-air-voids density at 12 %: 2.70 × 62.43 / (1 + 0.12 × 2.70) = 127.3 lb/ft³. The field point lies well below it, so the test is plausible.</li>
+</ol>
+<p>The moisture is 0.5 % above optimum, which is within the usual range for good compaction.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is relative compaction?</summary>
+<p>The field dry density divided by the maximum dry density from the laboratory Proctor test. Specifications typically ask for 90 to 100 %, depending on the use of the fill and the test effort.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between standard and modified Proctor?</summary>
+<p>The compaction energy. Modified Proctor uses a heavier hammer, a longer drop and five layers, about 4.5 times the energy, so it gives a higher maximum and a lower optimum moisture.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert wet density to dry density?</summary>
+<p>Divide by one plus the moisture content as a decimal. At 15 % moisture, 2 000 kg/m³ wet is 2 000 / 1.15 = 1 739 kg/m³ dry.</p>
+</details>
+<details class="ec-faq"><summary>What is the zero-air-voids curve?</summary>
+<p>The dry density a soil would have at a given moisture if all its voids were full of water. No compacted soil can lie above it.</p>
+</details>
+<details class="ec-faq"><summary>Why can relative compaction exceed 100 %?</summary>
+<p>Field rollers can put in more energy than the laboratory test, or the field soil can be coarser than the tested sample. Values above about 105 % call for a check of the reference test.</p>
+</details>
+<details class="ec-faq"><summary>Why does moisture content matter?</summary>
+<p>Below optimum the grains resist sliding into a dense packing. Above it, water fills the voids and the soil cannot be densified, so specifications often limit moisture to a band around optimum.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../earthwork-volume/index.html">Earthwork volume</a> — cut and fill quantities to compact.</li>
+<li><a href="../consolidation-settlement/index.html">Consolidation settlement</a> — settlement of clay under the fill.</li>
+<li><a href="../soil-bearing/index.html">Soil bearing capacity</a> — capacity of footings on the compacted fill.</li>
+<li><a href="../footing-size/index.html">Footing size calculator</a> — size the footing for the allowable pressure.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

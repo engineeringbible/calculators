@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Newton's law of cooling calculator — Engineering calculators</title>
+  <meta name="description" content="Temperature after a time or time to cool or heat by Newton's law of cooling, with the time constant from h, A, m, c (Biot check) or from two readings.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Newton's law of cooling calculator</h1>
+    <p class="ec-summary">Temperature after a time or time to reach a temperature by Newton's law of cooling, with τ from h, A, m, c and the Biot check, or from two readings.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Newton&#39;s law of cooling says that a body loses heat in proportion to its temperature difference from the surroundings. The difference therefore falls exponentially with a time constant τ. A cup of coffee that drops from 90 to 70 °C in 10 minutes in a 20 °C room has τ = 29.7 minutes, and it is at 45.5 °C after half an hour.</p>
+<p>This calculator gives the temperature after a time, or the time to reach a temperature, for cooling or heating. The time constant can be entered, calculated from the body&#39;s size, density, specific heat and heat transfer coefficient, or found from two temperature readings. It checks the Biot number, which tells you whether the simple law applies. It is for engineers, students and anyone timing a quench, a sensor response or a cooling product.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Temperature and time (Incropera eq. 5.6):</p>
+<pre class="ec-formula" tabindex="0"><code>T(t) = T∞ + (T0 − T∞) × e^(−t/τ)
+t = τ × ln[(T0 − T∞) / (T − T∞)]</code></pre>
+<p>Time constant of a lumped body, and the validity check (Incropera Section 5.2):</p>
+<pre class="ec-formula" tabindex="0"><code>τ = ρ V c / (h A) = m c / (h A)
+Bi = h L_c / k,   L_c = V / A,   lumped model valid for Bi &lt; 0.1</code></pre>
+<p>Time constant from two readings, T0 at the start and T1 after time t1:</p>
+<pre class="ec-formula" tabindex="0"><code>τ = t1 / ln[(T0 − T∞) / (T1 − T∞)]</code></pre>
+<ul>
+<li>T0 — initial temperature; T∞ — surrounding fluid temperature; τ — time constant</li>
+<li>ρ, V, c, m — density, volume, specific heat and mass of the body</li>
+<li>h — heat transfer coefficient; A — surface area; k — conductivity of the body</li>
+<li>L_c — characteristic length: D/6 for a sphere</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The body has one uniform temperature at any moment. This holds when the Biot number is below 0.1. Above that, the surface cools faster than the core and the result is only an estimate.</li>
+<li>The surrounding temperature, the heat transfer coefficient and the properties stay constant. In practice h falls as the body approaches T∞, and radiation adds to it at high temperature.</li>
+<li>The same law covers heating. A cold body warms towards T∞ with the same time constant.</li>
+<li>With two readings, the first is the start. Both must lie on the same side of T∞, and the second must be closer to it.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Incropera Example 5.1 is a thermocouple bead, a sphere of 0.706 mm diameter. Its properties are ρ = 8 500 kg/m³, c = 400 J/(kg·K) and k = 20 W/(m·K). It sits in a gas stream at 200 °C with h = 400 W/(m²·K). How long does it take to read 199 °C, starting from 25 °C?</p>
+<ol>
+<li>Characteristic length: L_c = D / 6 = 0.706 / 6 = 0.118 mm.</li>
+<li>Biot number: 400 × 0.000118 / 20 = 0.00235, far below 0.1, so the lumped model holds.</li>
+<li>Time constant: τ = ρ c D / (6 h) = 8 500 × 400 × 0.000706 / 2 400 = 1.00 s.</li>
+<li>Time to 199 °C: 1.00 × ln[(25 − 200) / (199 − 200)] = ln 175 = 5.2 s.</li>
+</ol>
+<p>The book gives the same 5.2 s, about five time constants.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is Newton&#39;s law of cooling?</summary>
+<p>The rate of heat loss is proportional to the temperature difference between the body and its surroundings. The difference then decays as e^(−t/τ).</p>
+</details>
+<details class="ec-faq"><summary>How do I find the cooling constant from measurements?</summary>
+<p>Take two readings and the surrounding temperature. τ = t / ln[(T0 − T∞)/(T1 − T∞)], and the cooling constant k is 1/τ.</p>
+</details>
+<details class="ec-faq"><summary>What is the time constant?</summary>
+<p>The time for the difference to fall to 36.8 % of its starting value. After five time constants less than 1 % remains.</p>
+</details>
+<details class="ec-faq"><summary>What is the Biot number?</summary>
+<p>The ratio of the resistance to conduction inside the body to the resistance to convection at its surface. Below 0.1 the inside stays nearly uniform, and Newton&#39;s law applies to the whole body.</p>
+</details>
+<details class="ec-faq"><summary>What heat transfer coefficient should I use?</summary>
+<p>Incropera&#39;s Table 1.1 gives 2 to 25 W/(m²·K) for free convection in gases and 25 to 250 for forced convection in gases. Liquids are higher: 50 to 1 000 free and 100 to 20 000 forced.</p>
+</details>
+<details class="ec-faq"><summary>Does Newton&#39;s law work for heating as well?</summary>
+<p>Yes. A cold drink in a warm room warms towards room temperature with the same exponential curve.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../heat-transfer/index.html">Heat transfer</a> — steady conduction, convection and radiation.</li>
+<li><a href="../specific-heat/index.html">Specific heat</a> — the heat stored in the body.</li>
+<li><a href="../water-heating-time/index.html">Water heating time</a> — heating with a heater and losses.</li>
+<li><a href="../thermal-expansion/index.html">Thermal expansion</a> — size changes as the body cools.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

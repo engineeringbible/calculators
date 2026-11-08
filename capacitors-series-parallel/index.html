@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Series and parallel capacitors — Engineering calculators</title>
+  <meta name="description" content="Equivalent capacitance of capacitors in series or parallel, with the charge, the stored energy and the voltage across each capacitor in a series stack.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Series and parallel capacitors</h1>
+    <p class="ec-summary">The equivalent capacitance of capacitors in series or in parallel, the charge and energy at a voltage, and the voltage, charge and energy of each capacitor, including the voltage sharing in a series stack.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Capacitors combine the opposite way to resistors. In parallel their capacitances simply add, which is how banks of capacitors reach large values. In series the total falls below the smallest one, but the stack withstands a higher voltage, which is how high-voltage banks and supercapacitor modules are built.</p>
+<p>This calculator takes any number of capacitors, typed as plain microfarads or as marked on parts (100n, 4u7, 22p), and returns the equivalent capacitance for the connection you choose, plus the value the other connection would give. At a given voltage it also gives the charge, the stored energy, and, for each capacitor, its voltage, charge and energy. That shows at once whether any capacitor in a series stack is over its voltage rating. It is for electronics students, technicians and engineers sizing filter, timing and energy-storage banks.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Parallel, with the same voltage across each capacitor:</p>
+<pre class="ec-formula" tabindex="0"><code>C = C₁ + C₂ + … + Cₙ</code></pre>
+<p>Series, with the same charge on each capacitor:</p>
+<pre class="ec-formula" tabindex="0"><code>1 / C = 1 / C₁ + 1 / C₂ + … + 1 / Cₙ
+two capacitors:  C = C₁ C₂ / (C₁ + C₂)</code></pre>
+<p>Charge, energy and the voltage on each capacitor in series:</p>
+<pre class="ec-formula" tabindex="0"><code>Q = C × V
+E = ½ × C × V²
+V_i = Q / C_i</code></pre>
+<ul>
+<li>C — capacitance, farads (1 µF = 10⁻⁶ F)</li>
+<li>Q — charge, coulombs (shown in µC)</li>
+<li>E — energy, joules (shown in mJ)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The capacitors are ideal, with their nominal values. Ceramic capacitors lose capacitance under DC bias, and electrolytics can be −20 % to +80 % of their marking.</li>
+<li>In series, the ideal voltage split follows capacitance. Over time on DC, leakage currents decide the split instead, so electrolytic and supercapacitor stacks need balancing resistors.</li>
+<li>The voltage is DC, or the peak value for an AC voltage when the stored energy is wanted.</li>
+<li>Each capacitor&#39;s voltage rating must exceed the voltage it actually sees. In series, the smallest capacitor sees the most.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Three capacitors, 10 µF, 22 µF and 47 µF, are connected in series across 12 V. What is the total capacitance, and how is the voltage shared?</p>
+<ol>
+<li>1 / C = 1/10 + 1/22 + 1/47 = 0.1 + 0.0455 + 0.0213 = 0.1667 per µF, so C = 6.00 µF, below the smallest capacitor.</li>
+<li>Charge on each capacitor: Q = C × V = 6.00 × 12 = 72.0 µC.</li>
+<li>Voltages: 72.0 / 10 = 7.20 V on the 10 µF, 72.0 / 22 = 3.27 V on the 22 µF and 72.0 / 47 = 1.53 V on the 47 µF. They add up to 12 V.</li>
+<li>Stored energy: E = ½ × 6.00 × 10⁻⁶ × 12² = 0.432 mJ.</li>
+</ol>
+<p>So the 10 µF capacitor carries 7.20 V, more than half the supply. A 6.3 V part would be overstressed there. In parallel the same three would make 79 µF and store 5.69 mJ.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why do capacitors in series give a smaller value?</summary>
+<p>In series, the plates are effectively further apart, because the same charge has to pass through every capacitor. That is the opposite of resistors, which add in series.</p>
+</details>
+<details class="ec-faq"><summary>Why put capacitors in series at all?</summary>
+<p>For voltage. Two 400 V capacitors in series withstand about 800 V, at half the capacitance of one. That is how high-voltage banks and supercapacitor modules are made.</p>
+</details>
+<details class="ec-faq"><summary>Do capacitors in series share the voltage equally?</summary>
+<p>Only if they are equal. Otherwise the smallest takes the most. On DC, leakage differences shift the split over time, so balancing resistors are fitted across each one.</p>
+</details>
+<details class="ec-faq"><summary>How much energy does a capacitor store?</summary>
+<p>E = ½ C V². A 1000 µF capacitor at 50 V holds 1.25 J, enough to give a sharp shock or weld a screwdriver tip, so discharge large capacitors before working on them.</p>
+</details>
+<details class="ec-faq"><summary>How do I enter 4.7 nF or 100 pF?</summary>
+<p>As 4n7 or 4.7n, and 100p. Plain numbers are taken as microfarads.</p>
+</details>
+<details class="ec-faq"><summary>Does it matter whether the capacitors are electrolytic?</summary>
+<p>The formulas are the same, but polarised capacitors must be connected the right way round. Their wide tolerance and leakage make the real result less exact.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../resistors-series-parallel/index.html">Series and parallel resistors</a> — the same exercise for resistors, with the opposite rules.</li>
+<li><a href="../rc-time-constant/index.html">RC time constant and filter</a> — what the capacitance does with a resistor.</li>
+<li><a href="../ohms-law/index.html">Ohm&#39;s law and electrical power</a> — the circuit around the capacitors.</li>
+<li><a href="../power-factor-correction/index.html">Power factor correction</a> — capacitor banks on AC power systems.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

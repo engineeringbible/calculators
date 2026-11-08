@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>kW to amps — Engineering calculators</title>
+  <meta name="description" content="Current from kW for single-phase, three-phase and DC loads, including motors from their shaft kW and efficiency, with the power factor.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">kW to amps</h1>
+    <p class="ec-summary">Line current from a load in kW for single-phase and three-phase supplies, for electrical loads or motors with efficiency.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Larger equipment is rated in kilowatts: heaters, chillers, chargers, pumps and motors. Before choosing a breaker, a contactor or a cable, the kilowatts must become amps. For three-phase supplies that means √3 and the power factor. For motors there is one more trap: the nameplate kW is the shaft output, not the power taken from the supply.</p>
+<p>This calculator converts kW to amps for three-phase, single-phase and DC supplies. It can treat the kW either as the electrical power drawn or as a motor&#39;s nameplate output, which it divides by the efficiency first. It also gives the apparent power in kVA, which is what transformers and generators are sized on. It is for electricians, electrical and building-services engineers, and maintenance staff.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Electrical input power:</p>
+<pre class="ec-formula" tabindex="0"><code>P_in = P                 (electrical load)
+P_in = P_shaft / η       (motor nameplate)</code></pre>
+<p>Current:</p>
+<pre class="ec-formula" tabindex="0"><code>three-phase:   I = P_in / (√3 × V × cos φ)
+single-phase:  I = P_in / (V × cos φ)
+DC:            I = P_in / V</code></pre>
+<p>Apparent power:</p>
+<pre class="ec-formula" tabindex="0"><code>S = P_in / cos φ</code></pre>
+<ul>
+<li>V — voltage, V (line-to-line for three-phase)</li>
+<li>cos φ — power factor (motors about 0.8 to 0.9 at full load)</li>
+<li>η — motor efficiency (IE3 motors about 0.89 at 5 kW to 0.95 at 100 kW)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>For a motor the kW on the nameplate are mechanical output (IEC 60034-1). The calculator adds the motor&#39;s losses through its efficiency.</li>
+<li>The power factor and efficiency are full-load values. At part load a motor&#39;s power factor drops, so its current falls more slowly than its kW.</li>
+<li>For three-phase the load is balanced and the voltage is line-to-line.</li>
+<li>This is the running current. Motors started direct on line draw 6 to 8 times as much for a few seconds; see the motor starting calculator.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 22 kW electric heater bank runs on 400 V three-phase. Its controller gives a power factor of 0.85. What current does it draw?</p>
+<ol>
+<li>Electrical input: P_in = 22 kW.</li>
+<li>Current: I = 22 000 / (1.732 × 400 × 0.85) = 37.4 A per line.</li>
+<li>Apparent power: S = 22 / 0.85 = 25.9 kVA.</li>
+</ol>
+<p>If the 22 kW were a motor&#39;s nameplate output at 93 % efficiency, the input would be 23.7 kW and the current 40.2 A, which is why motor circuits are sized on the input power, not the nameplate kW.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many amps is 1 kW?</summary>
+<p>At 400 V three-phase and power factor 1, 1.44 A; at 230 V single-phase, 4.35 A; at 480 V three-phase, 1.20 A.</p>
+</details>
+<details class="ec-faq"><summary>Why √3 for three-phase?</summary>
+<p>Three phases carry the power together, and the line-to-line voltage is √3 times the phase voltage. Combined, the power is √3 × V × I × cos φ.</p>
+</details>
+<details class="ec-faq"><summary>Is a motor&#39;s kW the input or the output?</summary>
+<p>The output at the shaft. The input is higher by the efficiency: a 22 kW motor at 93 % efficiency draws 23.7 kW.</p>
+</details>
+<details class="ec-faq"><summary>What power factor should I use for a motor?</summary>
+<p>The nameplate value at full load, typically 0.80 to 0.90. Small motors and lightly loaded motors are lower.</p>
+</details>
+<details class="ec-faq"><summary>How do I choose a breaker from the current?</summary>
+<p>Take the full-load current, apply the local rules (often 125 % for continuous loads in North America) and allow for motor starting with a motor-rated breaker or fuse.</p>
+</details>
+<details class="ec-faq"><summary>What is the current of a 100 kW motor?</summary>
+<p>At 400 V three-phase with 95 % efficiency and power factor 0.87, about 175 A.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../amps-to-kw/index.html">Amps to kW</a> — the conversion the other way.</li>
+<li><a href="../watts-to-amps/index.html">Watts to amps</a> — small loads in watts.</li>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — motor starting and power-factor correction too.</li>
+<li><a href="../kva-to-amps/index.html">kVA to amps</a> — transformers and generators rated in kVA.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

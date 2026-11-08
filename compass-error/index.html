@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compass error by amplitude or azimuth — Engineering calculators</title>
+  <meta name="description" content="True bearing of the sun or another body by amplitude or time azimuth, then the compass error and deviation from the observed bearing.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Compass error by amplitude or azimuth</h1>
+    <p class="ec-summary">Work out the true bearing of the sun or another body at rising or setting from latitude and declination, or at any time from its hour angle, then the compass error and the deviation from the observed compass bearing and the chart variation.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A ship&#39;s compasses are checked by comparing a bearing of a celestial body with its true bearing worked out from the ship&#39;s position and the almanac. At sunrise and sunset the amplitude method needs nothing more than latitude and declination; at any other time the time-azimuth method uses the body&#39;s hour angle as well. This calculator computes the true bearing both ways, then the compass error and, with the chart variation, the deviation to enter in the compass error book.</p>
+<p>It is for watchkeeping officers making the daily compass check required by the ISM procedures and SOLAS, and for cadets learning the method.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Azimuth at true altitude h:  cos Z = (sin Dec − sin Lat sin h) / (cos Lat cos h)
+Amplitude (h = 0):           sin A = sin Dec / cos Lat,   A = 90° − Z
+Bearing:                     rising Zn = Z,   setting Zn = 360° − Z
+Visible horizon:             h = −(dip + R),  dip = 1.76′ √(height of eye, m),  R from Bennett&#39;s formula
+Time azimuth:                Zn = atan2(−cos Dec sin LHA, sin Dec cos Lat − cos Dec sin Lat cos LHA)
+Hour angle:                  LHA = GHA + longitude (east positive)
+Compass error:               CE = true − compass (east positive)
+Deviation:                   dev = CE − variation</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Amplitudes are taken with the body&#39;s centre on the celestial horizon, when the sun&#39;s lower limb is about half a diameter above the sea horizon; a visible-horizon option is provided.</li>
+<li>GHA and declination must be for the moment of the bearing.</li>
+<li>Bearings of bodies higher than about 30° are difficult to take accurately.</li>
+<li>Variation must be current; it changes by several minutes of arc a year.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Latitude 40° N, the sun&#39;s declination 20° N, sunrise. The sun&#39;s centre is on the celestial horizon when the compass bearing is 061.0°, and the chart shows 4° W variation.</p>
+<ol>
+<li>sin A = sin 20° / cos 40° = 0.3420 / 0.7660 = 0.4465, so A = 26.5°.</li>
+<li>The sun rises north of east: true bearing 090° − 26.5° = 063.5°, written E 26.5° N.</li>
+<li>Compass error = 063.5° − 061.0° = 2.5° E. The compass reads low, so the error is east.</li>
+<li>Deviation = 2.5° E − (4° W) = 6.5° E.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>When exactly do I take an amplitude?</summary>
+<p>When the sun&#39;s centre is on the celestial horizon, about when its lower limb is half a diameter above the visible horizon. If you take it with the centre on the visible horizon, choose that option.</p>
+</details>
+<details class="ec-faq"><summary>Amplitude or azimuth?</summary>
+<p>Amplitude needs no time or longitude and the bearing is easy to take at a low altitude, but it is available only twice a day. Time azimuth works whenever a body is visible and low enough to bear accurately.</p>
+</details>
+<details class="ec-faq"><summary>How do I remember the sign of the error?</summary>
+<p>&quot;Compass least, error east; compass best, error west.&quot; If the compass reads less than the true bearing, the error is easterly.</p>
+</details>
+<details class="ec-faq"><summary>Why does it fail near the poles?</summary>
+<p>At high latitudes the sun rises at a shallow angle, so a small timing error is a large bearing error. For a body that is circumpolar or never rises there is no amplitude at all.</p>
+</details>
+<details class="ec-faq"><summary>Can I use a star or planet?</summary>
+<p>Yes, with its own declination and GHA. Amplitudes of stars are rarely practical because faint bodies are hard to see on the horizon.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../sight-reduction/index.html">Sight reduction</a> — the altitude and azimuth of a body for a position line.</li>
+<li><a href="../great-circle-distance/index.html">Great-circle distance</a> — courses that the compass must steer.</li>
+<li><a href="../course-to-steer/index.html">Course to steer with set and drift</a> — applying the corrected compass course.</li>
+<li><a href="../light-range/index.html">Light, radar and VHF range</a> — bearings of lights for position fixing.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

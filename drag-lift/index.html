@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drag and lift force calculator — Engineering calculators</title>
+  <meta name="description" content="Aerodynamic drag or lift force from ½ρv²CA, the power to overcome drag, and air density from altitude and temperature, with typical Cd values.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Drag and lift force calculator</h1>
+    <p class="ec-summary">Aerodynamic drag or lift force from dynamic pressure, coefficient and area, the power to overcome drag, and air density from altitude.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Aerodynamic drag is the force the air exerts against a moving body. To calculate it, multiply the dynamic pressure, ½ ρ v², by the drag coefficient and the frontal area. Lift uses the same formula with the lift coefficient and the wing area. A car with a drag coefficient of 0.30 and 24 ft² of frontal area meets 90 lbf of drag at 70 mph, and needs about 17 hp just to push through the air.</p>
+<p>This calculator gives the drag or lift force, the dynamic pressure and the power to overcome the drag. It finds the air density from the altitude and temperature, or takes it directly. It offers typical drag coefficients for cars, cyclists, flat plates and spheres. It is for car and bike enthusiasts, students, and drone and model builders.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Dynamic pressure, force and power:</p>
+<pre class="ec-formula" tabindex="0"><code>q = ½ ρ v²
+F = q × C × A
+P = F × v</code></pre>
+<p>Air density from altitude and temperature:</p>
+<pre class="ec-formula" tabindex="0"><code>p = 101 325 × (1 − 2.25577 × 10⁻⁵ z)^5.2559    Pa
+ρ = p / (287.04 × T)</code></pre>
+<p>Typical drag coefficients on frontal area:</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Body</th><th scope="col">Cd</th><th scope="col">Source</th></tr></thead>
+<tbody>
+<tr><td>Passenger car</td><td>0.30</td><td>Çengel and Cimbala</td></tr>
+<tr><td>Cyclist, upright, about 0.5 m²</td><td>1.1</td><td>Munson et al.</td></tr>
+<tr><td>Cyclist, racing crouch, about 0.36 m²</td><td>0.88</td><td>Munson et al.</td></tr>
+<tr><td>Flat square plate or disc facing the flow</td><td>1.17</td><td>Hoerner</td></tr>
+<tr><td>Sphere, laminar boundary layer</td><td>0.47</td><td>Hoerner</td></tr>
+</tbody></table>
+</div>
+<ul>
+<li>ρ — air density; v — air speed relative to the body</li>
+<li>C — drag coefficient Cd or lift coefficient CL</li>
+<li>A — frontal area for drag, wing area for lift</li>
+<li>z — altitude in m; T — air temperature in K</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The coefficient is held constant. In reality it changes with the Reynolds number, the yaw angle and, above about Mach 0.3, compressibility.</li>
+<li>The speed is the speed through the air. Add a head wind to the road speed, or subtract a tail wind.</li>
+<li>The power covers only the drag. Rolling resistance and drivetrain losses come on top.</li>
+<li>Dry air is assumed. Humidity lowers the density slightly: saturated air at 30 °C is 1.6 % lighter than dry air.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A car has a drag coefficient of 0.30 and a frontal area of 24 ft². How much drag does it meet at 70 mph at sea level on a 59 °F day, and what power does that take?</p>
+<ol>
+<li>Air density: 101 325 Pa / (287.04 × 288.15 K) = 1.225 kg/m³.</li>
+<li>Speed: 70 mph = 31.29 m/s.</li>
+<li>Dynamic pressure: ½ × 1.225 × 31.29² = 599.8 Pa, or 12.53 psf.</li>
+<li>Drag: 12.53 × 0.30 × 24 = 90.2 lbf.</li>
+<li>Power: 401.2 N × 31.29 m/s = 12.55 kW, or 16.84 hp.</li>
+</ol>
+<p>At 80 mph the drag rises by (80 / 70)² to 118 lbf, and the power by (80 / 70)³ to 25 hp.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate drag force?</summary>
+<p>Multiply ½ × air density × speed squared by the drag coefficient and the frontal area. In US units, the dynamic pressure in psf is about 0.00256 × mph² at sea level.</p>
+</details>
+<details class="ec-faq"><summary>What is a typical drag coefficient for a car?</summary>
+<p>About 0.30 for a passenger car. Values differ with the body shape, so use the maker&#39;s published figure when there is one.</p>
+</details>
+<details class="ec-faq"><summary>How much power does aerodynamic drag take?</summary>
+<p>Drag force times speed. Because the force grows with speed squared, the power grows with speed cubed.</p>
+</details>
+<details class="ec-faq"><summary>What is CdA?</summary>
+<p>The drag coefficient times the frontal area. It is the single number that sets the drag at a given speed and air density.</p>
+</details>
+<details class="ec-faq"><summary>How does altitude affect drag?</summary>
+<p>Thinner air means less drag at the same speed. At 5 280 ft on a 30 °C day the density is 0.959 kg/m³, and the drag is 22 % lower than at sea level on a standard day.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate lift?</summary>
+<p>Use the same formula with the lift coefficient and the wing area. In level flight the lift equals the weight.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../thrust-weight/index.html">Thrust-to-weight and wing loading</a> — stall speed from the wing loading and CLmax.</li>
+<li><a href="../true-airspeed/index.html">True airspeed</a> — the speed through the air at altitude.</li>
+<li><a href="../quarter-mile/index.html">Quarter-mile ET and trap speed</a> — performance where drag limits the trap speed.</li>
+<li><a href="../wind-load/index.html">Wind load</a> — wind pressure on buildings and signs.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

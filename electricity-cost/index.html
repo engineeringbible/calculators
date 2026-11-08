@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Electricity cost and energy use — Engineering calculators</title>
+  <meta name="description" content="Energy use and running cost of any appliance or load per hour, day, month and year, from its power, hours of use and the price per kWh.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Electricity cost and energy use</h1>
+    <p class="ec-summary">The energy an appliance or load uses and what it costs per hour of running, per day of use, per month and per year, from its power, hours of use, days per week, duty cycle and the price per kWh.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>What does it cost to run a heater, a pump, a compressor or a server for a year? The answer needs only three numbers: the power the load draws, how long it runs, and the price of a kilowatt-hour. Multiplying them out by hand is easy to get wrong, especially for loads that run only part of the time or only on working days.</p>
+<p>This calculator gives the energy and the cost per hour of running, per day of use, per month and per year. A duty cycle covers loads that switch on and off under a thermostat, such as fridges, freezers and heaters. The days-per-week setting covers loads that run only on working days. It works in any currency, because the price is yours. It is for homeowners checking appliances, facility and energy managers, and engineers comparing equipment.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Energy per day of use:</p>
+<pre class="ec-formula" tabindex="0"><code>E_day = P × duty × hours per day</code></pre>
+<p>Monthly and yearly energy, with the average month of 30.44 days:</p>
+<pre class="ec-formula" tabindex="0"><code>E_month = E_day × (days per week / 7) × 30.44
+E_year  = E_day × (days per week / 7) × 365.25</code></pre>
+<p>Cost:</p>
+<pre class="ec-formula" tabindex="0"><code>cost = E [kWh] × price per kWh
+1 kWh = 1000 W for one hour = 3.6 MJ</code></pre>
+<ul>
+<li>P — power while running, W or kW</li>
+<li>duty — share of the time the load actually draws that power, 0 to 100 %</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The power is the real power while the load runs, from its rating plate or a plug-in meter. Rating plates often show the maximum, so measured values give a better estimate.</li>
+<li>The price is a flat rate per kWh. Standing charges, time-of-use rates, demand charges and taxes are not included.</li>
+<li>Months and years are averages of 30.44 and 365.25 days.</li>
+<li>Standby power adds up over a year. Enter it as a separate small load running 24 hours a day.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 2 kW electric heater runs 4 hours a day, every day, and electricity costs 0.25 per kWh. What does it cost?</p>
+<ol>
+<li>Energy per day: 2 kW × 4 h = 8 kWh.</li>
+<li>Cost per day: 8 × 0.25 = 2.00.</li>
+<li>Energy per year: 8 × 365.25 = 2 922 kWh.</li>
+<li>Cost per year: 2 922 × 0.25 = 730.50.</li>
+<li>Per hour of running it costs 2 × 0.25 = 0.50.</li>
+</ol>
+<p>If a thermostat keeps it on only 60 % of the time, enter a 60 % duty cycle and every figure falls to 60 %.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the electricity cost of an appliance?</summary>
+<p>Multiply its power in kW by the hours it runs to get kWh, then by your price per kWh. A 100 W bulb for 10 hours uses 1 kWh.</p>
+</details>
+<details class="ec-faq"><summary>Where do I find an appliance&#39;s power?</summary>
+<p>On the rating plate or in the manual, in watts. For loads that cycle, a plug-in energy meter gives the real average, which is usually much lower than the plate value.</p>
+</details>
+<details class="ec-faq"><summary>What is a duty cycle?</summary>
+<p>The share of time a cycling load actually draws power. A fridge compressor runs about 30 to 50 % of the time, so its yearly energy is far below its rated power times 8 766 hours.</p>
+</details>
+<details class="ec-faq"><summary>How much does standby power cost?</summary>
+<p>A 5 W standby load running all year uses about 44 kWh, around 13 at 0.30 per kWh. Many such loads in a building add up.</p>
+</details>
+<details class="ec-faq"><summary>Why does my bill not match?</summary>
+<p>Bills add standing charges, taxes and sometimes time-of-use rates, and real use varies with season and behaviour. This calculator gives the energy part at a flat rate.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert watts to kWh?</summary>
+<p>Watts are a rate and kWh an amount. Multiply the watts by the hours of use and divide by 1000.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../ohms-law/index.html">Ohm&#39;s law and electrical power</a> — power from voltage and current.</li>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — the real power of motors and three-phase loads.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — the cost of generating the power yourself.</li>
+<li><a href="../solar-pv-sizing/index.html">Solar PV array and storage sizing</a> — producing the energy on site.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

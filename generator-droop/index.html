@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generator load sharing with droop — Engineering calculators</title>
+  <meta name="description" content="Active load sharing and bus frequency of paralleled generating sets with speed droop, with an optional isochronous set taking the balance.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Generator load sharing with droop</h1>
+    <p class="ec-summary">Find the bus frequency and the load on each of several generating sets in parallel on their speed-droop lines, with an optional isochronous set holding the frequency, and see how far each set is from its proportional share.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>When generating sets run in parallel, something must decide how much load each one carries. With speed droop, each governor lowers its speed setting a little as the load rises, along a straight line. On a common bus every set must run at the same frequency, so each takes the load where its droop line crosses the bus frequency. This calculator finds that frequency and the load on each set, compares the shares with the sets&#39; ratings, and models a system in which one isochronous set holds the frequency and takes the balance.</p>
+<p>It is for electrical officers and engineers setting up governors, superintendents investigating uneven load sharing, and students of power systems.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Droop line:          f = f_nl − D f_r P / P_r
+Load on a set:       P = P_r (f_nl − f) / (D f_r)
+Bus frequency:       f = (Σ c_i f_nl,i − P_load) / Σ c_i,   c_i = P_r,i / (D_i f_r)
+Proportional share:  P_load × P_r,i / Σ P_r</code></pre>
+<ul>
+<li>f_nl — no-load frequency setting; D — droop as a fraction; f_r — rated frequency; P_r — rating.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Steady state on an isolated bus; governor dynamics are not modelled.</li>
+<li>Straight-line droop characteristics over the whole load range.</li>
+<li>At most one isochronous set, which holds its frequency between no load and its rating.</li>
+<li>Reactive load sharing (voltage droop) is not included.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Two 1000 kW sets and one 800 kW set, all with 4 % droop set to 62.4 Hz at no load on a 60 Hz system, carry 1800 kW.</p>
+<ol>
+<li>Each set reaches 60 Hz at its full rating: 62.4 − 0.04 × 60 = 60.0 Hz.</li>
+<li>The bus settles at 62.4 − 2.4 × 1800 / 2800 = 60.857 Hz.</li>
+<li>Each set carries 64.3 % of its rating: 643, 643 and 514 kW, exactly in proportion.</li>
+<li>Lowering all speed settings by 0.857 Hz brings the bus back to 60 Hz with the same sharing.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why droop and not isochronous on every set?</summary>
+<p>Two isochronous governors on one bus would fight over the load, since any small difference in their settings sends the load to one of them. Droop gives each set a stable, unique load at any frequency.</p>
+</details>
+<details class="ec-faq"><summary>Why do my identical sets share unevenly?</summary>
+<p>Their droop or no-load settings differ. The set with the higher speed setting, or the smaller droop, takes more of the load.</p>
+</details>
+<details class="ec-faq"><summary>What does the isochronous set do?</summary>
+<p>It holds the frequency and takes whatever the droop sets leave. If the load drops below what the droop sets carry, it unloads and the frequency rises; if the load exceeds its rating, it stays at its limit and the frequency falls.</p>
+</details>
+<details class="ec-faq"><summary>How much droop is usual?</summary>
+<p>Simple mechanical governors often have about 5 %, and 3 % to 10 % is not unusual; governors with adjustable droop are commonly set between 0 and 5 % (Woodward 01302).</p>
+</details>
+<details class="ec-faq"><summary>What is the deviation from the proportional share?</summary>
+<p>The difference between a set&#39;s load and its share in proportion to its rating, as a percentage of the largest set&#39;s rating. Ship rules limit it for sets in parallel.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — the load and fuel of each set.</li>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — power from current, voltage and power factor.</li>
+<li><a href="../short-circuit-current/index.html">Short-circuit current (IEC 60909)</a> — the fault level with sets in parallel.</li>
+<li><a href="../power-factor-correction/index.html">Power factor correction</a> — reactive power on the bus.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

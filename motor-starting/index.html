@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motor starting current and voltage dip — Engineering calculators</title>
+  <meta name="description" content="Starting current and kVA by method (DOL, star-delta, autotransformer, soft starter, VFD), voltage dip on a generator or network, torque at reduced voltage.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Motor starting current and voltage dip</h1>
+    <p class="ec-summary">Will the motor start without collapsing the voltage? Rated and starting current and kVA for direct-on-line, star-delta, autotransformer, soft-starter and drive starting, the voltage dip on an island generator or a network, the voltage retained, the starting torque at that voltage, and the checks against a dip limit and the load torque — with the direct-on-line dip shown for comparison.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>An induction motor started direct-on-line draws six to eight times its rated current at a poor power factor until it gets up to speed. On a strong grid that is a brief flicker; on a ship or a site generator it can pull the voltage down far enough to drop contactors, trip drives and stall the motor itself, because torque falls with the square of the voltage. This calculator estimates the starting current and kVA for the common starting methods, the voltage dip with a simple and conservative voltage-divider model, the torque left at the reduced voltage, and whether the dip and the torque are acceptable.</p>
+<p>It is for marine and plant electrical engineers adding a large pump, compressor or thruster to a generator set, for anyone choosing between DOL, star-delta, soft starter and drive, and for students of electrical machines.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>I_n = P / (√3 V η cos φ),   S_start = √3 V I_n × m
+m: DOL = LRC,  star-delta = LRC/3,  autotransformer = LRC a²,  soft starter = current limit,  drive ≈ 1.0–1.5
+generator:  dip = X s / (1 + X s),   s = S_start / S_gen,   X = X&#39;d (conservative) or X&#39;&#39;d
+network:    dip = S_start / (S_sc + S_start)
+T_start / T_n = LRT × (1, 1/3, a², (limit/LRC)²) × (1 − dip)²      (drive: ≈ current multiple)</code></pre>
+<p>Dip limits: ISO 8528-5 G1 −25 %, G2 −20 %, G3 −15 % (standard load steps); IACS UR E5 a.c. transient ±20 % with recovery in 1.5 s.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Magnitudes only (locked-rotor power factor 0.2–0.4 ignored) and no pre-existing load: conservative by a few per cent.</li>
+<li>No AVR or governor dynamics; the generator maker&#39;s motor-starting curve is the final check.</li>
+<li>Torque at reduced voltage scales with V²; the acceleration time is not computed.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 200 kW, 440 V seawater pump motor (η 0.94, cos φ 0.85, locked-rotor current 7 × I_n, locked-rotor torque 2 × T_n) started on a 1 500 kVA generator with X&#39;d 0.25, dip limit 15 %, pump breakaway torque 30 %.</p>
+<ol>
+<li>I_n = 328 A; DOL start 2 299 A = 1 752 kVA, 1.17 times the generator rating.</li>
+<li>Dip = 0.25 × 1.168/(1 + 0.25 × 1.168) = 22.6 %: exceeds 15 %.</li>
+<li>Star-delta: 584 kVA, dip 8.9 %; torque 2/3 × 0.911² = 0.55 × rated, well above the pump&#39;s 0.33 with margin.</li>
+<li>A soft starter at 3.5 × I_n gives a 12.7 % dip but only 0.38 × rated torque; a drive at 1.2 × I_n dips 4.7 % with 1.2 × rated torque.</li>
+</ol>
+<p>On a 20 MVA shore network the same DOL start dips only 8 %.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why X&#39;d and not X&#39;&#39;d?</summary>
+<p>The subtransient reactance sets the very first dip; the transient reactance governs the following cycles before the regulator responds and gives the larger, conservative figure. Enter either.</p>
+</details>
+<details class="ec-faq"><summary>Why does the motor&#39;s power factor not matter?</summary>
+<p>At locked rotor the current is mostly reactive like the generator&#39;s reactance, so adding magnitudes is close to the phasor sum and slightly conservative.</p>
+</details>
+<details class="ec-faq"><summary>What limits apply on ships?</summary>
+<p>IACS UR E5 requires consumers to tolerate ±20 % transient voltage for 1.5 s; generator sets are commonly specified to a 15 % dip for the largest motor start (ISO 8528-5 class G3).</p>
+</details>
+<details class="ec-faq"><summary>Can star-delta start any load?</summary>
+<p>Only light starting loads: torque drops to a third, so fans and centrifugal pumps on a closed valve start well, loaded compressors and conveyors do not.</p>
+</details>
+<details class="ec-faq"><summary>Is a soft starter better than star-delta?</summary>
+<p>It gives a smooth start without the changeover peak, but torque still falls with the square of the current limit; a drive is the only method that gives full torque at low current.</p>
+</details>
+<details class="ec-faq"><summary>What about the generator engine?</summary>
+<p>The step load is mostly reactive, but losses and the load torque add real power; check the engine&#39;s load-acceptance class as well.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../three-phase-power/index.html">Three-phase power and current</a> — running current and power.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — the generator&#39;s capacity.</li>
+<li><a href="../transformer-sizing/index.html">Transformer sizing</a> — transformer-fed starts.</li>
+<li><a href="../cable-sizing/index.html">Cable sizing and voltage drop</a> — the cable&#39;s share of the dip.</li>
+<li><a href="../short-circuit-current/index.html">Short-circuit current (IEC 60909)</a> — the network short-circuit power.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

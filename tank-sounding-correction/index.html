@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tank sounding trim and heel correction — Engineering calculators</title>
+  <meta name="description" content="Corrected sounding or ullage of a rectangular tank for trim and heel at an off-centre sounding pipe, with volume, mass and the wedge check.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Tank sounding trim and heel correction</h1>
+    <p class="ec-summary">What a sounding pipe away from the tank centre really measures when the ship is trimmed and heeled: the trim and heel corrections, the corrected mean liquid depth, the shallowest and deepest points of the surface with the check that it stays inside the tank, the volume against the uncorrected figure, the mass at the liquid density and the fill level — for soundings or ullages.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A sounding pipe sits where the structure allows, usually in an aft corner of the tank, and it measures the liquid depth there, not at the tank&#39;s centre. When the ship is trimmed by the stern the aft corner is deeper than the mean; when she heels, the low side is deeper. The ship&#39;s sounding tables carry correction columns for round values of trim and heel; this calculator computes the same corrections for any trim, heel and pipe position in a box-shaped tank, gives the corrected mean depth, volume and mass, and checks that the liquid surface stays within the tank, because once it touches the bottom or the top the simple formula no longer holds and the wedge tables take over.</p>
+<p>It is for engineers and officers taking bunker and ballast soundings, surveyors doing bunker and draught surveys, and students of ship stability.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>depth at pipe = sounding   (or H − ullage)
+trim correction = (L/2 − x_p) × trim / L_BP          (+ when the pipe is aft of centre and the ship trims by the stern)
+heel correction = y_p × tan(heel)                     (+ when the pipe is on the low side)
+mean depth = depth at pipe − trim correction − heel correction
+surface range = mean ± (L/2)|trim/L_BP| ± (B/2)|tan heel|   → must stay within [0, H]
+volume = L B × mean depth,   mass = volume × density</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Box-shaped tank with a horizontal liquid surface; exact for prismatic tanks, approximate elsewhere.</li>
+<li>Surface fully inside the tank; otherwise the calibration tables&#39; wedge corrections apply.</li>
+<li>Pipe datum included in the height entered; density at tank temperature (VCF from the bunker-quantity calculator).</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A fuel oil tank 20 m long, 15 m wide and 12 m high; sounding pipe 1 m forward of the aft bulkhead and 6 m to starboard of the centreline; ship trimmed 1.0 m by the stern on L_BP 180 m and heeled 1° to starboard; sounding 6.00 m; density 0.98 t/m³.</p>
+<ol>
+<li>Trim correction (10 − 1) × 1.0/180 = 0.050 m: the aft pipe reads 5 cm more than the mean.</li>
+<li>Heel correction 6 × tan 1° = 0.105 m: the starboard pipe reads another 10 cm more.</li>
+<li>Mean depth 6.00 − 0.050 − 0.105 = 5.845 m; the surface ranges from 5.66 to 6.03 m, inside the tank.</li>
+<li>Volume 300 × 5.845 = 1 754 m³ against 1 800 m³ uncorrected (−2.6 %); mass 1 718 t; 49 % full.</li>
+</ol>
+<p>With the ship heeled 1° to port instead, the starboard pipe is on the high side and the mean depth is 6.055 m: the same reading, 63 m³ more oil.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which way is the correction applied?</summary>
+<p>Subtract from the reading when the pipe is at the deeper end or side (aft of centre with stern trim, on the low side with heel); the page handles the signs from the positions and angles entered.</p>
+</details>
+<details class="ec-faq"><summary>Why does the pipe position matter so much?</summary>
+<p>The correction is the pipe&#39;s distance from the centre times the slope; a pipe in the far corner of a long tank can read several centimetres off for a modest trim, and in bunker surveys each centimetre is tonnes.</p>
+</details>
+<details class="ec-faq"><summary>When do the wedge formulas apply?</summary>
+<p>When the liquid surface reaches the bottom at one end (nearly empty tank with trim) or the top at one side (pressed-up tank with heel); the page flags it.</p>
+</details>
+<details class="ec-faq"><summary>Do the tables already include this?</summary>
+<p>Yes, for the tabulated trims and heels; this calculator interpolates exactly and handles combinations the tables may not list.</p>
+</details>
+<details class="ec-faq"><summary>Does it work for ullages?</summary>
+<p>Yes; the ullage is converted to a sounding with the tank height at the pipe, so the datum height must be included.</p>
+</details>
+<details class="ec-faq"><summary>What about the free surface effect?</summary>
+<p>That is a stability matter (initial-stability calculator); here the inclined surface only changes where the pipe reads.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — cylindrical and other tank shapes.</li>
+<li><a href="../bunker-quantity/index.html">Bunker quantity and density correction</a> — temperature correction of the mass.</li>
+<li><a href="../draft-survey/index.html">Draft survey</a> — the same trim corrections applied to draughts.</li>
+<li><a href="../hydrostatics/index.html">Hydrostatics</a> — trim and displacement of the ship.</li>
+<li><a href="../fuel-blend-heating/index.html">Fuel blend viscosity and heating</a> — the fuel in the tank.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

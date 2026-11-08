@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elastic constants calculator (E, G, K, Poisson's ratio) — Engineering calculators</title>
+  <meta name="description" content="Young's modulus, shear modulus, bulk modulus and Poisson's ratio of an isotropic material from any two of them, with Lamé's constant.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Elastic constants calculator (E, G, K, Poisson's ratio)</h1>
+    <p class="ec-summary">Young's, shear and bulk modulus and Poisson's ratio of an isotropic material from any two of them, with Lame's constant and typical values.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>An isotropic elastic material has only two independent elastic constants. Once you know any two of Young&#39;s modulus E, the shear modulus G, the bulk modulus K and Poisson&#39;s ratio ν, the others follow. Steel with E = 210 GPa and ν = 0.3 has G = 80.8 GPa and K = 175 GPa.</p>
+<p>This calculator takes any pair and returns all four constants, plus Lamé&#39;s first parameter λ and the constrained modulus M used in wave and soil problems. It refuses pairs that no stable material can have. It is for engineers and students who have E and ν from a data sheet but need G for torsion or K for pressure.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>From E and ν:</p>
+<pre class="ec-formula" tabindex="0"><code>G = E / (2 (1 + ν))
+K = E / (3 (1 − 2ν))
+λ = E ν / ((1 + ν)(1 − 2ν)),    M = K + 4G/3</code></pre>
+<p>From the other pairs:</p>
+<pre class="ec-formula" tabindex="0"><code>E and G:  ν = E / (2G) − 1
+E and K:  ν = (3K − E) / (6K)
+G and K:  E = 9KG / (3K + G),   ν = (3K − 2G) / (2 (3K + G))
+G and ν:  E = 2G (1 + ν)
+K and ν:  E = 3K (1 − 2ν)</code></pre>
+<ul>
+<li>E — Young&#39;s modulus, tension or compression; G — shear modulus (modulus of rigidity)</li>
+<li>K — bulk modulus, pressure over volume strain; ν — Poisson&#39;s ratio, lateral over axial strain</li>
+</ul>
+<p>Typical values from standards and data sheets:</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Material</th><th scope="col">E (GPa)</th><th scope="col">G (GPa)</th><th scope="col">ν</th><th scope="col">Source</th></tr></thead>
+<tbody>
+<tr><td>Structural steel</td><td>210</td><td>81</td><td>0.3</td><td>EN 1993-1-1</td></tr>
+<tr><td>Aluminium alloys</td><td>70</td><td>27</td><td>0.3</td><td>EN 1999-1-1</td></tr>
+<tr><td>Stainless steel 304</td><td>193</td><td>78</td><td>—</td><td>Cleveland-Cliffs</td></tr>
+<tr><td>Copper C11000</td><td>117</td><td>44.1</td><td>—</td><td>National Bronze</td></tr>
+<tr><td>Brass C26000</td><td>110</td><td>41.4</td><td>—</td><td>National Bronze</td></tr>
+<tr><td>Ti-6Al-4V</td><td>113.8</td><td>44</td><td>0.342</td><td>ASM data sheet</td></tr>
+<tr><td>Float glass</td><td>70</td><td>—</td><td>0.2</td><td>AGC Planibel</td></tr>
+<tr><td>Concrete C30/37</td><td>33</td><td>—</td><td>0.2</td><td>EN 1992-1-1</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The relations hold only for isotropic, linear-elastic materials. Timber, fibre composites and many moulded plastics have different stiffness in different directions.</li>
+<li>Poisson&#39;s ratio must lie between −1 and 0.5. At 0.5 the material cannot change volume and K is infinite, so the calculator stops just below it.</li>
+<li>Published E, G and ν for an alloy often disagree slightly, because each comes from a different test. EN 1999-1-1 lists 70, 27 and 0.3 for aluminium, but 70 and 27 imply ν = 0.296.</li>
+<li>For rubber and other nearly incompressible materials, K is very sensitive to the third decimal of ν. Measure K directly instead.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A steel shaft has E = 210 GPa and ν = 0.3. What are its shear and bulk moduli?</p>
+<ol>
+<li>Shear modulus: G = 210 / (2 × 1.3) = 80.77 GPa.</li>
+<li>Bulk modulus: K = 210 / (3 × 0.4) = 175.0 GPa.</li>
+<li>Lamé&#39;s parameter: λ = 210 × 0.3 / (1.3 × 0.4) = 121.2 GPa.</li>
+<li>Constrained modulus: M = 175.0 + 4 × 80.77 / 3 = 282.7 GPa.</li>
+</ol>
+<p>Eurocode 3 rounds the shear modulus of steel to 81 GPa, within 0.3 % of this result.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the relation between E and G?</summary>
+<p>G = E / (2 (1 + ν)). For metals with ν near 0.3, the shear modulus is about 38 % of Young&#39;s modulus.</p>
+</details>
+<details class="ec-faq"><summary>What is a typical Poisson&#39;s ratio?</summary>
+<p>About 0.3 for steel and aluminium, 0.2 for glass and concrete, and close to 0.5 for rubber.</p>
+</details>
+<details class="ec-faq"><summary>Can Poisson&#39;s ratio be negative?</summary>
+<p>Yes, for some foams and lattice structures that get fatter when stretched. No common engineering metal does this.</p>
+</details>
+<details class="ec-faq"><summary>What is the bulk modulus used for?</summary>
+<p>It relates a pressure to the change in volume. Hydraulic and pressure-vessel calculations use it, and so does the speed of sound in solids.</p>
+</details>
+<details class="ec-faq"><summary>Why does my data sheet&#39;s G not match E and ν?</summary>
+<p>The three values come from separate tests and products, and each is rounded. A difference of a few per cent is normal.</p>
+</details>
+<details class="ec-faq"><summary>What is the shear modulus of steel?</summary>
+<p>Eurocode 3 uses 81 GPa for structural steel. The Cleveland-Cliffs data sheets give 77 to 78 GPa for stainless steels 316 and 304.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../stress-strain/index.html">Stress and strain</a> — elongation of a bar from Young&#39;s modulus.</li>
+<li><a href="../material-properties/index.html">Material properties</a> — moduli and strengths of common materials.</li>
+<li><a href="../shaft-torsion/index.html">Shaft torsion</a> — twist of a shaft from the shear modulus.</li>
+<li><a href="../mohr-circle/index.html">Mohr&#39;s circle</a> — principal stresses in plane stress.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

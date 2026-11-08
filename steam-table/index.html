@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Steam table calculator (IAPWS-IF97) — Engineering calculators</title>
+  <meta name="description" content="Saturated and superheated steam and compressed water properties by IAPWS-IF97: temperature, pressure, enthalpy, entropy, specific volume and density.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Steam table calculator (IAPWS-IF97)</h1>
+    <p class="ec-summary">Steam tables by IAPWS-IF97: saturated water and steam by pressure or temperature, wet steam, superheated steam and compressed water.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Steam tables list the properties of water and steam: at what temperature water boils at a given pressure, how much energy it holds, and how much space it takes up. Engineers use them to size boilers, turbines, heat exchangers, steam pipes and condensate systems. At 10 bar, water boils at 179.9 °C and needs 2 014 kJ of heat per kilogram to turn into steam.</p>
+<p>This calculator works out steam table values by IAPWS-IF97, the international industrial standard behind published steam tables. It covers saturated water and steam by pressure or temperature, wet steam at any dryness fraction, and superheated steam or compressed water at any pressure and temperature up to 800 °C. It gives the enthalpy, entropy, specific volume, density, internal energy and, for single-phase states, the heat capacity and speed of sound.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Saturation line (IF97 region 4): the saturation pressure p_s(T) and its inverse T_s(p) are closed-form equations.</p>
+<p>Single-phase properties come from the dimensionless Gibbs free energy γ(π, τ):</p>
+<pre class="ec-formula" tabindex="0"><code>region 1 (water):   π = p / 16.53 MPa,   τ = 1 386 K / T
+region 2 (steam):   π = p / 1 MPa,       τ = 540 K / T
+v = R T π γ_π / p,   h = R T τ γ_τ,   s = R (τ γ_τ − γ),   u = h − p v</code></pre>
+<p>Wet steam with dryness fraction x:</p>
+<pre class="ec-formula" tabindex="0"><code>h = h_f + x h_fg,   s = s_f + x (s_g − s_f),   v = v_f + x (v_g − v_f)</code></pre>
+<ul>
+<li>R = 0.461526 kJ/(kg·K), the gas constant of water in IF97</li>
+<li>h_f, h_g — saturated liquid and vapour enthalpy; h_fg = h_g − h_f is the latent heat</li>
+<li>Enthalpy and entropy are zero for liquid water at the triple point, as in published tables</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The calculator implements IF97 regions 1, 2 and 4 and reproduces the official verification values to nine digits.</li>
+<li>The near-critical region, above 350 °C at high pressure, and temperatures above 800 °C are not covered. States there are refused rather than extrapolated.</li>
+<li>Pressures are absolute. Add atmospheric pressure, about 1.013 bar, to a gauge reading.</li>
+<li>Saturated properties are given from 0 °C to 350 °C (0.006 to 165 bar).</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>What are the properties of dry saturated steam at 10 bar absolute?</p>
+<ol>
+<li>Saturation temperature: T_s = 179.89 °C.</li>
+<li>Saturated liquid: h_f = 762.68 kJ/kg, v_f = 0.0011272 m³/kg.</li>
+<li>Saturated vapour: h_g = 2777.1 kJ/kg, v_g = 0.19435 m³/kg, so 1 kg of steam fills 0.194 m³.</li>
+<li>Latent heat: h_fg = 2777.1 − 762.7 = 2014.4 kJ/kg.</li>
+</ol>
+<p>A process heater using this steam and returning condensate at 179.9 °C gets 2 014 kJ from each kilogram, or 560 kW from 1 t/h of steam.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the boiling point of water at different pressures?</summary>
+<p>100 °C at 1.013 bar, 120.2 °C at 2 bar, 179.9 °C at 10 bar and 250.4 °C at 40 bar. Select &quot;saturated by pressure&quot; for any value.</p>
+</details>
+<details class="ec-faq"><summary>What is the enthalpy of steam?</summary>
+<p>For dry saturated steam it ranges from 2 676 kJ/kg at atmospheric pressure to about 2 800 kJ/kg at its maximum near 30 bar. Superheating adds roughly 2 kJ/kg per kelvin.</p>
+</details>
+<details class="ec-faq"><summary>What is latent heat?</summary>
+<p>The heat to turn saturated water into saturated steam at the same temperature, h_fg. It is 2 256 kJ/kg at 100 °C and falls to zero at the critical point.</p>
+</details>
+<details class="ec-faq"><summary>What is the dryness fraction of steam?</summary>
+<p>The mass fraction of vapour in a wet steam mixture. Steam at 90 % dryness carries 10 % of its mass as water droplets.</p>
+</details>
+<details class="ec-faq"><summary>What is superheated steam?</summary>
+<p>Steam heated above its saturation temperature. It carries more energy, does not condense until it cools, and is used in turbines.</p>
+</details>
+<details class="ec-faq"><summary>Why use IAPWS-IF97?</summary>
+<p>It is the international standard for industrial calculations, adopted by turbine and boiler makers, so results agree with commercial steam tables and software.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../specific-heat/index.html">Specific heat (Q = mcΔT)</a> — heating water below boiling.</li>
+<li><a href="../carnot-cop/index.html">Carnot efficiency and COP</a> — the limit for a steam cycle.</li>
+<li><a href="../heat-exchanger-lmtd/index.html">Heat exchanger LMTD</a> — steam heaters and condensers.</li>
+<li><a href="../pipe-insulation/index.html">Pipe insulation</a> — heat loss from steam pipes.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PPM concentration converter (mg/L, % w/w, ppmv, mg/m³, mol/L) — Engineering calculators</title>
+  <meta name="description" content="Convert ppm and ppb by mass or volume, mg/L, g/L, % w/w, mol/L and mg/m³ for liquids and gases, using the density, molar mass, temperature and pressure.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Process</span>
+    <h1 class="ec-title">PPM concentration converter (mg/L, % w/w, ppmv, mg/m³, mol/L)</h1>
+    <p class="ec-summary">Convert ppm, ppb, mg/L, g/L, % w/w and mol/L in liquids, and ppmv, ppbv and mg/m³ in gases at a stated temperature and pressure.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>What does ppm mean? Parts per million is a ratio: one part of a substance in a million parts of the mixture. In water and soil it is a mass ratio, so 1 ppm is 1 mg per kg. In air it is a volume ratio, so 1 ppm is 1 mL of gas per m³. In dilute water 1 ppm is very nearly 1 mg/L. In air the mass depends on the gas: 1 ppm of carbon monoxide is about 1.15 mg/m³ at 25 °C.</p>
+<p>This calculator converts one concentration into all the others. For liquids it links ppm, ppb, % w/w, mg/L, g/L and molarity through the density of the solution and the molar mass. For gases it links ppmv, ppbv, % by volume, mg/m³ and µg/m³ through the temperature, pressure and molar mass. It is for water treatment, laboratory and environmental work and for checking exposure limits.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Liquid or solid, mass basis:</p>
+<pre class="ec-formula" tabindex="0"><code>c [g/L] = w × ρ [kg/m³]
+ppm = w × 10⁶,   ppb = w × 10⁹,   % w/w = w × 100
+molarity [mol/L] = c [g/L] / M</code></pre>
+<p>Gas, volume basis (ideal gas):</p>
+<pre class="ec-formula" tabindex="0"><code>c [mg/m³] = x × M × P / (R T) × 1 000
+at 25 °C and 1 atm:   mg/m³ = ppmv × M / 24.45
+ppm by mass in air = x M / (x M + (1 − x) M_air) × 10⁶</code></pre>
+<ul>
+<li>w — mass fraction of the substance; c — mass concentration; ρ — density of the whole solution</li>
+<li>x — mole fraction, equal to the volume fraction for ideal gases</li>
+<li>M — molar mass of the substance, g/mol; M_air = 28.964 g/mol</li>
+<li>R = 8.314 J/(mol·K); T — absolute temperature; P — absolute pressure</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>ppm in a liquid means mg/kg. It equals mg/L only when the solution has a density of 1 000 kg/m³, which is close enough for drinking water but not for brines, acids or sludges.</li>
+<li>ppm in a gas means volume or mole fraction. Converting it to mg/m³ needs the temperature and pressure; occupational limits in the US use 25 °C and 1 atm.</li>
+<li>The gas conversion uses the ideal gas law. Above about 10 bar, or close to condensation, correct the molar volume for real-gas behaviour.</li>
+<li>Molarity uses the molar mass you enter. Use the formula unit for a salt, such as NaCl, not one of its ions.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A sodium chloride brine holds 35 g of salt per litre and has a density of 1 025 kg/m³. What is its concentration in ppm, % w/w and mol/L?</p>
+<ol>
+<li>Mass fraction: 35 g/L / 1 025 g/L = 0.034146.</li>
+<li>ppm by mass: 0.034146 × 10⁶ = 34 146 ppm.</li>
+<li>Percent by weight: 0.034146 × 100 = 3.415 % w/w.</li>
+<li>Molarity: 35 g/L / 58.44 g/mol = 0.599 mol/L.</li>
+</ol>
+<p>The brine is 35 000 mg/L but only 34 146 ppm, because a litre of it weighs more than a kilogram.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I convert ppm to mg/L?</summary>
+<p>For water and dilute solutions, 1 ppm is 1 mg/L. For denser liquids, multiply ppm by the density in kg/L: 1 000 ppm in a liquid of 1.2 kg/L is 1 200 mg/L.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert ppm to mg/m³ for a gas?</summary>
+<p>At 25 °C and 1 atm, multiply ppm by the molar mass and divide by 24.45. For ammonia, 25 ppm × 17.03 / 24.45 = 17.4 mg/m³.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between ppm and ppmv?</summary>
+<p>ppm usually means a mass ratio and is used for liquids and solids. ppmv is a volume ratio and is used for gases. For a gas mixture they differ by the ratio of molar masses.</p>
+</details>
+<details class="ec-faq"><summary>How many ppm is 1 %?</summary>
+<p>10 000 ppm. One percent is one part per hundred, and a million is ten thousand hundreds.</p>
+</details>
+<details class="ec-faq"><summary>What is ppb?</summary>
+<p>Parts per billion, one thousandth of a ppm. In water 1 ppb is 1 µg/L, a level used for lead, arsenic and pesticides.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert mg/L to molarity?</summary>
+<p>Divide the mg/L by the molar mass in g/mol to get mmol/L, then divide by 1 000 for mol/L. 100 mg/L of calcium carbonate is 0.999 mmol/L.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../molarity/index.html">Molarity</a> — moles, mass and volume of a solution.</li>
+<li><a href="../dilution/index.html">Dilution C1V1 = C2V2</a> — diluting a stock to a target concentration.</li>
+<li><a href="../chemical-dosing/index.html">Chemical dosing</a> — feed rate for a target dose in mg/L.</li>
+<li><a href="../ideal-gas-law/index.html">Ideal gas law</a> — molar volume at other conditions.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

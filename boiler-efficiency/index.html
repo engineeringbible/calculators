@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boiler efficiency calculator (direct and indirect method) — Engineering calculators</title>
+  <meta name="description" content="Steam boiler efficiency by the direct method, steam heat over fuel input on HHV and LHV basis, or the indirect method with Siegert flue gas loss.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Boiler efficiency calculator (direct and indirect method)</h1>
+    <p class="ec-summary">Boiler efficiency by the direct method with IAPWS-IF97 enthalpies, or the indirect method with Siegert flue gas, radiation and blowdown losses.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Boiler efficiency is the share of the fuel&#39;s heat that ends up in the steam. The direct method divides the heat gained by the water by the heat in the fuel burned. A gas-fired boiler making 5 000 kg/h of saturated steam at 10 bar g from 80 °C feedwater, on 290 kg/h of natural gas, is 80.7 % efficient on the gross (HHV) basis and 89.4 % on the net (LHV) basis.</p>
+<p>This calculator works out the efficiency both ways. The direct method uses steam and fuel flows, with steam and feedwater enthalpies from the IAPWS-IF97 steam tables. The indirect method subtracts the flue gas, radiation and blowdown losses from 100 %. A fuel table gives the gross and net heating values. It is for boiler operators, energy auditors and plant engineers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Direct method:</p>
+<pre class="ec-formula" tabindex="0"><code>η = ṁ_s × (h_s − h_fw) / (ṁ_f × CV)
+h_s = h_f + x (h_g − h_f) for wet steam, or h(p, T) for superheated steam</code></pre>
+<p>Indirect method, flue gas loss by the Siegert formula (1. BImSchV), LHV basis:</p>
+<pre class="ec-formula" tabindex="0"><code>q_A = (t_A − t_L) × (A2 / (21 − O2) + B)      in %
+η_LHV = (1 − q_A − q_rad) × (1 − r)
+r = b&#39; (h_f − h_fw) / [(h_s − h_fw) + b&#39; (h_f − h_fw)],   b&#39; = b / (1 − b)
+η_HHV = η_LHV × LHV / HHV</code></pre>
+<ul>
+<li>ṁ_s, ṁ_f — steam and fuel mass flows; CV — gross (HHV) or net (LHV) calorific value</li>
+<li>h_s, h_f, h_fw — enthalpy of the steam, of saturated water at boiler pressure, and of the feedwater</li>
+<li>t_A, t_L — flue gas and combustion air temperatures in °C; O2 — oxygen in the dry flue gas, %</li>
+<li>A2, B — fuel constants: natural gas 0.66 and 0.009, heating oil 0.68 and 0.007, LPG 0.63 and 0.008</li>
+<li>q_rad — radiation and convection loss; b — blowdown as a share of the feedwater</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The heating values are the GREET values published by Oak Ridge National Laboratory. Coal and wood vary widely, so use the value from a fuel analysis when you have one.</li>
+<li>The direct method counts only the steam as output, so all losses are inside the result. Its accuracy depends on the flow meters, and a 2 % error in fuel flow gives a 2 % error in efficiency.</li>
+<li>The Siegert formula covers oil and gas firing with complete combustion. It ignores unburnt fuel (CO) and does not apply once the flue gas condenses, below about 60 °C.</li>
+<li>US practice and ASME PTC 4 use the gross (HHV) basis; much of Europe and EN 12952-15 use the net (LHV) basis. Always state which one.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>The Bureau of Energy Efficiency (India) gives this direct-method example. A coal-fired boiler makes 8 t/h of dry saturated steam at 10 kg/cm² g from feedwater at 85 °C. It burns 1.6 t/h of coal with a gross calorific value of 4 000 kcal/kg.</p>
+<ol>
+<li>Absolute pressure: 10 kg/cm² g is 9.81 bar g, or 10.82 bar abs. Saturation is 183.3 °C.</li>
+<li>Steam enthalpy from IAPWS-IF97: h_s = 2 780 kJ/kg (664 kcal/kg).</li>
+<li>Feedwater enthalpy at 85 °C: h_fw = 356.7 kJ/kg.</li>
+<li>Heat to the steam: 8 000 / 3 600 × (2 780 − 356.7) = 5 385 kW.</li>
+<li>Fuel input: 1 600 / 3 600 × 4 000 × 4.1868 = 7 443 kW.</li>
+<li>Efficiency: 5 385 / 7 443 = 72.3 %.</li>
+</ol>
+<p>BEE prints 72.5 %, using 665 kcal/kg for the steam. For the indirect method on a gas boiler, a flue gas at 180 °C with 3 % O2 and 20 °C air loses 7.31 % by Siegert. With 1 % radiation and 3 % blowdown at 10 bar g, the efficiency is 91.2 % net, or 82.3 % gross.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate boiler efficiency?</summary>
+<p>Divide the heat added to the water, steam flow times the enthalpy rise from feedwater to steam, by the fuel flow times its calorific value. That is the direct method.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between the direct and indirect methods?</summary>
+<p>The direct method needs accurate steam and fuel flows. The indirect method needs only a flue gas analysis and estimates of the other losses, and it shows where the heat goes.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between HHV and LHV efficiency?</summary>
+<p>The gross (HHV) basis counts the latent heat of the water vapour in the flue gas as a loss; the net (LHV) basis does not. For natural gas LHV/HHV is 0.903, so 90 % net is 81.2 % gross.</p>
+</details>
+<details class="ec-faq"><summary>How does excess air affect efficiency?</summary>
+<p>More oxygen means more flue gas carrying heat up the stack. At 180 °C flue gas, natural gas loses 7.31 % with 3 % O2 and 8.48 % with 6 % O2.</p>
+</details>
+<details class="ec-faq"><summary>How much does a lower flue gas temperature save?</summary>
+<p>At 3 % O2 on natural gas, every 20 K lower flue gas temperature cuts the loss by about 0.9 points. An economiser that cools the gas from 180 to 160 °C raises the net efficiency from 91.2 to 92.1 %.</p>
+</details>
+<details class="ec-faq"><summary>Can boiler efficiency exceed 100 %?</summary>
+<p>Only on the net (LHV) basis, in a condensing boiler that recovers the latent heat of the water vapour. On the gross basis it always stays below 100 %.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../steam-table/index.html">Steam table (IAPWS-IF97)</a> — enthalpies of steam and water.</li>
+<li><a href="../specific-heat/index.html">Specific heat</a> — heat to warm water or other materials.</li>
+<li><a href="../heat-loss/index.html">Building heat loss</a> — the heat demand the boiler must cover.</li>
+<li><a href="../fuel-lcv-co2/index.html">Fuel net specific energy and CO₂ factor</a> — calorific values of marine fuels.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Course to steer with set and drift — Engineering calculators</title>
+  <meta name="description" content="Course to steer, speed over ground and passage time to make good a track through a current of known set and drift, with leeway.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Course to steer with set and drift</h1>
+    <p class="ec-summary">The navigator's current triangle: the cross-track and along-track components of a current of known set and drift, the heading offset and course to steer to make good the required track, the speed over ground and passage time, the leeway allowance, and what happens to the course and position if the current is ignored.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A ship steering the course drawn on the chart does not follow it if the water itself is moving. To make good a track through a current the navigator offsets the heading towards the current&#39;s source by an angle whose sine is the cross-track current divided by the ship&#39;s speed, and accepts whatever the along-track component does to the speed over ground. This calculator solves that triangle: heading offset, course to steer, speed and time over the leg, the extra correction for leeway, and, for comparison, where the ship would end up if the current were ignored.</p>
+<p>It is for deck officers and voyage planners, performance analysts separating current from hull performance in noon-report speeds, and students of navigation.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>C − T = current direction relative to the track
+cross = D sin(C − T)   (+ sets the ship to starboard),   along = D cos(C − T)   (+ following)
+sin δ = cross / S,   course to steer = T − δ   (+ leeway angle)
+SOG = S cos δ + along,   time = distance / SOG
+ignoring the current: CMG, SMG from the vector sum of S on T and D on C; cross-track error = |cross| × distance/S</code></pre>
+<p>Set is the direction the current flows towards; all directions true.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Uniform, steady current over the leg; tidal streams averaged over the passage hours or the leg split.</li>
+<li>Plane triangle, exact for coastal legs; apply per segment on ocean passages.</li>
+<li>Leeway entered as an angle, positive with the wind on the starboard side.</li>
+<li>The track cannot be made good if the cross current exceeds the ship&#39;s speed.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Required track 090°, ship speed 12 kn, current 2 kn setting 180° (flowing south), leg 120 nmi.</p>
+<ol>
+<li>Relative set 90°: the whole current is cross-track, 2 kn to starboard; nothing along the track.</li>
+<li>sin δ = 2/12 → δ = 9.6°; course to steer 080.4°.</li>
+<li>SOG = 12 cos 9.6° = 11.83 kn; 120 nmi takes 10.14 h, 8 minutes more than in still water.</li>
+<li>Steering 090° without allowance would make good 099.5° at 12.17 kn and put the ship 20 nmi south of the destination.</li>
+</ol>
+<p>With a head current (set 270°) the heading is unchanged and SOG drops to 10 kn; with a following current it rises to 14 kn. Add 3° of leeway for a beam wind on the starboard side and the course to steer becomes 083.4°.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Set towards or from?</summary>
+<p>Towards. A current &quot;setting 180°&quot; flows south. Wind is named by where it comes from; this is the classic mix-up.</p>
+</details>
+<details class="ec-faq"><summary>Why does a beam current also slow the ship?</summary>
+<p>Part of the ship&#39;s speed is spent cancelling the cross current, so only S cos δ is left along the track.</p>
+</details>
+<details class="ec-faq"><summary>How do I handle a tidal stream that changes during the passage?</summary>
+<p>Use the mean vector over the passage hours from the tidal atlas, or split the leg into hourly segments and apply the triangle to each.</p>
+</details>
+<details class="ec-faq"><summary>What is leeway and how big is it?</summary>
+<p>The downwind drift angle caused by wind on the hull and superstructure: under 1° for a loaded tanker in moderate wind, 3–5° for a light container ship or car carrier in a strong beam wind.</p>
+</details>
+<details class="ec-faq"><summary>Can the page tell me the current from observations?</summary>
+<p>Indirectly: compare the course and speed made good with the heading and log speed; the difference vector is the set and drift (the &quot;uncorrected&quot; outputs in reverse).</p>
+</details>
+<details class="ec-faq"><summary>Why does performance analysis care?</summary>
+<p>Speed over ground from GPS includes the current; hull performance needs speed through water, and the along-track current is the difference.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../great-circle-distance/index.html">Great-circle distance</a> — the ocean leg distance and initial course.</li>
+<li><a href="../mercator-sailing/index.html">Mercator (rhumb-line) sailing</a> — constant-course legs.</li>
+<li><a href="../tidal-height/index.html">Tidal height (rule of twelfths)</a> — the tidal cycle that drives the stream.</li>
+<li><a href="../propeller-slip/index.html">Propeller slip</a> — speed through water from shaft revolutions.</li>
+<li><a href="../optimal-speed-charter/index.html">Optimal speed under charter</a> — the speed to set for the leg.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

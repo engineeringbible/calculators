@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chain and sprocket calculator (roller chain length) — Engineering calculators</title>
+  <meta name="description" content="Roller chain drive: ratio, output rpm, chain speed, chain length in pitches (even), actual centre distance and sprocket pitch diameters.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Chain and sprocket calculator (roller chain length)</h1>
+    <p class="ec-summary">Roller chain drive ratio, output speed, chain speed, even chain length in pitches, actual centre distance and sprocket pitch diameters.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A roller chain drive changes speed in the ratio of the sprocket tooth counts. A 17-tooth sprocket at 900 rpm driving a 51-tooth sprocket turns it at 300 rpm. The chain must have a whole number of links, and an even number avoids a weak offset link. So the chain length is rounded up, and the centre distance moves slightly to suit.</p>
+<p>This calculator gives the ratio, the output speed and the chain speed, the chain length in pitches for the centre distance you want, the even length to buy, and the actual centre distance with that chain. It also gives the pitch diameter of each sprocket and the chordal speed variation. It is for designers and maintenance staff laying out or replacing chain drives on conveyors, machines and motorcycles.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Sprocket pitch diameter and chain speed:</p>
+<pre class="ec-formula" tabindex="0"><code>D = p / sin(180° / N)
+V = N₁ p n₁</code></pre>
+<p>Chain length in pitches for a centre distance C (Shigley eq. 17-27):</p>
+<pre class="ec-formula" tabindex="0"><code>L/p = 2C/p + (N₁ + N₂)/2 + (N₂ − N₁)² / (4π² C/p)</code></pre>
+<p>Centre distance for a chain of L/p pitches (eq. 17-28):</p>
+<pre class="ec-formula" tabindex="0"><code>A = (N₁ + N₂)/2 − L/p
+C = (p/4) [−A + √(A² − 8 ((N₂ − N₁) / (2π))²)]</code></pre>
+<p>Chordal speed variation:</p>
+<pre class="ec-formula" tabindex="0"><code>ΔV/V = (π/N) [1/sin(180°/N) − 1/tan(180°/N)]</code></pre>
+<ul>
+<li>p — chain pitch; N₁, N₂ — teeth on the driver and driven sprockets</li>
+<li>n₁ — driver speed; L — chain length; C — centre distance</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>ANSI chain numbers give the pitch in eighths of an inch: No. 40 is 1/2 in (12.7 mm), No. 60 is 3/4 in. ISO B-series chains of the same pitch use the same geometry.</li>
+<li>The chain length is rounded up to an even number of pitches, so no offset link is needed.</li>
+<li>The centre distance is nominal, with the chain just taut. Provide adjustment or a tensioner, because chains elongate as their joints wear.</li>
+<li>Power rating, lubrication and the number of strands are not checked. Use the chain maker&#39;s rating tables.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A No. 40 chain (12.7 mm pitch) drives from a 17-tooth sprocket at 900 rpm to a 51-tooth sprocket. The centres are to be about 500 mm.</p>
+<ol>
+<li>Ratio: 51 / 17 = 3, so the output turns at 300 rpm.</li>
+<li>Chain speed: 17 × 0.0127 × 900 / 60 = 3.24 m/s.</li>
+<li>C/p = 500 / 12.7 = 39.37. L/p = 78.74 + 34 + 34² / (4π² × 39.37) = 78.74 + 34 + 0.74 = 113.48.</li>
+<li>Round up to an even number: 114 pitches, 1 447.8 mm of chain.</li>
+<li>Actual centres: A = 34 − 114 = −80, C = (12.7/4) × [80 + √(80² − 8 × 5.411²)] = 503.3 mm.</li>
+<li>Pitch diameters: 12.7 / sin(10.59°) = 69.12 mm and 12.7 / sin(3.53°) = 206.30 mm.</li>
+</ol>
+<p>Setting the sprocket centres at 503.3 mm fits the 114-link chain without an offset link.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate chain length?</summary>
+<p>Use L/p = 2C/p + (N₁ + N₂)/2 + (N₂ − N₁)²/(4π² C/p), then round up to an even whole number of pitches.</p>
+</details>
+<details class="ec-faq"><summary>Why should a chain have an even number of links?</summary>
+<p>An odd number needs an offset (cranked) link, which is weaker than a standard link. An even count joins with a standard connecting link.</p>
+</details>
+<details class="ec-faq"><summary>How many teeth should the small sprocket have?</summary>
+<p>Seventeen or more is the usual rule for smooth running. With 17 teeth the chain speed varies by 1.7 % as each link seats; with 25 teeth by 0.8 %.</p>
+</details>
+<details class="ec-faq"><summary>What is the pitch diameter of a sprocket?</summary>
+<p>The diameter of the circle through the centres of the chain rollers when the chain is seated. It is p / sin(180°/N).</p>
+</details>
+<details class="ec-faq"><summary>What does the chain number mean?</summary>
+<p>In ANSI sizes, the first digits give the pitch in eighths of an inch. No. 50 is 5/8 in pitch, and a suffix such as -2 means a double-strand chain.</p>
+</details>
+<details class="ec-faq"><summary>How fast can a roller chain run?</summary>
+<p>It depends on the pitch, the sprocket size and the lubrication. The chain maker&#39;s rating tables give the limits.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../belt-pulley/index.html">Belt and pulley calculator</a> — speeds and length for a belt drive.</li>
+<li><a href="../v-belt-length/index.html">V-belt length and centre distance</a> — standard belt lengths.</li>
+<li><a href="../gear-ratio/index.html">Gear ratio, rpm and torque</a> — speed ratios with gears.</li>
+<li><a href="../torque-power-rpm/index.html">Torque, power and speed</a> — torque on each sprocket shaft.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

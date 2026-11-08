@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chip load calculator with chip thinning — Engineering calculators</title>
+  <meta name="description" content="Chip load per tooth from feed rate, rpm and flutes, or the feed rate for a target chip load, with the radial chip thinning factor for light cuts.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Manufacturing</span>
+    <h1 class="ec-title">Chip load calculator with chip thinning</h1>
+    <p class="ec-summary">Chip load per tooth from feed rate, rpm and flutes, or the feed rate for a target chip load, corrected for radial chip thinning at light stepovers.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Chip load is the thickness of material each tooth of a milling cutter removes. It equals the feed rate divided by the number of teeth and the rpm. A four-flute end mill feeding at 40 in/min and turning at 5 000 rpm takes 0.002 in per tooth. Too small a chip rubs and wears the tool. Too large a chip breaks it.</p>
+<p>This calculator gives the chip load from a feed rate, or the feed rate for a target chip load. It also corrects for radial chip thinning. When the cutter engages less than half its diameter, the real chip is thinner than the feed per tooth, so the feed can rise. The page is for CNC programmers and machinists using light-stepover, high-efficiency toolpaths.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Chip load and feed rate:</p>
+<pre class="ec-formula" tabindex="0"><code>f_z = v_f / (z × n)
+v_f = f_z × z × n</code></pre>
+<p>Radial chip thinning, for a_e below D/2:</p>
+<pre class="ec-formula" tabindex="0"><code>RCTF = 1 / √(1 − (1 − 2 a_e / D)²)
+h_ex = f_z / RCTF
+programmed f_z = target chip × RCTF</code></pre>
+<p>Engagement angle:</p>
+<pre class="ec-formula" tabindex="0"><code>φ = arccos(1 − 2 a_e / D)</code></pre>
+<ul>
+<li>v_f — feed rate; z — number of flutes; n — spindle speed in rpm</li>
+<li>f_z — feed per tooth (chip load); h_ex — maximum chip thickness</li>
+<li>a_e — radial depth of cut (stepover); D — cutter diameter</li>
+<li>At a_e = D/2 or more, RCTF = 1 and the chip equals the feed per tooth</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Every tooth cuts equally. Runout in the holder makes one tooth take a larger chip than the others.</li>
+<li>The correction is for the side of a square-end mill. Ball-nose and chamfer cutters also thin the chip along the axis, which this page does not include.</li>
+<li>Raising the feed restores the chip thickness. The machine, the holder and the tool must still take the higher feed rate, and the tool maker may set a limit.</li>
+<li>The target chip load comes from the tool maker&#39;s table for the material and the cutter diameter.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 1/2 in four-flute end mill runs at 5 000 rpm with a 0.05 in stepover. The tool maker recommends a chip load of 0.002 in.</p>
+<ol>
+<li>Radial engagement: 0.05 / 0.5 = 10 %.</li>
+<li>Thinning factor: 1 / √(1 − (1 − 0.2)²) = 1 / √0.36 = 1.667.</li>
+<li>Programmed feed per tooth: 0.002 × 1.667 = 0.00333 in.</li>
+<li>Feed rate: 0.00333 × 4 × 5 000 = 66.67 in/min.</li>
+</ol>
+<p>Without the correction the feed rate would be 40 in/min. The tool would rub with a chip only 0.0012 in thick.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is chip load?</summary>
+<p>The feed per tooth: how far the cutter moves while one tooth passes through the cut. It sets the thickness of the chip at full engagement.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate chip load from feed rate?</summary>
+<p>Divide the feed rate by the number of flutes and by the rpm. 40 in/min at 5 000 rpm with four flutes is 0.002 in.</p>
+</details>
+<details class="ec-faq"><summary>What is chip thinning?</summary>
+<p>At a stepover below half the diameter, the tooth meets the work at a shallow angle. The chip it cuts is thinner than the feed per tooth.</p>
+</details>
+<details class="ec-faq"><summary>When does chip thinning apply?</summary>
+<p>Only when the radial engagement is less than half the cutter diameter. At 50 % or more, the factor is 1.</p>
+</details>
+<details class="ec-faq"><summary>How much can I raise the feed for a light stepover?</summary>
+<p>At 35 % engagement about 5 %, at 10 % engagement 67 %, and at 5 % engagement 129 %. Check that the machine can reach the feed rate.</p>
+</details>
+<details class="ec-faq"><summary>Does chip thinning change the surface finish?</summary>
+<p>A higher feed per tooth leaves larger scallops on the side wall. For a finishing pass, the wall finish may limit the feed instead.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../speeds-feeds/index.html">Speeds and feeds calculator</a> — rpm and starting cutting speeds.</li>
+<li><a href="../machining-time/index.html">Machining time calculator</a> — the time a pass takes at this feed.</li>
+<li><a href="../surface-finish/index.html">Surface finish converter</a> — Ra, Rz and N grades.</li>
+<li><a href="../drill-point-length/index.html">Drill point length</a> — drilling depth for a full-diameter hole.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

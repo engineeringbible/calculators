@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trench and excavation volume calculator — Engineering calculators</title>
+  <meta name="description" content="Volume of a trench or excavation with vertical or OSHA sloped sides, the loose volume and truck loads after swell, and backfill around a pipe.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Trench and excavation volume calculator</h1>
+    <p class="ec-summary">Volume of a trench or excavation with vertical or OSHA sloped sides, loose volume and truck loads after swell, and backfill around a pipe.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How much soil comes out of a trench? For vertical sides it is length × width × depth. Deeper trenches in soil must have sloped sides or shoring for safety, and sloped sides add a lot of volume: a 6 ft deep trench in Type B soil is 14 ft wide at the top instead of 2. Once dug, the soil also swells, so a truck carries less bank volume than its capacity suggests.</p>
+<p>This calculator gives the excavated volume of a trench or long excavation with vertical sides, the OSHA sloping for each soil type, or any slope you enter. It adds the swell to get the loose volume and the number of truck loads, and gives the backfill around a pipe. It is for contractors, estimators and anyone planning utility, drainage or foundation trenches.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Trench cross-section with side slopes n H : 1 V, and volumes:</p>
+<pre class="ec-formula" tabindex="0"><code>A = (b + n d) × d
+V_bank = A × L
+V_loose = V_bank × (1 + swell)
+loads = V_loose / truck capacity, rounded up
+V_backfill = V_bank − π D² L / 4</code></pre>
+<ul>
+<li>b — bottom width; d — depth; L — length; n — horizontal run per unit of depth</li>
+<li>OSHA maximum slopes: stable rock vertical, Type A ¾ : 1, Type B 1 : 1, Type C 1½ : 1</li>
+<li>D — outside diameter of the pipe laid in the trench</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The bottom is flat and the depth constant. For a trench that gets deeper along its length, split it into sections of similar depth, or use the average depth for a steady grade.</li>
+<li>The OSHA slopes are the maximum allowed for excavations up to 20 ft deep, after a competent person has classified the soil. Shoring or a trench box allows vertical sides at any depth it is designed for.</li>
+<li>Swell depends on the material: about 10 to 20 % for sand and gravel, 25 to 35 % for common earth and clay, and 50 % or more for blasted rock.</li>
+<li>Backfill needs compaction. Allow 10 to 25 % more loose material than the bank volume it replaces, and subtract any bedding or select fill brought in separately.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A trench for a drain is 100 ft long, 2 ft wide and 4 ft deep, with vertical sides. The soil swells by 25 % when dug and goes away in 10 yd³ trucks. How much soil is removed?</p>
+<ol>
+<li>Volume in the ground: 100 × 2 × 4 = 800 ft³, which is 800 / 27 = 29.63 yd³.</li>
+<li>Loose volume: 29.63 × 1.25 = 37.04 yd³.</li>
+<li>Truck loads: 37.04 / 10 = 3.7, so 4 loads.</li>
+</ol>
+<p>At 4 ft deep the trench is just under the 5 ft depth at which OSHA requires protection, if a competent person finds no sign of possible cave-in.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate trench volume in cubic yards?</summary>
+<p>Multiply length, width and depth in feet and divide by 27. A trench 50 ft long, 1.5 ft wide and 3 ft deep is 225 ft³, or 8.3 yd³.</p>
+</details>
+<details class="ec-faq"><summary>When does a trench need shoring or sloping?</summary>
+<p>Under OSHA, at 5 ft deep or more, unless it is entirely in stable rock. Below 5 ft a competent person must still check for cave-in hazards.</p>
+</details>
+<details class="ec-faq"><summary>What is the OSHA slope for Type B soil?</summary>
+<p>1 horizontal to 1 vertical, or 45°. Type A soil may be sloped at ¾ : 1 and Type C at 1½ : 1.</p>
+</details>
+<details class="ec-faq"><summary>What is the swell factor?</summary>
+<p>The increase in volume when soil is dug and loosened. Common earth swells about 25 %, so 10 yd³ of bank soil fills 12.5 yd³ of truck.</p>
+</details>
+<details class="ec-faq"><summary>How much backfill do I need around a pipe?</summary>
+<p>The trench volume minus the pipe&#39;s outside volume, plus extra for compaction. A 12 in pipe takes up 0.785 ft³ per foot of trench.</p>
+</details>
+<details class="ec-faq"><summary>How deep should a utility trench be?</summary>
+<p>It depends on the utility and local rules: water lines below the frost line, sewer lines to their design grade, and electrical cables at the cover depths of the electrical code.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../earthwork-volume/index.html">Earthwork volume</a> — cut and fill over an area.</li>
+<li><a href="../slope/index.html">Slope calculator</a> — side slopes in degrees and percent.</li>
+<li><a href="../pipe-volume/index.html">Pipe volume</a> — the volume inside a pipe.</li>
+<li><a href="../concrete-footing/index.html">Concrete footing calculator</a> — concrete in foundation trenches.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

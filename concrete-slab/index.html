@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Concrete slab calculator — Engineering calculators</title>
+  <meta name="description" content="Cubic yards or m³ of concrete for a slab, patio, driveway or shed base, with waste, the number of 80, 60 or 40 lb bags, weight and cost.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Concrete slab calculator</h1>
+    <p class="ec-summary">Concrete for a slab, patio, driveway or shed base in cubic yards or m³, with waste, premix bags of every size, weight and cost.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How much concrete does a slab need? Multiply the length, width and thickness, then add a little for waste. The catch is the units: slabs are measured in feet and inches, ready-mix is sold by the cubic yard, and bags are sold by weight. A 10 × 10 ft patio, 4 in thick, needs 1.23 cubic yards, or 62 bags of 80 lb once waste is added.</p>
+<p>This calculator does the conversion for any rectangular slab: patios, walkways, driveways, shed and hot-tub bases, garage floors. It gives the volume in cubic yards, cubic feet or cubic metres, the number of premix bags of each size, the weight, and the cost if you enter your local prices.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Volume of the slab and volume to order:</p>
+<pre class="ec-formula" tabindex="0"><code>V = L × W × t × n
+V_order = V × (1 + waste)</code></pre>
+<p>Unit conversions and bags:</p>
+<pre class="ec-formula" tabindex="0"><code>cubic yards = cubic feet / 27
+bags = V_order / bag yield, rounded up</code></pre>
+<ul>
+<li>L, W — length and width; t — thickness, with inches divided by 12 to get feet</li>
+<li>n — number of identical slabs</li>
+<li>waste — spillage and uneven ground allowance, 5 to 10 % for slabs</li>
+<li>bag yield — 0.60 ft³ for 80 lb, 0.45 ft³ for 60 lb, 0.375 ft³ for 50 lb, 0.30 ft³ for 40 lb, 11.7 L for 25 kg</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The slab is a rectangle of uniform thickness. Split an L-shaped slab into two rectangles. Thickened edges and the gravel base are not included.</li>
+<li>Common residential thicknesses are 4 in (100 mm) for patios and walkways, and 5 to 6 in (125 to 150 mm) for driveways and garage floors. A slab that carries a building or heavy vehicles needs a design by an engineer.</li>
+<li>Bag yields are those printed on US premix bags. Metric bags use the same yield per kilogram, so check the label of your brand.</li>
+<li>The weight uses 2 400 kg/m³, about 150 lb/ft³, for normal concrete.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A patio is 10 ft by 10 ft and 4 in thick. How much concrete is needed with 10 % waste, and how many 80 lb bags?</p>
+<ol>
+<li>Thickness in feet: 4 / 12 = 0.333 ft.</li>
+<li>Volume: 10 × 10 × 0.333 = 33.3 ft³, which is 33.3 / 27 = 1.23 yd³.</li>
+<li>With 10 % waste: 33.3 × 1.10 = 36.7 ft³, or 1.36 yd³.</li>
+<li>Bags of 80 lb: 36.7 / 0.60 = 61.1, so buy 62 bags.</li>
+</ol>
+<p>The slab weighs about 4 990 lb, or 2.3 tonnes. At 1.36 yd³, a short-load ready-mix delivery may be easier than mixing 62 bags by hand.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many bags of concrete do I need for a 10 × 10 slab?</summary>
+<p>At 4 in thick, 56 bags of 80 lb without waste and 62 with 10 % waste. At 6 in thick, 84 bags without waste.</p>
+</details>
+<details class="ec-faq"><summary>How thick should a concrete slab be?</summary>
+<p>4 in for patios, walkways and shed bases; 5 to 6 in for driveways and garage floors that carry cars. Heavier loads need a thicker slab with reinforcement.</p>
+</details>
+<details class="ec-faq"><summary>How many cubic yards is a 20 × 20 slab?</summary>
+<p>At 4 in thick, 133 ft³ or 4.94 yd³; order 5.25 to 5.5 yd³ with waste.</p>
+</details>
+<details class="ec-faq"><summary>Should I use bags or ready-mix?</summary>
+<p>Bags suit small jobs under about one cubic yard. Above that, ready-mix by truck usually costs less, saves hours of mixing and gives a more uniform slab.</p>
+</details>
+<details class="ec-faq"><summary>How much waste should I allow?</summary>
+<p>5 % for well-formed slabs on a level, compacted base, and 10 % for uneven ground or a first-time pour. It is cheaper to have a little left over than to run short mid-pour.</p>
+</details>
+<details class="ec-faq"><summary>How much does a concrete slab weigh?</summary>
+<p>About 50 lb per square foot at 4 in thick, or 2.4 tonnes per cubic metre.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../concrete-bags/index.html">Concrete bag calculator</a> — bags of each size for any volume.</li>
+<li><a href="../concrete-footing/index.html">Concrete footing calculator</a> — strip footings and pads.</li>
+<li><a href="../concrete-column/index.html">Concrete column and post hole calculator</a> — round columns, piers and fence posts.</li>
+<li><a href="../concrete-volume/index.html">Concrete volume and rebar weight</a> — walls and columns with mix materials and reinforcement.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

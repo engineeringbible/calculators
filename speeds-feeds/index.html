@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speeds and feeds calculator (milling, turning, drilling) — Engineering calculators</title>
+  <meta name="description" content="Spindle rpm, feed rate and metal removal rate for milling, turning and drilling, with starting cutting speeds for common materials in HSS and carbide.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Manufacturing</span>
+    <h1 class="ec-title">Speeds and feeds calculator (milling, turning, drilling)</h1>
+    <p class="ec-summary">Spindle rpm, feed rate and metal removal rate for milling, turning and drilling, with starting cutting speeds for common materials in HSS and carbide.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Speeds and feeds set how fast a tool turns and how fast it moves through the work. The cutting speed is the surface speed at the cutting edge, in feet or metres per minute. The spindle speed follows from it: rpm = cutting speed ÷ (π × diameter). A 1/2 in carbide end mill cutting mild steel at 200 sfm turns at 1 528 rpm. With four teeth taking 0.003 in each, it feeds at 18.33 in/min.</p>
+<p>This calculator gives the spindle speed, the feed per revolution, the feed rate in in/min and mm/min, and the metal removal rate for milling, turning and drilling. It also lists starting cutting speeds for common work materials with high-speed steel (HSS) and carbide tools. It is for machinists, CNC programmers and students setting up a first cut.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Spindle speed from the cutting speed:</p>
+<pre class="ec-formula" tabindex="0"><code>n = v_c / (π D)
+n [rpm] = 12 × v_c [sfm] / (π × D [in]) ≈ 3.82 × v_c / D
+n [rpm] = 1000 × v_c [m/min] / (π × D [mm])</code></pre>
+<p>Feed rate:</p>
+<pre class="ec-formula" tabindex="0"><code>milling:            v_f = f_z × z × n
+turning, drilling:  v_f = f × n</code></pre>
+<p>Metal removal rate:</p>
+<pre class="ec-formula" tabindex="0"><code>milling:   Q = a_p × a_e × v_f
+turning:   Q = v_c × f × a_p          (Q = 12 V f d in in³/min)
+drilling:  Q = (π D² / 4) × v_f</code></pre>
+<ul>
+<li>v_c — cutting speed; D — diameter of the cutter, the drill or the workpiece being turned</li>
+<li>f_z — chip load per tooth; z — number of teeth or flutes; f — feed per revolution</li>
+<li>a_p — depth of cut; a_e — width of cut (radial engagement in milling)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The table speeds are starting values for sharp tools, rigid set-ups and coolant. Raise them if the tool lasts well. Lower them if it wears fast, chatters or the work hardens.</li>
+<li>HSS speeds are the traditional turning speeds of Machinery&#39;s Handbook. Carbide speeds are the middle of Harvey Tool&#39;s ranges for solid carbide end mills. Indexable inserts have their own ratings from the insert maker.</li>
+<li>The milling feed assumes the full chip thickness. When the width of cut is below half the cutter diameter, the chip thins and the feed per tooth can rise. The chip load calculator works out the correction.</li>
+<li>A machine speed limit caps the rpm. The tool then runs below the chosen cutting speed, and the feed rate drops with it.</li>
+<li>Chip load and feed per revolution come from the tool maker&#39;s data. This page does not check spindle power or tool deflection.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 1/2 in four-flute carbide end mill cuts 1018 steel. The cut is 0.25 in deep and 0.25 in wide. The chip load is 0.003 in per tooth.</p>
+<ol>
+<li>Starting speed from the table: carbide in 1018 is 100 to 300 sfm, so 200 sfm.</li>
+<li>Spindle speed: 3.82 × 200 / 0.5 = 1 528 rpm.</li>
+<li>Feed per revolution: 4 × 0.003 = 0.012 in.</li>
+<li>Feed rate: 0.012 × 1 528 = 18.33 in/min, or 466 mm/min.</li>
+<li>Removal rate: 0.25 × 0.25 × 18.33 = 1.146 in³/min.</li>
+</ol>
+<p>With an HSS end mill the table gives 110 fpm, so the same cutter would run at 840 rpm.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate rpm from surface speed?</summary>
+<p>Multiply the surface speed in sfm by 3.82 and divide by the diameter in inches. In metric, multiply m/min by 1 000 and divide by π × the diameter in mm.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between sfm and rpm?</summary>
+<p>Sfm is the speed of the cutting edge through the material. Rpm is how fast the spindle turns. A small tool needs a high rpm to reach the same sfm as a large one.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate the feed rate for milling?</summary>
+<p>Multiply the chip load per tooth by the number of teeth and by the rpm. Four teeth at 0.003 in and 1 528 rpm give 18.33 in/min.</p>
+</details>
+<details class="ec-faq"><summary>How much faster can carbide run than HSS?</summary>
+<p>In this table the carbide speed is 1.5 to 3.3 times the HSS speed, and about twice in most steels. The tool maker&#39;s data for the exact grade and coating is the better guide.</p>
+</details>
+<details class="ec-faq"><summary>Why does the turning rpm change as the diameter gets smaller?</summary>
+<p>The same rpm gives a lower surface speed on a smaller diameter. CNC lathes with constant surface speed raise the rpm as the tool moves in.</p>
+</details>
+<details class="ec-faq"><summary>What is metal removal rate used for?</summary>
+<p>It compares strategies and estimates cycle time. With a unit power for the material, it also gives the spindle power the cut needs.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../chip-load/index.html">Chip load calculator</a> — chip load from the feed rate, and the chip thinning correction.</li>
+<li><a href="../machining-time/index.html">Machining time calculator</a> — the cutting time of each pass.</li>
+<li><a href="../surface-finish/index.html">Surface finish converter</a> — the finish a turning feed and nose radius give.</li>
+<li><a href="../drill-point-length/index.html">Drill point length</a> — how deep to drill for a full-diameter hole.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paint coverage and quantity — Engineering calculators</title>
+  <meta name="description" content="Theoretical and practical spreading rate from volume solids and dry film thickness, litres and cost for an area with loss factors.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Paint coverage and quantity</h1>
+    <p class="ec-summary">Theoretical and practical spreading rate of a coating from its volume solids and the specified dry film thickness, the wet film to apply, and the litres, containers, mass and cost for an area and number of coats with application-loss presets, thinning and a surface-profile allowance.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Every coating datasheet quotes a theoretical spreading rate, and every painter knows the job needs more than that. The theoretical figure follows from two numbers, the volume solids of the paint and the dry film thickness specified, and assumes a smooth surface with no overspray; the practical figure adds the losses of real application, which range from a few per cent with a brush to half the paint in a windy spray job on lattice steel. This calculator gives both rates, the wet film thickness the applicator should see on the comb gauge, and the litres, containers, mass and cost for an area and number of coats, with a correction for thinning and for the dead volume of a blast profile.</p>
+<p>It is for superintendents and yard estimators ordering paint for a drydock, coating inspectors checking consumption against the specification, and anyone comparing products by cost per square metre.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>TSR = VS × 10 / DFT              theoretical spreading rate, m²/L (VS in %, DFT in µm)
+PSR = TSR × (1 − loss)           practical spreading rate
+WFT = DFT / VS                   wet film thickness to apply
+VS_thinned = VS / (1 + thinner)  volume solids after adding thinner (by volume)
+
+litres (theoretical) = area × (n × DFT + profile allowance) / (10 × VS)
+litres (practical)   = theoretical / (1 − loss)
+containers = ceil(litres / pack size),  mass = litres × density,  cost = litres × price</code></pre>
+<p>Loss factors (rules of thumb): brush/roller 5–15 %, airless spray on flat steel 20–30 %, complex steelwork 30–50 %, windy outdoor spraying 40–60 %. Profile allowance: 25–40 µm on the first coat for a 50–75 µm blast profile.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The theoretical rate assumes a smooth, non-absorbent surface and the datasheet solids; it is never achieved.</li>
+<li>Loss presets are industry rules of thumb; measured consumption from a comparable job is better, and the 80/20 acceptance rule of ISO 19840 alone pushes the applied average 10–20 % above the specified DFT.</li>
+<li>One product and DFT per calculation; a system of primer, intermediate and topcoat is three runs.</li>
+<li>Stripe coats, touch-up and repairs are extra area; porous substrates and inorganic zinc primers do not follow the simple volume balance.</li>
+<li>Thinning lowers the solids and raises the wet film; the dry film and therefore the dry mass on the structure stay the same.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Underwater hull, 10 000 m², two coats of a 60 % volume-solids anticorrosive at 150 µm each, airless spray in the dock with an estimated 30 % loss, 20 L containers at 8 per litre, density 1.4 kg/L.</p>
+<ol>
+<li>Theoretical spreading rate 60 × 10 / 150 = 4.0 m²/L; practical 4.0 × 0.7 = 2.8 m²/L.</li>
+<li>Wet film to apply 150 / 0.60 = 250 µm per coat.</li>
+<li>Theoretical quantity 10 000 × 300 / 600 = 5 000 L; practical 5 000 / 0.7 = 7 143 L → 358 containers, 10 t of paint, 57 143 in cost, 5.7 per m².</li>
+<li>Freshly blasted steel with a 60 µm profile: allow 30 µm on the first coat → 7 857 L (+10 %).</li>
+<li>Thinning 10 %: solids 54.5 %, wet film 275 µm, 7 857 L for the same dry film.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the datasheet spreading rate differ from mine?</summary>
+<p>It is theoretical: smooth surface, no overspray, exact solids. Divide it by about 1.4 for a good airless job on flat steel, more for complex shapes.</p>
+</details>
+<details class="ec-faq"><summary>What is volume solids?</summary>
+<p>The fraction of the wet paint that remains as dry film after the solvents evaporate; a 60 % solids paint at 250 µm wet gives 150 µm dry.</p>
+</details>
+<details class="ec-faq"><summary>Why add paint for the blast profile?</summary>
+<p>The first coat has to fill the valleys of the profile before any thickness builds above the peaks; ISO 19840 measures over the peaks, so the paint in the valleys is &quot;lost&quot; to the gauge.</p>
+</details>
+<details class="ec-faq"><summary>How do I handle two different products?</summary>
+<p>Run the calculator for each (primer, intermediate, topcoat) with its own solids, DFT and coats, and add the results.</p>
+</details>
+<details class="ec-faq"><summary>Does thinning save paint?</summary>
+<p>No. It lowers the solids in proportion, so the same dry film needs the same litres of unthinned paint plus the thinner; it only changes application properties and the wet film reading.</p>
+</details>
+<details class="ec-faq"><summary>What about stripe coats?</summary>
+<p>Add their area (edges, welds, bolts) as an extra coat of the primer at the stripe DFT, typically 2–5 % of the total area.</p>
+</details>
+<details class="ec-faq"><summary>How accurate is the cost?</summary>
+<p>As accurate as the loss factor. A 10-point change in loss changes the quantity by about 15 %.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../cathodic-protection/index.html">Cathodic protection anodes</a> — the coating breakdown that drives anode demand.</li>
+<li><a href="../hydrostatics/index.html">Hydrostatics basics</a> — the wetted surface to coat.</li>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — tank surface areas.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — mils, ft²/gal and gallons.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

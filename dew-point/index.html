@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dew point calculator — Engineering calculators</title>
+  <meta name="description" content="Dew point from temperature and relative humidity, or humidity from the dew point, with wet bulb, humidity ratio, absolute humidity and enthalpy.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">HVAC</span>
+    <h1 class="ec-title">Dew point calculator</h1>
+    <p class="ec-summary">Dew point from air temperature and relative humidity, or humidity from the dew point, with wet bulb, moisture content, absolute humidity and enthalpy.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The dew point is the temperature at which air becomes saturated and water starts to condense. Cool a glass of air at 20 °C and 50 % humidity, and dew forms on it at 9.3 °C. Unlike relative humidity, which changes whenever the temperature does, the dew point measures how much water the air actually holds, so it is the better guide to comfort, condensation on walls and windows, fog and paint curing.</p>
+<p>This calculator gives the dew point from the air temperature and relative humidity, or the humidity from a measured dew point. It also gives the wet-bulb temperature, the moisture content in g/kg, the absolute humidity, the enthalpy and the density of the air, at any altitude. It uses the ASHRAE psychrometric equations, the same ones behind the psychrometric chart.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Vapour pressure from the relative humidity, and the dew point where saturation is reached:</p>
+<pre class="ec-formula" tabindex="0"><code>p_w = RH × p_ws(t)
+p_ws(t_d) = p_w    →   t_d</code></pre>
+<p>Moisture content and enthalpy:</p>
+<pre class="ec-formula" tabindex="0"><code>W = 0.621945 × p_w / (p − p_w)
+h = 1.006 t + W (2501 + 1.86 t)    kJ/kg</code></pre>
+<p>The quick Magnus approximation, good to about 0.1 °C between −40 and 50 °C:</p>
+<pre class="ec-formula" tabindex="0"><code>γ = ln(RH) + 17.625 t / (243.04 + t)
+t_d = 243.04 γ / (17.625 − γ)</code></pre>
+<ul>
+<li>t — air temperature, °C; RH — relative humidity as a fraction</li>
+<li>p_ws — saturation pressure of water vapour (Hyland–Wexler equation in ASHRAE)</li>
+<li>p — barometric pressure, which falls with altitude</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The equations are those of the ASHRAE Handbook of Fundamentals, Chapter 1. Below 0 °C the saturation is over ice, so the result is the frost point.</li>
+<li>Relative humidity is taken as reported by hygrometers and weather services: the vapour pressure over the saturation pressure at the air temperature.</li>
+<li>Pressure does not change the dew point, but it does change the moisture content, wet bulb and density. Use the altitude or the station pressure, not the sea-level pressure from a weather report.</li>
+<li>The comfort description follows the US National Weather Service bands and is a general guide.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>The air in a room is at 20 °C with 50 % relative humidity, at sea level. What is the dew point?</p>
+<ol>
+<li>Saturation pressure at 20 °C: 2.339 kPa.</li>
+<li>Vapour pressure: 0.50 × 2.339 = 1.169 kPa.</li>
+<li>The temperature at which 1.169 kPa is the saturation pressure: 9.27 °C. This is the dew point.</li>
+<li>Moisture content: 0.621945 × 1.169 / (101.325 − 1.169) = 0.00726 kg/kg, or 7.26 g/kg.</li>
+<li>Wet bulb, from the ASHRAE energy balance: 13.78 °C.</li>
+</ol>
+<p>Any surface colder than 9.3 °C, such as a single-glazed window in winter, will collect condensation.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is a comfortable dew point?</summary>
+<p>55 °F (13 °C) or lower feels dry and comfortable. Between 55 and 65 °F (13 to 18 °C) the air feels sticky, and above 65 °F (18 °C) it feels oppressive.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between dew point and humidity?</summary>
+<p>Relative humidity is how close the air is to saturation at its present temperature. The dew point is the amount of water in it expressed as a temperature, and it does not change when the air warms or cools.</p>
+</details>
+<details class="ec-faq"><summary>Why do my windows get condensation?</summary>
+<p>The glass is colder than the room&#39;s dew point. Lower the indoor humidity, ventilate, or improve the glazing so its surface stays warmer.</p>
+</details>
+<details class="ec-faq"><summary>Can the dew point be higher than the temperature?</summary>
+<p>No. When the air cools to its dew point it is saturated, and any further cooling condenses water out as dew or fog.</p>
+</details>
+<details class="ec-faq"><summary>What is the wet-bulb temperature?</summary>
+<p>The temperature a wet thermometer reaches as water evaporates from it. It lies between the dew point and the air temperature, and it limits how well evaporative coolers and sweating work.</p>
+</details>
+<details class="ec-faq"><summary>What dew point is needed for painting?</summary>
+<p>Most coating standards require the steel surface to be at least 3 °C above the dew point, so that no moisture condenses under the paint.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../air-density/index.html">Air density calculator</a> — density of humid air at any altitude.</li>
+<li><a href="../air-changes/index.html">Air changes per hour and CFM</a> — ventilation to remove moisture.</li>
+<li><a href="../btu-ac-size/index.html">BTU calculator: AC size for a room</a> — cooling capacity.</li>
+<li><a href="../cargo-ventilation-dewpoint/index.html">Cargo ventilation and dew point</a> — the three-degree rule for ship holds.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

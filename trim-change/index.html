@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Change of trim and new drafts calculator — Engineering calculators</title>
+  <meta name="description" content="New forward and aft drafts after shifting, loading or discharging a weight, from MCTC, TPC and LCF: bodily sinkage, change of trim and draft changes.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Change of trim and new drafts calculator</h1>
+    <p class="ec-summary">New forward and aft drafts after loading, discharging or shifting a weight, from MCTC, TPC and LCF, with sinkage and the change of trim.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>When a weight is moved along a ship, the ship trims about its centre of flotation. The change of trim in centimetres is the weight times the distance moved, divided by the moment to change trim one centimetre (MCTC). Shifting 120 t forward by 45 m on a ship with an MCTC of 240 t·m/cm trims it 22.5 cm by the head. A weight loaded or discharged also sinks or lifts the ship bodily by the weight divided by the tonnes per centimetre (TPC).</p>
+<p>This calculator gives the bodily sinkage, the change of trim, the change at each end and the new forward and aft drafts after loading, discharging or shifting a weight. It also gives the positions where a weight can be loaded without changing the aft or forward draft. It is for deck officers and cadets planning cargo, ballast and bunker operations, and for students of ship stability.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Bodily sinkage and change of trim:</p>
+<pre class="ec-formula" tabindex="0"><code>sinkage = w / TPC                         cm
+change of trim = w × d / MCTC             cm</code></pre>
+<p>Share of the trim at each end (LCF measured from the aft perpendicular):</p>
+<pre class="ec-formula" tabindex="0"><code>change aft = change of trim × LCF / L
+change forward = change of trim × (L − LCF) / L</code></pre>
+<p>Loading position for an unchanged aft draft:</p>
+<pre class="ec-formula" tabindex="0"><code>d = MCTC × L / (TPC × LCF)     forward of the LCF</code></pre>
+<ul>
+<li>w — weight in tonnes; d — its lever about the LCF in metres (for a shift, the distance moved)</li>
+<li>TPC — tonnes per centimetre immersion; MCTC — moment to change trim 1 cm, t·m/cm</li>
+<li>L — length between perpendiculars; trim is positive by the stern</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The weight is small compared with the displacement, so TPC, MCTC and the LCF read at the initial draught stay valid. For large weights read them at the mean of the initial and final draughts.</li>
+<li>Positions are measured from the aft perpendicular, positive forward. If your hydrostatic tables give the LCF from midships, add half the length to the value forward of midships.</li>
+<li>Drafts are at the perpendiculars. Readings at the draught marks need correcting for the marks&#39; positions.</li>
+<li>A weight off the centreline also lists the ship, and a vertical shift changes GM. Use the initial stability calculator for those effects.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A ship 150 m between perpendiculars floats at 7.20 m forward and 8.00 m aft. The LCF is 72 m from the aft perpendicular, TPC is 25 t/cm and MCTC is 180 t·m/cm. 300 t of cargo are loaded with their centre 110 m from the aft perpendicular.</p>
+<ol>
+<li>Bodily sinkage: 300 / 25 = 12.0 cm.</li>
+<li>Lever about the LCF: 110 − 72 = 38 m forward, so the trimming moment is 300 × 38 = 11 400 t·m by the head.</li>
+<li>Change of trim: 11 400 / 180 = 63.3 cm by the head, written −63.3 cm.</li>
+<li>Change aft: −63.3 × 72 / 150 = −30.4 cm. Change forward: +63.3 × 78 / 150 = +32.9 cm.</li>
+<li>New draft aft: 8.00 + 0.120 − 0.304 = 7.816 m. New draft forward: 7.20 + 0.120 + 0.329 = 7.649 m.</li>
+<li>To keep the aft draft unchanged, the cargo would go 180 × 150 / (25 × 72) = 15 m forward of the LCF, at 87.00 m from the aft perpendicular.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the change of trim?</summary>
+<p>Multiply the weight by its distance from the centre of flotation, or by the distance it is shifted, and divide by MCTC. The answer is in centimetres.</p>
+</details>
+<details class="ec-faq"><summary>What is MCTC?</summary>
+<p>The moment to change trim one centimetre: the trimming moment in tonne-metres that changes the trim by 1 cm. It comes from the ship&#39;s hydrostatic tables at the current draught.</p>
+</details>
+<details class="ec-faq"><summary>Why is the trim shared unequally between the ends?</summary>
+<p>The ship trims about the centre of flotation, which is rarely amidships. The end farther from the LCF moves more.</p>
+</details>
+<details class="ec-faq"><summary>What is bodily sinkage?</summary>
+<p>The parallel rise or fall when weight is loaded or discharged at the LCF: the weight divided by TPC, in centimetres.</p>
+</details>
+<details class="ec-faq"><summary>Where should I load a weight to keep the stern draft the same?</summary>
+<p>At MCTC × L / (TPC × LCF) forward of the centre of flotation. There the trim by the head exactly cancels the sinkage aft.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this for a large cargo operation?</summary>
+<p>For a few percent of the displacement it is accurate. For larger loadings use the loading condition calculator with the full hydrostatic table.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hydrostatics/index.html">Hydrostatics basics</a> — TPC, MCTC and trim from LCG and LCB.</li>
+<li><a href="../draft-survey/index.html">Draft survey</a> — corrected drafts and displacement.</li>
+<li><a href="../loading-condition/index.html">Loading condition</a> — drafts and stability for a full item list.</li>
+<li><a href="../initial-stability/index.html">Initial stability GM and list</a> — list and GM from the same weights.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

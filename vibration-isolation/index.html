@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vibration isolation and severity — Engineering calculators</title>
+  <meta name="description" content="Isolator natural frequency and transmissibility of a machine on resilient mounts, and the ISO 10816-3 evaluation zone of a measured vibration velocity.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Vibration isolation and severity</h1>
+    <p class="ec-summary">Check a machine on resilient mounts: its natural frequency and static deflection, the force transmitted at the running frequency and the isolation achieved, and the ISO 10816-3 evaluation zone of a measured vibration velocity.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Pumps, compressors and generating sets are often set on resilient mounts so that their vibration does not travel into the ship&#39;s structure. Mounts only isolate when the machine&#39;s natural frequency on them is well below the disturbing frequency; near resonance they make things worse. This calculator finds the natural frequency and static deflection on the mounts, the force transmissibility at the running frequency and the isolation it gives. It also places a measured vibration velocity in the evaluation zones of ISO 10816-3, the standard used to judge the condition of industrial machines.</p>
+<p>It is for marine and mechanical engineers selecting mounts, condition-monitoring staff judging vibration readings, and superintendents checking a new installation.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Natural frequency:   f_n = (1/2π) √(k/m) = (1/2π) √(g/δ_st)
+Frequency ratio:     r = f / f_n,   f = order × rpm / 60
+Transmissibility:    T = √((1 + (2ζr)²) / ((1 − r²)² + (2ζr)²))
+Isolation:           1 − T,   20 log10(1/T) dB</code></pre>
+<ul>
+<li>k — total mount stiffness; m — mass on the mounts; ζ — damping ratio; δ_st — static deflection.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>One degree of freedom: the machine is rigid and the mounts act together in one direction.</li>
+<li>Rocking modes, foundation flexibility and the frequency dependence of rubber stiffness are not included.</li>
+<li>ISO 10816-3 zones for machines above 15 kW, broadband velocity r.m.s. on the bearing housings; ISO 20816-3 keeps the same boundaries.</li>
+<li>The machine maker&#39;s vibration limits take precedence over the general zones.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 2000 kg generating set runs at 1500 r/min on four mounts of 1500 N/mm each, with damping ratio 0.05.</p>
+<ol>
+<li>Total stiffness 6000 N/mm: f_n = (1/2π) √(6 × 10⁶ / 2000) = 8.72 Hz, a static deflection of 3.27 mm.</li>
+<li>The running frequency is 25 Hz, so r = 25 / 8.72 = 2.87.</li>
+<li>T = √((1 + 0.287²) / ((1 − 2.87²)² + 0.287²)) = 0.144: the mounts pass 14 % of the force, 86 % isolation.</li>
+<li>A measured 3.0 mm/s on this medium-sized machine on flexible mounts is in zone B, acceptable for long-term operation.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why must the natural frequency be low?</summary>
+<p>Isolation starts only above r = √2. Below that the mounts amplify the force, and at r = 1 the machine resonates on them.</p>
+</details>
+<details class="ec-faq"><summary>What does damping do?</summary>
+<p>It limits the amplitude when the machine passes through resonance on starting and stopping, but it slightly reduces the isolation at the running speed.</p>
+</details>
+<details class="ec-faq"><summary>What is the static deflection good for?</summary>
+<p>It is the quickest field check: a mount that sinks 3 mm under the machine gives a natural frequency of about 9 Hz, whatever its stiffness rating says.</p>
+</details>
+<details class="ec-faq"><summary>What do the zones mean?</summary>
+<p>Zone A is typical of newly commissioned machines, B is acceptable for unrestricted long-term operation, C is not satisfactory for long-term operation, and D is severe enough to cause damage.</p>
+</details>
+<details class="ec-faq"><summary>Why does the support type change the zone limits?</summary>
+<p>Machines on flexible supports move more for the same condition, so their limits are higher. The standard calls the support rigid only if the lowest natural frequency is at least 25 % above the main excitation.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../helical-spring/index.html">Helical compression spring</a> — stiffness of steel spring mounts.</li>
+<li><a href="../shaft-torque/index.html">Shaft torque, power and diameter</a> — the machine&#39;s running data.</li>
+<li><a href="../engine-room-ventilation/index.html">Engine-room ventilation (ISO 8861)</a> — another engine-room design check.</li>
+<li><a href="../bearing-life/index.html">Rolling bearing L10 life (ISO 281)</a> — the bearings that vibration wears.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

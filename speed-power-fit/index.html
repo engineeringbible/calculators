@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speed–power curve fit — Engineering calculators</title>
+  <meta name="description" content="Fit P = aVⁿ to speed and power data and compare it with a reference curve: power increase, speed loss and the ISO 19030 performance value.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Speed–power curve fit</h1>
+    <p class="ec-summary">Fit a power law to speed and power data and compare it with a reference curve from sea trials or model tests: the power increase at a chosen speed, the speed loss at a chosen power, and the ISO 19030 performance value of every point.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How much has a ship&#39;s performance changed since its sea trials? The usual answer compares the power needed today with the power a reference curve gives for the same speed, or the speed achieved with the power that the reference would need. ISO 19030 calls the speed difference the performance value. This calculator fits a power law to speed and power data, compares it with a reference curve given as coefficients or as trial points, and reports the power increase at a chosen speed, the speed loss at a chosen power, and the performance value of every data point.</p>
+<p>It is for performance analysts, superintendents tracking hull fouling and the effect of cleanings, and anyone building a quick speed–power curve from trial data.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Power law:             P = a Vⁿ
+Fit:                   ln P = ln a + n ln V   (least squares)
+Inverse:               V(P) = (P / a)^(1/n)
+Power increase:        (P_fit(V) − P_ref(V)) / P_ref(V)
+Speed difference:      (V_fit(P) − V_ref(P)) / V_ref(P)
+Performance value:     PV = (V_measured − V_ref(P_measured)) / V_ref(P_measured)   (ISO 19030-2)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Data at one draft and trim, corrected for wind, waves, current, temperature and depth.</li>
+<li>Speed through the water and shaft power, consistently for data and reference.</li>
+<li>A power law is a local description; extrapolation outside the data is flagged.</li>
+<li>Least squares in log space weights percentage errors equally.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Eight service points between 11.0 and 15.3 kn, with power from 3573 to 10 776 kW, against sea trial points of the clean hull from 11 to 15 kn.</p>
+<ol>
+<li>The reference points fit P = 0.95 V^3.40 exactly.</li>
+<li>The service data fit P = 1.058 V^3.385 with R² = 0.9995.</li>
+<li>At 14 kn the service curve needs 8013 kW against 7491 kW on trial, an increase of 7.0 %.</li>
+<li>The mean performance value of the points is −2.0 %: the ship is about 2 % slower than on trials for the same power.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why fit in logarithms?</summary>
+<p>A power law is a straight line in log–log coordinates, and the fit then weights each point by its percentage error, which suits measurements spread over a wide range of power.</p>
+</details>
+<details class="ec-faq"><summary>What exponent should I expect?</summary>
+<p>About 3 to 4.5 for most merchant ships in their service range. Much higher or lower values usually mean mixed drafts, uncorrected weather or a data error.</p>
+</details>
+<details class="ec-faq"><summary>Power increase or speed loss?</summary>
+<p>Both describe the same change. A 7 % power increase at constant speed corresponds to roughly 2 % speed loss at constant power when n ≈ 3.4.</p>
+</details>
+<details class="ec-faq"><summary>Which reference should I use?</summary>
+<p>The sea trial curve at the same draft, or a model test curve corrected to full scale. ISO 19030 also allows a reference period of the ship&#39;s own service data.</p>
+</details>
+<details class="ec-faq"><summary>Can I use noon reports?</summary>
+<p>Yes, after filtering for steady conditions and correcting for weather; the scatter will be larger than with continuous monitoring data.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../admiralty-coefficient/index.html">Admiralty coefficient</a> — scaling between speeds and displacements.</li>
+<li><a href="../propeller-curve/index.html">Propeller curve and light running margin</a> — power and rpm along the propeller law.</li>
+<li><a href="../wind-resistance/index.html">Wind resistance</a> — part of the weather correction of the data.</li>
+<li><a href="../hull-roughness-penalty/index.html">Hull roughness and fouling penalty</a> — the physical cause of the speed loss.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

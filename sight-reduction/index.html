@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sight reduction (intercept method) — Engineering calculators</title>
+  <meta name="description" content="Observed altitude from the sextant reading, then the intercept, azimuth and intercept terminal point from the assumed position.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Sight reduction (intercept method)</h1>
+    <p class="ec-summary">Correct a sextant altitude of the sun, moon, a star or a planet for index error, dip, refraction, parallax and semi-diameter, then reduce the sight at the assumed position to the computed altitude, azimuth, intercept and the intercept terminal point of the position line.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A sextant sight turns into a line of position in two stages. First the sextant altitude is corrected for the instrument&#39;s index error, the height of eye, atmospheric refraction, parallax and the body&#39;s semi-diameter, giving the observed altitude. Then the altitude and azimuth the body would have at an assumed position are computed from the almanac&#39;s GHA and declination. The difference is the intercept: the distance, in nautical miles, from the assumed position towards or away from the body to the position line. This calculator does both stages for the sun, the moon, stars and planets.</p>
+<p>It is for navigators keeping their celestial skills current, cadets preparing for examinations, and anyone checking an electronic position against an independent fix.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Index correction:   IC = −IE   (on the arc subtracted)
+Dip:                D = 1.76′ √h   (h in metres)
+Apparent altitude:  Ha = Hs + IC − D
+Refraction:         R = cot(Ha + 7.31/(Ha + 4.4))′ × (P/1010) × (283/(273 + T))
+Parallax:           PA = HP cos Ha   (sun 0.15′, moon from the almanac, stars nil)
+Observed altitude:  Ho = Ha − R + PA ± SD   (+ lower limb, − upper limb)
+Hour angle:         LHA = GHA + longitude   (east positive)
+Computed altitude:  sin Hc = sin Lat sin Dec + cos Lat cos Dec cos LHA
+Azimuth:            Zn = atan2(−cos Dec sin LHA, sin Dec cos Lat − cos Dec sin Lat cos LHA)
+Intercept:          a = Ho − Hc   (minutes = nautical miles; + towards, − away)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Nautical Almanac correction methods with Bennett&#39;s refraction formula.</li>
+<li>Planets need the almanac&#39;s small additional correction for Venus and Mars.</li>
+<li>The straight position line approximates the circle of equal altitude; keep intercepts under about 30 nmi and altitudes under about 85°.</li>
+<li>Low sights, below about 10°, carry larger refraction errors.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Sun&#39;s lower limb, Hs 57° 22.0′, index error 1.5′ on the arc, height of eye 16 m, standard weather, SD 16.0′. Assumed position 40° N, 30° W. The almanac gives GHA 60° and declination 20° N for the time of the sight.</p>
+<ol>
+<li>Index correction −1.5′; dip 1.76 √16 = 7.0′; Ha = 57° 13.5′.</li>
+<li>Refraction 0.6′, parallax 0.1′, semi-diameter +16.0′: Ho = 57° 28.9′.</li>
+<li>LHA = 60° − 30° = 30°; Hc = 57° 29.1′; Zn = 240.9°.</li>
+<li>Intercept = Ho − Hc = −0.2 nmi: 0.2 nmi away from the body, so plot it from the assumed position on 060.9° and draw the position line at right angles, 150.9°–330.9°.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why use an assumed position instead of the DR?</summary>
+<p>With sight reduction tables, rounding the assumed position to whole degrees of latitude and LHA simplifies the tables. With a calculator any position works, so the DR position is the natural choice.</p>
+</details>
+<details class="ec-faq"><summary>What does &quot;towards&quot; mean?</summary>
+<p>The observed altitude is greater than computed, so the ship is closer to the body&#39;s geographical position than the assumed position is. Measure the intercept towards the azimuth.</p>
+</details>
+<details class="ec-faq"><summary>Why does the moon need such a large correction?</summary>
+<p>It is close to the earth, so its parallax is up to a degree. That is why the almanac gives its horizontal parallax for every hour.</p>
+</details>
+<details class="ec-faq"><summary>What temperature and pressure do I use?</summary>
+<p>The ones at the time of the sight. The correction matters most for low altitudes and for extreme cold or very high or low pressure.</p>
+</details>
+<details class="ec-faq"><summary>How accurate is a single sight?</summary>
+<p>With a good horizon and a well-adjusted sextant, about 1′, that is 1 nmi. Crossing three or more position lines shows the quality of the fix.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../compass-error/index.html">Compass error by amplitude or azimuth</a> — the same navigational triangle for bearings.</li>
+<li><a href="../great-circle-distance/index.html">Great-circle distance</a> — ocean passages planned from the fix.</li>
+<li><a href="../mercator-sailing/index.html">Mercator sailing</a> — rhumb-line courses from the fix.</li>
+<li><a href="../light-range/index.html">Light, radar and VHF range</a> — coastal position fixing.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

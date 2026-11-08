@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slope calculator: percent, degrees, ratio and pitch — Engineering calculators</title>
+  <meta name="description" content="Convert slope between percent grade, degrees, ratio 1 in n and roof pitch, or find it from rise and run, with the slope length and height change.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Slope calculator: percent, degrees, ratio and pitch</h1>
+    <p class="ec-summary">Convert slope between percent grade, degrees, ratio and roof pitch, or find it from rise and run, with the slope length.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Slope is written in many ways. Road engineers use percent grade, roofers use pitch in inches per foot, ramp and drainage rules use ratios such as 1 : 12, and surveyors use degrees. All of them come from the same thing: the rise divided by the horizontal run. A 1 m rise over 12 m is 8.33 %, 4.76°, 1 : 12 and a 1 in 12 pitch.</p>
+<p>This calculator converts between all five forms, or finds the slope from a measured rise and run. It also gives the length along the slope and the rise over any run, and compares the result with common limits such as the accessible-ramp maximum. It is for builders, landscapers, roofers, road and drainage designers, and anyone laying out a ramp or path.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>From rise and run:</p>
+<pre class="ec-formula" tabindex="0"><code>grade = rise / run                 percent = 100 × rise / run
+θ = arctan(rise / run)
+ratio 1 : n,  n = run / rise
+pitch = 12 × rise / run            inches per foot
+length along the slope = √(run² + rise²)</code></pre>
+<ul>
+<li>rise — vertical change; run — horizontal distance</li>
+<li>θ — angle above the horizontal</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The run is horizontal, not measured along the slope. On steep slopes the difference matters: at 45° the surface is 41 % longer than the run.</li>
+<li>100 % grade is 45°, not vertical. Grades above 100 % are steeper than 45°.</li>
+<li>Ratios are written here as 1 : n, rise first. Embankment batters are often written n H : 1 V, which means the same n.</li>
+<li>The typical limits are general guidance. Building codes, road standards and drainage rules set the values that apply to a project.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A wheelchair ramp must climb 1 m. If it runs 12 m horizontally, what is its slope?</p>
+<ol>
+<li>Grade: 1 / 12 = 0.0833, or 8.33 %.</li>
+<li>Angle: arctan(0.0833) = 4.76°.</li>
+<li>Ratio: 1 : 12, exactly the maximum running slope of the 2010 ADA Standards.</li>
+<li>Length along the ramp: √(12² + 1²) = 12.04 m.</li>
+</ol>
+<p>A shorter run would make the ramp too steep for the ADA limit.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate slope percentage?</summary>
+<p>Divide the rise by the run and multiply by 100. A 3 ft rise over 50 ft is 6 %.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert percent slope to degrees?</summary>
+<p>Take the arctangent of the percent divided by 100. 10 % is 5.71°, 50 % is 26.57°, 100 % is 45°.</p>
+</details>
+<details class="ec-faq"><summary>What is a 4/12 roof pitch in degrees?</summary>
+<p>18.43°, a grade of 33.3 %. A 6/12 roof is 26.57° and a 12/12 roof is 45°.</p>
+</details>
+<details class="ec-faq"><summary>What is the maximum slope for a wheelchair ramp?</summary>
+<p>1 : 12, or 8.33 %, under the ADA Standards, with a rise of no more than 30 in per run. Many countries use similar or gentler limits.</p>
+</details>
+<details class="ec-faq"><summary>What slope does a drain or patio need?</summary>
+<p>Paving and flat roofs need about 1 to 2 % to shed water. Drainage pipes are usually laid at 1 : 40 to 1 : 100 depending on their size.</p>
+</details>
+<details class="ec-faq"><summary>What is 1 : 20 as a percentage?</summary>
+<p>5 %. Below 1 : 20, a walking surface is not treated as a ramp under the ADA Standards.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../earthwork-volume/index.html">Earthwork volume</a> — cut and fill on sloping ground.</li>
+<li><a href="../manning-channel-flow/index.html">Manning channel flow</a> — flow down a sloped channel.</li>
+<li><a href="../concrete-slab/index.html">Concrete slab calculator</a> — slabs laid to a fall.</li>
+<li><a href="../concrete-footing/index.html">Concrete footing calculator</a> — stepped footings on slopes.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

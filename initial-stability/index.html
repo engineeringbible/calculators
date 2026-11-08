@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Initial stability GM and list — Engineering calculators</title>
+  <meta name="description" content="GM from KM and KG with free-surface correction, list from a weight shift, loading or discharge, rolling period and the IMO minimum-GM check.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Initial stability GM and list</h1>
+    <p class="ec-summary">Metacentric height from KM and KG, free-surface correction from tank tables or a rectangular slack tank, the list caused by shifting, loading or discharging a weight, the IS Code rolling period and the IMO 0.15 m minimum-GM check. Transverse distances are positive to starboard.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The metacentric height GM is the first number any officer checks before moving weight on a ship: it says whether the ship will return upright after a small heel and how fast she will roll. Slack tanks reduce it through the free-surface effect, loading high weights reduces it, and any weight off the centreline produces a list that GM alone determines at small angles. This calculator does that initial-stability arithmetic: solid GM from KM and KG, the free-surface correction from the tank tables or a single rectangular tank, the final GM and list after shifting, loading or discharging a weight, the rolling period from the IMO weather-criterion formula, and the IMO minimum-GM check.</p>
+<p>It is for deck officers planning cargo and ballast operations, surveyors checking a loading condition, and cadets working the classic stability problems. It covers initial stability only; large-angle stability needs the GZ curve.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Metacentric height and free surface:</p>
+<pre class="ec-formula" tabindex="0"><code>GM_solid = KM − KG
+FSM      = Σ (l b³ / 12) × ρ_liquid / n²        free surface moment of a rectangular slack tank, t·m
+FSC      = FSM / Δ                               free surface correction (virtual rise of G), m
+GM_fluid = GM_solid − FSC</code></pre>
+<p>Weight operations (w tonnes, Kg its height above keel, d its transverse distance from the centreline, + starboard):</p>
+<pre class="ec-formula" tabindex="0"><code>Shift:      KG′ = KG + w × d_vertical / Δ,          heeling moment = w × d,       Δ′ = Δ
+Load:       KG′ = (Δ KG + w Kg) / (Δ + w),          heeling moment = w × d,       Δ′ = Δ + w
+Discharge:  KG′ = (Δ KG − w Kg) / (Δ − w),          heeling moment = −w × d,      Δ′ = Δ − w
+GM′_fluid = KM − KG′ − FSM / Δ′</code></pre>
+<p>List:</p>
+<pre class="ec-formula" tabindex="0"><code>tan θ = heeling moment / (Δ′ × GM′_fluid)</code></pre>
+<p>Rolling period (IMO 2008 IS Code weather criterion):</p>
+<pre class="ec-formula" tabindex="0"><code>C = 0.373 + 0.023 (B/d) − 0.043 (L_wl / 100)
+T = 2 C B / √GM_fluid</code></pre>
+<p>IMO minimum: GM_fluid ≥ 0.15 m (2008 IS Code Part A 2.2.4).</p>
+<ul>
+<li>KM — height of the transverse metacentre above keel at the present draft (hydrostatic tables)</li>
+<li>KG — height of the centre of gravity above keel (loading computer / stability booklet)</li>
+<li>l, b — length and breadth of the free liquid surface; n — number of equal longitudinal subdivisions</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Small-angle (initial) stability: valid for list angles up to about 10°. The calculator warns beyond that; use the GZ curve from the cross curves for the real angle.</li>
+<li>KM is held constant through loading and discharge. For weights above about 2 % of displacement re-enter KM at the new draft.</li>
+<li>Free surface moments are for rectangular tank surfaces (or taken from the tank tables as a total); they are independent of the liquid depth as long as the tank is slack, and they vanish when the tank is pressed up or empty.</li>
+<li>No wind, grain or icing heeling moments; no dynamic effects.</li>
+<li>The rolling period is an IMO estimate for conventional hull forms; the actual period depends on the radius of gyration of the loaded ship.</li>
+<li>Only the 0.15 m GM criterion is checked; the IS Code also requires minimum areas under the GZ curve, a minimum GZ of 0.20 m at 30° and the weather criterion.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Bulk carrier: Δ = 47 232 t, KM = 12.50 m, KG = 11.00 m, total free surface moment 1 500 t·m. A 200 t weight is shifted 10 m to starboard on the same deck.</p>
+<ol>
+<li>Solid GM: 12.50 − 11.00 = 1.50 m.</li>
+<li>Free surface correction: 1 500 / 47 232 = 0.032 m → fluid GM 1.468 m.</li>
+<li>Heeling moment: 200 × 10 = 2 000 t·m.</li>
+<li>List: tan θ = 2 000 / (47 232 × 1.468) = 0.0288 → θ = 1.65° to starboard.</li>
+<li>Rolling period: C = 0.373 + 0.023 × 3.2 − 0.043 × 1.8 = 0.369; T = 2 × 0.369 × 32 / √1.468 = 19.5 s — a moderate roll.</li>
+<li>IMO: 1.468 m ≥ 0.15 m, acceptable.</li>
+</ol>
+<p>If instead 500 t is loaded at Kg 15 m, 8 m to starboard: Δ′ = 47 732 t, KG′ = (47 232 × 11 + 500 × 15) / 47 732 = 11.042 m, GM′_fluid = 12.50 − 11.042 − 1 500 / 47 732 = 1.427 m, list = atan(4 000 / (47 732 × 1.427)) = 3.36° to starboard.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does a slack tank reduce GM when the liquid weight has not moved?</summary>
+<p>As the ship heels the liquid flows to the low side, moving its centre of gravity and reducing the righting moment exactly as if G had risen by FSM/Δ. The effect depends on the breadth cubed, which is why longitudinal subdivision of wide tanks matters so much.</p>
+</details>
+<details class="ec-faq"><summary>Does it matter how full the slack tank is?</summary>
+<p>Not for the free-surface moment itself (as long as the surface is free), only for the liquid&#39;s own weight and KG. Pressing up or emptying removes the effect entirely.</p>
+</details>
+<details class="ec-faq"><summary>What GM should a ship have?</summary>
+<p>At least 0.15 m by the IS Code, but practical values are 0.5–3 m depending on the ship; too much GM gives a stiff, violent roll that damages cargo and fatigues the crew, too little gives a tender ship with a long roll and small margins.</p>
+</details>
+<details class="ec-faq"><summary>My list came out negative. What does that mean?</summary>
+<p>A list to port. Transverse distances are positive to starboard, so discharging a weight from the starboard side (negative heeling moment) lists the ship to port.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this to correct a list?</summary>
+<p>Yes: the heeling moment needed to bring the ship upright equals the existing one with the opposite sign; divide by the available transverse distance to get the weight to transfer, remembering that the free surface of the ballast being moved also changes GM.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between list and loll?</summary>
+<p>A list is caused by an off-centre weight with positive GM. Loll is the angle a ship with negative GM takes up until the GZ becomes positive again; it is corrected by lowering G, not by transferring weight, and the calculator refuses to compute a list when GM is negative.</p>
+</details>
+<details class="ec-faq"><summary>Why does the rolling period need L, B and d?</summary>
+<p>The IS Code formula estimates the radius of gyration from the hull proportions through the coefficient C. A simpler rule, T ≈ 0.8 B / √GM, gives similar numbers.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hydrostatics/index.html">Hydrostatics basics</a> — displacement and KM-related hydrostatics at the draft.</li>
+<li><a href="../draft-survey/index.html">Draft survey</a> — the displacement of the actual condition.</li>
+<li><a href="../bunker-quantity/index.html">Bunker quantity and density correction</a> — fuel masses that change KG and free surface.</li>
+<li><a href="../ship-squat/index.html">Ship squat and under-keel clearance</a> — the other draft-related check before sailing.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

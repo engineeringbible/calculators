@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cargo ventilation and dew point — Engineering calculators</title>
+  <meta name="description" content="Dew point and humidity from dry and wet bulb, ventilate-or-not decision by the three-degree and dew-point rules, condensation risk.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Cargo ventilation and dew point</h1>
+    <p class="ec-summary">Psychrometrics for the ventilation decision: dew point, relative humidity and humidity ratio of the outside air and the hold air from dry- and wet-bulb readings (or a hygrometer), the dew-point rule, the three-degree rule for hygroscopic cargoes, the resulting advice, and the ship-sweat and cargo-sweat risks against the steel and cargo temperatures.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Most moisture damage to cargo is self-inflicted: a hold ventilated with warm, humid air over a cargo loaded in a cold port, or left closed while the ship&#39;s steel cools in northern waters and sweats onto the stow. The decision whether to open the vents comes down to dew points, which is why every bridge keeps a whirling psychrometer and a ventilation log. This calculator converts the dry- and wet-bulb readings of the outside air and the hold into vapour pressure, relative humidity, dew point and humidity ratio, applies the two rules the P&amp;I clubs teach (the dew-point rule for every cargo and the three-degree rule for hygroscopic ones), and flags the two kinds of sweat against the steel and cargo temperatures.</p>
+<p>It is for deck officers making the watch-by-watch decision, cargo surveyors reconstructing a claim from the log, and students of cargo work.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Saturation vapour pressure (Magnus, Alduchov–Eskridge), hPa:</p>
+<pre class="ec-formula" tabindex="0"><code>e_s(T) = 6.1094 exp(17.625 T / (T + 243.04))</code></pre>
+<p>Psychrometer (Sprung):</p>
+<pre class="ec-formula" tabindex="0"><code>e = e_s(T_wet) − A p (T_dry − T_wet)       A = 6.62·10⁻⁴ K⁻¹ aspirated/whirling, 8.0·10⁻⁴ K⁻¹ non-ventilated
+RH = e / e_s(T_dry),   T_dew = 243.04 ln(e/6.1094) / (17.625 − ln(e/6.1094)),   W = 622 e / (p − e)  g/kg</code></pre>
+<p>Rules:</p>
+<pre class="ec-formula" tabindex="0"><code>dew-point rule:     ventilate if T_dew,outside &lt; T_dew,hold
+three-degree rule:  ventilate hygroscopic cargo if T_dry,outside ≤ T_cargo at loading − 3 K
+ship sweat:         T_dew,hold &gt; T_steel          cargo sweat (if ventilating): T_dew,outside &gt; T_cargo</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Magnus is accurate to about 0.4 % between −40 and +50 °C over water; no ice-bulb correction.</li>
+<li>The psychrometer coefficient assumes a properly wetted and ventilated wet bulb; a dry wick or a stagnant screen reads high.</li>
+<li>Steel temperature is approximated by the sea or deck temperature entered; hatch covers under sun or frost differ.</li>
+<li>The rules are decision aids from club guidance; the master decides, and the readings and decisions should be logged every watch.</li>
+<li>Cargoes needing special regimes (fumigated holds, coal, some ores) follow their own instructions.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A bulk carrier with bagged rice loaded at an average 18 °C, now in warmer waters: outside air 25 °C dry / 20 °C wet bulb, hold air 22 / 20 °C, sea water 16 °C, barometer 1013 hPa.</p>
+<ol>
+<li>Outside: e = 23.3 − 0.000662 × 1013 × 5 = 20.0 hPa, RH 63 %, dew point 17.5 °C, 12.5 g/kg.</li>
+<li>Hold: e = 23.3 − 0.000662 × 1013 × 2 = 22.0 hPa, RH 83 %, dew point 19.0 °C.</li>
+<li>Dew-point rule: outside 17.5 °C is 1.5 K below the hold&#39;s 19.0 °C: ventilation would dry the hold. Three-degree rule: outside air at 25 °C is 7 K warmer than the cargo: fails.</li>
+<li>Advice for a hygroscopic cargo: do not ventilate on the three-degree rule (warm air over cool rice would deposit moisture on the cargo); keep the vents closed and record the decision.</li>
+<li>Sweat: hold dew point 19 °C above the 16 °C steel: ship sweat is forming on the frames and hatch covers; the remedy is drier air, which only a later cooler, drier airmass can provide.</li>
+</ol>
+<p>The same ship with steel cargo (non-hygroscopic) would ventilate on the dew-point rule alone.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why two rules?</summary>
+<p>The dew-point rule protects the ship&#39;s steel; the three-degree rule protects a cargo that is colder than the air. Hygroscopic cargo breathes its own moisture into the hold air, so the hold dew point is usually high and the dew-point rule alone would say &quot;ventilate&quot; even when the air admitted is warm enough to sweat onto the cargo.</p>
+</details>
+<details class="ec-faq"><summary>What is cargo sweat and what is ship sweat?</summary>
+<p>Cargo sweat: condensation on the cargo when warm, moist air meets a cold cargo (voyages from cold to warm). Ship sweat: condensation on the ship&#39;s structure when warm, moist hold air meets cold steel (voyages from warm to cold).</p>
+</details>
+<details class="ec-faq"><summary>How accurate must the readings be?</summary>
+<p>To about half a degree. Near saturation a 0.5 K error in the wet bulb moves the dew point by a similar amount; keep the wick clean and wet and whirl the instrument properly.</p>
+</details>
+<details class="ec-faq"><summary>Can I use a digital hygrometer in the hold?</summary>
+<p>Yes, enter dry bulb and RH; check its calibration regularly, dust and salt drift the sensors.</p>
+</details>
+<details class="ec-faq"><summary>Should I ventilate at night?</summary>
+<p>Often yes: the outside dry bulb drops at night while its dew point barely changes, so the three-degree rule may become satisfied; re-check each watch.</p>
+</details>
+<details class="ec-faq"><summary>Does barometric pressure matter?</summary>
+<p>Slightly: the psychrometer term scales with pressure and the humidity ratio with 1/(p − e); a few hPa change the dew point by hundredths of a degree.</p>
+</details>
+<details class="ec-faq"><summary>What should the log contain?</summary>
+<p>Outside and hold dry/wet bulb or RH, dew points, sea temperature, the cargo temperature at loading, the decision and the reason, every watch; it is the first thing a surveyor asks for.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../beaufort-sea-state/index.html">Beaufort, wind speed and sea state converter</a> — weather for the ventilation plan.</li>
+<li><a href="../tidal-height/index.html">Tidal height (rule of twelfths)</a> — port timing when hatches must stay closed.</li>
+<li><a href="../fuel-blend-heating/index.html">Fuel blending and heating viscosity</a> — another on-board temperature decision.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — °F readings and grains per pound.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

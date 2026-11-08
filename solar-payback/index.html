@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solar panel payback calculator — Engineering calculators</title>
+  <meta name="description" content="Payback year, 25-year savings, ROI, NPV and IRR of a solar PV system from cost, incentives, production, self-consumption, tariffs, price rises and degradation.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Solar panel payback calculator</h1>
+    <p class="ec-summary">Payback year, savings, ROI, NPV and IRR of solar panels with incentives, self-consumption, export price, price rises and degradation.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How long do solar panels take to pay for themselves? Divide the net cost by the yearly saving. The saving is the energy you use yourself at the price you would have paid, plus the energy you export at the export price. A 6 kW system costing 15 000 that saves 1 287 in its first year pays back in 11.7 years on that simple measure. Rising electricity prices shorten this, and the slow decline of the panels lengthens it.</p>
+<p>This calculator follows the savings year by year with price escalation and panel degradation. It gives the payback year, the savings and return over 25 years, the net present value at a discount rate, the internal rate of return and the levelised cost of the energy. It is for homeowners, installers and small businesses comparing a solar quote with its alternatives.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Production and saving in year n:</p>
+<pre class="ec-formula" tabindex="0"><code>E_n = E_1 (1 − d)^(n−1),    E_1 = P_kW × Y
+S_n = E_n [s p_imp + (1 − s) p_exp] (1 + e)^(n−1) − O&amp;M</code></pre>
+<p>Payback and value:</p>
+<pre class="ec-formula" tabindex="0"><code>payback: the year in which Σ S_n reaches C_net
+NPV = −C_net + Σ S_n / (1 + r)^n
+ROI = (Σ S_n − C_net) / C_net
+LCOE = (C_net + Σ O&amp;M / (1 + r)^n) / Σ E_n / (1 + r)^n</code></pre>
+<ul>
+<li>C_net — installed cost less tax credits, rebates and grants</li>
+<li>P_kW — system size; Y — specific yield in kWh per kW per year</li>
+<li>d — degradation per year; e — electricity price rise per year</li>
+<li>s — share of the production used on site; p_imp, p_exp — import and export prices</li>
+<li>r — discount rate; the IRR is the rate at which the NPV is zero</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Both prices rise by the same rate each year. The running cost stays flat.</li>
+<li>The default degradation is 0.5 % a year, the median that Jordan and Kurtz found in their 2013 review of field data.</li>
+<li>The self-consumption share depends on when you use electricity. A battery, an electric car or a heat pump raises it.</li>
+<li>Inverter replacement, financing and taxes are not included unless you enter them as a yearly running cost.</li>
+<li>The specific yield depends on the site, tilt and shading. PVWatts or PVGIS gives it for your address.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 6 kW system costs 15 000 with no incentives. The site yields 1 300 kWh per kW per year. Half the energy is used at home, saving 0.25 per kWh, and half is exported at 0.08. Prices rise 3 % a year, the panels lose 0.5 % a year, and money is discounted at 4 %. What is the payback over 25 years?</p>
+<ol>
+<li>First-year production: 6 × 1 300 = 7 800 kWh.</li>
+<li>First-year saving: 7 800 × (0.5 × 0.25 + 0.5 × 0.08) = 1 287.</li>
+<li>Simple payback: 15 000 / 1 287 = 11.66 years.</li>
+<li>With price rises and degradation, the cumulative saving reaches 15 000 after 10.4 years.</li>
+<li>Total savings over 25 years: 43 876, a net gain of 28 876 and a return of 193 %.</li>
+<li>Net present value at 4 %: 11 088. The internal rate of return is 9.4 %.</li>
+</ol>
+<p>Discounted at 4 %, the payback stretches to 13.2 years. The energy costs 0.129 per kWh over the life, about half the import price.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate solar panel payback?</summary>
+<p>Divide the net cost after incentives by the first-year saving for the simple payback. Price rises shorten it and degradation lengthens it.</p>
+</details>
+<details class="ec-faq"><summary>What is a good payback period for solar panels?</summary>
+<p>Shorter than the life of the system by a wide margin. Panels are usually warranted for about 25 years, so a payback of 10 years leaves 15 years of savings.</p>
+</details>
+<details class="ec-faq"><summary>Does self-consumption matter?</summary>
+<p>Yes, when the export price is below the import price. In the example, raising self-consumption from 50 to 100 % raises the first-year saving from 1 287 to 1 950.</p>
+</details>
+<details class="ec-faq"><summary>How much do solar panels degrade per year?</summary>
+<p>About 0.5 % a year at the median, from Jordan and Kurtz&#39;s review of field measurements. After 25 years a panel still makes about 89 % of its first-year output.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between ROI and NPV?</summary>
+<p>ROI compares the total savings with the cost, without regard to when they arrive. NPV discounts each year&#39;s saving to today, so it shows whether solar beats investing the money at the discount rate.</p>
+</details>
+<details class="ec-faq"><summary>What is the levelised cost of solar energy?</summary>
+<p>The cost of each kWh produced over the life, with the cost and the energy both discounted. In the example it is 0.129 per kWh.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../solar-panel/index.html">Solar panel calculator: how many panels do I need?</a> — the system size for your yearly use.</li>
+<li><a href="../solar-battery-bank/index.html">Solar battery bank calculator</a> — storage to raise self-consumption.</li>
+<li><a href="../electricity-cost/index.html">Electricity cost and energy use</a> — the value of the energy at your tariff.</li>
+<li><a href="../heat-pump-cost/index.html">Heat pump vs gas boiler running cost calculator</a> — another use for the energy.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

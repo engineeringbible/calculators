@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pile capacity calculator (driven and bored piles) — Engineering calculators</title>
+  <meta name="description" content="Axial capacity of a single driven or bored pile in layered clay and sand: shaft friction by the α and β methods plus end bearing, with a factor of safety.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Pile capacity calculator (driven and bored piles)</h1>
+    <p class="ec-summary">Axial capacity of a driven or bored pile in layered clay and sand: shaft friction by the alpha and beta methods, end bearing and allowable load.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A pile carries its load in two ways: friction along its shaft and bearing under its tip. In clay the shaft friction is a fraction α of the undrained shear strength. In sand it is a fraction β of the effective vertical stress. The tip bears a multiple of the soil strength or stress. A 610 mm steel pipe pile driven 20 m through soft and firm clay into dense sand has an ultimate capacity of about 3 729 kN.</p>
+<p>This calculator adds up the shaft friction layer by layer and the end bearing at the tip, then divides by a factor of safety. Driven piles use the API RP 2GEO method, and bored piles the FHWA method of O&#39;Neill and Reese. It is for geotechnical and structural engineers making a first estimate, and for students checking hand calculations.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Ultimate and allowable capacity:</p>
+<pre class="ec-formula" tabindex="0"><code>Q_ult = Q_s + Q_b = Σ f_i P Δz_i + q_b A_b
+Q_all = Q_ult / FS</code></pre>
+<p>Driven piles (API RP 2GEO):</p>
+<pre class="ec-formula" tabindex="0"><code>clay:  f = α s_u,  α = 0.5 ψ^−0.5 (ψ ≤ 1) or 0.5 ψ^−0.25 (ψ &gt; 1),  α ≤ 1,  ψ = s_u / σ&#39;v
+       q_b = 9 s_u
+sand:  f = β σ&#39;v ≤ f_lim,   q_b = N_q σ&#39;v ≤ q_lim   (dense sand: β 0.46, 96 kPa, N_q 40, 10 MPa)</code></pre>
+<p>Bored piles (O&#39;Neill and Reese, FHWA 1999):</p>
+<pre class="ec-formula" tabindex="0"><code>clay:  f = 0.55 s_u, none in the top 1.5 m and the bottom D;  q_b = 6 (1 + 0.2 L/D) s_u ≤ 9 s_u
+sand:  f = β σ&#39;v ≤ 200 kPa,  β = 1.5 − 0.245 √z  (0.25 to 1.2, z in m);  q_b = 57.5 N60 kPa</code></pre>
+<ul>
+<li>P — pile perimeter; A_b — base area; D — diameter; L — embedded length</li>
+<li>s_u — undrained shear strength; σ&#39;v — effective vertical stress; N60 — SPT blow count</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>API RP 2GEO is written for open- and closed-end pipe piles driven offshore. The page assumes the pile acts plugged, with end bearing on its full area.</li>
+<li>Sand layers take an SPT N60. Its relative density sets the API β and N_q. API gives no values for loose sand, so such layers are refused for driven piles.</li>
+<li>Only the soil&#39;s capacity is computed. Pile weight, downdrag, group effects, settlement and the structural strength of the pile need separate checks.</li>
+<li>These are design methods for a first estimate. Load tests or dynamic monitoring usually confirm the capacity on a real project.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A closed-end steel pipe pile of 610 mm diameter is driven 20 m. The soil is 6 m of soft clay (s_u 40 kPa, γ&#39; 8 kN/m³), 8 m of firm clay (s_u 80 kPa, γ&#39; 9 kN/m³) and then dense sand with N60 = 35 (γ&#39; 10 kN/m³). Use FS = 2.5.</p>
+<ol>
+<li>Effective stress: 48 kPa at 6 m, 120 kPa at 14 m and 180 kPa at the tip.</li>
+<li>Soft clay: ψ = 40/σ&#39;v, so α rises from 0 at the surface to 0.55 at 6 m. Integrating f = α s_u gives 100.97 kN per metre of perimeter.</li>
+<li>Firm clay: in the same way, 332.67 kN per metre.</li>
+<li>Dense sand: f = 0.46 × σ&#39;v, with an average stress of 150 kPa over 6 m, gives 414.0 kN per metre.</li>
+<li>Shaft friction: 847.6 × π × 0.61 = 1 624 kN.</li>
+<li>End bearing: q_b = 40 × 180 = 7 200 kPa on 0.2922 m², so 2 104 kN.</li>
+<li>Ultimate capacity: 1 624 + 2 104 = 3 729 kN. Allowable load: 3 729 / 2.5 = 1 491 kN.</li>
+</ol>
+<p>Bored instead, the same pile would carry about 1 701 kN in shaft friction but only 588 kN at the base.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do you calculate pile capacity?</summary>
+<p>Add the shaft friction of every layer the pile passes through to the end bearing at the tip. Divide the sum by a factor of safety, usually 2 to 3, for the allowable load.</p>
+</details>
+<details class="ec-faq"><summary>What is the α method?</summary>
+<p>A total-stress method for clay. The unit shaft friction is α times the undrained shear strength; α falls from 1 in soft clay to about 0.3 to 0.5 in stiff clay.</p>
+</details>
+<details class="ec-faq"><summary>What is the β method?</summary>
+<p>An effective-stress method. The unit shaft friction is β times the effective vertical stress, with β combining the earth pressure coefficient and the friction angle at the pile wall.</p>
+</details>
+<details class="ec-faq"><summary>Why do driven and bored piles have different capacities?</summary>
+<p>Driving displaces and densifies the soil around the pile. Boring removes soil and loosens the walls, so a bored pile has lower base resistance for the same size.</p>
+</details>
+<details class="ec-faq"><summary>Why is there no shaft friction near the top of a bored pile in clay?</summary>
+<p>The clay there shrinks, cracks and may be disturbed by construction. O&#39;Neill and Reese ignore the top 1.5 m and the bottom one diameter.</p>
+</details>
+<details class="ec-faq"><summary>What factor of safety should I use?</summary>
+<p>Traditional practice uses 2 to 3, the lower values only when load tests confirm the capacity. Follow the governing code; LRFD codes use resistance factors instead.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../soil-bearing/index.html">Soil bearing capacity</a> — shallow footings instead of piles.</li>
+<li><a href="../consolidation-settlement/index.html">Consolidation settlement</a> — settlement of clay that may call for piles.</li>
+<li><a href="../footing-size/index.html">Footing size calculator</a> — size the cap or footing above the piles.</li>
+<li><a href="../retaining-wall/index.html">Retaining wall earth pressure</a> — lateral soil pressure on walls.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

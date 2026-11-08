@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ballast water exchange time — Engineering calculators</title>
+  <meta name="description" content="D-1 ballast exchange: sequential, flow-through and dilution times and distance, the 3-volume / 95 % rule from perfect mixing, and the location criteria.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Ballast water exchange time</h1>
+    <p class="ec-summary">Planning a D-1 ballast water exchange: total pumping capacity and water to pump for the sequential, flow-through or dilution method, time per tank and in total, the distance run during the operation, the volumetric exchange achieved (the three-volume rule as perfect-mixing dilution), the D-1 check and the Regulation B-4 location criteria.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Exchanging ballast at sea replaces coastal water and its organisms with open-ocean water. The BWM Convention&#39;s D-1 standard asks for 95 % by volume, and accepts pumping three tank volumes through as equivalent, a number that comes straight from the dilution of a well-mixed tank: after n volumes a fraction e^(−n) of the original water remains, and e^(−3) is 5 %. This calculator plans the operation for the three recognised methods: how much water must be pumped, how long it takes with the pumps available, how many miles the ship runs meanwhile, what exchange it achieves and whether the chosen area satisfies the distance-from-land and depth rules.</p>
+<p>It is for chief officers planning a contingency exchange, superintendents reviewing a Ballast Water Management Plan, and students of marine environmental regulation. Since September 2024 treatment (D-2) is the rule and exchange the fallback; the planning arithmetic is the same.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Q = pumps × rated capacity
+sequential:   pumped = N × 2V (1 + s),   efficiency = 1 − residual
+flow-through / dilution:   pumped = N × n V,   efficiency = 1 − e^(−n)    (n = 3 → 95.0 %)
+total time = pumped / Q,   time per tank = pumped / (N Q),   distance = time × speed
+location: ≥ 200 nmi from land and ≥ 200 m deep (B-4.1.1); else ≥ 50 nmi and ≥ 200 m (B-4.1.2)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Pumps at rated capacity throughout; valve line-up and stripping inside the allowance (sequential only).</li>
+<li>Perfect mixing for the pumping-through efficiency; real tanks mix imperfectly, hence the fixed three volumes.</li>
+<li>Stability, hull girder loads, sloshing and tank overpressure are checked in the ship&#39;s plan, not here.</li>
+<li>D-2 applies to all ships since 8 September 2024; exchange is a contingency or exemption measure.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Ten double-bottom and wing tanks of 1 500 m³, two 1 000 m³/h ballast pumps, 12 kn, area 220 nmi offshore in 1 500 m of water.</p>
+<ol>
+<li>Flow-through, three volumes: 45 000 m³ pumped at 2 000 m³/h → 22.5 h, 2.25 h per tank, 270 nmi of sea room; 95.0 % exchanged, meets D-1; location meets B-4.1.1.</li>
+<li>Sequential with 10 % stripping allowance: 33 000 m³ in 16.5 h; with 2 % unpumpable residual the exchange is 98 %, but every intermediate condition needs the stability and strength check.</li>
+<li>Dilution: same water and time as flow-through, with the overflow replaced by a controlled bottom discharge.</li>
+</ol>
+<p>Pumping only two volumes would give 86.5 % and fail the standard; 99 % would need 4.6 volumes.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why three volumes?</summary>
+<p>Because a well-mixed tank retains e^(−3) = 5 % of its original water after three volumes have passed through, matching the 95 % requirement.</p>
+</details>
+<details class="ec-faq"><summary>Which method is faster?</summary>
+<p>Sequential, by roughly a factor of 1.4 at the same pump capacity, but it empties tanks and so needs the stability and longitudinal strength checks; flow-through keeps the ship in its loaded ballast condition.</p>
+</details>
+<details class="ec-faq"><summary>What if I cannot reach 200 nmi from land?</summary>
+<p>Regulation B-4 allows exchange as far from land as practicable but at least 50 nmi off in 200 m depth, or in an area designated by the port State; record the reason.</p>
+</details>
+<details class="ec-faq"><summary>Is exchange still allowed?</summary>
+<p>As a contingency when the treatment system fails, under an exemption, or combined with treatment where the port State requires it; routine compliance is D-2.</p>
+</details>
+<details class="ec-faq"><summary>Why check the venting capacity?</summary>
+<p>Flow-through pushes the full pump rate out through the air pipes or manholes; if they cannot pass it, the tank is over-pressurised.</p>
+</details>
+<details class="ec-faq"><summary>Does the ship have to slow down?</summary>
+<p>Not for the exchange itself, but weather and the hours needed often dictate the plan; the page gives the miles run so the window can be checked against the route.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — tank capacities.</li>
+<li><a href="../pump-affinity/index.html">Pump and fan affinity laws</a> — pump capacity at another speed.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — ballast line losses.</li>
+<li><a href="../initial-stability/index.html">Initial stability (GM)</a> — the intermediate conditions of a sequential exchange.</li>
+<li><a href="../course-to-steer/index.html">Course to steer with set and drift</a> — the exchange leg.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

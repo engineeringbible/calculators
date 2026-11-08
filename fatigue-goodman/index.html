@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fatigue safety factor calculator (Goodman, Gerber, Soderberg) — Engineering calculators</title>
+  <meta name="description" content="Endurance limit of a steel part with the Marin factors and the fatigue safety factor by modified Goodman, Gerber, Soderberg and ASME-elliptic criteria.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Fatigue safety factor calculator (Goodman, Gerber, Soderberg)</h1>
+    <p class="ec-summary">Marin-corrected endurance limit of steel and fatigue safety factors by modified Goodman, Gerber, Soderberg and ASME-elliptic, with first-cycle yield.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A part that sees a fluctuating stress can fail far below its tensile strength. For steel, a polished test bar in rotating bending survives indefinitely below its endurance limit, about half the tensile strength. A real part is rougher, larger and loaded differently, so the limit is cut by the Marin factors. A mean stress on top of the alternating stress cuts the allowable stress further, and the Goodman diagram measures by how much.</p>
+<p>This calculator follows the stress-life method of Shigley&#39;s Mechanical Engineering Design. It estimates the endurance limit from the tensile strength, applies the factors for surface, size, loading, temperature and reliability, and gives the fatigue factor of safety by four criteria, plus the factor against yield on the first cycle. It is for mechanical engineers and students designing shafts, bolts, springs and brackets for infinite life.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Endurance limit (Shigley eqs. 6-8 and 6-18):</p>
+<pre class="ec-formula" tabindex="0"><code>S_e&#39; = 0.5 S_ut  (S_ut ≤ 1 400 MPa),  700 MPa above
+S_e = k_a k_b k_c k_d k_e k_f S_e&#39;</code></pre>
+<p>Marin factors:</p>
+<pre class="ec-formula" tabindex="0"><code>k_a = a S_ut^b: ground 1.58, −0.085; machined or cold-drawn 4.51, −0.265; hot-rolled 57.7, −0.718; as-forged 272, −0.995 (S_ut in MPa)
+k_b = (d/7.62)^−0.107 (2.79 to 51 mm),  1.51 d^−0.157 (51 to 254 mm),  1 for axial load
+k_c = 1 bending, 0.85 axial, 0.59 torsion
+k_d = 0.975 + 0.432e-3 T − 0.115e-5 T² + 0.104e-8 T³ − 0.595e-12 T⁴  (T in °F)
+k_e = 1, 0.897, 0.868, 0.814, 0.753 for 50, 90, 95, 99, 99.9 % reliability</code></pre>
+<p>Factors of safety for alternating stress σ_a and mean stress σ_m:</p>
+<pre class="ec-formula" tabindex="0"><code>Goodman:       1/n = σ_a/S_e + σ_m/S_ut
+Soderberg:     1/n = σ_a/S_e + σ_m/S_y
+Gerber:        n = ½ (S_ut/σ_m)² (σ_a/S_e) [−1 + √(1 + (2 σ_m S_e / (S_ut σ_a))²)]
+ASME-elliptic: n = 1 / √((σ_a/S_e)² + (σ_m/S_y)²)
+Langer yield:  n_y = S_y / (σ_a + σ_m)</code></pre>
+<ul>
+<li>σ_a, σ_m — alternating and mean stresses, each multiplied by K_f</li>
+<li>S_ut, S_y — ultimate and yield strength; d — diameter of a round section</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The method is for steel and infinite life, a million cycles and more. Finite-life and other metals need an S-N curve.</li>
+<li>The size factor holds for round sections in rotating bending or torsion. A non-rotating round uses an effective diameter of 0.370 d.</li>
+<li>K_f multiplies both stresses, as for a ductile part that does not yield at the notch.</li>
+<li>For torsion, enter shear stresses. The ultimate and yield strengths become 0.67 S_ut and 0.577 S_y.</li>
+<li>Combined loads should be turned into von Mises alternating and mean stresses first and entered as bending.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>This is Shigley Example 6-10. A 1.5 in bar of cold-drawn AISI 1050 steel (S_ut = 100 ksi, S_y = 84 ksi) carries an axial load from 0 to 16 kip. A fillet gives K_f = 1.85.</p>
+<ol>
+<li>Surface: k_a = 4.51 × 689.5^−0.265 = 0.798. Axial loading: k_b = 1, k_c = 0.85.</li>
+<li>Endurance limit: S_e = 0.798 × 0.85 × 50 = 33.9 ksi.</li>
+<li>Stresses: area 1.767 in², so σ_a = σ_m = 1.85 × 8 / 1.767 = 8.375 ksi. Shigley rounds this to 8.38.</li>
+<li>Goodman: 1 / (8.375/33.9 + 8.375/100) = 3.02. Soderberg: 2.88.</li>
+<li>Gerber: 3.67, which Shigley prints as 3.66 from rounded values. ASME-elliptic: 3.75.</li>
+<li>First-cycle yield: 84 / (2 × 8.375) = 5.01.</li>
+</ol>
+<p>All factors are well above 1, so the bar has infinite life and does not yield.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the endurance limit of steel?</summary>
+<p>About half the tensile strength for a polished test bar, up to 700 MPa (100 ksi). A real part reaches only a fraction of that after the Marin factors.</p>
+</details>
+<details class="ec-faq"><summary>Which criterion should I use, Goodman or Gerber?</summary>
+<p>Goodman is simple and slightly conservative, and common in design. Gerber follows test data more closely for ductile steels. Soderberg is the most conservative.</p>
+</details>
+<details class="ec-faq"><summary>Why does a mean stress reduce fatigue strength?</summary>
+<p>A tensile mean stress holds cracks open, so they grow faster under the same alternating stress. A compressive mean stress helps.</p>
+</details>
+<details class="ec-faq"><summary>What is the surface factor for a machined part?</summary>
+<p>k_a = 4.51 S_ut^−0.265 with S_ut in MPa. For a 520 MPa steel it is 0.860.</p>
+</details>
+<details class="ec-faq"><summary>Do I apply the stress concentration factor to the mean stress?</summary>
+<p>For ductile materials Shigley applies K_f to both, as in Example 6-10. If the notch yields on the first cycle, the mean stress at the notch is lower.</p>
+</details>
+<details class="ec-faq"><summary>What safety factor is enough?</summary>
+<p>It depends on how well the loads, the material and the stresses are known. The governing code or company practice sets the value.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../mohr-circle/index.html">Mohr&#39;s circle</a> — von Mises stress from combined stresses.</li>
+<li><a href="../hardness-conversion/index.html">Hardness conversion</a> — tensile strength estimated from hardness.</li>
+<li><a href="../shaft-torsion/index.html">Shaft torsion</a> — shear stress in a shaft.</li>
+<li><a href="../weld-fatigue/index.html">Weld fatigue damage</a> — welded details, which follow S-N curves instead.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

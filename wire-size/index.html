@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wire size calculator (AWG and mm²) — Engineering calculators</title>
+  <meta name="description" content="Smallest AWG and metric wire size that keeps the voltage drop within your limit for a DC, single-phase or three-phase circuit, with the drop and the loss.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Wire size calculator (AWG and mm²)</h1>
+    <p class="ec-summary">Find the smallest AWG and metric wire size for a circuit from the current, length, voltage and allowed voltage drop, with the actual drop and the power lost.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Wire that is too thin for its length wastes power as heat and delivers a low voltage at the load. Motors then run hot, LED drivers flicker and a 12 V pump stalls. Voltage drop grows with the current and the length of the run, so long circuits often need a larger wire than the current alone would suggest.</p>
+<p>This calculator finds the smallest wire size, in AWG and in metric mm², that keeps the voltage drop within your limit. It works for DC, single-phase AC and balanced three-phase circuits in copper or aluminium. It also gives the actual drop, the voltage at the load and the power lost in the wire. It is for electricians, installers of solar, marine and RV systems, and engineers checking a circuit before choosing the cable.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Voltage drop of a circuit of one-way length L:</p>
+<pre class="ec-formula" tabindex="0"><code>DC and single-phase:   ΔV = 2 × I × L × R′
+three-phase:           ΔV = √3 × I × L × R′</code></pre>
+<p>Resistance per metre of a conductor of area A at temperature T:</p>
+<pre class="ec-formula" tabindex="0"><code>R′ = ρ20 × (1 + α (T − 20)) / A × k_s</code></pre>
+<p>Minimum area for an allowed drop ΔV_max = p × V:</p>
+<pre class="ec-formula" tabindex="0"><code>A_min = b × I × L × ρ(T) × k_s / (p × V)</code></pre>
+<ul>
+<li>b — 2 for DC and single-phase, √3 for three-phase</li>
+<li>I — load current; L — one-way length; V — supply voltage; p — allowed drop as a fraction</li>
+<li>ρ20, α — copper 1.7241 × 10⁻⁸ Ω·m and 0.00393 /K; aluminium 2.8264 × 10⁻⁸ Ω·m and 0.00403 /K</li>
+<li>k_s — 1.02 for stranded wire (ASTM B8), 1 for solid</li>
+</ul>
+<p>The result is the smallest AWG size and the smallest IEC 60228 metric size with at least A_min.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>This sizes the wire for voltage drop only. The wire must also carry the current safely, which the wiring code sets from the insulation and installation: NEC Table 310.16 and 240.4(D) in the US, IEC 60364-5-52 elsewhere. Use the larger of the two sizes.</li>
+<li>Reactance is neglected. That is conservative for wire up to about 1/0 AWG or 50 mm². For larger AC feeders at a low power factor, use the cable sizing calculator, which includes reactance.</li>
+<li>The length is one way, from the supply to the load. The formula adds the return path.</li>
+<li>75 °C is the default conductor temperature because the NEC resistance table uses it. A lightly loaded wire runs cooler, so the real drop is a little smaller.</li>
+<li>By default only the common building wire sizes are offered: 18 to 4 AWG in even numbers, then 3, 2, 1 and 1/0 to 4/0. Odd sizes such as 5 or 7 AWG exist but are rarely stocked.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 20 A, 120 V single-phase circuit feeds a workshop 100 ft from the panel. The drop must stay within 3 %. What copper wire is needed?</p>
+<ol>
+<li>Allowed drop: 3 % × 120 V = 3.6 V.</li>
+<li>Resistivity at 75 °C: ρ = 1.7241 × 10⁻⁸ × (1 + 0.00393 × 55) = 2.0968 × 10⁻⁸ Ω·m, or 2.1387 × 10⁻⁸ with the stranding increment.</li>
+<li>Minimum area: A = 2 × 20 × 30.48 × 2.1387 × 10⁻⁸ / 3.6 = 7.24 mm².</li>
+<li>10 AWG has only 5.26 mm², so the smallest AWG is 8 AWG with 8.37 mm². Its drop is 2 × 20 × 30.48 × 2.556 × 10⁻³ = 3.12 V, which is 2.60 %.</li>
+<li>In metric sizes, 6 mm² is too small, so 10 mm² is needed, with a drop of 2.17 %.</li>
+</ol>
+<p>So the run needs 8 AWG copper, two sizes up from the 12 AWG that the 20 A breaker alone would allow. The wire wastes about 62 W at full load.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What wire size do I need for 20 amps?</summary>
+<p>For a short run, 12 AWG copper, the size NEC 240.4(D) allows on a 20 A breaker. Over about 50 ft at 120 V the drop exceeds 3 % and 10 AWG or larger is needed.</p>
+</details>
+<details class="ec-faq"><summary>How much voltage drop is acceptable?</summary>
+<p>The NEC informational notes suggest 3 % for a branch circuit and 5 % for the feeder and branch together. IEC 60364-5-52 suggests 3 % for lighting and 5 % for other loads. Low-voltage DC systems often use 3 % or less.</p>
+</details>
+<details class="ec-faq"><summary>Is the length one way or round trip?</summary>
+<p>Enter the one-way distance from the supply to the load. The calculator doubles it for the return conductor, or uses √3 for three-phase.</p>
+</details>
+<details class="ec-faq"><summary>Why does three-phase need a smaller wire?</summary>
+<p>Three-phase carries the same power with less current per conductor, and the line-to-line drop has a factor of √3 instead of 2. For the same current and voltage, the wire area falls by about 13 %.</p>
+</details>
+<details class="ec-faq"><summary>Can I use aluminium wire?</summary>
+<p>Yes, but it needs about 1.64 times the copper area for the same drop, typically two AWG sizes larger. Use connectors rated for aluminium.</p>
+</details>
+<details class="ec-faq"><summary>Why does the calculator suggest 10 mm² when 8 AWG is only 8.4 mm²?</summary>
+<p>Metric sizes jump from 6 to 10 mm², and 6 mm² is below the 7.24 mm² needed. The next size up is the only one that meets the limit.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../awg-wire-gauge/index.html">AWG wire gauge chart and converter</a> — diameter, area and resistance of every gauge.</li>
+<li><a href="../cable-sizing/index.html">Cable sizing and voltage drop</a> — IEC cable sizes with reactance and power factor.</li>
+<li><a href="../watts-to-amps/index.html">Watts to amps</a> — the current from the load power.</li>
+<li><a href="../ohms-law/index.html">Ohm&#39;s law</a> — voltage, current and resistance of the wire.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

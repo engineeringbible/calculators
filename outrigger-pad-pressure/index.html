@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crane outrigger pad bearing pressure — Engineering calculators</title>
+  <meta name="description" content="Outrigger load, float and mat bearing pressure, effective mat area by load spread, ground utilisation and required mat size for a mobile crane.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Crane outrigger pad bearing pressure</h1>
+    <p class="ec-summary">Can the ground take the crane? The maximum outrigger load (manufacturer value or estimate), the pressure under the float, the effective mat area for a rigid mat or a load spread through its thickness, the ground bearing pressure against a BS 8004 presumed or a tested allowable value, the mat size required and a bending check of a rigid mat.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Most mobile crane overturns start at the ground: an outrigger punches through soft ground, a void or a buried service, and the crane tips. The check is simple in principle: the outrigger load divided by the area that carries it must stay below what the ground can bear. The difficulty is the area, because a float of a few tenths of a square metre puts megapascals on the ground and a mat only helps if it is stiff enough to spread the load. This calculator takes the outrigger load (from the crane maker or a planning estimate), the float and mat sizes, treats the mat either as rigid (with a bending check) or as spreading the load through its thickness, and compares the result with BS 8004 presumed values or a tested allowable pressure.</p>
+<p>It is for lift planners, appointed persons, port and site engineers, and students of temporary works.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>F = manufacturer value,  or ≈ 0.65 × (crane + load + rigging) g,  or (crane + load + rigging) g
+q_float = F / A_float
+rigid mat:  q = (F + W_mat) / (L_mat B_mat),   bending σ = 3 q c² / t²,  c = largest overhang beyond the float
+spread:     L_eff = min(L_mat, L_float + 2 t tan θ),  q = F / (L_eff B_eff) + W_mat / A_mat
+required area = F / q_allow,   square side = √(F / q_allow)</code></pre>
+<p>BS 8004 presumed allowable values (lower bounds): rock 4 000, dense gravel 600, compact sand 300, very stiff clay 300, medium dense gravel 200, stiff clay 150, medium dense sand 100, firm clay 75 kPa; soft or loose ground must be tested.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Uniform pressure under float and mat; the rigid-mat case is only as good as the mat&#39;s stiffness and strength.</li>
+<li>Presumed values guard against shear failure, not settlement; they need foundation widths of about 1 m and a low water table.</li>
+<li>No voids, services, slopes, excavations or dynamic effects; marginal cases need a temporary works design.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 60 t crane lifting 10 t: the manufacturer&#39;s outrigger load for the lift is 400 kN on a 0.6 × 0.6 m float; 2 × 2 m timber mat 150 mm thick weighing 0.5 t; stiff clay.</p>
+<ol>
+<li>Under the float: 400/0.36 = 1 111 kPa, far beyond any soil.</li>
+<li>Rigid mat: (400 + 4.9)/4 = 101 kPa, 67 % of the 150 kPa presumed for stiff clay: acceptable.</li>
+<li>Bending: overhang 0.7 m, σ = 3 × 101 × 0.49/0.0225 = 6.6 MPa, within 10 MPa for hardwood: the rigid assumption holds.</li>
+<li>If the mat only spread the load at 45° through its 150 mm thickness, the effective area would be 0.9 × 0.9 m and the pressure 495 kPa: a flexible mat this size would fail the check.</li>
+<li>Fully effective, the ground needs at least 2.67 m², a 1.63 m square mat.</li>
+</ol>
+<p>The planning estimate 0.65 × 70.5 t × g = 449 kN would have given 114 kPa; the upper bound of all weight on one outrigger 691 kN.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Where do I get the outrigger load?</summary>
+<p>From the crane manufacturer&#39;s lift-planning software or outrigger load chart for the configuration, radius and slew angle; the estimates are for early planning only.</p>
+</details>
+<details class="ec-faq"><summary>Rigid or spread?</summary>
+<p>Steel and engineered composite mats sized for the load act close to rigid; thin timber mats or plates do not, and their effective area grows only with their thickness. The bending check tells you whether the rigid assumption is plausible.</p>
+</details>
+<details class="ec-faq"><summary>Are BS 8004 values still valid?</summary>
+<p>They are presumed values for preliminary design from a withdrawn standard; Eurocode 7 governs design, and a site investigation or plate bearing test should confirm marginal ground.</p>
+</details>
+<details class="ec-faq"><summary>Why is the mat weight added?</summary>
+<p>It is part of the load on the ground; on large steel mats it is not negligible.</p>
+</details>
+<details class="ec-faq"><summary>What about concrete slabs and hardstanding?</summary>
+<p>Use the slab&#39;s designed capacity (punching shear and bending) as the allowable value; the soil table does not apply.</p>
+</details>
+<details class="ec-faq"><summary>What margin should I keep?</summary>
+<p>Dynamic effects, wind and uneven ground are not in the calculation; many planners keep utilisation well below 100 % or apply a factor to the allowable value.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../lifting-sling/index.html">Lifting sling loads</a> — the rigging between hook and load.</li>
+<li><a href="../concrete-volume/index.html">Concrete volume and rebar weight</a> — permanent crane bases.</li>
+<li><a href="../earthwork-volume/index.html">Earthwork cut and fill volumes</a> — preparing a crane platform.</li>
+<li><a href="../beam-deflection/index.html">Beam deflection</a> — mat and grillage bending.</li>
+<li><a href="../column-buckling/index.html">Column buckling</a> — outrigger beams and props.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wind load calculator (Eurocode and ASCE 7) — Engineering calculators</title>
+  <meta name="description" content="Wind pressure at any height by EN 1991-1-4 (peak velocity pressure) or ASCE 7-16 (velocity pressure q_z), and the wind force on an area.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Structural</span>
+    <h1 class="ec-title">Wind load calculator (Eurocode and ASCE 7)</h1>
+    <p class="ec-summary">Wind pressure at a height by EN 1991-1-4 or ASCE 7-16, with the exposure factors, and the wind force on an area.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Wind pressure rises with the square of the wind speed, and the wind gets stronger with height and over open ground. Building codes turn a mapped basic wind speed into a pressure at the height of interest, allowing for the terrain and gusts. In open country in Europe with a 27 m/s basic wind, the peak pressure 10 m above the ground is about 1.07 kPa; in a US suburb at 115 mph it is about 20 psf at 30 ft.</p>
+<p>This calculator gives that pressure by the Eurocode EN 1991-1-4 (peak velocity pressure q_p) or the US standard ASCE 7-16 (velocity pressure q_z), with the exposure factors used. With a force or pressure coefficient and an area, it also gives the wind force. It is for engineers and builders checking signs, walls, roofs, canopies, fences and small structures.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Eurocode EN 1991-1-4, terrain roughness z₀ and the basic wind speed v_b:</p>
+<pre class="ec-formula" tabindex="0"><code>k_r = 0.19 (z₀ / 0.05)^0.07,   c_r = k_r ln(z / z₀)
+v_m = c_r v_b,   I_v = 1 / ln(z / z₀)
+q_p = (1 + 7 I_v) × ½ ρ v_m²,   ρ = 1.25 kg/m³</code></pre>
+<p>ASCE 7-16, exposure B, C or D:</p>
+<pre class="ec-formula" tabindex="0"><code>K_z = 2.01 (z / z_g)^(2/α)       (z at least 15 ft)
+q_z = 0.00256 K_z K_zt K_d K_e V²    psf, V in mph</code></pre>
+<p>Force on an area:</p>
+<pre class="ec-formula" tabindex="0"><code>F = q × C × A</code></pre>
+<ul>
+<li>Terrain categories 0 to IV: z₀ = 0.003, 0.01, 0.05, 0.3, 1.0 m</li>
+<li>Exposure B, C, D: α = 7.0, 9.5, 11.5 and z_g = 1 200, 900, 700 ft</li>
+<li>K_zt — topography (1 on flat ground); K_d — directionality (0.85 for buildings)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The basic wind speed comes from the national annex map or the ASCE 7 wind map for the risk category. Eurocode speeds are 10-minute means; ASCE speeds are 3-second gusts, so the numbers are not comparable.</li>
+<li>Flat terrain is assumed. Hills, ridges and escarpments speed the wind up; enter K_zt for ASCE, or an orography factor through a higher v_b for the Eurocode.</li>
+<li>The force uses one coefficient for the whole area. Real design applies different external and internal pressure coefficients to each zone of the walls and roof; corners and edges see much higher suction.</li>
+<li>ASCE 7-22 revised some exposure constants and maps. Use the edition your building code adopts.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A building in open country with low vegetation (terrain category II) has a basic wind speed of 27 m/s. What is the peak velocity pressure 10 m above the ground?</p>
+<ol>
+<li>Roughness factor: k_r = 0.19 × (0.05 / 0.05)^0.07 = 0.19, so c_r = 0.19 × ln(10 / 0.05) = 1.007.</li>
+<li>Mean wind speed: v_m = 1.007 × 27 = 27.2 m/s.</li>
+<li>Turbulence intensity: I_v = 1 / ln(200) = 0.189.</li>
+<li>Peak pressure: q_p = (1 + 7 × 0.189) × ½ × 1.25 × 27.2² = 1.07 kPa.</li>
+</ol>
+<p>The exposure factor, q_p divided by the basic pressure ½ ρ v_b², is 2.35, as read from Figure 4.2 of the Eurocode.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate wind pressure from wind speed?</summary>
+<p>The basic dynamic pressure is ½ ρ v², about 0.613 v² Pa with v in m/s, or 0.00256 V² psf with V in mph. Codes then multiply it by factors for height, terrain and gusts.</p>
+</details>
+<details class="ec-faq"><summary>What is the wind pressure at 100 mph?</summary>
+<p>0.00256 × 100² = 25.6 psf before factors. At 33 ft in open terrain (K_z = 1.0, K_d = 0.85) it is 21.8 psf.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between exposure B, C and D?</summary>
+<p>B is urban and suburban terrain with many obstructions, C is open terrain with scattered obstructions, and D is flat ground facing open water. The wind is strongest near the ground in D.</p>
+</details>
+<details class="ec-faq"><summary>What are Eurocode terrain categories?</summary>
+<p>From 0 (open sea) to IV (city centres). Rougher terrain slows the wind near the ground but makes it gustier.</p>
+</details>
+<details class="ec-faq"><summary>How do I get the wind force on a sign or wall?</summary>
+<p>Multiply the pressure by a force coefficient and the area. Free-standing signs and walls have force coefficients of about 1.2 to 2.0, given in the code for their proportions.</p>
+</details>
+<details class="ec-faq"><summary>Why does wind pressure increase with height?</summary>
+<p>Friction with the ground slows the wind near the surface. The wind speeds up with height until it reaches the free-stream speed above the boundary layer.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../snow-load/index.html">Snow load calculator</a> — the other main roof load.</li>
+<li><a href="../air-density/index.html">Air density calculator</a> — density behind ½ ρ v².</li>
+<li><a href="../beam-deflection/index.html">Beam deflection</a> — members under the wind load.</li>
+<li><a href="../moment-of-inertia/index.html">Moment of inertia (section properties)</a> — section properties of the members.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

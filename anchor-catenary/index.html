@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anchor cable catenary and scope — Engineering calculators</title>
+  <meta name="description" content="Anchor cable catenary: chain on the bottom, uplift at the anchor, tension at the hawse, maximum force before the anchor lifts, wind force, holding capacity and swinging radius.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Anchor cable catenary and scope</h1>
+    <p class="ec-summary">Catenary of the anchor cable for a given depth, chain and horizontal force: how much chain lies on the bottom, whether the pull at the anchor is horizontal, the tension at the hawse pipe, the maximum force the paid-out cable can take before the anchor lifts, wind force from the windage area, anchor holding capacity and the swinging radius.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>An anchor holds only while the pull on it is horizontal; the moment the cable lifts off the seabed at the shank, the anchor begins to break out. The cable&#39;s own weight, hanging in a catenary, is what keeps the pull horizontal and absorbs gusts, which is why the amount of chain paid out, the scope, matters more than the anchor itself in most anchorages. This calculator solves the catenary for the depth to the hawse pipe, the chain weight and the horizontal force on the ship: how much cable lies on the bottom, the uplift angle if the cable is too short, the horizontal reach and swinging radius, the tension at the hawse, and the maximum force the paid-out cable can take before the anchor lifts. It estimates the wind force from the windage area and compares the load with a rough holding capacity of the anchor.</p>
+<p>It is for masters and officers choosing how much cable to veer, for planners of anchorage layouts, and for cadets learning why &quot;more cable&quot; is the answer to a dragging anchor.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Chain weight:</p>
+<pre class="ec-formula" tabindex="0"><code>m [kg/m] = 0.0219 d²          (d in mm, ISO 1704 stud-link approximation)
+w = m g (1 − ρ_water/ρ_steel)   submerged weight per metre, N/m</code></pre>
+<p>Catenary with horizontal tension H (parameter a = H/w), hawse pipe D above the seabed:</p>
+<pre class="ec-formula" tabindex="0"><code>Cable needed for a horizontal pull at the anchor:   s = √(D² + 2 a D)
+If L ≥ s:   cable on the bottom = L − s,   uplift = 0,
+            horizontal reach x = a asinh(s/a) + (L − s),   hawse tension T = H + w D
+If L &lt; s:   the cable is fully suspended; the uplift angle θ at the anchor follows from
+            D = √(a² + (s₀ + L)²) − √(a² + s₀²),  tan θ = s₀ / a   (solved numerically)
+Maximum H without uplift for a cable L:   H_max = w (L² − D²) / (2 D)</code></pre>
+<p>Environmental force and holding:</p>
+<pre class="ec-formula" tabindex="0"><code>F_wind = ½ ρ_air C_d A V²
+Holding capacity = m_anchor g × holding coefficient
+Scope = L / D
+Swinging radius = x + ship length</code></pre>
+<p>Rules of thumb (Admiralty Manual of Seamanship): cable in shackles ≈ 1.5 √D (D in metres); scope 6 × depth in normal conditions, up to 10 × in heavy weather.</p>
+<ul>
+<li>D — seabed to hawse pipe (water depth + hawse height above the waterline); L — cable paid out; A — frontal windage area; C_d — drag coefficient (OCIMF head-wind values 0.7–1.1)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Ideal inextensible catenary in still water on a flat, horizontal seabed; the grounded chain lies straight along the line of pull and its friction is not counted as holding.</li>
+<li>Static loading. Yawing, pitching and snatching in a seaway can double the cable tension; a scope that is adequate statically may still snatch.</li>
+<li>The wind force uses a single drag coefficient on the frontal area; beam-on wind with a yawing ship, current and waves must be added through the &quot;other force&quot; input or a proper OCIMF calculation.</li>
+<li>Chain mass from the ISO 1704 approximation; actual grades and manufacturers vary by a few per cent (enter the catalogue mass if known).</li>
+<li>Holding coefficients are crude (ordinary stockless 3–4, high-holding-power 6–10 in sand, less in soft mud or on rock) and depend on burial and fluke angle; the margin is indicative only.</li>
+<li>Holding reduction with uplift angle is not quantified; any uplift is treated as a warning.</li>
+<li>The swinging radius assumes the ship lies back along the cable; with wind against tide the ship may lie differently.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Bulk carrier, 76 mm stud-link chain, anchored in 25 m of water with the hawse pipe 5 m above the waterline (D = 30 m), five shackles (137.5 m) paid out, 30 knots of wind on 1 500 m² of windage, 7 800 kg HHP anchor in sand.</p>
+<ol>
+<li>Chain: m = 0.0219 × 76² = 126.5 kg/m; submerged weight w = 126.5 × 9.81 × (1 − 1025/7850) = 1 078 N/m.</li>
+<li>Wind force: ½ × 1.225 × 1.0 × 1 500 × 15.43² = 219 kN. Catenary parameter a = 219 000 / 1 078 = 203 m.</li>
+<li>Cable needed for a horizontal pull: √(30² + 2 × 203 × 30) = 114 m → 23 m of the 137.5 m lie on the bottom; the pull at the anchor is horizontal. Horizontal reach ≈ 109 m suspended + 23 m on the bottom = 132 m; swinging radius ≈ 132 + 190 = 322 m.</li>
+<li>Hawse tension: 219 + 1.078 × 30 = 251 kN.</li>
+<li>Maximum force before uplift with 137.5 m: 1 078 × (137.5² − 30²) / 60 = 324 kN, i.e. about 36 knots of wind on this area. Beyond that the anchor starts to lift: veer another shackle or two before the wind reaches that.</li>
+<li>Holding: 7 800 × 9.81 × 7 = 535 kN, margin 2.4 over the static force — adequate, but the dynamic loads in a swell are not included.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does more cable help more than a bigger anchor?</summary>
+<p>The weight of the suspended chain is what keeps the pull horizontal and damps the surges; a heavier anchor with a short cable still breaks out as soon as the cable lifts at the shank.</p>
+</details>
+<details class="ec-faq"><summary>How much cable should I use?</summary>
+<p>Common guidance: 1.5 √D shackles as a minimum in fair weather, a scope of 6 in normal conditions and up to 10 in heavy weather, more in poor holding ground. Check the swinging room and the maximum force the cable can take with this calculator.</p>
+</details>
+<details class="ec-faq"><summary>What is the uplift angle?</summary>
+<p>The angle between the seabed and the cable at the anchor when the chain is too short to lie flat. Even a few degrees reduce the holding of many anchor types markedly; the aim is zero.</p>
+</details>
+<details class="ec-faq"><summary>Does the depth include the hawse pipe height?</summary>
+<p>Yes: the catenary runs from the seabed to the hawse pipe, so D is the water depth plus the height of the hawse above the waterline at the current draft, and it changes with the tide.</p>
+</details>
+<details class="ec-faq"><summary>What C_d should I use for wind?</summary>
+<p>About 0.7–0.9 for tankers and bulk carriers head to wind, up to 1.1 for ships with high superstructures or when yawing presents a larger area. OCIMF MEG4 gives coefficients by ship type and heading.</p>
+</details>
+<details class="ec-faq"><summary>My holding margin looks fine but the ship dragged. Why?</summary>
+<p>Dynamic loads (yawing, snatching in swell), poor holding ground, a fouled anchor or an uplift during a yaw. The static check is a necessary condition, not a sufficient one.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this for a mooring chain or a wire?</summary>
+<p>The catenary mathematics is the same with the correct submerged weight per metre; wire has far less weight, so it provides little catenary compliance and the uplift condition arrives much earlier.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../beaufort-sea-state/index.html">Beaufort, wind speed and sea state converter</a> — wind speed for the force estimate.</li>
+<li><a href="../tidal-height/index.html">Tidal height (rule of twelfths)</a> — the depth at the anchorage through the tide.</li>
+<li><a href="../ship-squat/index.html">Ship squat and under-keel clearance</a> — clearance when leaving the anchorage.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — shackles, fathoms and kN to tonnes-force.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

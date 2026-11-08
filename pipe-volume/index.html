@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pipe volume and mass of contents — Engineering calculators</title>
+  <meta name="description" content="Volume and mass of the liquid in a pipe from its bore and length, the litres per metre, and the time to fill or flush it at a given flow.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Pipe volume and mass of contents</h1>
+    <p class="ec-summary">The volume and mass of the liquid in a full pipe from its bore and length, the litres per metre, and the time to fill or flush the line at a given flow rate.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How much liquid does a pipe hold? The question comes up when filling or draining a system, dosing a chemical or an inhibitor, calculating a flush, sizing an expansion tank, estimating the weight a pipe rack must carry, or working out how long a line takes to fill before a pump sees liquid.</p>
+<p>This calculator gives the volume of a full pipe from its inside diameter and length, the litres per metre, and the mass of the contents for water, sea water, fuels, lubricating oil or a liquid of your own. With a flow rate it also gives the time to fill the line once, which is the time for one flush. It is for plumbers, pipefitters, process and marine engineers, and anyone commissioning a piping system.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Bore area and volume:</p>
+<pre class="ec-formula" tabindex="0"><code>A = π × D² / 4
+V = A × L</code></pre>
+<p>Volume per metre, mass, and fill time:</p>
+<pre class="ec-formula" tabindex="0"><code>V per metre = A × 1000   (litres per metre)
+m = ρ × V
+t = V / Q</code></pre>
+<ul>
+<li>D — inside diameter (bore), m</li>
+<li>L — pipe length, m</li>
+<li>ρ — density of the contents, kg/m³</li>
+<li>Q — flow rate, m³/s</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The pipe is a straight cylinder of constant bore running full. Fittings and valves add a little volume, which can be entered as extra length.</li>
+<li>Use the inside diameter, not the nominal size. DN 100 steel pipe has a bore of about 102 mm in Schedule 40 and 97 mm in Schedule 80.</li>
+<li>The density is a reference value. Water expands by about 1 % between 4 °C and 45 °C, and fuels by about 0.07 % per kelvin.</li>
+<li>The fill time assumes a steady flow filling the whole bore. Venting air out of high points and filling uphill make it longer in practice.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A cooling-water line has a 150 mm bore and is 120 m long. How much water does it hold, and how long does it take to fill at 30 m³/h?</p>
+<ol>
+<li>Bore area: A = π × 0.15² / 4 = 0.01767 m², which is 17.67 litres per metre of pipe.</li>
+<li>Volume: V = 0.01767 × 120 = 2.121 m³ = 2 121 L.</li>
+<li>Mass of fresh water at 20 °C: m = 998.2 × 2.121 = 2 117 kg, over two tonnes for the pipe supports to carry.</li>
+<li>Fill time at 30 m³/h: t = 2.121 / 30 = 0.0707 h = 4.24 min.</li>
+</ol>
+<p>To flush the line with three volumes of water, allow about 13 minutes at that flow.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Should I use the nominal or the inside diameter?</summary>
+<p>The inside diameter. Nominal sizes are labels, and the bore depends on the wall thickness: a 4-inch Schedule 40 pipe has a 102.3 mm bore, Schedule 80 only 97.2 mm.</p>
+</details>
+<details class="ec-faq"><summary>How many litres per metre is a pipe?</summary>
+<p>The bore in millimetres squared, times π/4, divided by 1000. A 25 mm bore holds 0.49 L/m, 50 mm 1.96 L/m, 100 mm 7.85 L/m and 200 mm 31.4 L/m.</p>
+</details>
+<details class="ec-faq"><summary>How do I include the fittings?</summary>
+<p>Add their equivalent length, or simply add 5 to 10 % to the pipe length for a typical run. Large valves and strainers can be added from their data-sheet volumes.</p>
+</details>
+<details class="ec-faq"><summary>How much does the water in a pipe weigh?</summary>
+<p>About one kilogram per litre, so the litres per metre are also roughly the kilograms per metre. Add the weight of the pipe itself for support loads.</p>
+</details>
+<details class="ec-faq"><summary>How long does a flush take?</summary>
+<p>One pipe volume divided by the flow rate, multiplied by the number of volumes the procedure asks for, often three to five.</p>
+</details>
+<details class="ec-faq"><summary>Does this work for a partly filled pipe?</summary>
+<p>No, it assumes a full bore. For a partly filled pipe or a horizontal tank, use the tank volume calculator.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../flow-rate-velocity/index.html">Flow rate and pipe velocity</a> — the velocity in the same pipe at the fill flow.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — the pressure needed to push that flow.</li>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — partly filled pipes and tanks.</li>
+<li><a href="../hydrostatic-pressure/index.html">Hydrostatic pressure at depth</a> — the pressure a full vertical pipe exerts.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

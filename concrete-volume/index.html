@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Concrete volume and rebar weight — Engineering calculators</title>
+  <meta name="description" content="Concrete volume and mass for slabs, walls, footings and columns with waste, cement/sand/aggregate for nominal mixes, and rebar length, mass and steel ratio.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Concrete volume and rebar weight</h1>
+    <p class="ec-summary">Concrete volume and mass for slabs, walls, footings, beams and columns with a waste allowance; cement bags, sand and aggregate for nominal mixes; reinforcement length and mass for bar meshes or longitudinal bars with links; and the steel ratio compared with typical ranges.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Before a pour you need three numbers: how much concrete to order, how much cement, sand and aggregate if you batch on site, and how much reinforcement to buy. This calculator gives them for the common elements (slabs and rafts, walls, footings and beams, rectangular and round columns), multiplied by the number of identical elements, with a waste allowance on the concrete, the classic nominal-mix material split, and the reinforcement from either a bar mesh at a spacing or a set of longitudinal bars with links. It also reports the steel ratio in kg/m³ against typical ranges as a sanity check on the layout.</p>
+<p>It is for site engineers and quantity surveyors doing take-offs, for marine and port works where plinths, foundations and quay elements are cast, and for students learning estimating.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Volumes:</p>
+<pre class="ec-formula" tabindex="0"><code>Slab / footing:  V = L × W × t,    Wall:  V = L × H × t
+Rectangular column:  V = b × d × H,    Round column:  V = π D² H / 4
+V_net = V × count,    V_order = V_net (1 + waste),    m = ρ_concrete V_net</code></pre>
+<p>Nominal mix 1 : a : b by volume (dry-volume factor 1.54, cement bulk density 1 440 kg/m³):</p>
+<pre class="ec-formula" tabindex="0"><code>dry volume = 1.54 V_order
+cement volume = dry volume / (1 + a + b),    cement mass = cement volume × 1 440,    bags = mass / bag size
+sand = a × cement volume,    aggregate = b × cement volume</code></pre>
+<p>Reinforcement:</p>
+<pre class="ec-formula" tabindex="0"><code>bar mass per metre = 7 850 × π d²/4 ≈ d² / 162   (kg/m, d in mm)
+Mesh: bars along A = floor(B / s) + 1, bars along B = floor(A / s) + 1, length per layer = (bars along A) A + (bars along B) B
+Bars + links: main length = n × member length; link length = (floor(member length / s_link) + 1) × [2 (a − 2c) + 2 (b − 2c) + 20 d_link]
+total = (main + links) × count × (1 + lap allowance)
+steel ratio = steel mass / V_net</code></pre>
+<p>Typical steel ratios: slabs 80–120, walls 80–150, foundations 60–150, columns 150–300 kg/m³.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Gross geometric volumes; openings, chamfers and embedded items are not deducted. The waste factor (5–10 %) is for over-break, spillage and formwork deflection.</li>
+<li>Concrete density 2 400 kg/m³ (EN 1991-1-1); reinforced concrete is about 2 500 kg/m³, which the separately computed steel mass makes up.</li>
+<li>The nominal-mix split is the traditional estimating rule and gives the loose material volumes to batch; a designed mix or ready-mixed concrete follows the supplier&#39;s mix design and cement content.</li>
+<li>Reinforcement layouts are simplified: full-length bars at the spacing in each direction per layer, or longitudinal bars with perimeter links; cover, bends, hooks, chairs, starter bars and trimming bars are only covered by the lap/wastage percentage (10–15 % typical).</li>
+<li>Steel ratios are an estimating check against typical ranges, not a structural verification; bar sizes, spacing and cover come from the design.</li>
+<li>Bag sizes vary (25, 40, 50 kg); enter yours.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Ground slab 10 m × 5 m × 200 mm, one pour, 10 % waste, nominal 1 : 2 : 4 mix batched on site with 50 kg bags, reinforced with 12 mm bars at 200 mm both ways in two layers, 10 % lap allowance.</p>
+<ol>
+<li>Volume: 10 × 5 × 0.2 = 10.0 m³ net; order 11.0 m³; mass 24.0 t.</li>
+<li>Materials for 11 m³: dry volume 16.9 m³; cement 16.9/7 = 2.42 m³ = 3 485 kg = 69.7 bags; sand 4.84 m³; aggregate 9.68 m³. Per m³ of concrete that is 317 kg of cement, the familiar 6.3 bags.</li>
+<li>Reinforcement: along the 10 m direction floor(5/0.2) + 1 = 26 bars × 10 m = 260 m; along the 5 m direction 51 bars × 5 m = 255 m; 515 m per layer, 1 030 m for two layers, 1 133 m with laps. At 0.888 kg/m (12 mm) that is 1 006 kg.</li>
+<li>Steel ratio: 1 006 / 10 = 101 kg/m³ — within the 80–120 kg/m³ typical of slabs. Total reinforced mass 25.0 t.</li>
+</ol>
+<p>A 400 × 400 mm column 3 m high with 8 × 20 mm bars and 8 mm ties at 200 mm (40 mm cover) holds 0.48 m³ of concrete and about 68 kg of steel: 142 kg/m³ before laps, at the low end of the column range.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why order more than the net volume?</summary>
+<p>Over-excavation, formwork deflection, spillage and the pump line all take concrete; 5–10 % extra is normal for in-situ work, more for irregular excavations.</p>
+</details>
+<details class="ec-faq"><summary>Where does the 1.54 factor come from?</summary>
+<p>Loose dry cement, sand and aggregate occupy about 54 % more volume than the compacted concrete they produce, because the fine materials fill the voids between the coarse ones and the mix consolidates.</p>
+</details>
+<details class="ec-faq"><summary>How many bags for a cubic metre?</summary>
+<p>With 1 : 2 : 4 about 6.3 bags of 50 kg (317 kg); with 1 : 1.5 : 3 about 8 bags (403 kg); with 1 : 3 : 6 about 4.4 bags (222 kg). Designed mixes for marine exposure typically specify 350–400 kg/m³ regardless of these ratios.</p>
+</details>
+<details class="ec-faq"><summary>What is the d²/162 rule?</summary>
+<p>The mass of a steel bar in kg per metre is d² (mm) divided by 162 — 0.888 kg/m for 12 mm, 2.47 kg/m for 20 mm — from 7 850 kg/m³ and the bar area.</p>
+</details>
+<details class="ec-faq"><summary>My steel ratio is outside the typical range. Is the design wrong?</summary>
+<p>Not necessarily: the ranges are averages over whole elements. Check the layout inputs first (spacing, layers, bar count) and then the design; heavily loaded transfer beams can exceed 300 kg/m³.</p>
+</details>
+<details class="ec-faq"><summary>Does the calculator handle mesh fabric (A142, A393)?</summary>
+<p>Enter the equivalent bar diameter and spacing (A142: 6 mm at 200 mm; A393: 10 mm at 200 mm) as a single layer; the mass agrees with the fabric tables to within the lap allowance.</p>
+</details>
+<details class="ec-faq"><summary>Which mix for marine structures?</summary>
+<p>Exposure classes XS1–XS3 (EN 206) call for designed mixes with low water/cement ratio, high cement content and often blended cements; the nominal mixes here are for estimating the materials, not for specifying durability.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../beam-deflection/index.html">Beam deflection and bending stress</a> — the beams these quantities build.</li>
+<li><a href="../column-buckling/index.html">Column buckling (Euler and Johnson)</a> — slender columns.</li>
+<li><a href="../manning-channel-flow/index.html">Open-channel flow (Manning)</a> — concrete-lined channels.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — cubic yards, pounds and tons for imperial take-offs.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

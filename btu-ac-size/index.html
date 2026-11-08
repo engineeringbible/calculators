@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BTU calculator: AC size for a room — Engineering calculators</title>
+  <meta name="description" content="Air conditioner size in BTU, kW and tons for a room from its floor area, with the ENERGY STAR adjustments for sun, people and kitchens.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">HVAC</span>
+    <h1 class="ec-title">BTU calculator: AC size for a room</h1>
+    <p class="ec-summary">How many BTU an air conditioner needs for a room, from the floor area with the ENERGY STAR adjustments for sun, people and kitchens, in Btu/h, kW and tons.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How many BTUs does a room need? Air conditioners are rated in British thermal units per hour (Btu/h), and the right size depends mostly on the floor area. ENERGY STAR publishes a sizing chart for room air conditioners: 5 000 Btu/h for a small bedroom of 100 to 150 ft², 12 000 Btu/h for 450 to 550 ft², up to 34 000 Btu/h for 2 500 ft². The chart is then adjusted for sun, occupants and kitchens.</p>
+<p>This calculator applies that chart and its adjustments to your room, and gives the result in Btu/h, kilowatts of cooling and tons of refrigeration. It is for anyone choosing a window, portable or through-the-wall unit, or a single mini-split head, for one room.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Capacity from the ENERGY STAR chart for the floor area A, then the adjustments:</p>
+<pre class="ec-formula" tabindex="0"><code>Q = chart(A) × f_sun + 600 × (people − 2) + 4 000 × kitchen    Btu/h</code></pre>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Area (ft²)</th><th scope="col">Area (m²)</th><th scope="col">Capacity (Btu/h)</th></tr></thead>
+<tbody>
+<tr><td>100 to 150</td><td>9 to 14</td><td>5 000</td></tr>
+<tr><td>150 to 250</td><td>14 to 23</td><td>6 000</td></tr>
+<tr><td>250 to 300</td><td>23 to 28</td><td>7 000</td></tr>
+<tr><td>300 to 350</td><td>28 to 33</td><td>8 000</td></tr>
+<tr><td>350 to 400</td><td>33 to 37</td><td>9 000</td></tr>
+<tr><td>400 to 450</td><td>37 to 42</td><td>10 000</td></tr>
+<tr><td>450 to 550</td><td>42 to 51</td><td>12 000</td></tr>
+<tr><td>550 to 700</td><td>51 to 65</td><td>14 000</td></tr>
+<tr><td>700 to 1 000</td><td>65 to 93</td><td>18 000</td></tr>
+<tr><td>1 000 to 1 200</td><td>93 to 111</td><td>21 000</td></tr>
+<tr><td>1 200 to 1 400</td><td>111 to 130</td><td>23 000</td></tr>
+<tr><td>1 400 to 1 500</td><td>130 to 139</td><td>24 000</td></tr>
+<tr><td>1 500 to 2 000</td><td>139 to 186</td><td>30 000</td></tr>
+<tr><td>2 000 to 2 500</td><td>186 to 232</td><td>34 000</td></tr>
+</tbody></table>
+</div>
+<p>Conversions:</p>
+<pre class="ec-formula" tabindex="0"><code>1 Btu/h = 0.29307 W,   1 ton of refrigeration = 12 000 Btu/h = 3.517 kW</code></pre>
+<ul>
+<li>f_sun — 0.9 for a heavily shaded room, 1.1 for a very sunny one, 1 otherwise</li>
+<li>people — regular occupants; the chart already allows for two</li>
+<li>kitchen — add 4 000 Btu/h if the unit serves a kitchen</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The chart assumes ceilings of about 8 ft (2.4 m), average insulation and windows, and a typical climate. Tall ceilings, large west-facing windows, poor insulation or a very hot climate need more capacity.</li>
+<li>It sizes a single room. A whole house with central air needs a room-by-room load calculation such as ACCA Manual J, which accounts for walls, windows, orientation and infiltration.</li>
+<li>Bigger is not better: an oversized unit cools the air quickly and switches off before it has removed the moisture, leaving the room cold and clammy.</li>
+<li>The 20 Btu/h per ft² rule of thumb is shown for comparison only.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A living room is 14 by 20 ft, gets strong afternoon sun, and three people use it most evenings. What size of air conditioner does it need?</p>
+<ol>
+<li>Floor area: 14 × 20 = 280 ft², which falls in the 250 to 300 ft² row: 7 000 Btu/h.</li>
+<li>Very sunny: 7 000 × 1.1 = 7 700 Btu/h.</li>
+<li>One person beyond two: 7 700 + 600 = 8 300 Btu/h.</li>
+<li>In other units: 8 300 × 0.29307 = 2.43 kW, or 8 300 / 12 000 = 0.69 ton.</li>
+</ol>
+<p>So choose a unit of about 8 000 to 9 000 Btu/h, rather than the 7 000 Btu/h the area alone suggests.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many BTU do I need per square foot?</summary>
+<p>About 20 Btu/h per ft² for an average room, falling to about 14 for large open areas. The chart above is more accurate than the single figure.</p>
+</details>
+<details class="ec-faq"><summary>What size AC for a 12 × 12 room?</summary>
+<p>144 ft² falls in the 100 to 150 ft² row, so 5 000 Btu/h, or 5 500 with a lot of sun.</p>
+</details>
+<details class="ec-faq"><summary>How many square feet does a 12 000 BTU air conditioner cool?</summary>
+<p>450 to 550 ft² (42 to 51 m²) in normal conditions.</p>
+</details>
+<details class="ec-faq"><summary>How many BTU is a ton of air conditioning?</summary>
+<p>12 000 Btu/h, the heat that melts one short ton of ice in 24 hours. A 1.5 ton unit is 18 000 Btu/h.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert BTU to kW?</summary>
+<p>Multiply Btu/h by 0.293 to get watts. A 12 000 Btu/h unit delivers 3.5 kW of cooling.</p>
+</details>
+<details class="ec-faq"><summary>Is a bigger air conditioner better?</summary>
+<p>No. An oversized unit short-cycles, removes less moisture, wears faster and costs more to buy. Size it to the room.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../heat-loss/index.html">Building heat loss calculator</a> — the heating side, with U-values.</li>
+<li><a href="../air-changes/index.html">Air changes per hour and CFM</a> — ventilation of the room.</li>
+<li><a href="../dew-point/index.html">Dew point calculator</a> — humidity and comfort.</li>
+<li><a href="../electricity-cost/index.html">Electricity cost</a> — running cost of the unit.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

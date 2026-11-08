@@ -1,0 +1,26 @@
+{
+  "name": "engineeringbible-calculators",
+  "version": "0.4.0",
+  "description": "283 engineering calculators (maritime, mechanical, electrical, fluids, HVAC, civil and more) as plain ES modules with 2,065 sourced checks. No dependencies. Powers engineeringbible.com.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Christos Papandreou",
+  "homepage": "https://engineeringbible.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/engineeringbible/calculators.git"
+  },
+  "bugs": {
+    "url": "https://github.com/engineeringbible/calculators/issues"
+  },
+  "keywords": ["engineering", "calculator", "maritime", "naval-architecture", "mechanical", "electrical", "hvac", "fluids", "units"],
+  "scripts": {
+    "test": "node run-tests.js",
+    "fuzz": "node fuzz.js",
+    "manifest": "node build-manifest.js",
+    "serve": "node serve.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

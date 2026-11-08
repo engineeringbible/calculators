@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ideal gas law (PV = nRT) — Engineering calculators</title>
+  <meta name="description" content="Pressure, volume, temperature or amount of a gas from PV = nRT, with its mass, density and specific gas constant for air, N₂, CO₂, H₂ and more.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Ideal gas law (PV = nRT)</h1>
+    <p class="ec-summary">Pressure, volume, temperature or amount of an ideal gas from the other three by PV = nRT, with the mass, density, specific gas constant and molar volume for common gases or a gas of your own.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The ideal gas law links the four things that describe a gas in a container: its pressure, its volume, its temperature and how much of it there is. Know three and the fourth follows. With the gas&#39;s molar mass, the same equation gives its mass and its density, which is how engineers find the air in a room, the gas in a cylinder, the pressure rise in a closed vessel that heats up, or the density of a gas in a duct.</p>
+<p>This calculator solves for whichever variable you need and converts the amount into kilograms for air, nitrogen, oxygen, carbon dioxide, methane, hydrogen, helium, argon, ammonia or a gas of your own. It is for mechanical, process and marine engineers, and for students of thermodynamics and chemistry.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>The ideal gas law:</p>
+<pre class="ec-formula" tabindex="0"><code>P V = n R T</code></pre>
+<p>Rearranged for each unknown:</p>
+<pre class="ec-formula" tabindex="0"><code>n = P V / (R T),   P = n R T / V,   V = n R T / P,   T = P V / (n R)</code></pre>
+<p>Mass, density and the specific gas constant:</p>
+<pre class="ec-formula" tabindex="0"><code>m = n M
+ρ = P M / (R T)
+R_specific = R / M</code></pre>
+<ul>
+<li>P — absolute pressure, Pa</li>
+<li>V — volume, m³</li>
+<li>n — amount of gas, mol</li>
+<li>T — absolute temperature, K (T = t + 273.15 for t in °C)</li>
+<li>R — molar gas constant, 8.314 462 618 J/(mol·K), exact</li>
+<li>M — molar mass, kg/mol (air 0.028 965, N₂ 0.028 013, CO₂ 0.044 010)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The gas is ideal. Real gases follow the law to within about 1 % at pressures of a few bar and temperatures well above their boiling point. At high pressure, multiply n R T by the compressibility factor Z from a chart or an equation of state.</li>
+<li>Pressure must be absolute. A gauge reading of 7 bar is 8.01 bar absolute at sea level, and entering the gauge value gives an answer about 13 % low.</li>
+<li>Temperature must be absolute. The calculator converts °C and °F for you, but a ratio of temperatures in °C is meaningless.</li>
+<li>Molar masses are for the pure gas. Humid air is slightly lighter than dry air, and natural gas is heavier than pure methane.</li>
+<li>Near condensation, such as carbon dioxide below 31 °C under pressure or any gas close to its boiling point, the ideal gas law does not apply.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>How much air is in a room 5 m × 4 m × 2.5 m at normal atmospheric pressure and 20 °C?</p>
+<ol>
+<li>Volume: V = 5 × 4 × 2.5 = 50 m³.</li>
+<li>Absolute pressure: P = 101.325 kPa = 101 325 Pa. Absolute temperature: T = 20 + 273.15 = 293.15 K.</li>
+<li>Amount of air: n = P V / (R T) = 101 325 × 50 / (8.314 × 293.15) = 2 079 mol.</li>
+<li>Mass: m = n M = 2 079 × 0.028 965 = 60.2 kg.</li>
+<li>Density: ρ = P M / (R T) = 1.204 kg/m³, the textbook density of air at 20 °C.</li>
+<li>The specific gas constant of air is R / M = 8.314 / 0.028 965 = 287.1 J/(kg·K).</li>
+</ol>
+<p>So an ordinary room holds about 60 kg of air. Heated to 30 °C in a sealed space, its pressure would rise in proportion to the absolute temperature, by 10 / 293 = 3.4 %, which is why a sealed, sunlit enclosure builds up pressure.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why must I use absolute pressure and temperature?</summary>
+<p>The law describes gas molecules from zero pressure and zero temperature upward. Gauge pressure and °C have arbitrary zeros, so they give wrong answers unless converted first.</p>
+</details>
+<details class="ec-faq"><summary>What is the value of R?</summary>
+<p>8.314 462 618 J/(mol·K), exact by definition since 2019. In other units it is 0.083 145 L·bar/(mol·K) or 0.082 057 L·atm/(mol·K).</p>
+</details>
+<details class="ec-faq"><summary>When does the ideal gas law fail?</summary>
+<p>At high pressure, near condensation, and at very low temperature. A 200 bar nitrogen cylinder holds a few per cent less gas than the ideal law predicts; steam near saturation needs steam tables instead.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the density of air at another altitude or temperature?</summary>
+<p>Enter the local absolute pressure and temperature. At 35 °C and 101.3 kPa, air is 1.145 kg/m³, about 5 % lighter than at 20 °C, which matters for fan and engine performance.</p>
+</details>
+<details class="ec-faq"><summary>What is the specific gas constant?</summary>
+<p>The molar constant divided by the gas&#39;s molar mass: 287 J/(kg·K) for air, 297 for nitrogen, 189 for carbon dioxide. It lets you write the law per kilogram as P = ρ R_specific T.</p>
+</details>
+<details class="ec-faq"><summary>How do I use it for a gas mixture?</summary>
+<p>Use the mixture&#39;s mean molar mass, the mole-fraction average of its components, as a custom gas. Dry air is itself such a mixture of 78 % nitrogen, 21 % oxygen and 1 % argon.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../starting-air/index.html">Starting air receivers and compressors</a> — compressed air stored in receivers.</li>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — the volume of a vessel to enter here.</li>
+<li><a href="../pipe-insulation/index.html">Pipe and tank insulation heat loss</a> — heat lost from a gas-filled vessel.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — pressure and temperature in other units.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

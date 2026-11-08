@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Berthing energy and fender selection — Engineering calculators</title>
+  <meta name="description" content="PIANC berthing energy from displacement, approach velocity and the mass, eccentricity, configuration and softness factors; fender energy and reaction.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Berthing energy and fender selection</h1>
+    <p class="ec-summary">Normal and abnormal berthing energy by the PIANC 2002 kinetic method: Brolsma design velocity or a measured approach speed, added mass by PIANC, Vasco Costa or Ueda, eccentricity from the contact point and berthing angle, berth configuration and softness factors, the abnormal-berthing factor by vessel class, and the check of a fender's rated energy, reaction and hull pressure.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A ship arriving at a quay carries kinetic energy that the fenders must absorb without damaging the hull or the structure. The energy is small per tonne but the tonnes are many: a laden Suezmax touching at 15 cm/s carries more than a megajoule. PIANC&#39;s 2002 guidelines give the standard way to estimate it: the ship&#39;s kinetic energy at the design berthing velocity, increased for the water dragged along (added mass) and reduced because an off-centre contact sets the ship rotating (eccentricity), with smaller adjustments for the berth structure and the fender stiffness, then multiplied by a safety factor for abnormal berthings. This calculator applies that method with the Brolsma design velocities and checks a chosen fender&#39;s rated energy, reaction and hull pressure.</p>
+<p>It is for port and terminal engineers sizing fenders, naval architects checking hull pressures and students of port design; the 2024 PIANC WG211 guidelines supersede the 2002 method for new specifications that cite them.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Normal and abnormal berthing energy:</p>
+<pre class="ec-formula" tabindex="0"><code>E_N = ½ M_D v_B² C_M C_E C_C C_S        E_A = E_N × factor of safety
+C_B = M_D / (ρ L_BP B D)</code></pre>
+<p>Added mass C_M:</p>
+<pre class="ec-formula" tabindex="0"><code>PIANC 2002:  1.8 for K_C/D ≤ 0.1;  1.5 for K_C/D ≥ 0.5;  1.875 − 0.75 K_C/D between  (then C_C = 1)
+Vasco Costa: 1 + 2D/B           Ueda: 1 + πD / (2 C_B B)</code></pre>
+<p>Eccentricity (side berthing, contact at x from the bow, berthing angle α):</p>
+<pre class="ec-formula" tabindex="0"><code>K = (0.19 C_B + 0.11) L_BP,   R = √((L/2 − x)² + (B/2)²),   γ = 90° − α − asin(B / 2R)
+C_E = (K² + R² cos²γ) / (K² + R²)</code></pre>
+<p>Berth configuration C_C (with Vasco Costa or Ueda): solid quay 0.8 (K_C/D ≤ 0.5) or 0.9, partly closed 0.9 or 1.0, open piles 1.0; 1.0 whenever α &gt; 5°. Softness C_S: 0.9 for hard fenders (deflection ≤ 150 mm), else 1.0.</p>
+<p>Design velocity: Brolsma curves (BS 6349-4:2014 Fig. 9) by displacement and navigation condition a–e, minimum 0.08 m/s. Abnormal factors (PIANC Table 4.2.5): tankers and bulk carriers 1.25 (large) to 1.75 (small), container ships 1.5 to 2.0, general cargo 1.75, RoRo, ferries, cruise ships and tugs 2.0.</p>
+<p>Fender check: E_RPD ≥ E_A (before tolerance, angle, temperature and velocity factors); hull pressure = R_F / panel area against the class allowable (tankers and bulk 150–300 kPa, container 200–400 kPa, general cargo 400–700 kPa).</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>PIANC WG33 (2002) method as used by BS 6349-4 and most existing specifications. PIANC WG211 (2024) removes C_C and C_S and revises velocities; use it where the specification requires.</li>
+<li>Displacement at berthing, not necessarily full load; the velocity is the component perpendicular to the berth.</li>
+<li>The eccentricity formula assumes contact at the parallel body with a small berthing angle; PIANC warns about the special case γ = 90°, and very small γ (contact in line with the velocity) is sensitive.</li>
+<li>Brolsma velocities assume tug assistance and conventional ships; without tugs multiply by 1.3–3 (EAU 2004, ROM 2.0-11). Measured velocities are better.</li>
+<li>Fender rated energy must still be derated for manufacturing tolerance, compression angle, temperature and velocity; multiple-fender contact and panel bending are not treated.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A laden 100 000 DWT tanker (M_D 125 000 t, L_BP 236 m, B 43 m, D 15.1 m) berths against dolphins (third-point contact) at 5°, with 3 m under the keel and a measured approach of 0.15 m/s.</p>
+<ol>
+<li>C_B = 125 000 / (1.025 × 236 × 43 × 15.1) = 0.796.</li>
+<li>Added mass (PIANC): K_C/D = 0.199 → C_M = 1.875 − 0.75 × 0.199 = 1.726; C_C = 1.0.</li>
+<li>Eccentricity: K = (0.19 × 0.796 + 0.11) × 236 = 61.7 m; R = √(39.3² + 21.5²) = 44.8 m; γ = 90 − 5 − asin(43/89.6) = 56.3°; C_E = (61.7² + 44.8² cos² 56.3°)/(61.7² + 44.8²) = 0.761.</li>
+<li>Energy: ½ × 125 000 × 0.15² = 1 406 kJ; E_N = 1 406 × 1.726 × 0.761 × 1.0 × 1.0 = 1 847 kJ. Factor 1.25 for a large tanker → E_A = 2 309 kJ.</li>
+<li>A fender rated at 2 500 kJ / 2 200 kN on a 12 m² panel: energy OK with 8 % margin before derating; hull pressure 183 kPa, within the 200 kPa allowable for a VLCC-class hull.</li>
+</ol>
+<p>Using the Brolsma curve for condition c (easy berthing, exposed) instead of the measured speed gives 0.12 m/s for 125 000 t and about 36 % less energy.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which velocity should I design for?</summary>
+<p>Measured data from the berth if available; otherwise the Brolsma curve for the navigation condition, remembering that curves d and e are considered high by PIANC and that berthing without tugs is much faster.</p>
+</details>
+<details class="ec-faq"><summary>Why does the added mass depend on under-keel clearance?</summary>
+<p>With little water under the keel the entrained water cannot escape and more of it moves with the ship, raising the effective mass towards 1.8 times the displacement.</p>
+</details>
+<details class="ec-faq"><summary>What does the eccentricity coefficient do?</summary>
+<p>An off-centre contact makes the ship yaw; the rotational energy is not absorbed by the fender. For a third-point contact only about three quarters of the kinetic energy goes into the fender.</p>
+</details>
+<details class="ec-faq"><summary>Normal versus abnormal energy?</summary>
+<p>The normal energy occurs routinely and must not damage the fender; the abnormal energy covers rare events (exceptional ship, human error, equipment failure) and the fender must still absorb it without significant damage.</p>
+</details>
+<details class="ec-faq"><summary>How do I choose the hull pressure limit?</summary>
+<p>From the ship class: tankers and bulk carriers can take 150–300 kPa, container ships 200–400 kPa depending on size, general cargo up to 700 kPa; RoRo and ferries usually have beltings and are not pressure-limited in the same way.</p>
+</details>
+<details class="ec-faq"><summary>Can I use the 2024 PIANC method here?</summary>
+<p>Not directly: WG211 drops C_C and C_S (set both to 1.0 here to approximate) and specifies new velocity guidance; the structure of the energy formula is otherwise the same.</p>
+</details>
+<details class="ec-faq"><summary>Does berthing angle matter much?</summary>
+<p>Through γ in the eccentricity factor and through the single-fender contact at larger angles; above about 10° the first contact is near the bow and one fender takes the whole energy.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hydrostatics/index.html">Hydrostatics basics</a> — displacement and block coefficient from the particulars.</li>
+<li><a href="../anchor-catenary/index.html">Anchor cable catenary and scope</a> — the other holding problem at the berth.</li>
+<li><a href="../lifting-sling/index.html">Lifting sling and wire rope load</a> — mooring and lifting hardware ratings.</li>
+<li><a href="../wave-properties/index.html">Wave properties and encounter period</a> — exposure of the berth to waves.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

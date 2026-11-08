@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Battery charge time — Engineering calculators</title>
+  <meta name="description" content="Time to charge a battery from any state of charge with a given charger, allowing for the chemistry's charge efficiency, with the charge rate in C.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Battery charge time</h1>
+    <p class="ec-summary">The time to charge a battery from its present state of charge to a target with a given charger current, allowing for the charge efficiency of lead-acid, lithium-ion, LiFePO4 or NiMH batteries, with the charge rate in C.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How long will this battery take to charge? Dividing the capacity by the charger current gives a first answer, but a real charge takes longer. Part of the charge put in is lost as heat and, in lead-acid batteries, as gas, and the last part of the charge goes slowly as the charger tapers its current. Charging too fast also shortens a battery&#39;s life, so the charge rate matters as much as the time.</p>
+<p>This calculator estimates the charge time from the battery&#39;s rated capacity, its present state of charge, the level you want to reach and the charger current. It applies the typical charge efficiency of flooded or sealed lead-acid, lithium-ion, LiFePO4 or NiMH batteries, or a value of your own. It also gives the charge rate in C, compared with the usual limit for the chemistry. It is for boat and vehicle owners, solar and backup-power installers, and engineers sizing chargers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Charge to put back, and charge the charger must supply:</p>
+<pre class="ec-formula" tabindex="0"><code>Q_back = Q_rated × (SoC_target − SoC_now)
+Q_in = Q_back / η</code></pre>
+<p>Charge time and charge rate:</p>
+<pre class="ec-formula" tabindex="0"><code>t = Q_in / I
+C-rate = I / Q_rated   (I in A, Q in Ah)</code></pre>
+<p>Typical charge efficiency η: flooded lead-acid 85 %, AGM or gel 90 %, lithium-ion 95 %, LiFePO4 97 %, NiMH 70 %.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The charger delivers its full rated current throughout. Lithium batteries switch to constant voltage near full, and lead-acid batteries need an absorption stage of several hours above about 80 %, so a full charge takes longer than the estimate.</li>
+<li>The efficiencies are typical values. They fall when a battery is cold, hot, old or charged fast.</li>
+<li>The state of charge refers to the rated capacity. An aged battery holds less, so it fills sooner but also stores less.</li>
+<li>Charger losses and loads running from the battery during charging are not included. A load draws current that never reaches the battery.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 100 Ah flooded lead-acid battery is at 50 % and charged to full with a 10 A charger. How long does it take?</p>
+<ol>
+<li>Charge to put back: 100 × (1.00 − 0.50) = 50 Ah.</li>
+<li>With 85 % efficiency the charger must supply 50 / 0.85 = 58.8 Ah.</li>
+<li>Charge time: 58.8 / 10 = 5.88 h.</li>
+<li>Charge rate: 10 / 100 = 0.10 C, well within the 0.2 C usual for flooded batteries.</li>
+</ol>
+<p>The last stretch from 80 to 100 % runs at a falling current in the absorption stage, so in practice allow 2 to 4 hours more for a truly full battery.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate battery charge time?</summary>
+<p>Divide the amp-hours to put back by the charger current, then divide by the charge efficiency. For a lead-acid battery that is roughly the amp-hours divided by the current, times 1.2.</p>
+</details>
+<details class="ec-faq"><summary>What does charge rate in C mean?</summary>
+<p>The current as a fraction of the capacity. For a 100 Ah battery, 0.1 C is 10 A and 1 C is 100 A.</p>
+</details>
+<details class="ec-faq"><summary>What charger size do I need?</summary>
+<p>For lead-acid, about 10 to 20 % of the capacity in amps; a 100 Ah battery suits a 10 to 20 A charger. Lithium batteries accept up to 0.5 to 1 C if the maker allows it.</p>
+</details>
+<details class="ec-faq"><summary>Why does the last 20 % take so long?</summary>
+<p>To avoid overcharging, the charger holds the voltage constant and lets the current fall as the battery fills. Lead-acid batteries need this most.</p>
+</details>
+<details class="ec-faq"><summary>Should I charge lithium batteries to 100 %?</summary>
+<p>For a long life, many makers suggest 80 to 90 % for daily use and 100 % only when the full range is needed.</p>
+</details>
+<details class="ec-faq"><summary>Why is NiMH so inefficient?</summary>
+<p>Near full charge NiMH turns much of the input into heat, which is why its chargers terminate on temperature rise or a voltage dip.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../mah-to-wh/index.html">mAh to Wh battery capacity</a> — the battery&#39;s energy in watt-hours.</li>
+<li><a href="../battery-runtime/index.html">Battery capacity and runtime</a> — how long the charge lasts under a load.</li>
+<li><a href="../solar-pv-sizing/index.html">Solar PV array and storage sizing</a> — charging from solar panels.</li>
+<li><a href="../electricity-cost/index.html">Electricity cost and energy use</a> — what a charge costs from the grid.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

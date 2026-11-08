@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engineering calculators</title>
+  <meta name="description" content="Maritime and general engineering calculators: fuel and voyage cost, propeller slip, hydrostatics, Beaufort scale, pipe flow, pumps, heat exchangers, beams, bolts, cables, unit conversion.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="shared/tokens.css">
+  <link rel="stylesheet" href="shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <h1 class="ec-title">Engineering calculators</h1>
+    <p class="ec-summary">Plain, offline, unit-aware calculators for engineers, students and cadets. Every calculator exposes a pure <code>calculate()</code> function and ships with self-tests against published references.</p>
+    <div id="library" aria-live="polite">
+      <p class="ec-help">Loading manifest.json… If this message stays, open the folder through a local server (<code>node serve.js</code>) — browsers block module and JSON loading from <code>file://</code>.</p>
+    </div>
+  </main>
+  <script type="module">
+    const root = document.getElementById('library');
+    const CATEGORY_NAMES = { maritime: 'Maritime', mechanical: 'Mechanical', thermal: 'Thermal and fluids', structural: 'Structural', electrical: 'Electrical', civil: 'Civil', general: 'General' };
+
+    function card(calc) {
+      const link = document.createElement('a');
+      link.className = 'ec-card';
+      link.href = calc.path;
+      link.innerHTML = `<h3 class="ec-card-title"></h3><p class="ec-card-summary"></p>`;
+      link.querySelector('.ec-card-title').textContent = calc.name;
+      link.querySelector('.ec-card-summary').textContent = calc.summary;
+      const item = document.createElement('li');
+      item.append(link);
+      return item;
+    }
+
+    try {
+      const manifest = await (await fetch('manifest.json')).json();
+      root.innerHTML = '';
+      for (const category of manifest.categories) {
+        const heading = document.createElement('h2');
+        heading.className = 'ec-section-heading';
+        heading.textContent = CATEGORY_NAMES[category] || category;
+        const grid = document.createElement('ul');
+        grid.className = 'ec-grid';
+        for (const calc of manifest.calculators.filter((c) => c.category === category)) grid.append(card(calc));
+        root.append(heading, grid);
+      }
+      if (manifest.planned && manifest.planned.length) {
+        const heading = document.createElement('h2');
+        heading.className = 'ec-section-heading';
+        heading.textContent = 'Planned';
+        const list = document.createElement('ul');
+        list.className = 'ec-grid';
+        for (const planned of manifest.planned) {
+          const item = document.createElement('li');
+          item.className = 'ec-card';
+          item.innerHTML = '<h3 class="ec-card-title"></h3><p class="ec-card-summary"></p>';
+          item.querySelector('.ec-card-title').textContent = planned.name;
+          item.querySelector('.ec-card-summary').textContent = `${CATEGORY_NAMES[planned.category] || planned.category} · ${planned.summary}`;
+          list.append(item);
+        }
+        root.append(heading, list);
+      }
+    } catch (error) {
+      root.querySelector('p').textContent = `Could not load manifest.json (${error.message}). Serve this folder over http: node serve.js`;
+    }
+  </script>
+</body>
+</html>

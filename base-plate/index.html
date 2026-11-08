@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Column base plate calculator (AISC Design Guide 1) — Engineering calculators</title>
+  <meta name="description" content="Size a steel column base plate for a concentric axial load by AISC Design Guide 1 (LRFD): bearing area, plate N × B, cantilevers and required thickness.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Structural</span>
+    <h1 class="ec-title">Column base plate calculator (AISC Design Guide 1)</h1>
+    <p class="ec-summary">Column base plate for a concentric axial load by AISC Design Guide 1 (LRFD): bearing area, plate size N by B, cantilevers and required thickness.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A base plate spreads a steel column&#39;s load over the concrete below. It must be large enough for the concrete to take the bearing pressure, and thick enough not to bend where it overhangs the column. For a W12×96 column carrying 700 kips on 3 ksi concrete, AISC Design Guide 1 gives a 22 × 20 in plate, 1.60 in thick in A36 steel.</p>
+<p>This calculator follows the Design Guide 1 procedure for a concentric axial load in LRFD. It finds the required bearing area, sizes the plate with the Guide&#39;s near-optimum rule, checks bearing with the confinement of a larger pedestal or footing, and computes the cantilevers m, n and λn&#39; and the required thickness. It is for structural engineers, detailers and students designing column bases.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Bearing on concrete (AISC 360-16 J8), with φc = 0.65:</p>
+<pre class="ec-formula" tabindex="0"><code>φc Pp = φc × 0.85 f&#39;c A1 √(A2/A1) ≤ φc × 1.7 f&#39;c A1
+A1,req = Pu / (φc 0.85 f&#39;c)        when A2 = A1</code></pre>
+<p>Plate dimensions:</p>
+<pre class="ec-formula" tabindex="0"><code>Δ = (0.95 d − 0.8 bf) / 2,   N ≈ √A1,req + Δ,   B = A1,req / N</code></pre>
+<p>Cantilevers and thickness, with φ = 0.90:</p>
+<pre class="ec-formula" tabindex="0"><code>m = (N − 0.95 d)/2,   n = (B − 0.8 bf)/2
+X = 4 d bf / (d + bf)² × Pu / (φc Pp),   λ = 2√X / (1 + √(1 − X)) ≤ 1
+λn&#39; = λ √(d bf) / 4,   l = max(m, n, λn&#39;)
+t_min = l √( 2 Pu / (0.9 Fy B N) )</code></pre>
+<ul>
+<li>Pu — factored axial load; d, bf — column depth and flange width</li>
+<li>A1 — plate area; A2 — the largest concrete area similar to and concentric with the plate</li>
+<li>f&#39;c — concrete strength; Fy — plate yield strength</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The load is a concentric compression on a wide-flange column. Moments, uplift, shear and anchor rods need the other parts of Design Guide 1.</li>
+<li>Pu must come from the LRFD load combinations. Allowable stress design uses different factors and is not covered.</li>
+<li>The plate is rounded up to whole inches or 10 mm, then checked again. A pedestal that is not the same shape as the plate can need a slightly larger plate, which the page finds.</li>
+<li>Grout, pedestal reinforcement and the weld between column and plate are not designed here.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>This is Design Guide 1, Example 4.1. A W12×96 column (d = 12.7 in, bf = 12.2 in) carries Pu = 700 kips. The plate covers the whole concrete support, so A2 = A1. f&#39;c = 3 ksi and the plate is A36.</p>
+<ol>
+<li>Required area: 700 / (0.65 × 0.85 × 3) = 422 in².</li>
+<li>Δ = (0.95 × 12.7 − 0.8 × 12.2) / 2 = 1.15 in, so N = √422 + 1.15 = 21.7, rounded up to 22.00 in.</li>
+<li>B = 422 / 22 = 19.2, rounded up to 20.00 in.</li>
+<li>Bearing strength: 0.65 × 0.85 × 3 × 440 = 729 kip, more than 700 kips.</li>
+<li>Cantilevers: m = (22 − 12.07)/2 = 4.97 in, n = (20 − 9.76)/2 = 5.12 in, λn&#39; = 3.11 in. n governs.</li>
+<li>Thickness: 5.12 × √(2 × 700 / (0.9 × 36 × 22 × 20)) = 1.60 in.</li>
+</ol>
+<p>On a large footing, where A2 is at least four times A1, the same column needs only a 16 × 14 in plate, 1.37 in thick.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I size a base plate?</summary>
+<p>Divide the factored load by the design bearing stress of the concrete for the plate area. Then choose N and B so the overhangs m and n are about equal, and compute the thickness from the largest overhang.</p>
+</details>
+<details class="ec-faq"><summary>What is A2 in base plate design?</summary>
+<p>The area of the supporting concrete that is geometrically similar to the plate and centred on it. A larger area confines the concrete under the plate and raises its bearing strength, up to twice the unconfined value.</p>
+</details>
+<details class="ec-faq"><summary>What does λn&#39; represent?</summary>
+<p>The cantilever of the plate between the column flanges, from Thornton&#39;s yield-line analysis. It governs for small plates that barely extend past the column.</p>
+</details>
+<details class="ec-faq"><summary>Why 0.95 d and 0.8 bf?</summary>
+<p>The plate is assumed to bend about lines just inside the column edges, at 95 % of the depth and 80 % of the flange width. These are the critical sections of Design Guide 1.</p>
+</details>
+<details class="ec-faq"><summary>What grade of steel is used for base plates?</summary>
+<p>ASTM A36, with Fy = 36 ksi, is a common plate grade in the US, and S275 or S355 in Europe. Enter the yield strength of the plate actually used.</p>
+</details>
+<details class="ec-faq"><summary>Does this work for ASD?</summary>
+<p>No. This page uses LRFD factors. Design Guide 1 gives the ASD equations, with Ω = 2.31 for bearing on concrete and 1.67 for plate bending.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../load-combinations/index.html">Load combinations</a> — the factored load Pu.</li>
+<li><a href="../column-buckling/index.html">Column buckling</a> — capacity of the column above the plate.</li>
+<li><a href="../concrete-column/index.html">Concrete column calculator</a> — the concrete pedestal.</li>
+<li><a href="../footing-size/index.html">Footing size calculator</a> — the footing under the pedestal.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

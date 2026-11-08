@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amps to watts — Engineering calculators</title>
+  <meta name="description" content="Watts from amps and voltage for DC, single-phase and three-phase circuits, with the power factor: what a circuit, fuse or socket can supply.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Amps to watts</h1>
+    <p class="ec-summary">Convert amps to watts for DC, single-phase and three-phase circuits, with the apparent power in VA.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A socket, fuse, breaker or extension lead is rated in amps. Whether it can run a given appliance depends on the watts that current carries, and that depends on the voltage. The same 13 A that powers a 3 kW heater in a British home would run less than half that from a North American 120 V outlet.</p>
+<p>This calculator turns amps into watts for DC, single-phase and three-phase circuits. For AC it includes the power factor, because motors and some electronic loads draw more current than their real power alone would need. It is for homeowners, electricians, event and site power planners, and engineers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Power from current:</p>
+<pre class="ec-formula" tabindex="0"><code>DC:            P = V × I
+single-phase:  P = V × I × cos φ
+three-phase:   P = √3 × V × I × cos φ</code></pre>
+<p>Apparent power:</p>
+<pre class="ec-formula" tabindex="0"><code>S = P / cos φ</code></pre>
+<ul>
+<li>I — current, A</li>
+<li>V — voltage, V (line-to-line for three-phase)</li>
+<li>cos φ — power factor (1 for resistive loads)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The current is the RMS current in each line. For three-phase the load is balanced, and the voltage is line-to-line.</li>
+<li>With a power factor below 1, the circuit carries more volt-amperes than real watts. The circuit&#39;s limit is set by the current, not the watts.</li>
+<li>A circuit&#39;s rated current is its maximum. Breakers in North America are normally loaded continuously to no more than 80 % of their rating.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>How much power can a 13 A socket supply on a 230 V supply?</p>
+<ol>
+<li>A heater or kettle has a power factor of 1.</li>
+<li>Power: P = V × I = 230 × 13 = 2 990 W, about 3 kW.</li>
+<li>So two 2 kW heaters on one socket, 4 kW in all, would overload it.</li>
+</ol>
+<p>On a 15 A, 120 V circuit, the most is 120 × 15 = 1 800 W, and 1 440 W for a continuous load at 80 %.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many watts is 10 amps?</summary>
+<p>At 230 V, 2 300 W; at 120 V, 1 200 W; at 12 V DC, 120 W.</p>
+</details>
+<details class="ec-faq"><summary>How many watts can a 16 A circuit supply?</summary>
+<p>At 230 V single-phase, 3 680 W. At 400 V three-phase with unity power factor, 11.1 kW.</p>
+</details>
+<details class="ec-faq"><summary>Why does the power factor reduce the watts?</summary>
+<p>With a power factor below 1, part of the current flows back and forth without doing work. The circuit still carries that current, so the useful watts are lower for the same amps.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert amps to watts for three-phase?</summary>
+<p>Multiply √3 by the line voltage, the current and the power factor. 32 A at 400 V and 0.9 is 19.95 kW.</p>
+</details>
+<details class="ec-faq"><summary>Is a VA the same as a watt?</summary>
+<p>Only at a power factor of 1. UPS units and generators are rated in VA, because their limit is the current.</p>
+</details>
+<details class="ec-faq"><summary>How many amps can a household circuit take?</summary>
+<p>That depends on the local rules and the cable. Common values are 13 A or 16 A per socket in Europe, and 15 A or 20 A per circuit in North America.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../watts-to-amps/index.html">Watts to amps</a> — the conversion the other way.</li>
+<li><a href="../amps-to-kw/index.html">Amps to kW</a> — larger three-phase loads in kilowatts.</li>
+<li><a href="../ohms-law/index.html">Ohm&#39;s law and electrical power</a> — voltage, current, resistance and power together.</li>
+<li><a href="../cable-sizing/index.html">Cable sizing and voltage drop</a> — the cable that carries this current.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

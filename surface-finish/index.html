@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Surface finish converter (Ra, RMS, Rz, N grades) — Engineering calculators</title>
+  <meta name="description" content="Convert surface roughness between Ra in µm and µin, RMS, Rz and ISO N grades, and the theoretical turning finish from feed and nose radius.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Manufacturing</span>
+    <h1 class="ec-title">Surface finish converter (Ra, RMS, Rz, N grades)</h1>
+    <p class="ec-summary">Convert roughness between Ra in µm and µin, RMS, Rz and ISO N grades, and find the theoretical finish of a turned surface from feed and nose radius.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Surface roughness is the fine texture a machining process leaves. The most common measure is Ra, the average height of the profile from its centre line. Drawings in the US give it in microinches, metric drawings in micrometres. An Ra of 63 µin is 1.6 µm, which is grade N7 in the old ISO numbering. RMS is a slightly larger average, about 1.11 × Ra.</p>
+<p>This calculator converts a roughness value between Ra in µm and µin, RMS (Rq), an estimate of Rz and the N grade numbers. It also gives the theoretical finish of a turned surface from the feed and the tool nose radius. It is for machinists, inspectors and designers reading drawings from both systems.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Conversions:</p>
+<pre class="ec-formula" tabindex="0"><code>Ra [µin] = Ra [µm] × 39.37
+Rq ≈ 1.11 × Ra          (sine profile: Rq/Ra = π / (2√2))
+Rz ≈ 4 × Ra             (triangular profile)</code></pre>
+<p>Grade numbers (ISO 1302, previous edition):</p>
+<pre class="ec-formula" tabindex="0"><code>N1 = 0.025 µm, N2 = 0.05, … N7 = 1.6, N8 = 3.2, N9 = 6.3 … N12 = 50 µm</code></pre>
+<p>Theoretical turning finish:</p>
+<pre class="ec-formula" tabindex="0"><code>R_t = f² / (8 r)
+Ra = f² / (18√3 r) ≈ 0.0321 f² / r</code></pre>
+<ul>
+<li>Ra — arithmetic mean roughness; Rq — root mean square roughness (RMS)</li>
+<li>Rz — maximum height of the profile; R_t — peak-to-valley height of the ideal turned profile</li>
+<li>f — feed per revolution; r — tool nose radius</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Ra, RMS and Rz measure different things. Their ratios depend on the shape of the profile, so converted RMS and Rz values are estimates.</li>
+<li>The RMS factor 1.11 is exact for a sine wave. The Rz factor 4 is exact for a regular triangular profile. An ideal turned profile has an Rz to Ra ratio of 3.9.</li>
+<li>Grade numbers are the previous ISO 1302 grades. The current standard writes the Ra value itself on the drawing, but many shops still use N grades.</li>
+<li>The turning formula is the geometric ideal for a round-nosed tool. Tool wear, built-up edge, chatter and soft, tearing materials make the real finish rougher.</li>
+<li>The nose must form the whole surface, so the feed must be smaller than twice the nose radius. Above the nose radius, a warning shows.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A part is turned at a feed of 0.2 mm/rev with a 0.8 mm nose radius insert. What finish can it reach?</p>
+<ol>
+<li>Peak-to-valley height: 0.2² / (8 × 0.8) = 0.04 / 6.4 = 6.25 µm.</li>
+<li>Ra: 0.04 / (31.18 × 0.8) = 1.60 µm.</li>
+<li>In microinches: 1.60 × 39.37 = 63.1 µin.</li>
+<li>RMS: 1.60 × 1.11 = 1.78 µm.</li>
+<li>Nearest grade: N7.</li>
+</ol>
+<p>Halving the feed to 0.1 mm/rev would cut the theoretical Ra to a quarter, 0.40 µm.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I convert Ra from µm to µin?</summary>
+<p>Multiply by 39.37. 0.8 µm is 31.5 µin, usually written as 32 µin on drawings.</p>
+</details>
+<details class="ec-faq"><summary>Is RMS the same as Ra?</summary>
+<p>No. RMS weights high peaks more, so it is about 11 % higher than Ra for a regular profile.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert Ra to Rz?</summary>
+<p>Only approximately. A factor of about 4 suits regular machined profiles, but the true ratio depends on the surface. Measure Rz when the drawing asks for it.</p>
+</details>
+<details class="ec-faq"><summary>What does N7 mean on a drawing?</summary>
+<p>It is the old ISO grade for Ra 1.6 µm, or 63 µin. Each step up roughly doubles the roughness.</p>
+</details>
+<details class="ec-faq"><summary>How do I get a better finish when turning?</summary>
+<p>Use a larger nose radius or a smaller feed: Ra falls with the feed squared and rises with one over the radius. A sharp tool and enough cutting speed avoid built-up edge.</p>
+</details>
+<details class="ec-faq"><summary>Why is my measured finish rougher than the formula?</summary>
+<p>The formula is the ideal geometry only. Tool wear, vibration, built-up edge and the material tearing add to it.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../speeds-feeds/index.html">Speeds and feeds calculator</a> — the feed and speed of the cut.</li>
+<li><a href="../chip-load/index.html">Chip load calculator</a> — milling feed per tooth.</li>
+<li><a href="../machining-time/index.html">Machining time calculator</a> — the time a finishing pass takes.</li>
+<li><a href="../tolerance-stack/index.html">Tolerance stack-up</a> — tolerances of the parts being finished.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

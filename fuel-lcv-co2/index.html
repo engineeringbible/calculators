@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fuel net specific energy and CO₂ factor — Engineering calculators</title>
+  <meta name="description" content="ISO 8217 net and gross specific energy from density, water, ash and sulphur; CO₂ factor by IMO grade or carbon content; g CO₂/MJ.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Fuel net specific energy and CO₂ factor</h1>
+    <p class="ec-summary">From the bunker delivery note to the numbers performance and emissions work needs: net and gross specific energy by the ISO 8217 Annex H correlations for residual and distillate fuels, energy per tonne and per litre, the CO₂ factor by IMO grade or from a measured carbon content, the tank-to-wake intensity in g CO₂/MJ and the mass scaling to the 42 700 kJ/kg reference fuel of shop tests and baselines.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A bunker delivery note gives density, water, ash and sulphur, not the energy content, yet every fuel-consumption comparison and every emissions report needs the calorific value. ISO 8217 provides correlations that estimate the net and gross specific energy from those four numbers to about ±0.2 MJ/kg, good enough for performance analysis and for scaling shop-test consumption to the fuel actually burned. This calculator evaluates them for residual and distillate fuels, adds the energy per litre, attaches the CO₂ factor (IMO grade default or from a measured carbon content), and derives the tank-to-wake intensity in g CO₂/MJ that FuelEU Maritime uses.</p>
+<p>It is for performance engineers normalising consumption to a reference fuel, for emissions reporting (MRV, ETS, CII), for bunker buyers comparing energy per dollar, and for students of marine fuels.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Residual (H.1):   Q_net = (46.704 − 8.802 ρ²·10⁻⁶ + 3.167 ρ·10⁻³)[1 − 0.01(w_w + w_a + w_s)] + 0.0942 w_s − 0.02449 w_w
+Distillate (H.3): Q_net = (46.423 − 8.792 ρ²·10⁻⁶ + 3.170 ρ·10⁻³)[1 − 0.01(w_w + w_a + w_s)] + 0.0942 w_s − 0.02449 w_w
+Gross (H.2/H.4):  Q_gross = (52.190 − 8.802 ρ²·10⁻⁶)[…] + 0.0942 w_s   /   (51.916 − 8.792 ρ²·10⁻⁶)[…] + 0.0942 w_s
+MJ/L = Q_net ρ15/1000,   C_F = w_C × 44.0095/12.011 (or IMO grade value),   g CO₂/MJ = C_F × 1000/Q_net
+mass of this fuel per tonne of 42 700 kJ/kg reference fuel = 42 700/Q_net</code></pre>
+<p>ρ in kg/m³ at 15 °C, w in % m/m, Q in MJ/kg.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Petroleum fuels only; biofuels, methanol, LNG and LPG need their own values.</li>
+<li>±0.2 MJ/kg correlation accuracy; a calorimeter test supersedes it.</li>
+<li>CO₂ factor assumes complete combustion; CH₄, N₂O and well-to-wake are outside this page.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A VLSFO delivered at 991 kg/m³, 0.2 % water, 0.05 % ash, 0.5 % sulphur.</p>
+<ol>
+<li>Base term 46.704 − 8.644 + 3.138 = 41.198 MJ/kg; × (1 − 0.0075) = 40.889; + 0.047 − 0.005 → Q_net 40.93 MJ/kg, Q_gross 43.27 MJ/kg.</li>
+<li>Energy 40.9 GJ/t and 40.6 MJ/L.</li>
+<li>IMO grade factor 3.151 t CO₂/t (implies 86.0 % carbon) → 77.0 g CO₂/MJ.</li>
+<li>One tonne of 42 700 kJ/kg reference fuel equals 1.043 t of this fuel: a shop-test 175 g/kWh becomes 182.6 g/kWh on this bunker.</li>
+</ol>
+<p>An MGO at 850 kg/m³ with 0.05 % water, 0.01 % ash and 0.1 % sulphur gives 42.71 MJ/kg, 36.3 MJ/L and, with the 3.206 grade factor, 75.1 g CO₂/MJ: more energy per kilogram, less per litre, slightly less CO₂ per unit energy.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why is the net value the one to use?</summary>
+<p>The water formed in combustion leaves the engine as vapour; its latent heat (the gross − net difference, about 2.3 MJ/kg) is never recovered, so engine efficiency and SFOC refer to the net value.</p>
+</details>
+<details class="ec-faq"><summary>Why does sulphur add energy in the formula?</summary>
+<p>Sulphur burns to SO₂ and contributes heat, less than the hydrocarbon it replaces; the small positive term corrects the dilution term that treated it as inert.</p>
+</details>
+<details class="ec-faq"><summary>How accurate is this versus a lab test?</summary>
+<p>Within about ±0.2 MJ/kg (0.5 %) for conventional petroleum fuels; blends with bio-components or unusual chemistry can deviate more.</p>
+</details>
+<details class="ec-faq"><summary>Grade factor or carbon content?</summary>
+<p>The grade factor is what IMO DCS and CII use; the EU MRV/ETS accepts a fuel-specific factor from a laboratory carbon analysis, which can differ by 1–2 %.</p>
+</details>
+<details class="ec-faq"><summary>Why scale to 42 700 kJ/kg?</summary>
+<p>Shop tests (ISO 3046) and performance baselines (ISO 19030) quote consumption for that reference fuel; multiplying by 42 700/Q_net gives the mass of the real fuel.</p>
+</details>
+<details class="ec-faq"><summary>Does temperature change the energy per litre?</summary>
+<p>Yes, through density; use the bunker-quantity calculator&#39;s volume correction factor for the delivery temperature.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../fuel-blend-heating/index.html">Fuel blend viscosity and heating</a> — the viscosity side of the same fuel.</li>
+<li><a href="../bunker-quantity/index.html">Bunker quantity and density correction</a> — mass from sounding and temperature.</li>
+<li><a href="../cii-rating/index.html">CII rating</a> — where the CO₂ factor goes.</li>
+<li><a href="../eu-ets-fueleu/index.html">EU ETS and FuelEU Maritime</a> — well-to-wake intensity and allowances.</li>
+<li><a href="../sfoc-iso3046-correction/index.html">Engine power and SFOC to ISO 3046 conditions</a> — SFOC on the reference fuel.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

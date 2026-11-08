@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Closed traverse calculator (compass rule) — Engineering calculators</title>
+  <meta name="description" content="Latitudes and departures of a closed traverse from bearings and distances, misclosure, precision ratio, Bowditch adjustment and adjusted coordinates.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Closed traverse calculator (compass rule)</h1>
+    <p class="ec-summary">Closed traverse from bearings or azimuths and distances: latitudes, departures, misclosure, precision ratio, compass rule adjustment and coordinates.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A closed traverse is a chain of survey lines that returns to its starting point. Each line has a direction and a length, so it moves north or south by its latitude and east or west by its departure. On a perfect loop both sums are zero. In the field they never are: a four-leg traverse of 1 901 ft might miss closing by 0.08 ft, a precision of about 1 : 23 000.</p>
+<p>This calculator takes the legs as bearings or azimuths with distances. It computes the latitudes and departures, the misclosure and the precision ratio. It then distributes the error by the compass rule and lists the adjusted coordinates and the enclosed area. It is for land surveyors, engineering students and anyone checking a boundary or control traverse.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Latitude and departure of each leg, with the azimuth Az measured clockwise from north:</p>
+<pre class="ec-formula" tabindex="0"><code>Lat = L × cos Az,    Dep = L × sin Az</code></pre>
+<p>Misclosure and precision:</p>
+<pre class="ec-formula" tabindex="0"><code>e = √( (ΣLat)² + (ΣDep)² )
+precision = 1 : (ΣL / e)</code></pre>
+<p>Compass (Bowditch) rule corrections for leg i:</p>
+<pre class="ec-formula" tabindex="0"><code>C_lat,i = −ΣLat × L_i / ΣL,    C_dep,i = −ΣDep × L_i / ΣL
+N_i+1 = N_i + Lat_i + C_lat,i,    E_i+1 = E_i + Dep_i + C_dep,i</code></pre>
+<ul>
+<li>L — horizontal length of a leg; ΣL — total length of the traverse</li>
+<li>A bearing such as S 75°30′ E is the azimuth 180° − 75°30′ = 104°30′</li>
+<li>The area of the adjusted polygon comes from the coordinate (shoelace) formula</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The loop must return to its starting point, and the angles must already be balanced. Distribute the angular misclosure before you enter the bearings.</li>
+<li>The compass rule spreads the error in proportion to leg length. It suits work where angles and distances have similar precision. Least squares is the rigorous method.</li>
+<li>All distances must be horizontal and in the same unit. The coordinates and the area come out in that unit.</li>
+<li>A misclosure above 1 % of the length is refused. That size of error means a missing, reversed or mistyped leg, not field error.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A four-sided lot is traversed from point 1 at N 5 000.00, E 5 000.00 ft. The legs are N 26°08′ E 285.43 ft, S 75°30′10″ E 582.10 ft, S 23°30′20″ W 442.05 ft and N 60°06′20″ W 591.62 ft.</p>
+<ol>
+<li>Total length: 285.43 + 582.10 + 442.05 + 591.62 = 1 901.20 ft.</li>
+<li>Leg 1: latitude 285.43 × cos 26°08′ = 256.251 ft, departure 285.43 × sin 26°08′ = 125.721 ft. The other legs follow the same way.</li>
+<li>Sums: ΣLat = +0.028 ft and ΣDep = +0.078 ft.</li>
+<li>Linear misclosure: √(0.028² + 0.078²) = 0.083 ft. Precision: 1 901.20 / 0.08332 = 22 818, so 1 : 22 818.</li>
+<li>Compass rule for leg 1: latitude correction −0.028 × 285.43 / 1 901.20 = −0.004 ft, departure correction −0.012 ft.</li>
+<li>Adjusted point 2: N 5 256.247, E 5 125.709 ft. The last leg lands exactly on point 1.</li>
+</ol>
+<p>The adjusted lot encloses 211 322 ft², or 4.851 acres.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What are latitude and departure?</summary>
+<p>The north–south and east–west components of a survey line. North and east are positive, south and west negative.</p>
+</details>
+<details class="ec-faq"><summary>What is the precision of a traverse?</summary>
+<p>The total length divided by the linear misclosure, written as 1 : N. A larger N means a better survey. The value required comes from the survey standard or the contract.</p>
+</details>
+<details class="ec-faq"><summary>What is the compass rule?</summary>
+<p>A way to distribute a traverse&#39;s misclosure. Each leg&#39;s latitude and departure are corrected in proportion to its length, so long legs take more of the error.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between the compass rule and the transit rule?</summary>
+<p>The transit rule distributes the error in proportion to each latitude and departure rather than each length. It assumes the angles are more precise than the distances.</p>
+</details>
+<details class="ec-faq"><summary>How do I enter an azimuth instead of a bearing?</summary>
+<p>Type the angle from north, clockwise, with no letters, such as 104.5 or 104°30′. Bearings need N or S in front and E or W at the end.</p>
+</details>
+<details class="ec-faq"><summary>Why must the angles be balanced first?</summary>
+<p>The sum of the interior angles of a closed traverse must equal (n − 2) × 180°. Distribute that angular error first, then compute the bearings.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../area-coordinates/index.html">Polygon area from coordinates</a> — area, perimeter and centroid of the adjusted points.</li>
+<li><a href="../latlon-utm/index.html">Latitude/longitude to UTM converter</a> — put the traverse on a map grid.</li>
+<li><a href="../slope/index.html">Slope calculator</a> — grades between surveyed points.</li>
+<li><a href="../earthwork-volume/index.html">Earthwork volume</a> — cut and fill on the surveyed site.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

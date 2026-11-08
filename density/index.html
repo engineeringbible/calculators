@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Density calculator (mass, volume and density) — Engineering calculators</title>
+  <meta name="description" content="Density, mass or volume from the other two, with reference densities of water, solvents, fuels, gases, metals, timber, concrete and glass.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Process</span>
+    <h1 class="ec-title">Density calculator (mass, volume and density)</h1>
+    <p class="ec-summary">Density, mass or volume from the other two, with reference densities for water, solvents, fuels, gases, metals, timber, concrete and glass.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Density is the mass of a material per unit volume. You calculate it by dividing the mass by the volume: a 1 L bottle holding 0.998 kg of water shows a density of 998 kg/m³. Turned around, the same relation gives the mass of a known volume, or the volume a known mass fills. One cubic metre of carbon steel weighs 7 850 kg, the same volume of ethanol 789 kg.</p>
+<p>This calculator solves for density, mass or volume from the other two. It has a library of reference densities for water, solvents, fuels, common gases, metals, structural timber, concrete and glass, and it gives the specific gravity as well. It is for engineers, technicians and students who need a quick mass or volume for a tank, a shipment or a part.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Density and its two rearrangements:</p>
+<pre class="ec-formula" tabindex="0"><code>ρ = m / V
+m = ρ × V
+V = m / ρ</code></pre>
+<p>Specific gravity against water at 4 °C:</p>
+<pre class="ec-formula" tabindex="0"><code>SG = ρ / 999.972 kg/m³</code></pre>
+<ul>
+<li>ρ — density, kg/m³ (1 g/cm³ = 1 000 kg/m³, 1 lb/ft³ = 16.018 kg/m³)</li>
+<li>m — mass, kg</li>
+<li>V — volume, m³ (1 m³ = 1 000 L = 264.17 US gal)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Liquids in the library are at 20 °C unless the label says otherwise. Warming lowers their density by about 0.02 % per kelvin for water and about 0.1 % per kelvin for solvents and fuels.</li>
+<li>Gases are at 0 °C and 1 atm. Their density changes in proportion to the absolute pressure and inversely to the absolute temperature, so at 20 °C they are about 7 % lighter.</li>
+<li>Fuels, timber and concrete vary from batch to batch. Petrol lies between 720 and 775 kg/m³ and diesel between 820 and 845 kg/m³ at 15 °C. Timber values are means at about 12 % moisture.</li>
+<li>Alloys vary by a percent or two with composition. Use a measured or certified value for weighing, custody transfer or structural checks.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A drum holds 200 L of ethanol at 20 °C. What is the mass of the ethanol?</p>
+<ol>
+<li>Density of ethanol at 20 °C: 789.3 kg/m³.</li>
+<li>Volume: 200 L = 0.2 m³.</li>
+<li>Mass: 789.3 × 0.2 = 157.9 kg.</li>
+<li>Specific gravity: 789.3 / 999.972 = 0.789.</li>
+</ol>
+<p>The drum contents weigh about 158 kg, or 348 lb, plus the drum itself.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do you calculate density?</summary>
+<p>Divide the mass by the volume. A 2 kg block that displaces 0.74 L of water has a density of 2 / 0.00074 = 2 700 kg/m³, which is aluminium.</p>
+</details>
+<details class="ec-faq"><summary>What is the density of water?</summary>
+<p>999.97 kg/m³ at 4 °C, where it is densest, and 998.2 kg/m³ at 20 °C. In US units that is 62.4 lb/ft³ or 8.33 lb per US gallon.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert g/cm³ to kg/m³?</summary>
+<p>Multiply by 1 000. Steel at 7.85 g/cm³ is 7 850 kg/m³, and 1 g/cm³ is also 1 kg/L.</p>
+</details>
+<details class="ec-faq"><summary>How do I find the mass from density and volume?</summary>
+<p>Multiply them, with matching units. 3 m³ of concrete at 2 400 kg/m³ has a mass of 7 200 kg.</p>
+</details>
+<details class="ec-faq"><summary>Why does the density of a gas depend on pressure?</summary>
+<p>Gas molecules are far apart, so compressing the gas packs more of them into the same volume. Doubling the absolute pressure doubles the density at the same temperature.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between density and specific gravity?</summary>
+<p>Density has units, such as kg/m³. Specific gravity is the density divided by that of water, so it has no units: 0.789 for ethanol and 7.85 for steel.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../specific-gravity/index.html">Specific gravity</a> — SG, API gravity and Baumé degrees from density.</li>
+<li><a href="../mass-flow/index.html">Mass flow rate</a> — mass and volume flow with the density.</li>
+<li><a href="../metal-weight/index.html">Steel and metal weight</a> — weight of plates, bars and sections.</li>
+<li><a href="../tank-volume/index.html">Tank volume</a> — the volume of a tank to multiply by the density.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

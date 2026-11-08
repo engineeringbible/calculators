@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Latent and sensible heat calculator (air and water) — Engineering calculators</title>
+  <meta name="description" content="Sensible, latent and total heat of an airstream by psychrometrics and the 1.08 and 4840 rules, SHR and coil load; and the heat to melt or boil water.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">HVAC</span>
+    <h1 class="ec-title">Latent and sensible heat calculator (air and water)</h1>
+    <p class="ec-summary">Sensible, latent and total heat of an airstream, exact and by the 1.08 and 4840 rules, with SHR and coil load; and heat to melt or boil water.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Sensible heat changes the temperature of air or water. Latent heat changes its state, such as condensing moisture out of air or melting ice, without changing the temperature. A cooling coil does both: 1 000 cfm cooled from 80 °F dry bulb and 67 °F wet bulb to 55/54 °F removes 26 440 Btu/h of sensible heat and 12 040 Btu/h of latent heat.</p>
+<p>This calculator splits the load of an airstream between two states into sensible and latent heat. It uses exact psychrometric enthalpies and also shows the 1.08, 4 840 and 4.5 rules. It gives the sensible heat ratio, the coil load in tons and the condensate. A second mode gives the heat to warm, melt, boil, condense or freeze water, with the latent heats of 334 and 2 257 kJ/kg. It is for HVAC engineers, technicians and students.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Exact, per kilogram of dry air (ASHRAE Fundamentals Ch. 1):</p>
+<pre class="ec-formula" tabindex="0"><code>ṁ = Q / v1
+Q_total = ṁ (h1 − h2),   h = 1.006 t + W (2 501 + 1.86 t)
+Q_latent = ṁ (W1 − W2)(2 501 + 1.86 t1)
+Q_sensible = ṁ (1.006 + 1.86 W2)(t1 − t2)
+SHR = Q_sensible / Q_total</code></pre>
+<p>Standard-air rules, IP units (Btu/h, cfm, °F, lb/lb, Btu/lb):</p>
+<pre class="ec-formula" tabindex="0"><code>Q_s = 1.08 × cfm × ΔT     (1.10 in ASHRAE Ch. 18)
+Q_l = 4 840 × cfm × ΔW
+Q_t = 4.5 × cfm × Δh</code></pre>
+<p>SI equivalents per L/s: 1.21 (or 1.23) W/K, 3 010 W per kg/kg, 1.20 W per kJ/kg.</p>
+<p>Water at atmospheric pressure:</p>
+<pre class="ec-formula" tabindex="0"><code>Q = m [c_ice ΔT_ice + L_f + c_w ΔT_w + L_v + c_steam ΔT_steam]</code></pre>
+<ul>
+<li>Q — airflow at the entering state; v1 — its specific volume per kg of dry air</li>
+<li>W — humidity ratio; h — enthalpy per kg of dry air; t — dry bulb temperature</li>
+<li>L_f = 334 kJ/kg, L_v = 2 257 kJ/kg; c — specific heats of ice, water and steam</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The airflow is measured at the entering condition. The rules assume standard air at 0.075 lb/ft³, so they overstate the heat for warm air or at altitude.</li>
+<li>The exact split takes the latent heat as removing the moisture at the entering temperature. The sensible heat is the cooling of the drier air. The two add up exactly to the total.</li>
+<li>The coil load subtracts the small enthalpy of the condensate leaving the coil.</li>
+<li>Water changes state at 0 °C and 100 °C, which holds at sea-level pressure. The specific heats are constant, and all five values can be changed.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A cooling coil handles 1 000 cfm. Air enters at 80 °F dry bulb and 67 °F wet bulb and leaves at 55 °F dry bulb and 54 °F wet bulb, at sea level.</p>
+<ol>
+<li>Entering air: W1 = 0.01117 lb/lb, h1 = 55.31 kJ/kg, v1 = 13.85 ft³/lb.</li>
+<li>Leaving air: W2 = 0.00863 lb/lb, h2 = 34.65 kJ/kg.</li>
+<li>Dry air flow: 1 000 / 13.85 = 72.2 lb/min, or 0.546 kg/s.</li>
+<li>Latent: 0.546 × 0.00253 × (2 501 + 1.86 × 26.7) = 3.53 kW, or 12 040 Btu/h.</li>
+<li>Sensible: 0.546 × (1.006 + 1.86 × 0.00863) × 13.9 = 7.75 kW, or 26 440 Btu/h.</li>
+<li>Total: 11.28 kW, or 38 480 Btu/h. SHR = 26 440 / 38 480 = 0.69.</li>
+<li>Coil load less the condensate enthalpy: 3.19 TR, removing 11.0 lb/h of water.</li>
+</ol>
+<p>The 1.08 rule gives 1.08 × 1 000 × 25 = 27 000 Btu/h of sensible heat. It is 2 % high because air at 80 °F is lighter than standard air.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the difference between sensible and latent heat?</summary>
+<p>Sensible heat changes the temperature you can read on a thermometer. Latent heat changes the state, such as water vapour condensing on a coil or ice melting, at constant temperature.</p>
+</details>
+<details class="ec-faq"><summary>Where does the 1.08 in Q = 1.08 × cfm × ΔT come from?</summary>
+<p>Standard air weighs 0.075 lb/ft³ and has a specific heat of 0.24 Btu/(lb·°F). Multiply by 60 minutes an hour: 0.075 × 60 × 0.24 = 1.08.</p>
+</details>
+<details class="ec-faq"><summary>Where does 4 840 come from?</summary>
+<p>It is 0.075 lb/ft³ × 60 min/h × about 1 076 Btu/lb, the heat to condense water vapour from air. Multiply it by the cfm and the change in humidity ratio in lb/lb.</p>
+</details>
+<details class="ec-faq"><summary>What is the sensible heat ratio?</summary>
+<p>The sensible share of the total cooling load. A dry climate or a server room has an SHR near 1; a coil that removes a lot of moisture, as in the example, is about 0.7.</p>
+</details>
+<details class="ec-faq"><summary>How much heat does it take to melt ice?</summary>
+<p>334 kJ per kilogram, the same heat that warms liquid water by about 80 K. Taking 1 kg of ice at −10 °C to water at 20 °C needs 438.7 kJ.</p>
+</details>
+<details class="ec-faq"><summary>Why does boiling take so much energy?</summary>
+<p>Vaporising water needs 2 257 kJ/kg, 5.4 times the 419 kJ/kg that warms it from 0 to 100 °C. That is why steam carries so much heat.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../mixed-air-temperature/index.html">Mixed air temperature</a> — the state of the air entering the coil.</li>
+<li><a href="../dew-point/index.html">Dew point</a> — when moisture starts to condense.</li>
+<li><a href="../btu-ac-size/index.html">BTU calculator: AC size for a room</a> — the cooling capacity a room needs.</li>
+<li><a href="../specific-heat/index.html">Specific heat</a> — sensible heat of any material.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

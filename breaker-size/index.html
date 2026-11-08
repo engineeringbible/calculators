@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Breaker size calculator — Engineering calculators</title>
+  <meta name="description" content="Breaker size for a load in amps or watts, by the NEC 125 % continuous-load rule or IEC Ib ≤ In ≤ Iz, with the standard rating and a wire check.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Breaker size calculator</h1>
+    <p class="ec-summary">Find the circuit breaker size for a load under the NEC 125 % continuous-load rule or the IEC Ib ≤ In ≤ Iz rule, with the standard rating and a wire check.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A circuit breaker must be big enough not to trip under normal load, and small enough to protect the wire behind it. Under the US National Electrical Code (NEC), a load that runs for three hours or more counts as continuous, and the breaker must be rated at 125 % of it. That is why a 30 A EV charger sits on a 40 A breaker. Under IEC rules, used in Europe and most of the world, the breaker must be at least the load current and no more than the current the cable can carry.</p>
+<p>This calculator finds the design current from the load in amps or watts, applies the NEC or IEC rule, and picks the next standard breaker rating. If you enter the ampacity of the wire from your code table, it checks that the wire and the breaker match. It is for electricians, engineers and homeowners planning a new circuit.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Load current from power:</p>
+<pre class="ec-formula" tabindex="0"><code>DC:            I_b = P / V
+single-phase:  I_b = P / (V × cos φ)
+three-phase:   I_b = P / (√3 × V × cos φ)</code></pre>
+<p>NEC minimum rating, for continuous and non-continuous loads:</p>
+<pre class="ec-formula" tabindex="0"><code>I_min = 1.25 × I_continuous + I_noncontinuous</code></pre>
+<p>IEC coordination of the breaker and the cable:</p>
+<pre class="ec-formula" tabindex="0"><code>I_b ≤ I_n ≤ I_z</code></pre>
+<ul>
+<li>I_b — design (load) current; I_n — rated current of the breaker; I_z — ampacity of the cable</li>
+<li>NEC standard ratings (240.6(A)): 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200 A and up</li>
+<li>IEC preferred ratings (IEC 60898-1): 6, 8, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125 A, then 160, 200, 250, 315, 400 A and up</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The rules here are for general feeders and branch circuits. Motor circuits are sized differently: the NEC allows an inverse-time breaker up to 250 % of the motor current, and IEC practice uses motor-protection breakers.</li>
+<li>Under the NEC, heaters, EV chargers, lighting, water heaters and servers are usually continuous. Breakers listed for 100 % of their rating, used in some large panels, are not covered.</li>
+<li>The calculator does not size the wire. Wire ampacity depends on insulation, installation and temperature, and comes from NEC Table 310.16 or IEC 60364-5-52. For small copper wire, NEC 240.4(D) caps 14 AWG at 15 A, 12 AWG at 20 A and 10 AWG at 30 A.</li>
+<li>NEC 240.4(B) allows the next standard rating above the wire&#39;s ampacity, up to 800 A, except on circuits with several receptacles for cord-and-plug loads. IEC has no such allowance.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 7.2 kW Level 2 EV charger runs on 240 V single-phase. What breaker does it need under the NEC?</p>
+<ol>
+<li>Load current: I = 7 200 / 240 = 30.0 A.</li>
+<li>EV charging is a continuous load (NEC 625.41), so the minimum rating is 1.25 × 30 = 37.5 A.</li>
+<li>The next standard rating at or above 37.5 A is 40 A.</li>
+<li>The charger loads the breaker to 30 / 40 = 75 %.</li>
+</ol>
+<p>So the charger needs a 40 A breaker and a wire rated for at least 40 A, typically 8 AWG copper with 75 °C insulation.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What size breaker do I need for 30 amps?</summary>
+<p>For a continuous 30 A load under the NEC, a 40 A breaker, since 1.25 × 30 = 37.5 A. For an intermittent 30 A load, a 30 A breaker.</p>
+</details>
+<details class="ec-faq"><summary>What is the 80 % rule?</summary>
+<p>It is the same rule seen from the other side: a standard breaker may carry only 80 % of its rating continuously. A 20 A breaker can carry 16 A for three hours or more.</p>
+</details>
+<details class="ec-faq"><summary>What breaker for a 5 kW heater at 240 V?</summary>
+<p>It draws 20.8 A. As a continuous load it needs 26 A, so a 30 A breaker with 10 AWG copper wire.</p>
+</details>
+<details class="ec-faq"><summary>Can I put a bigger breaker on the same wire?</summary>
+<p>No. The breaker protects the wire, so it must not exceed the wire&#39;s ampacity, apart from the limited NEC 240.4(B) next-size-up rule. A larger breaker lets the wire overheat before it trips.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between Ib, In and Iz?</summary>
+<p>Ib is the current the load draws, In is the breaker&#39;s rating, and Iz is what the cable can carry where it is installed. IEC rules require Ib ≤ In ≤ Iz.</p>
+</details>
+<details class="ec-faq"><summary>Which breaker for a 3 kW kettle or immersion heater at 230 V?</summary>
+<p>It draws 13 A, so a 16 A MCB on 2.5 mm² cable in most installations.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../wire-size/index.html">Wire size calculator</a> — the wire size for the voltage drop.</li>
+<li><a href="../watts-to-amps/index.html">Watts to amps</a> — the current of a load.</li>
+<li><a href="../kw-to-amps/index.html">kW to amps</a> — current of large and three-phase loads.</li>
+<li><a href="../awg-wire-gauge/index.html">AWG wire gauge chart</a> — sizes and resistance of each gauge.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

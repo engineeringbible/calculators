@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>555 timer calculator — Engineering calculators</title>
+  <meta name="description" content="555 timer astable frequency, high and low times and duty cycle, monostable pulse width, or R1 and R2 for a target frequency and duty cycle.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">555 timer calculator</h1>
+    <p class="ec-summary">Frequency, high and low times and duty cycle of a 555 astable, the pulse of a monostable, or R1 and R2 for a target, with values typed like 4k7 and 10n.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The 555 timer sets its timing with resistors and a capacitor. In the astable circuit it oscillates at f = 1.44 / ((R1 + 2 R2) C). With R1 = 4.7 kΩ, R2 = 10 kΩ and C = 10 nF, it runs at about 5.84 kHz with the output high 59.5 % of the time. In the monostable circuit one trigger gives one pulse of 1.1 R1 C.</p>
+<p>This calculator gives the frequency, period, high and low times and duty cycle of an astable 555, or the pulse width of a monostable one. A design mode works backwards from a target frequency and duty cycle to R1 and R2, then picks the nearest E24 resistors. Type values as they are marked on parts, such as 4k7 or 10n. It is for hobbyists, students and engineers building oscillators, flashers, tone generators and delays.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Astable, with R1 from the supply to the discharge pin and R2 from the discharge pin to the threshold and trigger pins:</p>
+<pre class="ec-formula" tabindex="0"><code>t_H = ln 2 × (R1 + R2) × C ≈ 0.693 (R1 + R2) C
+t_L = ln 2 × R2 × C ≈ 0.693 R2 C
+f = 1 / (t_H + t_L) ≈ 1.44 / ((R1 + 2 R2) C)
+D = t_H / (t_H + t_L) = (R1 + R2) / (R1 + 2 R2)</code></pre>
+<p>Monostable, with R1 from the supply to the discharge and threshold pins:</p>
+<pre class="ec-formula" tabindex="0"><code>t = ln 3 × R1 × C ≈ 1.1 R1 C</code></pre>
+<p>Design from a target frequency f and duty cycle D:</p>
+<pre class="ec-formula" tabindex="0"><code>S = R1 + 2 R2 = 1 / (ln 2 × f × C)
+R1 = (2D − 1) × S,   R2 = (1 − D) × S</code></pre>
+<ul>
+<li>t_H, t_L — time the output is high and low, s</li>
+<li>f — frequency, Hz; D — duty cycle, the share of each period the output is high</li>
+<li>R1, R2 — timing resistors, Ω; C — timing capacitor, F</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The capacitor swings between one third and two thirds of the supply. Both thresholds scale with the supply, so the timing does not depend on the supply voltage.</li>
+<li>The calculator uses ln 2 and ln 3 exactly. The datasheet rounds them to 0.693, 1.44 and 1.1, which shifts the results by less than 0.2 %.</li>
+<li>Real circuits differ by the component tolerances. A 10 % capacitor moves the frequency by up to 10 %.</li>
+<li>Electrolytic capacitors leak, which lengthens long delays. Use film or ceramic capacitors where accuracy matters.</li>
+<li>The basic astable circuit always gives a duty cycle above 50 %, because the capacitor charges through both resistors but discharges through R2 only.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An astable 555 has R1 = 4k7, R2 = 10k and C = 10n. What frequency and duty cycle does it give?</p>
+<ol>
+<li>Values: R1 = 4.7 kΩ, R2 = 10 kΩ, C = 10 nF.</li>
+<li>High time: 0.693 × (4 700 + 10 000) × 10 × 10⁻⁹ = 101.9 µs.</li>
+<li>Low time: 0.693 × 10 000 × 10 × 10⁻⁹ = 69.3 µs.</li>
+<li>Period: 101.9 + 69.3 = 171.2 µs, so the frequency is 1 / 171.2 µs = 5.84 kHz.</li>
+<li>Duty cycle: 14 700 / 24 700 = 59.5 %.</li>
+</ol>
+<p>The datasheet form 1.44 / ((R1 + 2 R2) C) gives 5.83 kHz. The small difference comes from rounding 1 / ln 2 = 1.4427 to 1.44.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the frequency of a 555 timer?</summary>
+<p>Use f = 1.44 / ((R1 + 2 R2) C) with ohms and farads. For 4.7 kΩ, 10 kΩ and 10 nF that is about 5.8 kHz.</p>
+</details>
+<details class="ec-faq"><summary>How do I get a 50 % duty cycle from a 555?</summary>
+<p>The basic circuit cannot reach it. Put a diode across R2 so the capacitor charges through R1 only, then make R1 equal to R2.</p>
+</details>
+<details class="ec-faq"><summary>What is the pulse width of a 555 monostable?</summary>
+<p>t = 1.1 R C. A 100 kΩ resistor and a 10 µF capacitor give a pulse of 1.1 s.</p>
+</details>
+<details class="ec-faq"><summary>Does the supply voltage change the 555 frequency?</summary>
+<p>Hardly. The thresholds are fixed fractions of the supply, so the timing stays the same from 5 V to 15 V apart from small second-order effects.</p>
+</details>
+<details class="ec-faq"><summary>What do 4k7 and 10n mean?</summary>
+<p>They are marking codes with the prefix as the decimal point. 4k7 is 4.7 kΩ, 10n is 10 nF and 4u7 is 4.7 µF.</p>
+</details>
+<details class="ec-faq"><summary>Which capacitor should I use for a 555 timer?</summary>
+<p>Film or C0G ceramic capacitors keep the timing stable. Electrolytics suit long delays, but their tolerance and leakage make the time less exact.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../rc-time-constant/index.html">RC time constant</a> — the charging curve behind the 555 timing.</li>
+<li><a href="../resistors-series-parallel/index.html">Series and parallel resistors</a> — making an exact R1 or R2 from standard parts.</li>
+<li><a href="../capacitors-series-parallel/index.html">Series and parallel capacitors</a> — combining capacitors for C.</li>
+<li><a href="../led-resistor/index.html">LED resistor</a> — driving an LED from the 555 output.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

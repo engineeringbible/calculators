@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Charter party performance claim — Engineering calculators</title>
+  <meta name="description" content="Time lost and over-consumption against the warranted speed and consumption by the good-weather method, with the “about” allowances and the claim value.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Charter party performance claim</h1>
+    <p class="ec-summary">Check a time-charter speed and consumption claim by the good-weather method: the performance on the good-weather days is extrapolated to the whole passage and compared with the warranty, with the customary “about” allowances, credits for fuel saved or time gained, and the claim valued at the hire rate and bunker price.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A time charter usually warrants that the ship can make about so many knots on about so many tonnes of fuel a day in good weather. When the ship falls short, the charterers claim the hire for the time lost and the cost of the extra fuel. English law measures the shortfall by the good-weather method: the ship&#39;s speed and consumption on the good-weather days of a passage are taken as its capability, and that capability is extrapolated to the whole passage and compared with the warranty. This calculator applies the method with the customary &quot;about&quot; allowances, credits any fuel saved or time gained against the losses, and values the claim at the hire rate and bunker price.</p>
+<p>It is for charterers and owners checking a performance claim, superintendents preparing the owners&#39; answer, and performance analysts who want the arithmetic behind a weather routing company&#39;s report.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Good-weather speed:        V_gw = D_gw / T_gw − current
+Good-weather consumption:  C_gw = F_gw / (T_gw / 24)
+Allowed performance:       V_al = V_w − a_V,   C_al = C_w (1 + a_C)
+Passage times:             T_gw = D / V_gw,    T_al = D / V_al
+Time lost:                 T_gw − T_al
+Over-consumption:          C_gw T_gw / 24 − C_al T_al / 24
+Credits (gains):           time below D / (V_w + a_V),  fuel below C_w (1 − a_C) T_al / 24
+Claim:                     time lost / 24 × hire + over-consumption × bunker price   (not below zero)</code></pre>
+<ul>
+<li>D — total distance of the passage; D_gw, T_gw, F_gw — distance, steaming time and fuel in good weather; a_V, a_C — &quot;about&quot; allowances on speed (knots) and consumption (fraction).</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Good weather as the charter party defines it, typically up to Beaufort 4 and Douglas sea state 3; the good-weather performance is extrapolated to the whole passage (The Didymi, The Gas Enterprise, The Ocean Virgo).</li>
+<li>The basic formula includes the fuel burned during the time lost; other formulas have been advocated (London Arbitration 12/14).</li>
+<li>&quot;About&quot; means 0.5 knot and 5 %, both applied under a double &quot;about&quot; (The Al Bida, London Arbitration 15/07); set the allowances to zero for &quot;without about&quot; or an average-speed warranty.</li>
+<li>Gains are set off against losses (The Ioanna): fuel saved is measured from the lower end of the &quot;about&quot; range (The Gaz Energy (No 2)) and time gained from the upper end of the speed range.</li>
+<li>Currents are corrected only when entered; whether they should be when the charter party is silent is unsettled.</li>
+<li>Excluded periods, off-hire, interest and the evidence are for the charter party and the tribunal.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A ship is warranted at about 14 knots on about 30 t/day. In good weather it sailed 1200 nmi in 90 h and burned 120 t; the passage was 5000 nmi; hire is 15 000 per day and fuel costs 600 per tonne.</p>
+<ol>
+<li>Good-weather performance: 1200 / 90 = 13.33 kn on 120 / 3.75 = 32.0 t/day.</li>
+<li>Allowed performance: 14 − 0.5 = 13.5 kn on 30 × 1.05 = 31.5 t/day.</li>
+<li>Passage at the good-weather performance: 5000 / 13.33 = 375 h and 32 × 375 / 24 = 500 t. At the allowed performance: 370.37 h and 31.5 × 370.37 / 24 = 486.11 t.</li>
+<li>Time lost 4.63 h, worth 4.63 / 24 × 15 000 = 2894; over-consumption 13.89 t, worth 8333. The claim is 11 227.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What counts as good weather?</summary>
+<p>Whatever the charter party says. A common definition is wind up to Beaufort force 4 (5 for some tankers) and Douglas sea state up to 3. Periods shorter than a full day can be used if they are representative (The Ocean Virgo).</p>
+</details>
+<details class="ec-faq"><summary>Why extrapolate to the whole passage when most of it was in bad weather?</summary>
+<p>A ship that underperforms by half a knot in good weather is taken to underperform by about as much in bad weather. The method compares two hypothetical good-weather passages, the warranted one and the actual one, and the courts have accepted it as the best practical measure of the loss.</p>
+</details>
+<details class="ec-faq"><summary>Does &quot;about&quot; apply to both speed and consumption?</summary>
+<p>When both figures are qualified (&quot;double about&quot;), tribunals have for many years allowed the full margin on each. The margin is for the tribunal, so it is an input here.</p>
+</details>
+<details class="ec-faq"><summary>Can the owners set fuel saved against time lost?</summary>
+<p>Yes, in a claim for damages (The Ioanna). The saving is measured from the lower end of the &quot;about&quot; range, so the owners earn credit only for burning less than 95 % of the warranted figure.</p>
+</details>
+<details class="ec-faq"><summary>Why is the over-consumption more than the excess daily rate times the days?</summary>
+<p>A slower ship spends more days at sea and burns fuel on each of them. The basic formula compares the fuel for the whole passage at each performance, so that fuel is included.</p>
+</details>
+<details class="ec-faq"><summary>Should the speed be corrected for current?</summary>
+<p>Check the charter party first. When it is silent, arbitrators have decided both ways (London Arbitrations 21/04 and 15/05); the better view is that currents should be taken into account.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../speed-power-fit/index.html">Speed–power curve fit</a> — the ship&#39;s performance against its sea-trial curve.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel consumption and voyage cost</a> — fuel and cost for a passage.</li>
+<li><a href="../optimal-speed-charter/index.html">Optimal speed under charter</a> — the speed that balances hire and fuel.</li>
+<li><a href="../beaufort-sea-state/index.html">Beaufort, wind speed and sea state converter</a> — checking the good-weather limits.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

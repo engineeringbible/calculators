@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Measurement uncertainty (GUM) — Engineering calculators</title>
+  <meta name="description" content="GUM uncertainty budget: Type A/B components, sensitivity coefficients, combined and expanded uncertainty with Welch–Satterthwaite degrees of freedom.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">General</span>
+    <h1 class="ec-title">Measurement uncertainty (GUM)</h1>
+    <p class="ec-summary">An uncertainty budget to the Guide to the expression of uncertainty in measurement: standard uncertainties from Type A readings and Type B limits (normal, expanded, rectangular, triangular, U-shaped), sensitivity coefficients, the combined standard uncertainty, Welch–Satterthwaite effective degrees of freedom, the coverage factor, the expanded uncertainty, the rounded result statement and the budget table.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Every measurement result needs an uncertainty, and the internationally agreed way to get one is the GUM: list every source of doubt, turn each into a standard uncertainty (from repeated readings, Type A, or from certificates, specifications and judgement, Type B), weight it by how strongly it affects the result, combine them in quadrature, and expand the result to a stated coverage probability. This calculator does the bookkeeping: paste or type the components, choose the coverage probability, and get the combined and expanded uncertainty, the effective degrees of freedom, the coverage factor, a properly rounded result statement and the budget table showing which component dominates.</p>
+<p>It is for calibration and test engineers, surveyors (draft and bunker surveys), metrologists and students preparing an uncertainty budget.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>u(xᵢ) = value / divisor:  normal 1,  expanded k = 2 → 2,  rectangular √3,  triangular √6,  U-shaped √2,  Type A √n
+u_c(y) = √ Σ (cᵢ u(xᵢ))²                                          (uncorrelated inputs)
+ν_eff = u_c⁴ / Σ ( (cᵢ u(xᵢ))⁴ / νᵢ )                             Welch–Satterthwaite
+k = t_p(⌊ν_eff⌋)   (95.45 % → 2.00 for large ν),   U = k u_c
+report U with two significant digits and y to the same decimal place</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Uncorrelated inputs and a linear model; correlation and strong non-linearity need GUM 5.2 or the Monte Carlo method of JCGM 101.</li>
+<li>The output quantity is assumed approximately normal; a dominant rectangular component is flagged.</li>
+<li>All values in one unit (or all relative).</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>EA-4/02 example S2, calibration of a 10 kg weight against a reference standard (values in mg):</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Component</th><th scope="col">Type</th><th scope="col">Value</th><th scope="col">u(xᵢ)</th></tr></thead>
+<tbody>
+<tr><td>Reference standard</td><td>expanded, k = 2</td><td>45</td><td>22.5</td></tr>
+<tr><td>Drift of the standard</td><td>rectangular</td><td>±15</td><td>8.66</td></tr>
+<tr><td>Observed difference</td><td>Type A, s_p = 25, n = 3</td><td>25</td><td>14.43</td></tr>
+<tr><td>Comparator</td><td>rectangular</td><td>±10</td><td>5.77</td></tr>
+<tr><td>Air buoyancy</td><td>rectangular</td><td>±10</td><td>5.77</td></tr>
+</tbody></table>
+</div>
+<ol>
+<li>u_c = √(22.5² + 8.66² + 14.43² + 5.77² + 5.77²) = 29.3 mg.</li>
+<li>All components have many degrees of freedom: ν_eff = ∞, k = 2.</li>
+<li>U = 2 × 29.3 = 59 mg: the weight is 10 000.025 g ± 59 mg (10 000 025 ± 59 in mg).</li>
+<li>The reference standard contributes 59 % of the variance.</li>
+</ol>
+<p>EA-4/02 prints 8.95 mg for the drift row although ±15 mg rectangular gives 8.66 mg; the combined value rounds to 29.3 mg either way.</p>
+<p>With the GUM&#39;s own example (relative uncertainties 0.25 %, 0.57 % and 0.82 % from 10, 5 and 15 readings) the effective degrees of freedom are 19, k = 2.09 at 95 % and U = 2.2 %.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Type A or Type B?</summary>
+<p>Type A comes from a statistical analysis of repeated readings; Type B from everything else (certificates, specifications, resolution, experience). Both become standard uncertainties and combine the same way.</p>
+</details>
+<details class="ec-faq"><summary>What divisor for a manufacturer&#39;s ±tolerance?</summary>
+<p>Without more information, rectangular (√3). If values near the centre are more likely, triangular (√6); for a sinusoidal quantity such as temperature cycling, U-shaped (√2).</p>
+</details>
+<details class="ec-faq"><summary>What are sensitivity coefficients?</summary>
+<p>The partial derivatives of the result with respect to each input (∂y/∂xᵢ), converting the input&#39;s uncertainty into the unit of the result; 1 when the input enters additively.</p>
+</details>
+<details class="ec-faq"><summary>Why is k not exactly 2?</summary>
+<p>With few effective degrees of freedom the Student distribution is wider than the normal; ν_eff = 4 gives k = 2.87 at 95.45 %.</p>
+</details>
+<details class="ec-faq"><summary>Can I handle correlated inputs?</summary>
+<p>Not here; add the covariance terms 2 cᵢ cⱼ u(xᵢ, xⱼ) by hand or use a Monte Carlo evaluation.</p>
+</details>
+<details class="ec-faq"><summary>Why round to two significant digits?</summary>
+<p>The uncertainty is itself uncertain; GUM 7.2.6 recommends at most two significant digits and rounding the result to match.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../quick-stats/index.html">Quick statistics of a series</a> — the standard deviation for a Type A component.</li>
+<li><a href="../unit-converter/index.html">Unit converter</a> — bringing all components to one unit.</li>
+<li><a href="../orifice-flow/index.html">Orifice and venturi flow (ISO 5167)</a> — a measurement with a published uncertainty.</li>
+<li><a href="../draft-survey/index.html">Draft survey</a> — a measurement whose budget follows the same rules.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

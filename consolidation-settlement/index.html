@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consolidation settlement calculator (clay layer) — Engineering calculators</title>
+  <meta name="description" content="Primary consolidation settlement of a normally or over-consolidated clay layer, and the time to reach a degree of consolidation by Terzaghi's theory.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Consolidation settlement calculator (clay layer)</h1>
+    <p class="ec-summary">Primary consolidation settlement of normally or over-consolidated clay and the time to reach a degree of consolidation by Terzaghi's theory.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A saturated clay loaded by a fill or a building settles slowly as water is squeezed out of its pores. This is primary consolidation. Its size depends on how compressible the clay is and on how far the new stress goes past the highest stress the clay has carried before. A 3 m clay layer loaded from 80 to 140 kPa, with a preconsolidation pressure of 120 kPa, settles about 46 mm.</p>
+<p>This calculator gives the primary consolidation settlement of a clay layer for normally and over-consolidated clays. It also gives the time to reach a chosen degree of consolidation, the time for 50 %, and the settlement after a given time, from Terzaghi&#39;s one-dimensional theory. It is for geotechnical engineers, students and designers of embankments and shallow foundations on clay.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Settlement, with σ&#39;1 = σ&#39;0 + Δσ:</p>
+<pre class="ec-formula" tabindex="0"><code>normally consolidated:            S = Cc H/(1 + e0) log(σ&#39;1/σ&#39;0)
+over-consolidated, σ&#39;1 ≤ σ&#39;p:     S = Cr H/(1 + e0) log(σ&#39;1/σ&#39;0)
+over-consolidated, σ&#39;1 &gt; σ&#39;p:     S = Cr H/(1 + e0) log(σ&#39;p/σ&#39;0) + Cc H/(1 + e0) log(σ&#39;1/σ&#39;p)</code></pre>
+<p>Rate of consolidation (Terzaghi):</p>
+<pre class="ec-formula" tabindex="0"><code>T_v = c_v t / H_dr²
+U = 1 − Σ (2/M²) exp(−M² T_v),   M = π(2m + 1)/2,  m = 0, 1, 2 …
+T_v ≈ (π/4) U²  for U ≤ 60 %;    T_v ≈ 1.781 − 0.933 log(100 − U%)  for U &gt; 60 %</code></pre>
+<ul>
+<li>H — layer thickness; e0 — initial void ratio; Cc, Cr — compression and recompression indices</li>
+<li>σ&#39;0 — present effective stress at mid-layer; σ&#39;p — preconsolidation pressure; Δσ — stress increase</li>
+<li>c_v — coefficient of consolidation; H_dr — drainage path, H/2 when both faces drain</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The clay is saturated and laterally confined, and the stresses are taken at mid-layer. Divide thick layers into sublayers and add their settlements.</li>
+<li>The parameters come from an oedometer test (ASTM D2435) on undisturbed samples. Sample disturbance lowers the apparent σ&#39;p and raises the settlement.</li>
+<li>Terzaghi&#39;s theory assumes a constant c_v and a load applied at once. Field consolidation is often faster than predicted, because of thin sand layers in the clay.</li>
+<li>Immediate settlement and secondary compression are not included. Secondary compression can be large in organic and very soft clays.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 3 m clay layer lies between sand layers. At mid-layer σ&#39;0 = 80 kPa, the oedometer gives σ&#39;p = 120 kPa, e0 = 0.9, Cc = 0.30 and Cr = 0.05. A fill adds Δσ = 60 kPa. c_v is 2 m²/year.</p>
+<ol>
+<li>OCR = 120 / 80 = 1.50. The final stress, 140 kPa, is above σ&#39;p, so both branches apply.</li>
+<li>Recompression: 0.05 × 3 / 1.9 × log(120/80) = 0.0139 m.</li>
+<li>Virgin compression: 0.30 × 3 / 1.9 × log(140/120) = 0.0317 m.</li>
+<li>Settlement: 13.9 + 31.7 = 45.6 mm.</li>
+<li>Double drainage: H_dr = 1.5 m. For 90 % consolidation T_v = 0.848, so t = 0.848 × 1.5² / 2 = 0.954 year.</li>
+</ol>
+<p>After six months T_v = 0.444, the layer is 72.9 % consolidated and has settled 33.3 mm.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is consolidation settlement?</summary>
+<p>The slow settlement of a saturated clay as pore water drains out under a new load. It can take months to decades, unlike the immediate settlement of sand.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between normally and over-consolidated clay?</summary>
+<p>A normally consolidated clay has never carried more than its present effective stress. An over-consolidated clay has, so it is much stiffer until the load passes its preconsolidation pressure.</p>
+</details>
+<details class="ec-faq"><summary>How do I estimate the compression index?</summary>
+<p>From an oedometer test. Without one, Cc ≈ 0.009 (LL − 10) for normally consolidated clays of low sensitivity, with LL the liquid limit in percent.</p>
+</details>
+<details class="ec-faq"><summary>What is a typical recompression index?</summary>
+<p>About one fifth to one tenth of Cc. It applies to reloading below the preconsolidation pressure.</p>
+</details>
+<details class="ec-faq"><summary>What does double drainage mean?</summary>
+<p>Water can leave through both the top and the bottom of the layer, so the longest drainage path is half the thickness. Since time grows with the square of the path, double drainage is four times faster.</p>
+</details>
+<details class="ec-faq"><summary>How can consolidation be speeded up?</summary>
+<p>Preloading with a surcharge and installing vertical wick drains, which shorten the drainage path to half the drain spacing.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../soil-bearing/index.html">Soil bearing capacity</a> — bearing failure of footings on the clay.</li>
+<li><a href="../footing-size/index.html">Footing size calculator</a> — size of the footing that loads the layer.</li>
+<li><a href="../proctor-compaction/index.html">Soil compaction calculator</a> — compaction of the fill placed on top.</li>
+<li><a href="../pile-capacity/index.html">Pile capacity calculator</a> — piles through the clay when settlement is too large.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

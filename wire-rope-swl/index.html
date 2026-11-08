@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wire rope and chain safe working load calculator — Engineering calculators</title>
+  <meta name="description" content="Wire rope breaking load (EN 12385-4) and safe working load with EN 13414 or ILO safety factors, and Grade 80 or 100 chain working load limits.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Wire rope and chain safe working load calculator</h1>
+    <p class="ec-summary">Wire rope minimum breaking load to EN 12385-4 and safe working load with EN 13414 or ILO factors, and Grade 8, 80 and 100 chain WLL.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The safe working load of a wire rope is its minimum breaking load divided by a safety factor, called the coefficient of utilisation. For stranded rope, EN 12385-4 gives the breaking load as a factor K times the diameter squared times the rope grade. A 20 mm 6×36 rope with a steel core in grade 1770 breaks at no less than 0.356 × 20² × 1 770 / 1 000 = 252 kN. With the factor of 5 used for slings, and before any loss at the end fitting, it may lift about 5.1 t.</p>
+<p>This calculator gives the minimum breaking load of 6×19 and 6×36 class ropes from EN 12385-4, or takes it from the rope certificate. It applies a termination efficiency and a safety factor: 5 for slings to EN 13414-1, or the ILO formula for ships&#39; derricks and cranes. For alloy lifting chain it gives the working load limit of Grade 8, Grade 80 and Grade 100 chain. It is for ship&#39;s officers, riggers, crane operators and superintendents.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Minimum breaking force of stranded rope (EN 12385-4):</p>
+<pre class="ec-formula" tabindex="0"><code>MBL = K × d² × R_r / 1 000          kN, d in mm, R_r in N/mm²</code></pre>
+<p>Safe working load:</p>
+<pre class="ec-formula" tabindex="0"><code>SWL = MBL × η_t / Z</code></pre>
+<p>ILO coefficient of utilisation for wire rope (ILO C152):</p>
+<pre class="ec-formula" tabindex="0"><code>Z = 10⁴ / (8.85 × SWL + 1 910)       SWL in tonnes, up to 160 t
+Z = 3 above 160 t;  slings: Z = 5 up to 10 t</code></pre>
+<p>Lifting chain:</p>
+<pre class="ec-formula" tabindex="0"><code>breaking force ≥ 4 × WLL</code></pre>
+<ul>
+<li>K — 0.330 for fibre core, 0.356 for steel core (IWRC), 6×19 and 6×36 classes</li>
+<li>R_r — rope grade: 1770, 1960 or 2160 N/mm²</li>
+<li>η_t — termination efficiency, about 0.9 for a ferrule-secured eye</li>
+<li>Z — coefficient of utilisation (safety factor)</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The K factors were checked against PFEIFER&#39;s EN 12385-4 tables: 252 kN for 20 mm 6×36 IWRC 1770 and 234 kN with a fibre core. A rope certificate always takes precedence.</li>
+<li>Bending over a small sheave or pin weakens the rope. Sling ratings assume a large bend, often 25 rope diameters for a basket hitch. Reduce the efficiency for tighter bends, using the maker&#39;s D/d curve.</li>
+<li>Chain WLLs are for one leg in a straight pull, from the EN 818-4 table (metric Grade 8) and the NACM tables (US Grade 80 and 100).</li>
+<li>Sling angles, hitches, dynamic loads, wear, corrosion and broken wires are not included. Use the lifting sling calculator for multi-leg slings.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 20 mm 6×36 IWRC wire rope of grade 1770 has ferrule-secured eyes and is used as a sling. What is its safe working load?</p>
+<ol>
+<li>Minimum breaking load: 0.356 × 20² × 1 770 / 1 000 = 252.0 kN.</li>
+<li>Loss at the ferrule-secured eye: 252.0 × 0.9 = 226.8 kN.</li>
+<li>Safety factor 5 (EN 13414-1): 226.8 / 5 = 45.4 kN.</li>
+<li>As a mass: 45.4 kN / 9.81 = 4.63 t.</li>
+</ol>
+<p>As the runner of a ship&#39;s crane, the ILO coefficient applies instead. For this rope it works out at 5.13, so the SWL is 4.51 t.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the safe working load of a wire rope?</summary>
+<p>Find the minimum breaking load from the certificate or from K d² R_r / 1 000, multiply by the termination efficiency, and divide by the safety factor.</p>
+</details>
+<details class="ec-faq"><summary>What safety factor is used for wire rope?</summary>
+<p>5 for general lifting slings under EN 13414-1 and ASME B30.9. For ships&#39; lifting appliances the ILO formula gives about 5.2 for small loads, falling to 3 at 160 t.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between SWL, WLL and MBL?</summary>
+<p>MBL is the minimum breaking load. WLL, the working load limit, is the maximum load the maker certifies for a straight lift. SWL is the safe working load assigned in a given use; in many cases it equals the WLL.</p>
+</details>
+<details class="ec-faq"><summary>Is a steel core rope stronger than a fibre core rope?</summary>
+<p>Yes. In the 6×19 and 6×36 classes the steel core rope is about 8 % stronger at the same diameter and grade (K 0.356 against 0.330), and it crushes less on a drum.</p>
+</details>
+<details class="ec-faq"><summary>What is the WLL of a 10 mm Grade 8 chain?</summary>
+<p>3.15 t in a straight single-leg pull, by EN 818-4. Its breaking force is at least four times that.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this for mooring lines?</summary>
+<p>Not directly. Mooring lines are sized by OCIMF MEG4 from the ship design MBL; use the mooring line calculator.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../lifting-sling/index.html">Lifting sling and wire rope load</a> — leg tension at sling angles.</li>
+<li><a href="../mooring-line-meg4/index.html">Mooring line and winch brake</a> — MEG4 line strengths.</li>
+<li><a href="../padeye/index.html">Padeye calculator</a> — the lifting point the rope connects to.</li>
+<li><a href="../anchor-holding/index.html">Anchor holding power</a> — the load an anchor chain must take.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

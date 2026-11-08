@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drain pipe size calculator (Manning) — Engineering calculators</title>
+  <meta name="description" content="Gravity drain and sewer pipe sizing by Manning: full-flow capacity and velocity, smallest standard diameter for a flow, flow depth and self-cleansing check.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Drain pipe size calculator (Manning)</h1>
+    <p class="ec-summary">Gravity drain and sewer pipes by Manning: full-flow capacity and velocity, smallest standard size, part-full depth and the 2 ft/s self-cleansing check.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How do you size a gravity drain pipe? Use Manning&#39;s equation to find how much the pipe carries when it flows full at its slope, and choose the smallest standard size that carries the design flow. An 8 in concrete sewer laid at 0.40 % carries 343 US gallons per minute at 2.19 ft/s when full. That velocity meets the usual rule of at least 2 ft/s, which keeps solids moving.</p>
+<p>This calculator gives the full-flow capacity and velocity of a pipe from its diameter, material and slope. It finds the smallest standard size for a design flow, and the depth and velocity of that flow in the chosen pipe. It also checks the self-cleansing velocity and gives the minimum slope that reaches it. It is for civil engineers, site designers and contractors laying storm drains, sewers and land drains.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Manning&#39;s equation for a pipe flowing full:</p>
+<pre class="ec-formula" tabindex="0"><code>V = (1/n) × R^(2/3) × S^(1/2)        (SI, metres)
+V = (1.486/n) × R^(2/3) × S^(1/2)    (US, feet)
+Q = A × V,  A = π D² / 4,  R = D / 4</code></pre>
+<p>Part-full pipe at depth y, and the minimum slope:</p>
+<pre class="ec-formula" tabindex="0"><code>θ = 2 acos(1 − 2y/D)
+A = D² (θ − sin θ) / 8,  P = D θ / 2,  R = A / P
+S_min = (n × V_min / R^(2/3))²</code></pre>
+<ul>
+<li>D — inside diameter; S — slope as a fraction, 1 % = 0.01</li>
+<li>n — Manning roughness: 0.009 for smooth PVC, 0.013 for concrete and clay, and for any pipe where the agency requires it</li>
+<li>V_min — self-cleansing velocity, 2.0 ft/s (0.61 m/s) flowing full</li>
+<li>A, P, R — flow area, wetted perimeter and hydraulic radius</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Flow is steady and uniform in a straight pipe of constant slope. Manhole losses, bends, backwater and surcharge are not included.</li>
+<li>Smooth PVC tests at n = 0.009, but many agencies require 0.013 for every material to allow for joints and slime. Use the value your reviewer accepts.</li>
+<li>The nominal size is used as the inside diameter. Plastic sewer pipe is often slightly smaller inside, so enter the true bore for a close check.</li>
+<li>The self-cleansing check follows the Ten States Standards, which want at least 2.0 ft/s with the pipe flowing full.</li>
+<li>Building drains are sized by the plumbing code with drainage fixture units. Those tables are not reproduced here.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An 8 in concrete sewer is laid at 0.40 % with n = 0.013. What does it carry flowing full, and how deep does a design flow of 150 US gpm run?</p>
+<ol>
+<li>Area: π × (8/12)² / 4 = 0.349 ft²; hydraulic radius D/4 = 0.167 ft.</li>
+<li>Velocity full: 1.486 / 0.013 × 0.167^(2/3) × 0.004^(1/2) = 2.19 ft/s.</li>
+<li>Capacity: 0.349 × 2.19 = 0.764 ft³/s, which is 343 US gpm.</li>
+<li>Self-cleansing: 2.19 ft/s is above 2.0 ft/s, so the slope is adequate.</li>
+<li>Design flow: 150 / 343 = 44 % of the full capacity.</li>
+<li>Depth by Manning&#39;s equation on the part-full section: y/D = 0.46, or 3.7 in.</li>
+<li>Velocity at that depth: 2.12 ft/s.</li>
+</ol>
+<p>A 6 in pipe at the same slope would carry 159 gpm full, just enough for 150 gpm. Public sewers are usually at least 8 in, which also leaves room for peak flows.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the minimum velocity in a sewer?</summary>
+<p>2.0 ft/s, or 0.61 m/s, with the pipe flowing full, by the Ten States Standards. Lower velocities let grit and solids settle.</p>
+</details>
+<details class="ec-faq"><summary>What slope does an 8 in sewer need?</summary>
+<p>The Ten States Standards ask for at least 0.40 % with n = 0.013. Manning&#39;s equation gives 2 ft/s at 0.334 %, so the table keeps a margin.</p>
+</details>
+<details class="ec-faq"><summary>How much does a 4 in PVC drain carry?</summary>
+<p>At ¼ in per foot, 2.08 %, a 4 in pipe with n = 0.009 carries about 178 US gpm flowing full at 4.55 ft/s.</p>
+</details>
+<details class="ec-faq"><summary>What Manning&#39;s n should I use for PVC pipe?</summary>
+<p>0.009 for smooth-wall PVC by Uni-Bell tests, but many agencies require 0.013 for all materials. Corrugated pipes are much rougher.</p>
+</details>
+<details class="ec-faq"><summary>Why does a pipe carry most at about 94 % depth?</summary>
+<p>Near the crown the wetted perimeter grows faster than the area, so friction rises. The free-surface flow peaks near 94 % depth at about 1.08 times the full-pipe flow.</p>
+</details>
+<details class="ec-faq"><summary>Why is the velocity at half depth the same as full?</summary>
+<p>At half depth the hydraulic radius is D/4, the same as for the full pipe. The velocity is equal and the flow is exactly half.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../manning-channel-flow/index.html">Open-channel flow (Manning)</a> — ditches, channels and part-full pipes in detail.</li>
+<li><a href="../culvert-capacity/index.html">Culvert capacity and headwater calculator (HDS-5)</a> — pipes under roads with inlet and outlet control.</li>
+<li><a href="../rational-runoff/index.html">Rational-method runoff</a> — the storm flow the drain must carry.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — pressurised pipes with Darcy–Weisbach friction.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

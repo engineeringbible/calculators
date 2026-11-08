@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Power factor correction — Engineering calculators</title>
+  <meta name="description" content="Capacitor kvar and capacitance to raise the power factor, released kVA and current, loss saving, resonance with the supply and detuning.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Power factor correction</h1>
+    <p class="ec-summary">Sizing a shunt capacitor bank: the kvar-per-kW factor and the bank rating to raise the power factor, capacitance per phase for delta or star connection, the apparent power and current released, the reduction of upstream losses and energy saved, the parallel resonance with the supply and the tuning of a detuned bank.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Induction motors, transformers and fluorescent ballasts draw reactive power that does no work but still flows through every cable, transformer and generator upstream. A capacitor bank at the load supplies that reactive power locally: the line current falls, losses fall with its square, transformers and generators gain capacity, and in many tariffs the reactive-energy charge disappears. This calculator sizes the bank from the active power and the existing and target power factors, gives the capacitance per phase, the capacity released and the losses saved, and checks the one thing that can go wrong: a parallel resonance between the bank and the supply at a harmonic frequency.</p>
+<p>It is for electrical engineers in plants, ports and on board, facility managers reading a utility bill, and students of power systems.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Q_c = P (tan φ₁ − tan φ₂)                        tan φ = √(1 − cos²φ)/cos φ
+C = Q_c / (3 ω V²)   (delta),   C = Q_c / (ω V²)   (star),   ω = 2π f
+S = P / cos φ,   I = S / (√3 V),   released = S₁ − S₂
+loss reduction = 1 − (cos φ₁ / cos φ₂)²
+h_r = √(S_sc / Q_c),   f_r = h_r f                parallel resonance with the supply
+detuned: h_t = 1/√p,   capacitor voltage V/(1 − p)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Balanced sinusoidal load at constant active power; displacement power factor only.</li>
+<li>Capacitance for an undetuned bank at nominal voltage; capacitor tolerance not included.</li>
+<li>Loss saving applies to losses upstream of the bank, entered by the user.</li>
+<li>Resonance estimate from the busbar short-circuit power; a harmonic study confirms it.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 500 kW plant at cos φ 0.75 on a 400 V 50 Hz busbar with 10 MVA short-circuit power, to be corrected to 0.93 with a delta-connected bank; upstream losses 8 kW, 4 000 h/year.</p>
+<ol>
+<li>tan φ₁ = 0.882, tan φ₂ = 0.395 → 0.487 kvar/kW → Q_c = 243 kvar.</li>
+<li>Capacitance 243 345/(3 × 314.16 × 400²) = 1 614 µF per phase.</li>
+<li>Apparent power 667 → 538 kVA (129 kVA released); current 962 → 776 A; capacitor current 351 A.</li>
+<li>Losses fall by 35 %: 2.8 kW, 11 200 kWh a year.</li>
+<li>Resonance √(10 000/243) = 6.4, i.e. 321 Hz, within 10 % of the 7th harmonic: with drives on the busbar the bank should be detuned. A 7 % reactor tunes the bank to 189 Hz (h 3.78) and raises the capacitor voltage by 7.5 %.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why not correct to 1.0?</summary>
+<p>At light load a fixed bank would then over-compensate, giving a leading power factor and a voltage rise; 0.93–0.97 with an automatic stepped bank is the usual target.</p>
+</details>
+<details class="ec-faq"><summary>Delta or star?</summary>
+<p>At low voltage, delta is usual (units at line voltage, three times smaller capacitance); star is used at medium voltage and for unbalance protection schemes.</p>
+</details>
+<details class="ec-faq"><summary>Where should the bank be?</summary>
+<p>As close to the loads as practical to relieve the most cable; central banks at the main switchboard relieve the transformer and the tariff only.</p>
+</details>
+<details class="ec-faq"><summary>What is detuning?</summary>
+<p>A series reactor makes the capacitor branch resonate below the 5th harmonic, so it looks inductive to the harmonics and cannot amplify them; 7 % (189 Hz at 50 Hz) is the common choice.</p>
+</details>
+<details class="ec-faq"><summary>Does correction save energy at the meter?</summary>
+<p>Only the I²R losses upstream of the bank; the main saving is usually the avoided reactive-energy charge and the released capacity.</p>
+</details>
+<details class="ec-faq"><summary>Is this used on ships?</summary>
+<p>Rarely on the main switchboard, because generators handle reactive power, but on shore power, offshore installations and large harmonic-free loads the same arithmetic applies.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../three-phase-power/index.html">Three-phase power and current</a> — the load&#39;s current and power factor.</li>
+<li><a href="../transformer-sizing/index.html">Transformer sizing</a> — capacity released at the transformer.</li>
+<li><a href="../cable-sizing/index.html">Cable sizing and voltage drop</a> — the cables that benefit.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — reactive loading of generators.</li>
+<li><a href="../short-circuit-current/index.html">Short-circuit current (IEC 60909)</a> — the short-circuit power at the busbar.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

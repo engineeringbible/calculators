@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rational-method runoff — Engineering calculators</title>
+  <meta name="description" content="Design peak runoff from catchment area, runoff coefficient and rainfall intensity, with time of concentration (Kirpich).">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Rational-method runoff</h1>
+    <p class="ec-summary">Design peak runoff of a small catchment by the rational method: composite runoff coefficient over up to three surfaces, Kirpich time of concentration with a minimum, rainfall intensity entered from the IDF curve or from a fitted IDF relation, frequency factor for rare storms, peak flow, runoff depth and volume, and the method's applicability by area.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The rational method is the oldest and still the most used way to size a storm drain, a culvert or a yard drainage channel: the peak flow equals the fraction of rain that runs off, times the rainfall intensity, times the area, with the intensity taken for a storm just long enough for the whole catchment to contribute (the time of concentration). This calculator builds the composite runoff coefficient from up to three surfaces, estimates the time of concentration with Kirpich&#39;s formula, takes the intensity from your IDF curve or a fitted relation, applies the frequency factor for rare storms and returns the peak flow, the runoff depth and volume, and whether the catchment is small enough for the method.</p>
+<p>It is for civil and port engineers draining quays, terminals and yards, for naval architects checking deck and dock drainage, and for students of hydrology; the Manning calculator sizes the channel that carries the result.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>C = Σ C_k A_k / Σ A_k                    composite runoff coefficient
+t_c = 0.0195 L^0.77 S^−0.385  [min]      Kirpich (L m, S m/m); design duration = max(t_c, minimum)
+i = a / (t_c + b)^n                       optional IDF fit (mm/h), else the IDF-curve value at t_c
+Q = C C_f i A / 360   [m³/s]              i mm/h, A ha, C C_f ≤ 1
+depth = C C_f i t_c,   volume = depth × A</code></pre>
+<p>Runoff coefficients (2–10 year storms): roofs 0.90, pavement 0.85, industrial 0.75, gravel 0.50, residential 0.40, lawns 0.10–0.30, woodland 0.15. Frequency factor C_f: 1.0 up to 10 years, 1.1 (25), 1.2 (50), 1.25 (100).</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Small catchments (under about 80 ha) with uniform rainfall over the whole area for at least t_c; peaks only, no hydrograph, storage or routing.</li>
+<li>Kirpich was derived for small rural catchments with channels; on short paved paths it gives very short times, hence the 5–10 min minimum.</li>
+<li>Coefficients and frequency factors are typical; the local drainage manual, soil saturation and slope govern.</li>
+<li>Tidal backwater at outfalls, snowmelt and infiltration during the storm are outside the method.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A port yard of 6 ha: 2 ha of asphalt, 1 ha of roofs and 3 ha of grass; longest flow path 500 m at 2 %; 10-year IDF curve gives 100 mm/h for the resulting duration.</p>
+<ol>
+<li>C = (2 × 0.85 + 1 × 0.90 + 3 × 0.10)/6 = 0.483; 50 % of the area is impervious.</li>
+<li>Kirpich: t_c = 0.0195 × 500^0.77 × 0.02^−0.385 = 10.5 min (above the 5 min minimum).</li>
+<li>Q = 0.483 × 100 × 6/360 = 0.81 m³/s, i.e. 134 L/s per hectare; depth 8.5 mm over the storm, volume 507 m³.</li>
+<li>For a 100-year check with the same intensity curve at that return period, C_f = 1.25 raises the coefficient to 0.60.</li>
+</ol>
+<p>The published Houston example (C 0.57, 4.2 in/h, 15 acres) gives 1.025 m³/s here, 36.2 cfs against the US-units answer of 35.9 cfs: the 0.8 % difference is the 1.008 factor that the acre-inch-per-hour form rounds away.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why intensity at the time of concentration?</summary>
+<p>Shorter storms are more intense but do not let the whole catchment contribute; longer ones are weaker. The peak occurs when the duration just equals t_c.</p>
+</details>
+<details class="ec-faq"><summary>Where do I get the intensity?</summary>
+<p>From the local intensity-duration-frequency curves (national meteorological service, drainage authority) at the design return period and a duration equal to t_c; or fit a/(t + b)^n to them and let the page evaluate it.</p>
+</details>
+<details class="ec-faq"><summary>What runoff coefficient for a mixed site?</summary>
+<p>Weight each surface&#39;s coefficient by its area; the calculator does this for three surfaces and reports the impervious share.</p>
+</details>
+<details class="ec-faq"><summary>Why a minimum time of concentration?</summary>
+<p>Kirpich can give one or two minutes on a short paved slope, implying unrealistically intense rain; manuals impose 5–10 minutes as a practical floor.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this for a 200 ha catchment?</summary>
+<p>No; above about 80 ha the assumptions of uniform rain and a single peak fail. Use a hydrograph method (NRCS/SCS, kinematic wave) and routing.</p>
+</details>
+<details class="ec-faq"><summary>How do I size the drain?</summary>
+<p>Take Q to the Manning open-channel calculator (or a pipe-flow check for a pipe running full) at the available slope.</p>
+</details>
+<details class="ec-faq"><summary>Does the frequency factor apply to the intensity too?</summary>
+<p>No: the intensity already comes from the chosen return period; C_f accounts for the catchment running off more efficiently in rare, saturating storms.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../manning-channel-flow/index.html">Open-channel flow (Manning)</a> — the channel or culvert for the peak flow.</li>
+<li><a href="../earthwork-volume/index.html">Earthwork cut and fill volumes</a> — the drainage excavation.</li>
+<li><a href="../concrete-volume/index.html">Concrete volume and rebar weight</a> — channel linings.</li>
+<li><a href="../tidal-height/index.html">Tidal height (rule of twelfths)</a> — outfall water levels.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

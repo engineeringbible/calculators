@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LC resonant frequency calculator — Engineering calculators</title>
+  <meta name="description" content="Resonant frequency of an LC circuit, or the L or C for a target frequency, with characteristic impedance, Q and bandwidth from the series resistance.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">LC resonant frequency calculator</h1>
+    <p class="ec-summary">Resonant frequency of an inductor and capacitor, or the L or C for a frequency, with characteristic impedance, Q, bandwidth and the −3 dB frequencies.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>An inductor and a capacitor together resonate at the frequency where their reactances are equal and cancel. That frequency is f0 = 1 / (2π √(L C)). A 10 µH coil with a 100 pF capacitor resonates at 5.03 MHz, and a 253 µH coil with the same capacitor at 1 MHz.</p>
+<p>This calculator gives the resonant frequency from L and C, or the L or C needed for a target frequency. It also gives the characteristic impedance, and from the series resistance of the coil the quality factor Q, the bandwidth, the two −3 dB frequencies and the dynamic resistance of a parallel tank. It is for radio amateurs, students and engineers designing tuned circuits, oscillators, filters and matching networks.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Resonant frequency and the component for a target frequency:</p>
+<pre class="ec-formula" tabindex="0"><code>f0 = 1 / (2π √(L C))
+L = 1 / ((2π f0)² C),   C = 1 / ((2π f0)² L)</code></pre>
+<p>Characteristic impedance, quality factor and bandwidth with a series resistance R:</p>
+<pre class="ec-formula" tabindex="0"><code>Z0 = √(L / C) = 2π f0 L = 1 / (2π f0 C)
+Q = Z0 / R
+BW = f0 / Q = R / (2π L)
+f1, f2 = f0 × (√(1 + 1/(4Q²)) ∓ 1/(2Q))</code></pre>
+<p>Dynamic resistance of a parallel tank at resonance:</p>
+<pre class="ec-formula" tabindex="0"><code>R_D = L / (C R) = Q² R</code></pre>
+<ul>
+<li>L — inductance, H (entered in µH); C — capacitance, F</li>
+<li>R — total series loss resistance of the coil and capacitor, Ω</li>
+<li>f1, f2 — the half-power (−3 dB) frequencies</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>One resistance in series with L and C stands for all the losses. A coil&#39;s resistance rises with frequency through the skin effect, so use its value at f0.</li>
+<li>The series and parallel Q formulas agree when Q is high. Below about 10 the parallel tank&#39;s resonance shifts slightly below f0.</li>
+<li>Stray capacitance of the coil, the wiring and the board adds to C. At several megahertz a few picofarads lower the frequency noticeably.</li>
+<li>The capacitor&#39;s value changes with temperature and, for some ceramics, with voltage. C0G ceramic and mica capacitors stay stable.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 10 µH coil with a series resistance of 5 Ω is tuned by a 100 pF capacitor. Find the resonant frequency, Q and bandwidth.</p>
+<ol>
+<li>L C = 10 × 10⁻⁶ × 100 × 10⁻¹² = 10⁻¹⁵ s², so √(L C) = 3.162 × 10⁻⁸ s.</li>
+<li>f0 = 1 / (2π × 3.162 × 10⁻⁸) = 5.03 MHz.</li>
+<li>Characteristic impedance: √(10⁻⁵ / 10⁻¹⁰) = 316 Ω, the reactance of each part at f0.</li>
+<li>Q = 316 / 5 = 63.2.</li>
+<li>Bandwidth: 5.03 MHz / 63.2 = 79.6 kHz.</li>
+<li>As a parallel tank: R_D = 10⁻⁵ / (10⁻¹⁰ × 5) = 20 kΩ.</li>
+</ol>
+<p>So the circuit passes about 4.99 to 5.07 MHz within 3 dB of its peak.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the resonant frequency of an LC circuit?</summary>
+<p>Use f0 = 1 / (2π √(L C)) with henries and farads. For 10 µH and 100 pF that is 5.03 MHz.</p>
+</details>
+<details class="ec-faq"><summary>What capacitor do I need for a given frequency?</summary>
+<p>C = 1 / ((2π f)² L). With a 253 µH coil, 1 MHz needs 100 pF.</p>
+</details>
+<details class="ec-faq"><summary>What is the Q of an LC circuit?</summary>
+<p>The ratio of the reactance at resonance to the loss resistance. A higher Q gives a sharper peak and a narrower bandwidth.</p>
+</details>
+<details class="ec-faq"><summary>How is bandwidth related to Q?</summary>
+<p>The −3 dB bandwidth is the resonant frequency divided by Q. A 5 MHz circuit with Q = 50 has a bandwidth of 100 kHz.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between series and parallel resonance?</summary>
+<p>A series LC circuit has its lowest impedance at resonance. A parallel tank has its highest, equal to the dynamic resistance L / (C R).</p>
+</details>
+<details class="ec-faq"><summary>Why is my measured frequency lower than calculated?</summary>
+<p>Stray capacitance adds to C, and the coil&#39;s self-capacitance does the same. Both lower the frequency.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../filter-cutoff/index.html">Filter cutoff frequency</a> — LC and RLC filters, attenuation and phase.</li>
+<li><a href="../coil-inductance/index.html">Air-core coil inductance</a> — winding a coil for the L you need.</li>
+<li><a href="../capacitors-series-parallel/index.html">Series and parallel capacitors</a> — making up the capacitance from standard parts.</li>
+<li><a href="../rc-time-constant/index.html">RC time constant</a> — the first-order RC circuit.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

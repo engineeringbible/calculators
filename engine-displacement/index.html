@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engine displacement calculator — Engineering calculators</title>
+  <meta name="description" content="Engine displacement in cc, litres and cubic inches from bore, stroke and cylinders, or the bore or stroke for a target size, with mean piston speed.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Engine displacement calculator</h1>
+    <p class="ec-summary">Engine displacement in cubic inches, litres and cc from bore, stroke and cylinders, or the bore or stroke for a target size, with piston speed.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Engine displacement is the volume all the pistons sweep in one revolution of the crank, from bottom to top of their stroke. To calculate it, multiply the area of one bore by the stroke and by the number of cylinders. A GM LS3 V8 has a 4.065 in bore and a 3.622 in stroke, which gives 376 cubic inches or 6.2 litres.</p>
+<p>This calculator gives the displacement in cubic inches, litres and cc from the bore, stroke and cylinder count. It also works backwards to the bore or stroke for a target size, and gives the bore/stroke ratio and the mean piston speed. It is for engine builders planning a stroker or an overbore, and for anyone converting between cubic inches and litres.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Displacement and its inverses:</p>
+<pre class="ec-formula" tabindex="0"><code>V = π/4 × b² × s × n
+b = √(4 V / (π s n))
+s = 4 V / (π b² n)</code></pre>
+<p>Mean piston speed:</p>
+<pre class="ec-formula" tabindex="0"><code>S_p = 2 × s × N</code></pre>
+<ul>
+<li>b — bore; s — stroke; n — number of cylinders</li>
+<li>N — engine speed in revolutions per minute</li>
+<li>1 in³ = 16.387 cc; 1 L = 61.02 in³</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The formula holds for any piston engine, four-stroke or two-stroke. It does not apply to rotary engines.</li>
+<li>Add any overbore to the bore before calculating. A 0.030 in overbore on a 350 adds about 5 in³.</li>
+<li>Badge sizes are rounded. GM sells the 5 733 cc small-block as a 5.7.</li>
+<li>The mean piston speed is an average over a revolution. The piston moves about 1.6 times faster near mid-stroke.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A GM LS3 has a 4.065 in bore, a 3.622 in stroke and eight cylinders. It revs to 6 600 rpm.</p>
+<ol>
+<li>Bore area: π/4 × 4.065² = 12.978 in².</li>
+<li>One cylinder: 12.978 × 3.622 = 47.01 in³, or 770.3 mL (cc).</li>
+<li>Eight cylinders: 8 × 47.007 = 376.1 in³.</li>
+<li>In litres: 376.05 × 16.387 / 1 000 = 6.16 L.</li>
+<li>Bore/stroke ratio: 4.065 / 3.622 = 1.122, an oversquare engine.</li>
+<li>Mean piston speed: 2 × 3.622 / 12 × 6 600 = 3 984 ft/min.</li>
+</ol>
+<p>GM rounds this to 6.2 L and quotes 376 cu in, in line with the result.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate engine displacement?</summary>
+<p>Multiply π/4 by the bore squared, by the stroke and by the number of cylinders. With the bore and stroke in inches the result is in cubic inches.</p>
+</details>
+<details class="ec-faq"><summary>How many cubic inches is a litre?</summary>
+<p>One litre is 61.02 cubic inches. A 5.0 L engine is about 305 in³, and a 350 is 5.7 L.</p>
+</details>
+<details class="ec-faq"><summary>What is a stroker engine?</summary>
+<p>An engine fitted with a longer-stroke crankshaft. A 350 with a 3.75 in stroke and a 4.030 in bore becomes about 383 in³.</p>
+</details>
+<details class="ec-faq"><summary>What does oversquare mean?</summary>
+<p>The bore is larger than the stroke. A short stroke keeps piston speed down, so oversquare engines can rev higher for the same piston speed.</p>
+</details>
+<details class="ec-faq"><summary>How much does a 0.030 in overbore add?</summary>
+<p>On a 4.00 in bore and 3.48 in stroke V8 it adds 5.3 in³, from 349.9 to 355.1 in³.</p>
+</details>
+<details class="ec-faq"><summary>Is displacement the same as cc?</summary>
+<p>Yes, cc is cubic centimetres of swept volume. 1 000 cc is one litre.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../compression-ratio/index.html">Compression ratio</a> — static ratio from the chamber, gasket and piston volumes.</li>
+<li><a href="../horsepower/index.html">Horsepower calculator</a> — power from torque and rpm.</li>
+<li><a href="../engine-bmep/index.html">Engine BMEP</a> — mean effective pressure from power and displacement.</li>
+<li><a href="../fuel-injector-size/index.html">Fuel injector size</a> — injector flow for the power target.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

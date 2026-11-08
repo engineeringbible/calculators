@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shaft critical speed calculator (Rayleigh and Dunkerley) — Engineering calculators</title>
+  <meta name="description" content="First critical speed of a simply supported shaft with up to three masses by Rayleigh's method, with the shaft's own mass by Dunkerley's rule.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Shaft critical speed calculator (Rayleigh and Dunkerley)</h1>
+    <p class="ec-summary">First critical speed of a simply supported shaft with up to three masses by Rayleigh's method and Dunkerley's rule, with the shaft's own mass.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Every rotating shaft has speeds at which it whirls violently: its critical speeds. At the first critical speed, the speed of rotation matches the shaft&#39;s natural frequency of lateral vibration. A shaft carrying gears, pulleys or a fan must run well away from it. A 1 in steel shaft on bearings 31 in apart, carrying gears of 35 and 55 lbf, reaches its first critical speed at about 1 325 rpm.</p>
+<p>This calculator gives the first critical speed of a uniform shaft on two bearings with up to three masses. It uses Rayleigh&#39;s method with the static deflections under the weights, adds the shaft&#39;s own mass by Dunkerley&#39;s rule, and shows the pure Dunkerley estimate and the shaft-alone value for comparison. It is for designers of fans, pumps, conveyors and machine spindles, and follows Shigley chapter 7.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Static deflection by superposition, with the influence coefficient of a simply supported span (load at a, b = L − a):</p>
+<pre class="ec-formula" tabindex="0"><code>δ(x, a) = b x (L² − b² − x²) / (6 E I L)          for x ≤ a
+δ(x, a) = a (L − x)(2 L x − x² − a²) / (6 E I L)   for x &gt; a
+y_j = Σ W_i δ(x_j, a_i)</code></pre>
+<p>Rayleigh&#39;s method (Shigley eq. 7-23) and the uniform shaft (eq. 7-22):</p>
+<pre class="ec-formula" tabindex="0"><code>ω_R = √( g Σ W_i y_i / Σ W_i y_i² )
+ω_s = (π / L)² √( E I / (ρ A) )</code></pre>
+<p>Dunkerley&#39;s rule (eq. 7-32), used to combine:</p>
+<pre class="ec-formula" tabindex="0"><code>1/ω² = 1/ω_R² + 1/ω_s²
+pure Dunkerley: 1/ω² = Σ m_i δ_ii</code></pre>
+<ul>
+<li>W_i = m_i g — weight of mass i at distance a_i from the left bearing; L — bearing span</li>
+<li>E — Young&#39;s modulus; I = π (d⁴ − d_i⁴)/64; A — section area; ρ — shaft density</li>
+<li>n = 60 ω / (2π) in rpm</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The shaft is uniform, solid or hollow, on two simple supports at its ends. Stepped shafts, overhung discs and fixed bearings need a full deflection analysis.</li>
+<li>The masses are points. Their gyroscopic effect and rotary inertia are neglected.</li>
+<li>Rayleigh&#39;s method slightly overestimates the critical speed and Dunkerley&#39;s rule underestimates it. The true value lies between the two.</li>
+<li>Flexible bearings, housings and foundations lower the critical speed. Measure or model them for high-speed machines.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 1 in steel shaft (E = 30 000 ksi, 0.282 lbf/in³) runs in bearings 31 in apart. It carries a 35 lbf gear 7 in from the left bearing and a 55 lbf gear 23 in from it. These are the data of Shigley Example 7-5.</p>
+<ol>
+<li>I = π × 1⁴ / 64 = 0.0491 in⁴. Influence coefficients: a11 = 2.061, a12 = 1.734 and a22 = 2.472, all × 10⁻⁴ in/lbf.</li>
+<li>Deflections: y1 = 35 × 2.061e-4 + 55 × 1.734e-4 = 0.01675 in; y2 = 35 × 1.734e-4 + 55 × 2.472e-4 = 0.01966 in.</li>
+<li>Rayleigh: Σ W y = 1.668 and Σ W y² = 0.03109, so ω = √(386.1 × 1.668 / 0.03109) = 143.9 rad/s, or 1 374 rpm.</li>
+<li>Dunkerley with the gears only: 1 301 rpm, the lower bound.</li>
+<li>Shaft alone: (π/31)² × √(E I / (ρ A)) = 520.4 rad/s, or 4 969 rpm.</li>
+<li>Combined: 1/ω² = 1/143.9² + 1/520.4², so ω = 138.7 rad/s, or 1 325 rpm.</li>
+</ol>
+<p>The shaft should run well below about 1 300 rpm, or be made stiffer if it must run faster.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the critical speed of a shaft?</summary>
+<p>The speed at which the shaft&#39;s rotation excites its natural frequency of bending vibration. The shaft then whirls with large deflections.</p>
+</details>
+<details class="ec-faq"><summary>How far from the critical speed should a shaft run?</summary>
+<p>Keep a clear margin either side. Many designers aim for a first critical speed well above the highest operating speed, so the machine never passes through it.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between Rayleigh and Dunkerley?</summary>
+<p>Rayleigh&#39;s method uses the deflected shape and gives a slightly high answer. Dunkerley&#39;s rule adds the effect of each mass separately and gives a low one.</p>
+</details>
+<details class="ec-faq"><summary>How do I raise the critical speed?</summary>
+<p>Increase the diameter, shorten the bearing span, or move heavy masses towards the bearings. A hollow shaft of the same outside diameter is lighter and runs faster.</p>
+</details>
+<details class="ec-faq"><summary>Can a shaft run above its critical speed?</summary>
+<p>Yes, many turbines and centrifuges do, but they must pass through it quickly and with good balance and damping.</p>
+</details>
+<details class="ec-faq"><summary>Does the shaft&#39;s own weight matter?</summary>
+<p>Yes. In the example, it lowers the critical speed from 1 374 to 1 325 rpm.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../shaft-torsion/index.html">Shaft torsion</a> — shaft diameter for the torque.</li>
+<li><a href="../flywheel-energy/index.html">Flywheel energy</a> — a heavy disc on the shaft.</li>
+<li><a href="../vibration-isolation/index.html">Vibration isolation and severity</a> — mounts and vibration limits.</li>
+<li><a href="../beam-deflection/index.html">Beam deflection and bending stress</a> — static deflection of the shaft as a beam.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moment of inertia calculator (section properties) — Engineering calculators</title>
+  <meta name="description" content="Area moment of inertia, section modulus, plastic modulus, centroid and radius of gyration of rectangles, tubes, I-beams, T and channel sections.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Structural</span>
+    <h1 class="ec-title">Moment of inertia calculator (section properties)</h1>
+    <p class="ec-summary">Area moment of inertia, elastic and plastic section modulus, centroid and radius of gyration of rectangles, tubes, I-beams, T and channel sections.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The area moment of inertia, or second moment of area, measures how a cross-section resists bending. It grows with the cube of the depth: a plank on edge is far stiffer than the same plank laid flat. Beam deflection, bending stress and column buckling all depend on it, together with the section modulus for stress and the radius of gyration for buckling.</p>
+<p>This calculator gives the area, centroid, moments of inertia about both axes, elastic and plastic section moduli, radii of gyration and polar moment of the common shapes: solid and hollow rectangles, round bars and tubes, I-beams, T-sections, channels and triangles. It is for engineers and students checking a beam or column, or a section not listed in a catalogue.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Solid rectangle b × h and round bar of diameter d:</p>
+<pre class="ec-formula" tabindex="0"><code>I_x = b h³ / 12,   S_x = b h² / 6,   Z_x = b h² / 4
+I = π d⁴ / 64,     S = π d³ / 32,     Z = d³ / 6,   J = π d⁴ / 32</code></pre>
+<p>Composite sections (I, T, channel, box), from their rectangles:</p>
+<pre class="ec-formula" tabindex="0"><code>ȳ = Σ A_i y_i / Σ A_i
+I_x = Σ ( b_i h_i³ / 12 + A_i (y_i − ȳ)² )       parallel-axis theorem
+S_x = I_x / c_max,   r_x = √(I_x / A)
+Z_x = Σ A_i |y_i − y_p|,   y_p splits the area in half</code></pre>
+<ul>
+<li>c_max — distance from the centroid to the farthest fibre</li>
+<li>S — elastic section modulus, for the stress at first yield: σ = M / S</li>
+<li>Z — plastic section modulus, for the fully plastic moment: M_p = f_y Z</li>
+<li>r — radius of gyration, used for column slenderness L / r</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Shapes have straight sides and sharp corners. Rolled steel sections have root fillets and sometimes tapered flanges, so catalogue values are a few percent higher. Use the catalogue for standard sections and this calculator for built-up or non-standard ones.</li>
+<li>Ix is about the horizontal centroidal axis and Iy about the vertical one. For unsymmetric sections such as the T and channel, the centroid position is given.</li>
+<li>For thin-walled sections, local buckling can govern before the plastic moment is reached. The section classes of EN 1993-1-1 or AISC 360 decide whether Z can be used.</li>
+<li>The polar moment is the torsion constant only for circular sections. Open sections such as I-beams are much weaker in torsion than Ix + Iy suggests.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>What are the section properties of a 100 mm wide, 200 mm deep rectangular timber beam bending about its strong axis?</p>
+<ol>
+<li>Area: 100 × 200 = 20 000 mm².</li>
+<li>Moment of inertia: 100 × 200³ / 12 = 66.67 × 10⁶ mm⁴ = 6 667 cm⁴.</li>
+<li>Elastic section modulus: 100 × 200² / 6 = 666 667 mm³ = 666.7 cm³.</li>
+<li>Plastic section modulus: 100 × 200² / 4 = 1 000 cm³.</li>
+<li>Radius of gyration: √(6 667 × 10⁴ / 20 000) = 57.7 mm.</li>
+</ol>
+<p>Laid flat, the same beam has Iy = 1 667 cm⁴, a quarter of the stiffness.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the moment of inertia of a rectangle?</summary>
+<p>b h³ / 12 about its centroid, with h the dimension in the direction of bending. Doubling the depth makes it eight times stiffer.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between moment of inertia and section modulus?</summary>
+<p>The moment of inertia sets stiffness and deflection. The section modulus, I divided by the distance to the outer fibre, sets the bending stress: σ = M / S.</p>
+</details>
+<details class="ec-faq"><summary>What is the plastic section modulus?</summary>
+<p>The first moment of area about the axis that splits the section into equal halves. Multiplied by the yield stress it gives the plastic moment, used in limit-state design of compact steel sections.</p>
+</details>
+<details class="ec-faq"><summary>Why are I-beams shaped like that?</summary>
+<p>Material far from the neutral axis adds to I with the square of its distance. Putting most steel in the flanges gives a high I for little weight.</p>
+</details>
+<details class="ec-faq"><summary>Is this the same as mass moment of inertia?</summary>
+<p>No. The area moment of inertia is a property of a cross-section, in mm⁴ or in⁴, used for bending. The mass moment of inertia, in kg·m², measures resistance to rotation and is used in dynamics.</p>
+</details>
+<details class="ec-faq"><summary>How do I use the radius of gyration?</summary>
+<p>It sets column slenderness: the buckling load falls with (L / r)². Columns buckle about the axis with the smaller r.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../beam-deflection/index.html">Beam deflection</a> — deflection and stress from the moment of inertia.</li>
+<li><a href="../column-buckling/index.html">Column buckling</a> — Euler buckling from I and r.</li>
+<li><a href="../stiffener-section/index.html">Stiffener section properties</a> — stiffeners with attached plating.</li>
+<li><a href="../mass-moment-of-inertia/index.html">Mass moment of inertia</a> — rotating bodies.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

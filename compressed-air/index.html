@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compressed air calculator: leaks, receiver, pipe drop and power — Engineering calculators</title>
+  <meta name="description" content="Compressed air leak flow and yearly cost, receiver tank size, air main pressure drop and compressor power, isothermal and adiabatic.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Compressed air calculator: leaks, receiver, pipe drop and power</h1>
+    <p class="ec-summary">Leak flow and yearly cost, receiver size, air main pressure drop and compressor power for a compressed air system.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Compressed air is one of the most expensive forms of energy in a plant, and leaks often waste 20 to 30 % of a compressor&#39;s output. A single 1/4 inch hole at 100 psig blows away 104 cfm of free air, which costs about $16 800 a year at 10 cents per kWh.</p>
+<p>This calculator handles four everyday tasks. It gives the leak flow through a hole and its yearly energy and cost. It sizes a receiver tank for a demand event. It finds the pressure drop in an air main by the Darcy equation and by the Atlas Copco formula. It estimates compressor power, isothermal and adiabatic, with one to four stages. It is for maintenance and energy engineers and plant managers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Leak through a hole, choked when the absolute pressure is above 1.89 times atmospheric (about 13 psig):</p>
+<pre class="ec-formula" tabindex="0"><code>ṁ = Cd × A × p0 × √(γ / (R T)) × (2 / (γ + 1))^((γ + 1) / (2(γ − 1))) = 0.6847 Cd A p0 / √(R T)
+Q_free = ṁ / ρ_atm,   P_wasted = Q_free × specific power</code></pre>
+<p>Receiver for a demand event (US DOE MEASUR, Compressed Air Challenge):</p>
+<pre class="ec-formula" tabindex="0"><code>V = t × (Q_demand − Q_supply) × p_atm / (p1 − p2)</code></pre>
+<p>Pipe pressure drop, isothermal Darcy and the Atlas Copco empirical form:</p>
+<pre class="ec-formula" tabindex="0"><code>p1² − p2² = (ṁ / A)² R T × [f L / D + 2 ln(p1 / p2)]
+Δp = 450 × qc^1.85 × L / (d⁵ × p)      (bar, L/s free air, m, mm, bar absolute)</code></pre>
+<p>Compressor power for n intercooled stages:</p>
+<pre class="ec-formula" tabindex="0"><code>W_iso = p_a V × ln r
+W_ad = n × γ / (γ − 1) × p_a V × (r^((γ − 1) / (n γ)) − 1),   P_shaft = W_ad / η</code></pre>
+<ul>
+<li>A, d — hole area and diameter; Cd — coefficient of flow; p0 — absolute pressure upstream</li>
+<li>R = 287.05 J/(kg·K), γ = 1.4 for air; T — air temperature in kelvin</li>
+<li>Q, V — free air flow and volume at atmospheric pressure p_a; r — absolute pressure ratio</li>
+<li>p1, p2 — upper and lower pressures; t — event duration; f — Darcy friction factor</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>All flows are free air delivery: the volume at the atmospheric pressure and temperature entered. Compressor ratings use the same basis.</li>
+<li>A leak is modelled as a round hole. A coefficient of 1 reproduces the published leak tables, and the US DOE multiplies by 0.61 for sharp-edged holes. Real leaks in fittings and hoses vary, so treat the result as an estimate.</li>
+<li>The leak cost assumes the compressor power falls in proportion when the leaks are fixed. That holds only with good control, such as a variable-speed compressor or proper sequencing.</li>
+<li>The pipe drop needs fittings added as equivalent length. Atlas Copco recommends no more than 0.1 bar (1.5 psi) from the compressor to the farthest user.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A plant runs at 100 psig all year. Ultrasonic testing finds a leak equivalent to a 1/4 inch hole. The ambient is 14.696 psia and 68 °F. The compressors use 18.4 kW per 100 cfm, and power costs $0.10 per kWh.</p>
+<ol>
+<li>Upstream pressure: 100 + 14.7 = 114.7 psia, or 790.8 kPa. That is 7.8 times atmospheric, so the flow is choked.</li>
+<li>Hole area: π / 4 × 6.35² = 31.67 mm².</li>
+<li>Mass flow: 0.6847 × 31.67 × 10⁻⁶ × 790 800 / √(287.05 × 293.15) = 0.0591 kg/s.</li>
+<li>Free air: 0.0591 / 1.204 = 0.0491 m³/s, or 104.0 cfm.</li>
+<li>Compressor power: 104.0 / 100 × 18.4 = 19.1 kW.</li>
+<li>Energy: 19.1 × 8 760 h = 167 700 kWh a year, which costs $16 767.</li>
+</ol>
+<p>The CAGI fact sheet prints $16 764 for the same leak. Fixing it pays back in days.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How much does a compressed air leak cost?</summary>
+<p>Multiply the leak flow by the compressor specific power, the running hours and the electricity price. A 1/8 inch hole at 100 psig wastes 26 cfm, about $4 190 a year running constantly at 18.4 kW per 100 cfm and 10 cents per kWh.</p>
+</details>
+<details class="ec-faq"><summary>How do I measure total leakage?</summary>
+<p>With no production running, time how long the compressor loads (T) and unloads (t). Leakage in percent of capacity is 100 × T / (T + t); CAGI says a well-kept system stays below 10 %.</p>
+</details>
+<details class="ec-faq"><summary>What is the specific power of a compressor?</summary>
+<p>The electrical power per unit of free air delivered. Typical plants run at about 18 kW per 100 cfm, or 6.4 kW per m³/min.</p>
+</details>
+<details class="ec-faq"><summary>How big should my air receiver be?</summary>
+<p>Big enough to supply the peak demand above the compressor output while the pressure falls to the lowest acceptable value. 100 cfm for one minute with a 10 psi drop needs 147 ft³, about 1 100 US gallons.</p>
+</details>
+<details class="ec-faq"><summary>Does lowering the system pressure reduce leaks?</summary>
+<p>Yes. A choked leak flows in proportion to the absolute pressure, so dropping from 100 to 90 psig cuts leakage by about 9 %.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between isothermal and adiabatic power?</summary>
+<p>Isothermal power is the ideal minimum with the air kept at inlet temperature. Adiabatic power assumes no cooling during compression and is the usual reference for real compressors. Intercooled stages bring it closer to isothermal.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../ideal-gas-law/index.html">Ideal gas law</a> — the volume of air at another pressure or temperature.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — friction in liquid lines.</li>
+<li><a href="../electricity-cost/index.html">Electricity cost</a> — the running cost of the compressor.</li>
+<li><a href="../nozzle-flow/index.html">Nozzle flow</a> — water flow through a nozzle or orifice.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

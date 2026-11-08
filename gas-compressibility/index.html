@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gas compressibility factor Z calculator (natural gas and pure gases) — Engineering calculators</title>
+  <meta name="description" content="Real-gas Z factor and density of natural gas by Sutton and Dranchuk–Abou-Kassem (Standing–Katz), with Wichert–Aziz, or of a pure gas from Tc, Pc and ω.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Process</span>
+    <h1 class="ec-title">Gas compressibility factor Z calculator (natural gas and pure gases)</h1>
+    <p class="ec-summary">Natural gas Z factor by Sutton and Dranchuk–Abou-Kassem with the Wichert–Aziz correction, or a pure gas by the Pitzer virial correlation.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The compressibility factor Z measures how far a real gas departs from the ideal gas law. It is defined by P V = Z n R T, so Z = 1 for an ideal gas. At high pressure the molecules attract each other and Z falls below 1, so the gas is denser than PV = nRT predicts. A typical natural gas at 70 bar and 15 °C has Z = 0.85 and is 18 % denser than an ideal gas.</p>
+<p>This calculator finds Z in two ways. For natural gas it estimates the pseudo-critical properties from the gas specific gravity, corrects them for H₂S and CO₂, and solves the Dranchuk–Abou-Kassem fit of the Standing–Katz chart. For a pure gas it uses the Pitzer correlation from the critical temperature, critical pressure and acentric factor. It gives the density and the gas formation volume factor too. It is for gas pipeline, reservoir and process engineers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Natural gas: Sutton (1985) pseudo-critical properties from the specific gravity γ:</p>
+<pre class="ec-formula" tabindex="0"><code>Tpc = 169.2 + 349.5 γ − 74.0 γ²      °R
+ppc = 756.8 − 131.0 γ − 3.6 γ²       psia</code></pre>
+<p>Wichert–Aziz correction for acid gas, with A = y_H₂S + y_CO₂ and B = y_H₂S:</p>
+<pre class="ec-formula" tabindex="0"><code>ε = 120 (A^0.9 − A^1.6) + 15 (B^0.5 − B^4)      °R
+T′pc = Tpc − ε,   p′pc = ppc T′pc / (Tpc + B (1 − B) ε)</code></pre>
+<p>Dranchuk–Abou-Kassem, solved for Z at Tpr = T / Tpc and ppr = p / ppc:</p>
+<pre class="ec-formula" tabindex="0"><code>Z = 1 + (A1 + A2/Tpr + A3/Tpr³ + A4/Tpr⁴ + A5/Tpr⁵) ρr + (A6 + A7/Tpr + A8/Tpr²) ρr²
+    − A9 (A7/Tpr + A8/Tpr²) ρr⁵ + A10 (1 + A11 ρr²) (ρr² / Tpr³) exp(−A11 ρr²)
+ρr = 0.27 ppr / (Z Tpr)</code></pre>
+<p>Pure gas, Pitzer correlation with the Abbott coefficients:</p>
+<pre class="ec-formula" tabindex="0"><code>Z = 1 + (B⁰ + ω B¹) Pr / Tr
+B⁰ = 0.083 − 0.422 / Tr^1.6,   B¹ = 0.139 − 0.172 / Tr^4.2</code></pre>
+<p>Density and formation volume factor:</p>
+<pre class="ec-formula" tabindex="0"><code>ρ = P M / (Z R T),   Bg = (p_sc / T_sc) × Z T / p</code></pre>
+<ul>
+<li>A1 to A11 — 0.3265, −1.0700, −0.5339, 0.01569, −0.05165, 0.5475, −0.7361, 0.1844, 0.1056, 0.6134, 0.7210</li>
+<li>ω — acentric factor; Tr, Pr — reduced temperature and pressure of the pure gas</li>
+<li>M — molar mass, 28.964 γ for natural gas; p_sc, T_sc — 14.696 psia and 60 °F</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The Standing–Katz chart and its fit cover reduced temperatures from 1.05 to 3 and reduced pressures up to 30. The calculator refuses conditions outside them.</li>
+<li>Sutton&#39;s correlation was fitted to gases of specific gravity 0.57 to 1.68. Gases with much nitrogen or water vapour need a composition-based method.</li>
+<li>Near Tpr = 1.05 to 1.2 and ppr = 1 to 2.5 the chart is steep, and Z is least accurate there.</li>
+<li>The Pitzer virial correlation holds only at low density. The calculator stops when the molar volume falls below twice the critical volume.</li>
+<li>Pressure and temperature are absolute, and the gas must be above its dew point.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A natural gas of specific gravity 0.65, free of H₂S and CO₂, is at 2 000 psia and 200 °F. What are its Z factor and density?</p>
+<ol>
+<li>Tpc = 169.2 + 349.5 × 0.65 − 74.0 × 0.65² = 365.1 °R.</li>
+<li>ppc = 756.8 − 131.0 × 0.65 − 3.6 × 0.65² = 670.1 psi (absolute).</li>
+<li>Tpr = (200 + 459.67) / 365.1 = 1.807 and ppr = 2 000 / 670.1 = 2.98.</li>
+<li>Solving the Dranchuk–Abou-Kassem equation gives Z = 0.897.</li>
+<li>Molar mass 28.964 × 0.65 = 18.83 g/mol, so ρ = 13.79 MPa × 18.83 / (0.897 × 8.314 × 366.5 K) = 94.95 kg/m³.</li>
+</ol>
+<p>The ideal gas law would give 85.20 kg/m³, about 10 % too low.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the compressibility factor Z?</summary>
+<p>The ratio of the actual volume of a gas to the volume an ideal gas would occupy at the same pressure and temperature. Z = 1 means ideal behaviour.</p>
+</details>
+<details class="ec-faq"><summary>What is a typical Z for natural gas?</summary>
+<p>For a gas of specific gravity 0.6 at 15 °C, Z is about 0.89 at 50 bar and 0.80 at 100 bar. At atmospheric pressure it is within 0.5 % of 1.</p>
+</details>
+<details class="ec-faq"><summary>What is the Standing–Katz chart?</summary>
+<p>A chart from 1942 of Z against reduced pressure for natural gases, with one curve per reduced temperature. Equations such as Dranchuk–Abou-Kassem reproduce it to about 0.5 % on average.</p>
+</details>
+<details class="ec-faq"><summary>Why correct for H₂S and CO₂?</summary>
+<p>Acid gases make the gas less ideal than its specific gravity suggests. Wichert and Aziz lower the pseudo-critical temperature and pressure to account for them.</p>
+</details>
+<details class="ec-faq"><summary>What is the acentric factor?</summary>
+<p>A measure of how far a molecule departs from a simple sphere, defined from its vapour pressure at Tr = 0.7. It is about 0 for argon and methane, 0.2 for n-butane and 0.34 for water.</p>
+</details>
+<details class="ec-faq"><summary>When can I ignore Z?</summary>
+<p>When it is within your accuracy needs of 1. For air and nitrogen near room temperature that holds up to about 20 bar. For natural gas and CO₂ it fails well before that.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../mass-flow/index.html">Mass flow rate</a> — mass and standard flow with the real-gas density.</li>
+<li><a href="../specific-gravity/index.html">Specific gravity</a> — gas specific gravity from the molar mass.</li>
+<li><a href="../ideal-gas-law/index.html">Ideal gas law</a> — the Z = 1 limit.</li>
+<li><a href="../vapour-pressure/index.html">Vapour pressure</a> — where a vapour condenses.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

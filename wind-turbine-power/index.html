@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wind turbine power calculator — Engineering calculators</title>
+  <meta name="description" content="Wind turbine power from rotor diameter, wind speed, air density and power coefficient (Betz limit), and yearly energy from the mean wind speed by Rayleigh.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Wind turbine power calculator</h1>
+    <p class="ec-summary">Wind turbine power from rotor size and wind speed with the Betz limit, and yearly energy from the site's mean wind speed by the Rayleigh method.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How much power does a wind turbine make? The wind carries ½ ρ A v³ through the rotor&#39;s swept area, and the turbine converts a fraction Cp of it. A 3 m rotor in a 6 m/s wind meets 935 W of wind power. At a power coefficient of 0.35 it delivers 327 W. Because power rises with the cube of the speed, a 10 % stronger wind gives 33 % more power.</p>
+<p>This calculator gives the power at any wind speed, the Betz limit and the rated power. It estimates the yearly energy from the site&#39;s mean wind speed with a Rayleigh distribution and the turbine&#39;s cut-in, rated and cut-out speeds, or from a capacity factor. Air density follows from the altitude. It is for homeowners, farmers, students and engineers making a first estimate before a site survey.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Power and the Betz limit:</p>
+<pre class="ec-formula" tabindex="0"><code>P = ½ ρ A v³ Cp,    A = π D² / 4
+Cp ≤ 16/27 = 0.593</code></pre>
+<p>Rayleigh distribution of the wind speed, mean v̄:</p>
+<pre class="ec-formula" tabindex="0"><code>f(v) = (π v / (2 v̄²)) exp(−π v² / (4 v̄²))
+P_mean = ∫ P(v) f(v) dv,    E = 8 760 h × P_mean</code></pre>
+<p>Idealised power curve and density:</p>
+<pre class="ec-formula" tabindex="0"><code>P(v) = 0 below v_in and above v_out;  ½ ρ A v³ Cp up to v_r;  P_r = ½ ρ A v_r³ Cp from v_r to v_out
+ρ = p(h) / (R T),  ISO 2533 standard atmosphere</code></pre>
+<ul>
+<li>ρ — air density, 1.225 kg/m³ at sea level and 15 °C</li>
+<li>D — rotor diameter; v — wind speed; Cp — power coefficient from wind to electricity</li>
+<li>v_in, v_r, v_out — cut-in, rated and cut-out speeds</li>
+<li>capacity factor = P_mean / P_r</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Cp is constant between cut-in and rated speed. Real power curves are rounder, so use the manufacturer&#39;s curve where you have it.</li>
+<li>Small turbines reach a Cp of about 0.25 to 0.35 from wind to electricity, large ones about 0.45 at their best. No turbine can exceed 0.593.</li>
+<li>The mean wind speed must be at hub height. Wind speed rises with height, and trees and buildings slow it down.</li>
+<li>The Rayleigh distribution suits many inland sites. Sites with steadier or gustier winds have a different Weibull shape factor.</li>
+<li>Downtime, wake losses and cable losses are not deducted.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A small turbine has a 3 m rotor, a power coefficient of 0.35 and a rated speed of 11 m/s. It cuts in at 3 m/s and out at 25 m/s. The site is at sea level with a mean wind speed of 5 m/s at hub height. What does it produce?</p>
+<ol>
+<li>Swept area: π × 3² / 4 = 7.07 m².</li>
+<li>Power at 6 m/s: 0.5 × 1.225 × 7.07 × 6³ × 0.35 = 327 W.</li>
+<li>Rated power at 11 m/s: 0.5 × 1.225 × 7.07 × 11³ × 0.35 = 2 017 W.</li>
+<li>Averaged over the Rayleigh distribution for 5 m/s, the mean power is 338 W.</li>
+<li>Energy per year: 338 × 8 760 = 2 962 kWh.</li>
+<li>Capacity factor: 338 / 2 017 = 16.8 %.</li>
+</ol>
+<p>The turbine turns between cut-in and cut-out for 75 % of the year.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do you calculate wind turbine power?</summary>
+<p>Multiply half the air density by the swept area, the cube of the wind speed and the power coefficient. At 1.225 kg/m³ and 10 m/s the wind carries 612.5 W per square metre.</p>
+</details>
+<details class="ec-faq"><summary>What is the Betz limit?</summary>
+<p>The highest share of the wind&#39;s power any rotor can extract, 16/27 or 59.3 %. Albert Betz derived it from the momentum of the air passing the rotor.</p>
+</details>
+<details class="ec-faq"><summary>Why does wind speed matter so much?</summary>
+<p>Power rises with the cube of the speed. Doubling the wind speed gives eight times the power, so a good site matters more than a bigger turbine.</p>
+</details>
+<details class="ec-faq"><summary>Can I use the mean wind speed in the power formula?</summary>
+<p>No. The faster winds carry most of the energy. For a Rayleigh distribution the mean power in the wind is 1.91 times the power at the mean speed.</p>
+</details>
+<details class="ec-faq"><summary>What is a capacity factor?</summary>
+<p>The average output divided by the rated power. The 3 m turbine of the worked example reaches 16.8 % on a 5 m/s site.</p>
+</details>
+<details class="ec-faq"><summary>How does altitude affect wind power?</summary>
+<p>Thinner air carries less power. At 1 000 m the standard density is 1.112 kg/m³, about 9 % less than at sea level.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../air-density/index.html">Air density calculator</a> — density from pressure, temperature and humidity.</li>
+<li><a href="../solar-payback/index.html">Solar panel payback calculator</a> — the payback of the energy produced.</li>
+<li><a href="../micro-hydro/index.html">Micro-hydro power calculator</a> — power from a stream instead of the wind.</li>
+<li><a href="../solar-battery-bank/index.html">Solar battery bank calculator</a> — storage for an off-grid turbine.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

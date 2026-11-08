@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rocket equation calculator (delta-v) — Engineering calculators</title>
+  <meta name="description" content="Tsiolkovsky rocket equation: delta-v from Isp or exhaust velocity and the mass ratio, the propellant for a delta-v, and staging for up to three stages.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Rocket equation calculator (delta-v)</h1>
+    <p class="ec-summary">Delta-v from specific impulse and mass ratio by the Tsiolkovsky rocket equation, the propellant for a delta-v, and up to three stages.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The rocket equation gives the change in speed, delta-v, a rocket can reach by burning its propellant. Multiply the exhaust velocity by the natural logarithm of the mass ratio, the fuelled mass divided by the empty mass. An engine with a specific impulse of 300 s has an exhaust velocity of 2 942 m/s. A rocket that burns 60 % of its mass with it gains 2 696 m/s.</p>
+<p>This calculator gives the delta-v from the specific impulse or exhaust velocity and the two masses. It also finds the propellant needed for a delta-v, and adds up the delta-v of a rocket with up to three stages. It is for students, model-rocket fliers, game players and anyone checking a mission budget.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Rocket equation and its inverse:</p>
+<pre class="ec-formula" tabindex="0"><code>Δv = v_e × ln(m0 / mf)
+v_e = Isp × g0
+m_p = mf × (e^(Δv / v_e) − 1)</code></pre>
+<p>Staging:</p>
+<pre class="ec-formula" tabindex="0"><code>Δv_total = Σ v_e,i × ln(m0,i / mf,i)</code></pre>
+<ul>
+<li>m0 — initial (fuelled) mass; mf — final mass, dry structure plus payload</li>
+<li>m_p — propellant mass, m0 − mf</li>
+<li>Isp — specific impulse in seconds; g0 = 9.806 65 m/s²</li>
+<li>m0,i — mass at ignition of stage i, including all stages above it and the payload</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The equation is ideal. Gravity, air drag and steering cost extra delta-v during a launch, so reaching low Earth orbit takes well over the 7.8 km/s orbital speed.</li>
+<li>Specific impulse always converts with standard gravity, 9.806 65 m/s², even for a rocket flying from the Moon or Mars.</li>
+<li>Isp is taken as constant. For a first stage, use a value between the sea-level and vacuum figures.</li>
+<li>Each stage drops its dry mass at burnout. Interstages and fairings belong to the dry mass of the part they leave with.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A small rocket has a lift-off mass of 1 000 kg. Its engine has a specific impulse of 300 s, and after the burn 400 kg remain. What delta-v does it achieve?</p>
+<ol>
+<li>Exhaust velocity: 300 × 9.806 65 = 2 942.0 m/s.</li>
+<li>Mass ratio: 1 000 / 400 = 2.5.</li>
+<li>Delta-v: 2 942.0 × ln 2.5 = 2 942.0 × 0.9163 = 2 695.7 m/s.</li>
+<li>Propellant burned: 1 000 − 400 = 600 kg, or 60 % of the lift-off mass.</li>
+</ol>
+<p>To reach 3 000 m/s with the same 400 kg final mass, it would need 709.0 kg of propellant.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the rocket equation?</summary>
+<p>Δv = v_e × ln(m0 / mf). It links the speed a rocket can gain with its exhaust velocity and how much of its mass is propellant.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert specific impulse to exhaust velocity?</summary>
+<p>Multiply by standard gravity, 9.806 65 m/s². An Isp of 450 s is an exhaust velocity of 4 413 m/s.</p>
+</details>
+<details class="ec-faq"><summary>Why do rockets use stages?</summary>
+<p>Dropping empty tanks and engines means the next stage does not carry dead weight. The two-stage rocket of the staging defaults reaches 7 645 m/s. One stage with the same propellant and structure and a 300 s engine reaches 6 065 m/s.</p>
+</details>
+<details class="ec-faq"><summary>How much delta-v does it take to reach orbit?</summary>
+<p>Low Earth orbit is about 7.8 km/s of orbital speed, and gravity and drag add more on the way up. The calculator gives the ideal value only.</p>
+</details>
+<details class="ec-faq"><summary>What is the mass ratio?</summary>
+<p>The fuelled mass divided by the empty mass. A mass ratio of 2.718, the number e, gives a delta-v equal to the exhaust velocity.</p>
+</details>
+<details class="ec-faq"><summary>Does the rocket equation include gravity?</summary>
+<p>No. It assumes free space. Gravity and drag losses must be added to the mission budget separately.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../thrust-weight/index.html">Thrust-to-weight ratio</a> — whether the rocket can lift off.</li>
+<li><a href="../mach-number/index.html">Speed of sound and Mach number</a> — Mach number during the ascent.</li>
+<li><a href="../drag-lift/index.html">Drag and lift force</a> — aerodynamic drag in the atmosphere.</li>
+<li><a href="../true-airspeed/index.html">True airspeed</a> — speed through the air at altitude.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

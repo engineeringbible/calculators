@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Series and parallel resistors — Engineering calculators</title>
+  <meta name="description" content="Equivalent resistance of any number of resistors in series and in parallel, how the voltage or current divides, and the totals at a given voltage.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Series and parallel resistors</h1>
+    <p class="ec-summary">The equivalent resistance of any number of resistors in series and in parallel, how the voltage and the current divide between them, and the currents and power at an applied voltage.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Resistors in series add up; resistors in parallel combine into something smaller than the smallest of them. These two rules are how a circuit is reduced to a single equivalent resistance, and how designers reach a value they do not have in the drawer, such as two 10 kΩ parts in parallel for 5 kΩ.</p>
+<p>This calculator takes any number of resistors, typed as plain numbers or as they are marked on parts and drawings (4k7, 2R2, 1M), and returns both the series and the parallel equivalent at once. A table shows how the voltage divides between them in series and how the current divides in parallel. Enter the applied voltage to see the currents and the power as well. It is for students, technicians and engineers working with resistor networks.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Series, with the same current through every resistor:</p>
+<pre class="ec-formula" tabindex="0"><code>R = R₁ + R₂ + … + Rₙ</code></pre>
+<p>Parallel, with the same voltage across every resistor:</p>
+<pre class="ec-formula" tabindex="0"><code>1 / R = 1 / R₁ + 1 / R₂ + … + 1 / Rₙ
+two resistors:  R = R₁ R₂ / (R₁ + R₂)
+n equal resistors:  R = R₁ / n</code></pre>
+<p>Voltage division in series and current division in parallel:</p>
+<pre class="ec-formula" tabindex="0"><code>V_i = V × R_i / R_series
+I_i = I × (1 / R_i) / (1 / R_parallel)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The resistors are ideal, at their nominal values. Tolerances add in series in the worst case; in parallel the largest relative error still shows.</li>
+<li>Each list is treated as all series or all parallel. For a mixed network, reduce each parallel group first, then put the groups in series.</li>
+<li>The applied voltage is across the whole series chain or across the parallel group. In a real circuit, the source&#39;s own resistance adds in series.</li>
+<li>The power rating of each part is not checked. In parallel, the smallest resistor takes the largest share of the current and the most heat.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Three resistors, 100 Ω, 220 Ω and 470 Ω, are connected first in series and then in parallel. What is the equivalent resistance in each case?</p>
+<ol>
+<li>Series: R = 100 + 220 + 470 = 790 Ω.</li>
+<li>Parallel: 1 / R = 1/100 + 1/220 + 1/470 = 0.01 + 0.004545 + 0.002128 = 0.016673 S.</li>
+<li>So the parallel equivalent is R = 1 / 0.016673 = 60.0 Ω, below the smallest resistor, as it must be.</li>
+<li>In series, the 470 Ω resistor takes 470 / 790 = 59.5 % of the voltage. In parallel, the 100 Ω resistor takes 60.0 % of the current.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why is the parallel resistance smaller than any of the resistors?</summary>
+<p>Each extra resistor in parallel adds another path for the current. More paths mean less opposition overall, so the total always falls below the smallest single value.</p>
+</details>
+<details class="ec-faq"><summary>How do I make a value I don&#39;t have?</summary>
+<p>Combine standard parts. Two equal resistors in parallel give half the value, and in series twice. For 5 kΩ, use two 10 kΩ in parallel; for 15 kΩ, use 10 kΩ and 4.7 kΩ in series, which gives 14.7 kΩ.</p>
+</details>
+<details class="ec-faq"><summary>How do I solve a mixed series-parallel circuit?</summary>
+<p>Reduce it in steps. Replace each group of parallel resistors with its equivalent, add up whatever is now in series, and repeat until one resistance is left.</p>
+</details>
+<details class="ec-faq"><summary>Which resistor gets hottest?</summary>
+<p>In series, the largest one, because it has the largest voltage across it at the same current. In parallel, the smallest one, because it carries the most current at the same voltage.</p>
+</details>
+<details class="ec-faq"><summary>How do I enter values like 4.7 kΩ?</summary>
+<p>As 4.7k or 4k7. The letter stands in for the decimal point on markings: 2R2 is 2.2 Ω, 1M5 is 1.5 MΩ.</p>
+</details>
+<details class="ec-faq"><summary>Does this work for impedances?</summary>
+<p>For resistors only. Inductors combine like resistors, while capacitors combine the opposite way; see the capacitor calculator.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../ohms-law/index.html">Ohm&#39;s law and electrical power</a> — current and power in each resistor.</li>
+<li><a href="../voltage-divider/index.html">Voltage divider</a> — two resistors in series used to scale a voltage.</li>
+<li><a href="../resistor-color-code/index.html">Resistor colour code</a> — reading the values off the parts.</li>
+<li><a href="../capacitors-series-parallel/index.html">Series and parallel capacitors</a> — the same exercise for capacitors.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

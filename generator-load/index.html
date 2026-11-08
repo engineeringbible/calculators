@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generator load, kVA and fuel — Engineering calculators</title>
+  <meta name="description" content="Load factor, kVA, current and N−1 redundancy of parallel diesel generators, the recommended number of sets for a load band, and fuel, cost and CO₂ from SFOC.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Generator load, kVA and fuel</h1>
+    <p class="ec-summary">Loading of parallel diesel generator sets: load factor on the engine (kW) and alternator (kVA), line current, the N−1 redundancy check, the number of sets that keeps each within a recommended load band, and the fuel, cost and CO₂ over the operating hours from the specific fuel consumption with a part-load correction.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How many generators should run? Too few and a trip blacks out the ship or overloads the survivor; too many and each runs at a low load where it fouls, wet-stacks and burns more fuel per kilowatt-hour. This calculator takes the running sets, their rating and the electrical load and reports the load factor on the engine (kW) and on the alternator (kVA), the line current, whether the plant survives the loss of one set, how many sets keep each within a recommended load band, and the fuel, cost and CO₂ over the operating hours using the specific fuel consumption corrected for part load.</p>
+<p>It is for chief engineers and electro-technical officers managing the power plant, superintendents reviewing generator running hours and fuel, and students learning power-plant load management.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Ratings and load:</p>
+<pre class="ec-formula" tabindex="0"><code>P_set = S_rated × pf_rated                 rated kW of one set
+P_installed = n × P_set
+S_load = P_load / pf_load,    I = S_load / (√3 V)
+load % (kW)  = P_load / P_installed,    load % (kVA) = S_load / (n S_rated)</code></pre>
+<p>Redundancy and set count:</p>
+<pre class="ec-formula" tabindex="0"><code>N−1 load % = P_load / ((n − 1) P_set)
+n_recommended = ceil( P_load / (band_max × P_set) )</code></pre>
+<p>Fuel, cost and emissions:</p>
+<pre class="ec-formula" tabindex="0"><code>SFOC(load) = SFOC₁₀₀ × f(load)      f: 1.00 at 100 %, 1.02 at 75 %, 1.10 at 50 %, 1.27 at 25 %, linear between
+fuel/h = P_load × SFOC(load)
+fuel over the period = fuel/h × hours,    cost = fuel × price,    CO₂ = fuel × C_F</code></pre>
+<ul>
+<li>S_rated — kVA rating of each set; pf_rated — alternator rated power factor (0.8); C_F — IMO carbon factor of the fuel</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Identical sets sharing active load equally; reactive sharing, droop differences and mixed set sizes are not modelled.</li>
+<li>The load band (default 30–85 %) is operating policy: below about 30 % medium-speed diesels suffer fouling and wet stacking, above 85–90 % there is no margin for motor starts and bow-thruster transients. ISO 8528-1 prime rating permits 110 % for one hour in twelve.</li>
+<li>The N−1 check is a steady-state kW comparison; real plants rely on preferential tripping of non-essential consumers and automatic start of the standby set, and the transient behaviour needs its own study.</li>
+<li>SFOC is per electrical kWh at 100 % load, scaled with a typical medium-speed part-load curve; engine project guides quote brake kWh (divide by the alternator efficiency, about 0.96) and real shop-test curves should replace the typical one.</li>
+<li>SFOC refers to the reference fuel of 42 700 kJ/kg; a lower-calorific fuel burns proportionally more tonnes.</li>
+<li>CO₂ uses the IMO MEPC.364(79) carbon factors; the result feeds the CII estimator for the auxiliary share.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Two 1 000 kVA, 0.8 pf, 440 V sets run in parallel with an electrical load of 1 200 kW at power factor 0.85. SFOC at 100 % load 210 g/kWh (electrical), MGO at 700 $/t, 24 h.</p>
+<ol>
+<li>Installed: 2 × 800 = 1 600 kW. Load factor 1 200 / 1 600 = 75 % on the engines; the alternators see 1 200 / 0.85 = 1 412 kVA, 70.6 % of 2 000 kVA. Line current 1 412 000 / (√3 × 440) = 1 852 A. Within the 30–85 % band.</li>
+<li>N−1: if one set trips, the survivor faces 1 200 / 800 = 150 % — far beyond the 110 % one-hour allowance. The preferential trip must shed at least 320 kW immediately, or a third set should be on line when such a loss is unacceptable.</li>
+<li>Recommended count for the band: ceil(1 200 / (0.85 × 800)) = 2 sets at 75 %, which is what is running; the redundancy question, not the load band, decides whether a third set runs.</li>
+<li>Fuel: at 75 % the SFOC is 210 × 1.02 = 214 g/kWh → 257 kg/h, 6.17 t/day, 4 318 $/day, 19.8 t CO₂/day, for 28.8 MWh.</li>
+</ol>
+<p>Running three sets at 50 % instead would burn 231 g/kWh, 8 % more fuel, but survive any single trip at 75 %.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why are there two load percentages?</summary>
+<p>The engine is limited by kW, the alternator by kVA. At low power factor the alternator reaches 100 % while the engine still has margin; at high power factor the engine governs.</p>
+</details>
+<details class="ec-faq"><summary>What is wet stacking?</summary>
+<p>At low load a diesel runs cool, combustion is incomplete, unburnt fuel and soot accumulate in the exhaust and turbocharger, and SFOC rises steeply. Most makers advise against sustained operation below 25–30 % load.</p>
+</details>
+<details class="ec-faq"><summary>Should I always keep N−1 redundancy?</summary>
+<p>During manoeuvring, in restricted waters and in heavy weather, yes: class and SOLAS require that essential services survive the loss of one generator. At sea in open water many operators accept a single set with the standby on auto-start, trading redundancy for fuel.</p>
+</details>
+<details class="ec-faq"><summary>How accurate is the typical SFOC curve?</summary>
+<p>Within a few per cent for modern medium-speed gensets at 50–100 % load; worse below. Shop-test curves for the specific engine are always better, and ageing adds 2–5 %.</p>
+</details>
+<details class="ec-faq"><summary>Can I size a new plant with this?</summary>
+<p>It gives the first-order answer (how many sets of what size keep the load in band with N−1). A real load analysis (electrical load balance for each operating mode) and the transient study for the largest motor start are needed for the design.</p>
+</details>
+<details class="ec-faq"><summary>How does this connect to CII?</summary>
+<p>The daily CO₂ from the auxiliaries is part of the ship&#39;s annual total; feed it, with the main-engine figure, into the CII estimator.</p>
+</details>
+<details class="ec-faq"><summary>What about shaft generators or batteries?</summary>
+<p>A shaft generator replaces one or more diesel sets at sea; enter the remaining diesel load. Battery hybrid systems that peak-shave are outside this calculator.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — the motor loads that make up the total.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel consumption and voyage cost</a> — main-engine fuel for the same voyage.</li>
+<li><a href="../cii-rating/index.html">CII rating estimator</a> — annual CO₂ including the auxiliary share.</li>
+<li><a href="../battery-runtime/index.html">Battery capacity and runtime</a> — emergency and hybrid storage.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

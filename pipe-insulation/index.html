@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pipe and tank insulation heat loss — Engineering calculators</title>
+  <meta name="description" content="Heat loss through multi-layer cylindrical or flat insulation, surface temperature and the heating power to hold a fuel tank or line warm.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Pipe and tank insulation heat loss</h1>
+    <p class="ec-summary">Steady heat loss through a pipe wall and up to two insulation layers (cylindrical) or a flat multi-layer wall with inside and outside film coefficients: the resistance network, loss per metre or per square metre and in total, cladding and interface temperatures, the bare-surface comparison, the critical insulation radius and the annual heating energy needed to hold the temperature.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Heated fuel lines, steam pipes, thermal-oil systems and bunker tanks all lose heat to their surroundings, and the loss sets the heating coil or trace-heating power, the steam consumption and, on the outside, whether a crew member can touch the cladding. The calculation is the textbook thermal resistance network: inside film, pipe wall, insulation layers and outside film in series, with the cylindrical geometry making the outer layers less effective than their thickness suggests. This calculator builds that network for a pipe or a flat tank wall, reports every resistance and temperature, compares with the bare surface, flags the critical radius effect and converts the loss into annual heating energy.</p>
+<p>It is for marine and plant engineers sizing tank heating and insulation, energy auditors, and students of heat transfer.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Pipe (per metre of length), radii r₁ (inside wall), r₂ (outside wall), r₃, r₄ (insulation layers):</p>
+<pre class="ec-formula" tabindex="0"><code>R_i = 1/(h_i 2π r₁),   R_wall = ln(r₂/r₁)/(2π k_wall),   R_1 = ln(r₃/r₂)/(2π k₁),   R_2 = ln(r₄/r₃)/(2π k₂),   R_o = 1/(h_o 2π r₄)
+q = (T_in − T_amb) / ΣR    [W/m],   T_surface = T_amb + q R_o,   T_interface = T_in − q (R_i + R_wall)
+r_cr = k₁ / h_o   (critical insulation radius)</code></pre>
+<p>Flat wall (per m²): R = 1/h_i + t_wall/k_wall + t₁/k₁ + t₂/k₂ + 1/h_o.</p>
+<p>Totals: Q = q × length (or area); annual energy = Q × hours.</p>
+<p>Typical values: mineral wool k 0.035–0.045 W/(m·K) at 50 °C (0.06–0.08 at 200 °C), calcium silicate 0.06, PUR 0.025; h_o 8–10 W/(m²·K) still air with radiation, 20–30 in wind; h_i 1 000+ for liquids and condensing steam, 20–50 for gases.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>One-dimensional steady conduction; constant conductivities at their mean temperature; combined outside coefficient entered by the user.</li>
+<li>Thermal bridges (supports, flanges, valves) and uninsulated fittings add 10–20 % on real lines; heat-up from cold and wind chill are not included.</li>
+<li>The bare-surface comparison uses the same h_o; the hot bare pipe radiates more, so the saving is slightly understated.</li>
+<li>Cold service is handled with the same network (the loss becomes a heat gain) and the cladding temperature should be checked against the dew point.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 4-inch heavy fuel oil line (114.3 mm OD, 6 mm wall, k 50 W/(m·K)) at 150 °C with 50 mm of mineral wool (k 0.04) in a 25 °C engine room with still air (h_o 10), 10 m long, 6 000 h/year.</p>
+<ol>
+<li>Radii: 51.15 / 57.15 / 107.15 mm. Resistances per metre: inside 0.0031, wall 0.0004, insulation ln(107.15/57.15)/(2π × 0.04) = 2.501, outside 1/(10 × 2π × 0.10715) = 0.1485; total 2.653 K·m/W.</li>
+<li>Loss 125/2.653 = 47.1 W/m, 471 W for the line; 2.8 MWh/year of heating.</li>
+<li>Cladding temperature 25 + 47.1 × 0.1485 = 32 °C (safe to touch); the steel under the insulation is at 149.8 °C.</li>
+<li>Bare, the same pipe would lose 443 W/m: the insulation removes 89 %. Adding a second 25 mm layer of k 0.03 brings the loss down to 33.4 W/m.</li>
+<li>Critical radius k/h_o = 4 mm, far below the pipe radius, so every millimetre of insulation helps here; on a 10 mm cable with poor insulation it would not.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the second layer save less than the first?</summary>
+<p>Two reasons: the loss is already small, and in cylindrical geometry each added millimetre sits on a larger circumference, so its resistance ln(r_out/r_in) grows more slowly than its thickness.</p>
+</details>
+<details class="ec-faq"><summary>What is the critical radius?</summary>
+<p>Below r = k/h_o the increase in outside area outweighs the added conduction resistance and insulation increases the loss. It only matters for thin wires and tubes with poor insulation; for pipes with mineral wool it is a few millimetres.</p>
+</details>
+<details class="ec-faq"><summary>Which conductivity should I use?</summary>
+<p>The value at the mean temperature of the layer (roughly the average of its two faces); manufacturers publish k against temperature, and mineral wool nearly doubles between 50 and 200 °C.</p>
+</details>
+<details class="ec-faq"><summary>How do I get the heating coil power for a tank?</summary>
+<p>Use the flat-wall geometry per bulkhead and bottom with the correct outside coefficients (sea water on the shell gives a very high h_o), sum the areas, add 10–20 % for structure and use the result as the steady holding load; heat-up from cold needs the tank contents&#39; heat capacity on top.</p>
+</details>
+<details class="ec-faq"><summary>Is 60 °C the right surface limit?</summary>
+<p>It is the usual personnel-protection limit for metal cladding (CINI, ASTM C1055); some owners specify 50 °C for touchable surfaces.</p>
+</details>
+<details class="ec-faq"><summary>Does wind matter?</summary>
+<p>Yes: h_o of 20–30 W/(m²·K) on an exposed deck raises the loss of a well-insulated pipe only slightly but lowers the cladding temperature; for a bare pipe it roughly doubles the loss.</p>
+</details>
+<details class="ec-faq"><summary>What about cold insulation?</summary>
+<p>Enter the cold temperature inside; the loss becomes a heat gain, and the cladding must stay above the dew point of the ambient air to avoid condensation (vapour barrier needed).</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../heat-exchanger-lmtd/index.html">Heat exchanger LMTD</a> — the heater supplying the holding load.</li>
+<li><a href="../engine-room-ventilation/index.html">Engine-room ventilation (ISO 8861)</a> — the room heat load these losses feed.</li>
+<li><a href="../fuel-blend-heating/index.html">Fuel blending and heating viscosity</a> — the storage and transfer temperatures to hold.</li>
+<li><a href="../thermal-expansion/index.html">Thermal expansion and restraint stress</a> — expansion of the hot line.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

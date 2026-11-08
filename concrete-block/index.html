@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Concrete block calculator: CMU, mortar and grout — Engineering calculators</title>
+  <meta name="description" content="Concrete blocks for a wall (8 × 16 in or 440 × 215 mm), with openings and waste, bags of mortar and the grout volume to fill the cores.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Concrete block calculator: CMU, mortar and grout</h1>
+    <p class="ec-summary">Concrete blocks for a wall, 8 × 16 in or 440 × 215 mm, less openings and with waste, plus bags of mortar and grout for the cores by NCMA TEK 4-2A.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How many concrete blocks do you need? Divide the wall area by the face of one block plus its joint. A standard 8 × 16 in block covers 0.889 ft², so each square foot of wall takes 1.125 blocks. A wall 40 ft long and 8 ft high has 320 ft² and needs 360 blocks, or 378 with 5 % for breakage.</p>
+<p>This calculator counts the blocks for a wall after deducting doors and windows, and adds the waste allowance. It estimates the bags of mortar mix and, for US hollow blocks, the grout to fill the cores at the spacing you choose. It is for masons, contractors and homeowners planning a garden wall, foundation wall or retaining wall.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Blocks:</p>
+<pre class="ec-formula" tabindex="0"><code>A_net = L × H − openings
+blocks = A_net / (face length × face height) × (1 + waste)</code></pre>
+<p>Mortar and grout:</p>
+<pre class="ec-formula" tabindex="0"><code>bags = blocks / 16
+grout = A_net × g / 100</code></pre>
+<ul>
+<li>L, H — wall length and height; openings — area of doors and windows</li>
+<li>face — nominal block face including one joint: 16 × 8 in (0.889 ft²) or 450 × 225 mm (0.101 m²)</li>
+<li>16 — blocks laid per 80 lb bag of preblended mortar with face-shell bedding (NCMA TEK 4-2A Table 2)</li>
+<li>g — grout in ft³ per 100 ft² of wall from NCMA TEK 4-2A Table 3</li>
+</ul>
+<p>Grout per 100 ft² of wall, two-core hollow units, 3 % waste included:</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Cores grouted</th><th scope="col">6 in wall</th><th scope="col">8 in wall</th><th scope="col">10 in wall</th><th scope="col">12 in wall</th></tr></thead>
+<tbody>
+<tr><td>Every core</td><td>25.6 ft³</td><td>36.1 ft³</td><td>47.0 ft³</td><td>58.9 ft³</td></tr>
+<tr><td>16 in on centre</td><td>12.8 ft³</td><td>18.1 ft³</td><td>23.5 ft³</td><td>29.5 ft³</td></tr>
+<tr><td>24 in on centre</td><td>8.6 ft³</td><td>12.1 ft³</td><td>15.7 ft³</td><td>19.7 ft³</td></tr>
+<tr><td>32 in on centre</td><td>6.4 ft³</td><td>9.1 ft³</td><td>11.8 ft³</td><td>14.8 ft³</td></tr>
+<tr><td>48 in on centre</td><td>4.3 ft³</td><td>6.1 ft³</td><td>7.9 ft³</td><td>9.9 ft³</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The wall is a single wythe in running bond. Corner, lintel and bond-beam units are counted as ordinary blocks.</li>
+<li>A US block is 15⅝ × 7⅝ in actual, laid with ⅜ in joints to an 8 × 16 in module. A metric block of 440 × 215 mm with 10 mm joints fills 450 × 225 mm.</li>
+<li>The mortar rate of 16 blocks per bag is the NCMA figure and includes normal waste. The QUIKRETE Mortar Mix data sheet gives 13 blocks per 80 lb bag, so enter 13 for a cautious estimate.</li>
+<li>Grout volumes come from NCMA tables for two-core units. Bond beams and larger cells need more. Grout is not estimated for metric blocks.</li>
+<li>A wall that retains soil or carries a building needs reinforcement and an engineer&#39;s design.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A wall is 40 ft long and 8 ft high, built of 8 in hollow blocks with no openings. The cores are grouted at 48 in on centre. How many blocks, bags of mortar and how much grout are needed with 5 % waste on the blocks?</p>
+<ol>
+<li>Wall area: 40 × 8 = 320 ft².</li>
+<li>Blocks: 320 / 0.889 = 360 blocks, in 12 courses of 8 in.</li>
+<li>With 5 % waste: 360 × 1.05 = 378 blocks.</li>
+<li>Mortar: 360 / 16 = 22.5, so 23 bags of 80 lb mortar mix.</li>
+<li>Grout: 320 × 6.1 / 100 = 19.5 ft³, which is 0.723 yd³.</li>
+</ol>
+<p>At the QUIKRETE rate of 13 blocks per bag the mortar would be 28 bags. Order the grout as about three-quarters of a cubic yard of ready-mix grout, or mix it on site.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How many blocks are in a square foot?</summary>
+<p>1.125 standard 8 × 16 in blocks per square foot, or 112.5 per 100 ft² before waste.</p>
+</details>
+<details class="ec-faq"><summary>How many blocks per square metre?</summary>
+<p>9.88 metric blocks of 440 × 215 mm with 10 mm joints, before waste.</p>
+</details>
+<details class="ec-faq"><summary>How many bags of mortar for 100 blocks?</summary>
+<p>About 6.3 bags of 80 lb preblended mortar at the NCMA rate of 16 blocks per bag, or 7.7 at the QUIKRETE rate of 13.</p>
+</details>
+<details class="ec-faq"><summary>How much grout fills an 8 in block wall?</summary>
+<p>36.1 ft³ per 100 ft² when every core is filled, about 0.32 ft³ per block. Grouting every third core at 24 in takes 12.1 ft³ per 100 ft².</p>
+</details>
+<details class="ec-faq"><summary>What are the actual dimensions of an 8 × 8 × 16 block?</summary>
+<p>7⅝ × 7⅝ × 15⅝ in. The ⅜ in mortar joint brings it to the 8 × 16 in module.</p>
+</details>
+<details class="ec-faq"><summary>How much waste should I allow?</summary>
+<p>About 5 % for breakage and cutting on a plain wall. Allow more for many corners, piers and openings.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../brick-count/index.html">Brick calculator</a> — clay brick walls and veneers.</li>
+<li><a href="../concrete-footing/index.html">Concrete footing calculator</a> — the footing under the block wall.</li>
+<li><a href="../concrete-volume/index.html">Concrete volume and rebar weight</a> — concrete and reinforcing steel quantities.</li>
+<li><a href="../retaining-wall/index.html">Retaining wall earth pressure calculator (Rankine)</a> — soil pressure on a block retaining wall.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

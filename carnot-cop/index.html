@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carnot efficiency and COP calculator — Engineering calculators</title>
+  <meta name="description" content="Carnot efficiency of a heat engine and the ideal COP of a heat pump or refrigerator between two temperatures, with a realistic estimate and the heat or power.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Carnot efficiency and COP calculator</h1>
+    <p class="ec-summary">Carnot efficiency of a heat engine and the ideal COP of a heat pump or refrigerator, with a realistic estimate and the heat or power.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>No machine working between two temperatures can beat the Carnot limit. A heat engine turns at most 1 − T_cold/T_hot of its heat into work; a heat pump delivers at most T_hot/(T_hot − T_cold) units of heat per unit of electricity. The smaller the temperature lift, the better: a heat pump heating floors at 35 °C from 0 °C outdoor air could in theory deliver almost nine units of heat for one of electricity.</p>
+<p>This calculator gives the Carnot efficiency of an engine, and the ideal coefficient of performance (COP) of a heat pump or refrigerator, from the two temperatures. Real machines reach a fraction of the ideal, so it also gives a realistic value and the heat or power that results. It is for engineers, students and homeowners comparing heat pumps, chillers and power cycles.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>With temperatures in kelvin, T = °C + 273.15:</p>
+<pre class="ec-formula" tabindex="0"><code>heat engine:      η_C = 1 − T_c / T_h
+heat pump:        COP_h = T_h / (T_h − T_c)
+refrigerator:     COP_c = T_c / (T_h − T_c)</code></pre>
+<p>Real machines and energy balance:</p>
+<pre class="ec-formula" tabindex="0"><code>COP_real = f × COP_Carnot       (or η_real = f × η_C)
+heat pump:  Q_h = COP × W,   Q_source = Q_h − W
+engine:     W = η × Q_in,     Q_rejected = Q_in − W</code></pre>
+<ul>
+<li>T_h, T_c — hot and cold reservoir temperatures</li>
+<li>f — second-law efficiency, the fraction of Carnot a real machine reaches</li>
+<li>W — electrical or mechanical work; Q — heat flow</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The temperatures are those of the reservoirs. Inside a real heat pump the refrigerant evaporates a few degrees below the source and condenses a few degrees above the delivered temperature, so the true lift is larger.</li>
+<li>Good heat pumps and chillers reach about 40 to 55 % of the Carnot COP at their rating point. Engines reach 30 to 60 % of the Carnot efficiency.</li>
+<li>Seasonal values such as SCOP and SEER average over changing weather, part load and defrost, and are lower than the COP at a mild rating point.</li>
+<li>For a heat pump, lowering the flow temperature by 10 K raises the COP by roughly a quarter, which is why underfloor heating suits heat pumps.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An air-source heat pump supplies underfloor heating at 35 °C when it is 0 °C outside. It reaches 50 % of the Carnot COP. How much heat does it give for 2 kW of electricity?</p>
+<ol>
+<li>Temperatures: T_h = 308.15 K, T_c = 273.15 K, a lift of 35 K.</li>
+<li>Carnot COP: 308.15 / 35 = 8.804.</li>
+<li>Realistic COP: 0.5 × 8.80 = 4.40.</li>
+<li>Heat delivered: 4.40 × 2 = 8.80 kW, of which 6.80 kW comes from the outdoor air.</li>
+</ol>
+<p>With radiators at 55 °C, the Carnot COP would fall to 6.0 and the real COP to about 3.0.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the Carnot efficiency?</summary>
+<p>The highest possible efficiency of a heat engine between two temperatures, 1 − T_cold/T_hot in kelvin. A plant with steam at 550 °C and cooling water at 30 °C cannot exceed 63 %.</p>
+</details>
+<details class="ec-faq"><summary>What is a good COP for a heat pump?</summary>
+<p>Around 3 to 4.5 at typical conditions. The COP rises with a warmer source and a cooler delivery temperature.</p>
+</details>
+<details class="ec-faq"><summary>Why can a COP be greater than 1?</summary>
+<p>A heat pump moves heat rather than making it. The electricity drives the move, and the heat comes mostly from the outside air or ground.</p>
+</details>
+<details class="ec-faq"><summary>How does outdoor temperature affect a heat pump?</summary>
+<p>Colder outdoor air widens the lift and lowers the COP. At 35 °C flow, the Carnot COP falls from 8.8 at 0 °C to 6.8 at −10 °C.</p>
+</details>
+<details class="ec-faq"><summary>What is the COP of a refrigerator?</summary>
+<p>Ideal values are high, about 9 for 5 °C inside and 35 °C outside, but real fridges reach 2 to 4 because of the large temperature differences across their coils.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between COP and EER?</summary>
+<p>COP is heat over electricity in the same units. EER is cooling in Btu/h per watt, so EER = 3.412 × COP.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../specific-heat/index.html">Specific heat (Q = mcΔT)</a> — heat to warm water or a material.</li>
+<li><a href="../heat-transfer/index.html">Heat transfer</a> — conduction, convection and radiation.</li>
+<li><a href="../heat-loss/index.html">Building heat loss</a> — the heat a house needs.</li>
+<li><a href="../electricity-cost/index.html">Electricity cost</a> — running cost of the heat pump.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

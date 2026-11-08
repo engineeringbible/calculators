@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interference fit — Engineering calculators</title>
+  <meta name="description" content="Contact pressure, torque and axial force capacity, bore stresses and shrink-fit temperature of a hub on a solid or hollow shaft.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Interference fit</h1>
+    <p class="ec-summary">Find the contact pressure of a press or shrink fit from its interference, the torque and axial force it carries by friction, the stresses at the bore of the hub, and the temperature to heat the hub to for assembly.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A hub fitted to a shaft with interference, by pressing or by heating the hub, grips the shaft through the contact pressure and transmits torque by friction. Couplings, gears, propeller hubs and bearing rings are mounted this way. This calculator uses the thick-walled cylinder solution to find the contact pressure from the interference, the torque and axial force the fit can carry, the stresses at the bore of the hub, and the temperature to which the hub must be heated to slide on.</p>
+<p>It is for mechanical and marine engineers designing or checking shrink fits, maintenance engineers planning a fitting, and students of machine design.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Contact pressure:   p = δ / (d [ (1/E_o)((D_o² + d²)/(D_o² − d²) + ν_o) + (1/E_i)((d² + d_i²)/(d² − d_i²) − ν_i) ])
+Equal materials:    p = E δ (D_o² − d²)(d² − d_i²) / (2 d³ (D_o² − d_i²))
+Torque:             T = μ p π d² L / 2
+Axial force:        F = μ p π d L
+Hub at the bore:    σ_t = p (D_o² + d²)/(D_o² − d²),   σ_r = −p
+Heating:            ΔT = (δ + clearance) / (α d)</code></pre>
+<ul>
+<li>δ — diametral interference; d — fit diameter; D_o — hub outer diameter; d_i — shaft bore; L — fit length; μ — friction coefficient.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Elastic thick-walled cylinders with uniform contact pressure along the fit.</li>
+<li>Surface smoothing reduces the effective interference; DIN 7190-1 gives the allowance.</li>
+<li>Pressure peaks at the hub ends, centrifugal loosening and operating temperature differences are not included.</li>
+<li>Friction coefficients differ between shrink fits and press fits, and between assembly and service.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A steel hub of 200 mm outer diameter is shrunk on a solid steel shaft of 100 mm with 0.08 mm of diametral interference over 120 mm; μ = 0.14.</p>
+<ol>
+<li>Contact pressure: 210 000 × 0.08 × (200² − 100²) / (2 × 100 × 200²) = 63.0 MPa.</li>
+<li>Torque capacity: 0.14 × 63.0 × π × 100² × 120 / 2 = 16.6 kN·m; axial capacity 333 kN.</li>
+<li>Hub hoop stress at the bore 105 MPa and von Mises stress 147 MPa, against 355 MPa yield.</li>
+<li>To slide on with 0.05 mm clearance the hub is heated by 0.13 / (12 × 10⁻⁶ × 100) = 108 °C, to 128 °C.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Is the interference diametral or radial?</summary>
+<p>Diametral: the shaft diameter minus the hub bore. Some texts use the radial interference, half of it.</p>
+</details>
+<details class="ec-faq"><summary>Why is the hub stress higher than the contact pressure?</summary>
+<p>The hub is stretched round its circumference. Its hoop stress at the bore is the contact pressure times (D_o² + d²)/(D_o² − d²), which grows quickly for thin hubs.</p>
+</details>
+<details class="ec-faq"><summary>What friction coefficient should I use?</summary>
+<p>It depends on the materials, surface finish, lubrication and whether the fit was pressed or shrunk. DIN 7190-1 tabulates values for the common material pairs and joining methods; the 0.14 of the example is only a placeholder.</p>
+</details>
+<details class="ec-faq"><summary>Can I cool the shaft instead of heating the hub?</summary>
+<p>Yes; the required temperature difference is the same in principle. Cooling with liquid nitrogen avoids heating a hardened hub but limits the temperature difference available.</p>
+</details>
+<details class="ec-faq"><summary>Why does a hollow shaft reduce the pressure?</summary>
+<p>A hollow shaft is more flexible and gives way to the hub, so the same interference produces less pressure and less torque capacity.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../shaft-torque/index.html">Shaft torque, power and diameter</a> — the torque the fit must carry.</li>
+<li><a href="../thermal-expansion/index.html">Thermal expansion and restraint stress</a> — expansion of the heated hub.</li>
+<li><a href="../bolt-torque/index.html">Bolt torque and preload</a> — a bolted alternative for clamping.</li>
+<li><a href="../bearing-life/index.html">Rolling bearing L10 life (ISO 281)</a> — bearing rings mounted with interference.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

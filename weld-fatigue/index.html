@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weld fatigue damage (DNV-RP-C203) — Engineering calculators</title>
+  <meta name="description" content="Miner damage and fatigue life of a welded detail from a stress-range histogram on the DNV-RP-C203 S-N curves, with thickness effect and DFF.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Structural</span>
+    <h1 class="ec-title">Weld fatigue damage (DNV-RP-C203)</h1>
+    <p class="ec-summary">Check the fatigue of a welded detail: classify it on a DNV-RP-C203 S-N curve for air, seawater with cathodic protection or free corrosion, add up the Miner damage of a stress-range histogram with the thickness effect, and compare the damage over the design life with 1/DFF.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Welded joints in ships and offshore structures crack under repeated loading long before the stress reaches yield. The usual check classifies the detail on an S-N curve, which gives the number of cycles to failure at each stress range, and adds up the damage of all the cycles in a stress histogram by the Palmgren–Miner rule. This calculator uses the S-N curves of DNV-RP-C203 for air, for seawater with cathodic protection and for free corrosion, applies the thickness effect and a stress concentration factor, and compares the damage over the design life with the limit set by the design fatigue factor.</p>
+<p>It is for structural engineers checking fatigue of hull and offshore details, inspection engineers judging remaining life, and students learning the S-N method.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>S-N curve (air, CP):   log N = log a1 − m1 log Δσ   above the slope change (10^7 cycles in air, 10^6 with CP)
+                       log N = log a2 − 5 log Δσ    below it
+Free corrosion:        log N = log a − 3 log Δσ
+Effective range:       Δσ_eff = Δσ · SCF · (t / t_ref)^k   for t &gt; t_ref
+Miner sum:             D = Σ n_i / N_i ≤ η = 1 / DFF
+Fatigue life:          period / D</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>S-N curves of the October 2011 edition of DNV-RP-C203; later editions revised some details.</li>
+<li>t_ref = 25 mm for welded connections other than tubular joints, 32 mm for tubular joints in this edition.</li>
+<li>Linear damage accumulation; the histogram should have at least 20 blocks when it represents a long-term distribution.</li>
+<li>Mean stress, post-weld improvement and low-cycle fatigue are not included.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A detail on curve D in air, 25 mm thick, sees in one year the histogram of the default input: from 50 cycles at 120 MPa to a million at 5 MPa, 5.86 million cycles in all. The design life is 20 years with DFF 2.</p>
+<ol>
+<li>At 120 MPa, above the slope change at 52.63 MPa, N = 10^(12.164 − 3 log 120) = 844 000 cycles; 50 cycles give a damage of 5.9 × 10⁻⁵.</li>
+<li>At 40 MPa, below it, N = 10^(15.606 − 5 log 40) = 3.94 × 10⁷; 200 000 cycles give 5.1 × 10⁻³, the largest share.</li>
+<li>The Miner sum for the year is 0.0167, so the fatigue life is 60 years.</li>
+<li>Over 20 years D = 0.333 against 1/DFF = 0.5: utilisation 0.67, acceptable.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which S-N curve applies to my detail?</summary>
+<p>DNV-RP-C203 Appendix A classifies details by geometry, weld type and direction of loading; for hot-spot stresses from a finite element model, curve D is used for plated structures and curve T for tubular joints.</p>
+</details>
+<details class="ec-faq"><summary>Why does the slope change?</summary>
+<p>Below a certain stress range, cycles do much less damage. With variable loading the larger cycles keep the cracks growing, so the RP uses a second, flatter slope (m = 5) rather than a fatigue limit.</p>
+</details>
+<details class="ec-faq"><summary>Why is free corrosion so much worse?</summary>
+<p>Corrosion attacks the weld toe and removes the benefit of the slope change: the curve keeps the steep slope for all cycles and lies lower, so the life can drop severalfold.</p>
+</details>
+<details class="ec-faq"><summary>What does the thickness effect do?</summary>
+<p>Thicker plates have a less favourable stress gradient at the weld toe, so their fatigue strength is lower. The stress range is increased by (t/t_ref)^k for plates thicker than the reference.</p>
+</details>
+<details class="ec-faq"><summary>What design fatigue factor should I use?</summary>
+<p>DNV-OS-C101 sets it from 1 to 10 depending on whether the detail can be inspected and repaired and how serious a failure would be.</p>
+</details>
+<details class="ec-faq"><summary>When can a detailed fatigue analysis be skipped?</summary>
+<p>When the largest stress range is below the fatigue limit at 10^7 cycles reduced by DFF^−0.33, section 2.11 of the RP allows the detailed analysis to be omitted.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../fillet-weld/index.html">Fillet weld strength</a> — the static strength of the weld.</li>
+<li><a href="../stiffener-section/index.html">Stiffener with attached plating</a> — the section modulus that turns moments into stresses.</li>
+<li><a href="../padeye/index.html">Padeye design check</a> — the static check of a lifting point.</li>
+<li><a href="../gum-uncertainty/index.html">Measurement uncertainty (GUM)</a> — the uncertainty of measured stress ranges.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

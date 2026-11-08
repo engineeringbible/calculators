@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Energy-saving device payback — Engineering calculators</title>
+  <meta name="description" content="Payback, NPV, IRR and levelized cost of a fuel-saving retrofit from the saving, fuel and ETS prices, life and discount rate.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Energy-saving device payback</h1>
+    <p class="ec-summary">Is the retrofit worth it? Fuel and CO₂ saved per year from the claimed saving and the consumption it applies to, fuel and ETS allowance savings, simple and discounted payback, net present value, internal rate of return, benefit-cost ratio and the levelized cost of each saved tonne to compare with the fuel price, with fuel price escalation and saving degradation.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A pre-swirl duct, a propeller boss cap fin, an air lubrication system or a premium coating is sold on a percentage of fuel saved. Whether that percentage is worth the price depends on how much fuel the ship burns, what it pays for it and for its CO₂ allowances, how long the device lasts and what return the owner expects on capital. This calculator turns the claimed saving into fuel and CO₂ tonnes per year, prices them with the ETS share, subtracts maintenance and returns the simple and discounted payback, the net present value, the internal rate of return, the benefit-cost ratio and the levelized cost of each saved tonne, which can be compared directly with the fuel price.</p>
+<p>It is for technical and commercial managers screening retrofits, for owners comparing vendor claims, and for students of engineering economics with a maritime example.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>I = capex + off-hire days × hire
+S = saving % × F × sea days                        fuel saved, t/yr
+benefit_t = [S p (1 + e)^(t−1) + S C_F e_EUA s] (1 − δ)^(t−1) − M
+NPV = −I + Σ benefit_t / (1 + i)^t,   IRR: NPV(IRR) = 0
+simple payback = I / benefit_1,   discounted payback: Σ PV reaches I (interpolated)
+CRF = i (1 + i)ⁿ / ((1 + i)ⁿ − 1),   levelized cost of saved fuel = (CRF × I + M) / S</code></pre>
+<p>p fuel price, e fuel escalation, C_F carbon factor, e_EUA allowance price, s ETS share, δ saving degradation, M maintenance, i discount rate, n life.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The saving is a fixed share of the consumption entered, declining only by the degradation rate; measured savings carry ±1–3 % absolute uncertainty.</li>
+<li>Benefits are fuel and ETS allowances only; FuelEU, CII, charter premiums, residual value, financing and tax are not priced.</li>
+<li>Annual year-end cash flows, nominal prices and rate; one currency.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A pre-swirl device: 400 000 installed plus 3 days off-hire at 20 000, maintenance 5 000 per year, claimed saving 5 % of 30 t/day over 250 sea days, HFO at 550 per tonne escalating 2 % per year, allowances 70 per t CO₂ with 50 % of emissions in the ETS, 10-year life, 8 % discount rate.</p>
+<ol>
+<li>Investment 460 000. Fuel saved 375 t/yr, CO₂ saved 1 168 t/yr.</li>
+<li>Year 1: fuel 206 250 + allowances 40 871 − maintenance 5 000 = 242 121.</li>
+<li>Simple payback 1.9 years; discounted payback about 2.1 years.</li>
+<li>NPV about 1.28 million at 8 %, IRR above 50 %, benefit-cost ratio 3.8.</li>
+<li>Levelized cost of saved fuel: CRF(8 %, 10) = 0.149 → (0.149 × 460 000 + 5 000)/375 = 196 per tonne against a 550 price.</li>
+</ol>
+<p>Run it again at a 2.5 % saving (the low end of what monitoring usually confirms): payback 3.9 years, NPV still positive. That is the robustness test that matters.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which consumption do I enter?</summary>
+<p>The one the device acts on: main-engine fuel at sea for hull and propeller devices, total fuel for waste-heat recovery, auxiliary fuel for shaft generators.</p>
+</details>
+<details class="ec-faq"><summary>Simple or discounted payback?</summary>
+<p>Simple payback ignores the time value of money and is what vendors quote; discounted payback and NPV are what the finance department uses.</p>
+</details>
+<details class="ec-faq"><summary>What is the levelized cost of saved fuel?</summary>
+<p>The annualised investment and maintenance per tonne saved; if it is below the fuel price (plus the ETS cost per tonne), the device is cheaper than buying the fuel.</p>
+</details>
+<details class="ec-faq"><summary>How do I treat the ETS share?</summary>
+<p>100 % for ships trading only within the EU/EEA, 50 % for voyages between the EU and third countries, 0 outside; from 2026 all of those emissions are surrendered (40 % and 70 % in 2024 and 2025).</p>
+</details>
+<details class="ec-faq"><summary>Why is IRR sometimes blank?</summary>
+<p>When the cash flows never turn positive there is no rate at which the NPV is zero.</p>
+</details>
+<details class="ec-faq"><summary>Can I include a residual value?</summary>
+<p>Not directly; reduce the capex by its present value, or extend the project life.</p>
+</details>
+<details class="ec-faq"><summary>What about CII?</summary>
+<p>A saving of x % of fuel lowers the attained CII by about x % at the same distance; the CII rating calculator shows whether that changes the rating band.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hull-cleaning-interval/index.html">Optimal hull cleaning interval</a> — the recurring-cost version of the same economics.</li>
+<li><a href="../eu-ets-fueleu/index.html">EU ETS and FuelEU Maritime</a> — allowance costs and phase-in.</li>
+<li><a href="../cii-rating/index.html">CII rating</a> — what the saving does to the rating.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel and voyage cost</a> — the baseline consumption.</li>
+<li><a href="../optimal-speed-charter/index.html">Optimal speed under charter</a> — the other lever on fuel cost.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

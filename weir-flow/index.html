@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weir and flume flow calculator — Engineering calculators</title>
+  <meta name="description" content="Flow over rectangular (Francis), 90° V-notch and Cipolletti weirs and through Parshall flumes from the measured head, with USBR limits.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Weir and flume flow calculator</h1>
+    <p class="ec-summary">Flow over rectangular, 90° V-notch and Cipolletti weirs and through 1 in to 8 ft Parshall flumes from the measured head, within USBR limits.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How do you measure flow with a weir? Read the head, the height of the water surface above the crest, and put it in the weir&#39;s equation. Flow rises with the head to a power of 1.5 for a rectangular weir and about 2.5 for a V-notch. A rectangular weir with a 2 ft crest and end contractions passes 2.24 ft³/s at a head of 0.5 ft. A 90° V-notch at the same head passes 0.446 ft³/s, or 200 US gpm.</p>
+<p>This calculator gives the flow over sharp-crested rectangular, 90° V-notch and Cipolletti weirs, and through Parshall flumes from 1 in to 8 ft. It uses the equations and limits of the US Bureau of Reclamation Water Measurement Manual and refuses heads outside their range. It is for irrigation managers, water and wastewater operators, and engineers checking a gauging station.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Sharp-crested weirs, head H and crest length L in feet, flow in ft³/s:</p>
+<pre class="ec-formula" tabindex="0"><code>rectangular (Francis):   Q = 3.33 (L − 0.1 n H) H^1.5
+90° V-notch (Cone):      Q = 2.49 H^2.48
+Cipolletti:              Q = 3.367 L H^1.5</code></pre>
+<p>Parshall flume, upstream head H_a in feet:</p>
+<pre class="ec-formula" tabindex="0"><code>Q = C × H_a^n                      (1 in to 1 ft, USBR Table 8-6)
+Q = 4 W × H_a^(1.522 W^0.026)      (2 to 8 ft)</code></pre>
+<ul>
+<li>n — number of end contractions: 2 for a notch narrower than the channel, 0 for a suppressed weir across the full width</li>
+<li>W — throat width of the flume in feet</li>
+<li>C, n — 0.338 and 1.55 for 1 in; 0.676 and 1.55 for 2 in; 0.992 and 1.55 for 3 in; 2.06 and 1.58 for 6 in; 3.07 and 1.53 for 9 in; 3.95 and 1.55 for 1 ft</li>
+<li>metric inputs are converted to feet; 1 ft³/s = 28.32 L/s = 448.8 US gpm</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The nappe springs clear of a thin, sharp crest and is aerated underneath. A clinging or submerged nappe passes more water than calculated.</li>
+<li>Measure the head in still water at least four heads upstream of the crest. Read a flume at its standard gauge point in the converging section.</li>
+<li>Weirs need a crest height and side clearances of at least twice the head. The equations neglect the approach velocity.</li>
+<li>Valid heads: at least 0.2 ft (61 mm) on weirs; at most a third of the crest length on contracted and Cipolletti weirs; at most 1.25 ft on the V-notch; and the range of the USBR free-flow table for each flume.</li>
+<li>A flume runs free while the downstream head stays below 50 % of the upstream head for 1 to 3 in throats, 60 % for 6 and 9 in, and 70 % for 1 to 8 ft. Above that, USBR submergence corrections are needed.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A rectangular weir with a 2 ft crest and two end contractions sits 1.5 ft above the channel bed. The head over the crest is 0.5 ft. What is the flow?</p>
+<ol>
+<li>Check the limits: 0.5 ft is above 0.2 ft and below 2 / 3 = 0.67 ft. The crest height of 1.5 ft is more than twice the head.</li>
+<li>Effective crest length: 2 − 0.1 × 2 × 0.5 = 1.9 ft.</li>
+<li>Head term: 0.5^1.5 = 0.3536.</li>
+<li>Flow: 3.33 × 1.9 × 0.3536 = 2.24 ft³/s.</li>
+<li>In other units: 63.3 L/s, or 1 004 US gpm.</li>
+</ol>
+<p>Without end contractions the same weir would pass 2.35 ft³/s. A Cipolletti weir of the same length passes 2.38 ft³/s.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How much flow does a 90° V-notch pass?</summary>
+<p>At 0.5 ft of head, 0.446 ft³/s or 200 US gpm. At 100 mm of head, 4.45 L/s.</p>
+</details>
+<details class="ec-faq"><summary>When should I use a V-notch instead of a rectangular weir?</summary>
+<p>For small flows. USBR recommends the 90° V-notch for about 0.05 to 4.25 ft³/s, where its head is large enough to read accurately.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between contracted and suppressed weirs?</summary>
+<p>A contracted weir is narrower than the channel, so the flow squeezes in at each end. A suppressed weir spans the full width and needs air under the nappe.</p>
+</details>
+<details class="ec-faq"><summary>Why does a Cipolletti weir have sloping sides?</summary>
+<p>The 1 : 4 side slopes add about as much flow as the end contractions take away. The flow is then simply proportional to the crest length.</p>
+</details>
+<details class="ec-faq"><summary>How much does a 3 in Parshall flume carry?</summary>
+<p>At 0.5 ft of head, 0.339 ft³/s or 152 US gpm, by the USBR equation Q = 0.992 H_a^1.55.</p>
+</details>
+<details class="ec-faq"><summary>How accurate are weirs and flumes?</summary>
+<p>About ±5 % for well-built standard weirs and ±3 to 5 % for Parshall flumes, plus the error of the head reading.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../manning-channel-flow/index.html">Open-channel flow (Manning)</a> — depth and velocity in the channel upstream of the weir.</li>
+<li><a href="../culvert-capacity/index.html">Culvert capacity and headwater calculator (HDS-5)</a> — headwater at a road culvert.</li>
+<li><a href="../orifice-flow/index.html">Orifice and venturi flow (ISO 5167)</a> — flow measurement in closed pipes.</li>
+<li><a href="../drain-pipe-size/index.html">Drain pipe size calculator (Manning)</a> — gravity pipes downstream of the measuring point.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

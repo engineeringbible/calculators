@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nozzle flow calculator (orifice, fire nozzle and K-factor) — Engineering calculators</title>
+  <meta name="description" content="Water flow, pressure or orifice size of a nozzle, hydrant outlet or sprinkler from Q = Cd A √(2Δp/ρ), 29.84 c d² √p or Q = K√p, with nozzle reaction.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Nozzle flow calculator (orifice, fire nozzle and K-factor)</h1>
+    <p class="ec-summary">Flow, pressure or orifice size of a nozzle, hydrant outlet or sprinkler by the orifice equation, 29.84 c d² √p or Q = K√p, with jet velocity and reaction.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How much water comes out of a nozzle? The pressure at the nozzle turns into jet velocity, and the flow is that velocity times the opening area times a discharge coefficient. Fire crews use the same physics in the form Q = 29.84 c d² √p, in gpm, inches and psi. A 1-1/8 inch smooth-bore tip at 50 psi flows about 266 gpm.</p>
+<p>This calculator gives the flow from the size and pressure, the pressure for a flow, or the orifice size for a flow and pressure. It works with an orifice diameter and discharge coefficient, or with a K-factor for sprinklers and spray nozzles. It also gives the jet velocity, the equivalent K-factor and the reaction force the crew or the pipe support must hold. It is for fire protection engineers, fire crews, hydrant testers and anyone sizing spray nozzles.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Orifice equation, any consistent units:</p>
+<pre class="ec-formula" tabindex="0"><code>Q = Cd × A × √(2 Δp / ρ),   A = π d² / 4</code></pre>
+<p>Fire-service form (NFPA 291), Q in gpm, d in inches, p in psi:</p>
+<pre class="ec-formula" tabindex="0"><code>Q = 29.84 × c × d² × √p</code></pre>
+<p>K-factor form (NFPA 13), US gpm/psi½ or metric L/min/bar½:</p>
+<pre class="ec-formula" tabindex="0"><code>Q = K × √p,   K_metric = 14.42 × K_US</code></pre>
+<p>Jet velocity and nozzle reaction:</p>
+<pre class="ec-formula" tabindex="0"><code>v = √(2 Δp / ρ)
+F = ρ × Q × v          (= 1.57 d² p in lbf for a smooth bore, IFSTA)
+F_fog = 0.0505 × Q × √p   (IFSTA fog nozzle, lbf, gpm, psi)</code></pre>
+<ul>
+<li>Q — flow; Δp, p — gauge pressure at the nozzle or pitot pressure in the jet</li>
+<li>d — orifice or tip diameter; A — its area</li>
+<li>Cd, c — discharge coefficient; ρ — liquid density, 999 kg/m³ for fresh water</li>
+<li>K — K-factor, which holds the area and the discharge coefficient together</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The jet discharges to the atmosphere. The velocity of the water approaching the nozzle is neglected, which is fine when the nozzle is much smaller than the hose or pipe.</li>
+<li>The discharge coefficient comes from the nozzle shape. A smooth-bore fire nozzle is 0.97 to 1.0. NFPA 291 gives 0.90 for a smooth rounded hydrant outlet, 0.80 for a square sharp one and 0.70 for one projecting into the barrel. A sharp-edged hole is about 0.6.</li>
+<li>The reaction uses the ideal jet velocity. It equals the IFSTA smooth-bore formula 1.57 d² p when Cd is 1. The IFSTA fog-nozzle formula is shown too and gives about 4 % less.</li>
+<li>Sprinkler K-factors come from the listing of the sprinkler. NFPA 13 requires at least 7 psi (0.5 bar) at any operating sprinkler, and the calculator warns below that.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A hydrant flow test uses a 2½ inch outlet with a smooth rounded lip, c = 0.90. The pitot gauge in the stream reads 23 psi. What is the flow?</p>
+<ol>
+<li>Fire-service formula: 29.84 × 0.90 × 2.5² × √23 = 805 US gpm.</li>
+<li>Area: π / 4 × 0.0635² = 0.003167 m². Pressure: 23 psi = 158.6 kPa.</li>
+<li>Jet velocity: √(2 × 158 579 / 999) = 17.82 m/s, or 58.5 ft/s.</li>
+<li>Orifice equation: 0.90 × 0.003167 × 17.82 = 0.0508 m³/s, the same 805 US gpm.</li>
+<li>Equivalent K-factor: 805 / √23 = 167.8 gpm/psi½.</li>
+<li>Reaction: 999 × 0.0508 × 17.82 = 904 N, or 203 lbf.</li>
+</ol>
+<p>The City of Temecula&#39;s fire flow examples print 804 gpm for the same test; the difference is rounding.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the flow from a nozzle?</summary>
+<p>Multiply the discharge coefficient, the opening area and the jet velocity √(2Δp/ρ). In US fire-service units the shortcut is 29.84 × c × d² × √p.</p>
+</details>
+<details class="ec-faq"><summary>What is a K-factor?</summary>
+<p>The flow at a pressure of 1 psi (or 1 bar), so that Q = K√p. A standard K 5.6 sprinkler flows 5.6 × √7 = 14.8 gpm at the 7 psi minimum.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert a US K-factor to metric?</summary>
+<p>Multiply by 14.42. K 5.6 becomes about K80, and K 8.0 becomes about K115.</p>
+</details>
+<details class="ec-faq"><summary>What discharge coefficient should I use for a hydrant?</summary>
+<p>NFPA 291 uses 0.90 for a smooth, well-rounded outlet, 0.80 for a square sharp outlet and 0.70 for an outlet that projects into the barrel. Feel the inside lip of the outlet to decide.</p>
+</details>
+<details class="ec-faq"><summary>What is nozzle reaction?</summary>
+<p>The push-back force of the jet, equal to its momentum flow. For a smooth bore it is 1.57 × d² × p in pounds; a 7/8 inch tip at 50 psi pushes back about 60 lb.</p>
+</details>
+<details class="ec-faq"><summary>Why does doubling the pressure not double the flow?</summary>
+<p>Flow grows with the square root of pressure. Doubling the pressure raises the flow by only 41 %, while doubling the orifice diameter quadruples it.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../orifice-flow/index.html">Orifice and venturi flow (ISO 5167)</a> — metering orifices in a pipe.</li>
+<li><a href="../pump-power/index.html">Pump power</a> — the power to supply the nozzles.</li>
+<li><a href="../total-dynamic-head/index.html">Total dynamic head</a> — friction and static head up to the nozzle.</li>
+<li><a href="../minor-losses/index.html">Minor losses</a> — losses in the fittings and valves on the way.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

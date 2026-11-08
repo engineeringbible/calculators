@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hydrostatic pressure at depth — Engineering calculators</title>
+  <meta name="description" content="Gauge and absolute pressure at a depth in water, sea water, fuel or any liquid, its head in metres of water, and the force on a flat surface.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Hydrostatic pressure at depth</h1>
+    <p class="ec-summary">The gauge and absolute pressure at a depth in water, sea water, fuel, oil or any liquid, its head in metres of water, the rise per metre, and the force on a horizontal surface at that depth.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The pressure in a still liquid grows steadily with depth, because each layer carries the weight of all the liquid above it. That simple rule sets the load on a tank bottom, the test pressure of a vertical pipe, the reading of a level gauge, the pressure on a diver, the load on a hatch below the waterline, and the static head a pump must overcome.</p>
+<p>This calculator gives the gauge pressure at any depth in fresh water, sea water, marine fuel, lubricating oil or a liquid of your own, and the absolute pressure with the atmosphere or a tank pressure added on top. It also shows the head in metres of water, the pressure rise per metre, and the force on a horizontal surface such as a tank bottom or a hatch. It is for marine, civil, mechanical and process engineers, and for divers and students.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Gauge and absolute pressure:</p>
+<pre class="ec-formula" tabindex="0"><code>p_gauge = ρ × g × h
+p_abs = p_surface + ρ × g × h</code></pre>
+<p>Head in metres of water, and the force on a horizontal surface:</p>
+<pre class="ec-formula" tabindex="0"><code>H = p_gauge / (1000 × g)
+F = p_gauge × A</code></pre>
+<ul>
+<li>ρ — liquid density, kg/m³ (fresh water 998.2, sea water 1025.87)</li>
+<li>g — 9.806 65 m/s²</li>
+<li>h — depth below the free surface, m</li>
+<li>p_surface — pressure on the surface, Pa (101.325 kPa at sea level)</li>
+<li>A — horizontal area, m²</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The liquid is still and of uniform density. A tank with layers of different temperature, or a mixture, needs an average density.</li>
+<li>Standard gravity is used. Local gravity differs by up to 0.3 % with latitude and altitude.</li>
+<li>The surface pressure defaults to the standard atmosphere at sea level. For a pressurised tank, enter its absolute pressure; at altitude, enter the local atmospheric pressure.</li>
+<li>The force is on a horizontal surface, where the pressure is the same everywhere. On a vertical wall the pressure rises with depth, and the average acts at the centroid of the wall.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>What is the pressure on a hull plate 30 m below the sea surface?</p>
+<ol>
+<li>Sea water density at 15 °C: ρ = 1025.87 kg/m³.</li>
+<li>Gauge pressure: p = 1025.87 × 9.806 65 × 30 = 301 810 Pa = 301.8 kPa, which is 3.02 bar.</li>
+<li>Absolute pressure: 301.8 + 101.3 = 403.1 kPa, about four atmospheres.</li>
+<li>The pressure rises by 10.06 kPa for every metre of sea water.</li>
+</ol>
+<p>In fresh water the same depth gives 293.7 kPa gauge, 2.7 % less, which is why draft and stability calculations must use the right water density.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the difference between gauge and absolute pressure?</summary>
+<p>Gauge pressure is measured above the surrounding atmosphere, which is what most pressure gauges show. Absolute pressure adds the atmosphere on top and is measured from a perfect vacuum.</p>
+</details>
+<details class="ec-faq"><summary>How much does pressure rise per metre of water?</summary>
+<p>About 9.8 kPa per metre in fresh water and 10.1 kPa in sea water. That is roughly one bar, or one atmosphere, for every ten metres.</p>
+</details>
+<details class="ec-faq"><summary>Does the shape of the tank matter?</summary>
+<p>No. The pressure at a given depth depends only on the depth and the density, not on the tank&#39;s shape or width. This is the hydrostatic paradox.</p>
+</details>
+<details class="ec-faq"><summary>What force acts on a tank bottom?</summary>
+<p>The gauge pressure at the bottom times its area. A 2 m × 3 m bottom under 4 m of fuel oil carries about 195 kN, the weight of the oil above it.</p>
+</details>
+<details class="ec-faq"><summary>What is a metre of water column?</summary>
+<p>A pressure unit equal to the pressure at the bottom of 1 m of water, 9.81 kPa. Pump heads and low pressures are often given this way.</p>
+</details>
+<details class="ec-faq"><summary>Does water compress at depth?</summary>
+<p>Slightly, about 0.5 % per 1000 m. For engineering depths the constant-density result is accurate; in the deep ocean it understates the pressure a little.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../bernoulli/index.html">Bernoulli&#39;s equation and venturi</a> — the same pressure balance for a moving fluid.</li>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — how much liquid sits above the bottom.</li>
+<li><a href="../pipe-volume/index.html">Pipe volume and mass of contents</a> — the contents of a vertical pipe.</li>
+<li><a href="../draft-survey/index.html">Draft survey</a> — water density in ship displacement.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

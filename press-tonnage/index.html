@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Press tonnage calculator (punching and press brake) — Engineering calculators</title>
+  <meta name="description" content="Punching and blanking force from perimeter, thickness and shear strength, with stripping force and press margin, and press brake air-bending tonnage.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Manufacturing</span>
+    <h1 class="ec-title">Press tonnage calculator (punching and press brake)</h1>
+    <p class="ec-summary">Punching and blanking force with stripping force and press margin, and press brake air-bending tonnage per foot and in total.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A punch shears the sheet all around the edge of the hole. The force is the length of that edge times the thickness times the shear strength of the material. Punching a 20 mm hole in 3 mm steel with a shear strength of 300 MPa takes 56.55 kN, about 5.8 tonnes-force. A press brake bends instead of shearing, and its force depends on the thickness squared divided by the die opening.</p>
+<p>This calculator gives the punching or blanking force, the stripping force and the press capacity with a margin. For press brakes, it gives the air-bending force per foot or metre and in total. It is for tool designers, press operators and sheet metal shops choosing a press or checking a job.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Punching and blanking:</p>
+<pre class="ec-formula" tabindex="0"><code>F = L × t × τ
+τ ≈ k × UTS     (k ≈ 0.75 for steel, 0.65 for aluminium)
+press load = F × (1 + s)
+press capacity = press load × (1 + margin)</code></pre>
+<p>Press brake air bending (US units):</p>
+<pre class="ec-formula" tabindex="0"><code>tons per foot = 575 × t² / V × UTS / 60 000 psi</code></pre>
+<ul>
+<li>L — cut perimeter (π d for a round hole); t — thickness; τ — ultimate shear strength</li>
+<li>UTS — ultimate tensile strength; s — stripping force as a share of F</li>
+<li>V — V-die opening in inches; t in inches; tons are US tons of 2 000 lbf</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The punch and die have flat faces and normal clearance. A shear angle on the punch spreads the cut and lowers the peak force. Dull tools raise it.</li>
+<li>The shear strength ratio is a rough rule: about 0.75 of the tensile strength for steel and 0.65 for aluminium. A measured shear strength is better.</li>
+<li>Stripping force is added to the press load because spring strippers push back during the stroke. Enter your own share of the punching force.</li>
+<li>The press brake formula is for air bending only. It is based on steel with a tensile strength of 60 000 psi and scales with the tensile strength. Bottoming and coining need several times more force.</li>
+<li>The margin covers tool wear, harder material and thickness tolerance. The press maker&#39;s rating and its limits for off-centre loads still apply.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 20 mm hole is punched in 3 mm mild steel with a shear strength of 300 MPa. Stripping takes 10 % of the punching force, and the press should have a 20 % margin.</p>
+<ol>
+<li>Perimeter: π × 20 = 62.83 mm.</li>
+<li>Punching force: 62.83 × 3 × 300 = 56 549 N, or 56.55 kN.</li>
+<li>With stripping: 56.55 × 1.1 = 62.20 kN.</li>
+<li>Press capacity: 62.20 × 1.2 = 74.64 kN, about 7.6 tonnes-force.</li>
+</ol>
+<p>For a press brake: 1/4 in mild steel on a 2 in V-die needs 575 × 0.25² / 2 = 17.97 US tons per foot. A 10 ft bend takes 180 US tons before any margin.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate punching tonnage?</summary>
+<p>Multiply the cut perimeter by the thickness and the shear strength. In US units, inches × inches × psi gives lbf. Divide by 2 000 for US tons.</p>
+</details>
+<details class="ec-faq"><summary>What is the shear strength of mild steel?</summary>
+<p>It varies with the grade. A rough estimate is 0.75 × the tensile strength, so steel of 60 000 psi tensile strength shears at about 45 000 psi.</p>
+</details>
+<details class="ec-faq"><summary>What is stripping force?</summary>
+<p>The force needed to pull the punch back out of the sheet, which grips it. Spring strippers also press on the sheet during the stroke.</p>
+</details>
+<details class="ec-faq"><summary>How do I reduce punching force?</summary>
+<p>Grind a shear angle on the punch, stagger the punch lengths so not all holes cut at once, or punch fewer holes per stroke.</p>
+</details>
+<details class="ec-faq"><summary>What does the 575 in the press brake formula mean?</summary>
+<p>It is the makers&#39; constant for air bending steel of 60 000 psi tensile strength. It gives US tons per foot with thickness and die opening in inches.</p>
+</details>
+<details class="ec-faq"><summary>Why does a wider V-die need less force?</summary>
+<p>The sheet bends over a longer lever arm. Doubling the die opening halves the force, but it also makes the inside radius larger.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../bend-allowance/index.html">Bend allowance calculator</a> — flat lengths for the bent part.</li>
+<li><a href="../injection-clamp-tonnage/index.html">Injection molding clamp tonnage calculator</a> — the clamp force of a moulding press.</li>
+<li><a href="../hydraulic-cylinder/index.html">Hydraulic cylinder force and speed</a> — force of the press cylinder.</li>
+<li><a href="../tap-drill/index.html">Tap drill calculator</a> — holes to be threaded after punching.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

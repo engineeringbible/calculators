@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Water heating time calculator (tank, element, gas or heat pump) — Engineering calculators</title>
+  <meta name="description" content="Time to heat a water tank with an electric element, gas burner or heat pump, with standing loss, energy, cost and recovery rate in L/h or gal/h.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">Water heating time calculator (tank, element, gas or heat pump)</h1>
+    <p class="ec-summary">Heating time of a water tank with an element, burner or heat pump, including standing loss, with energy, cost and recovery rate.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How long does a water heater take to heat up? Divide the heat the water needs, mass times specific heat times temperature rise, by the heater&#39;s useful output. A 50 gallon tank heated from 50 to 120 °F needs 8.55 kWh, so a 4.5 kW element takes just under two hours.</p>
+<p>This calculator gives the heating time for an electric element, a gas or oil burner, or a heat pump. It includes the heat the tank loses to the room while it heats, as an exponential approach to the highest temperature the heater can hold. It also gives the energy drawn, the cost of one heat-up and the recovery rate in gallons or litres per hour. It is for homeowners, plumbers, and engineers sizing domestic and process hot water.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Heat into the water and useful heater output:</p>
+<pre class="ec-formula" tabindex="0"><code>Q = m × c × (T1 − T0),   m = ρ V
+P_heat = η × P (element, burner)   or   COP × P (heat pump)</code></pre>
+<p>Heating time without and with standing loss:</p>
+<pre class="ec-formula" tabindex="0"><code>t = Q / P_heat                                   (UA = 0)
+t = τ × ln[(T_eq − T0) / (T_eq − T1)]
+τ = m c / UA,   T_eq = T_room + P_heat / UA</code></pre>
+<p>Energy drawn and recovery rate:</p>
+<pre class="ec-formula" tabindex="0"><code>E = P × t
+Recovery = P_heat / (ρ c ΔT_rise)</code></pre>
+<ul>
+<li>V — tank volume; ρ = 999 kg/m³; c = 4 186 J/(kg·K), or 1 Btu/(lb·°F)</li>
+<li>T0, T1 — starting and target water temperatures; T_room — air around the tank</li>
+<li>η — element or burner efficiency; COP — heat pump coefficient of performance</li>
+<li>UA — standing loss coefficient of the tank in W/K; τ — its time constant</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The water is treated as fully mixed. A real tank stratifies, so hot water reaches the top outlet well before the whole tank is at the set point.</li>
+<li>The efficiency and the COP are constant. A heat pump&#39;s COP falls as the water gets hotter, so its last few degrees take longer than calculated.</li>
+<li>The standing loss uses a constant UA. A tank that loses S watts when 45 K above the room has UA = S / 45.</li>
+<li>The recovery rate uses the full heater output, as makers quote it. The standing loss is not deducted.</li>
+<li>Water properties are taken at about 15 °C. They change by less than 2 % between 10 and 60 °C.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 50 US gallon electric water heater has a 4.5 kW element. The water comes in at 50 °F and the thermostat is set to 120 °F. The tank loses 2 W/K to a 68 °F room. Electricity costs 0.15 per kWh.</p>
+<ol>
+<li>Mass of water: 999 × 0.1893 m³ = 189.1 kg.</li>
+<li>Temperature rise: 120 − 50 = 70 °F, or 38.9 K.</li>
+<li>Heat needed: 189.1 × 4 186 × 38.9 = 30.78 MJ, or 8.55 kWh.</li>
+<li>Time constant: 189.1 × 4 186 / 2 = 395 700 s, about 110 h. T_eq = 20 + 4 500 / 2 = 2 270 °C, far above the target.</li>
+<li>Time: 395 700 × ln[(2 270 − 10) / (2 270 − 48.9)] = 6 869 s, or 114.5 min.</li>
+<li>Energy drawn: 4.5 kW × 6 869 s = 8.59 kWh, which costs 1.29.</li>
+<li>Recovery at a 90 °F rise: 4 500 / (999 × 4 186 × 50) × 3 600 = 0.0775 m³/h, or 20.5 US gal per hour (77 litres).</li>
+</ol>
+<p>The standing loss adds only 0.5 minutes here. It matters far more over a whole day than during one heat-up.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How long does a 50 gallon water heater take to heat?</summary>
+<p>From 50 to 120 °F, about 114 minutes with a 4.5 kW element. A 40 000 Btu/h gas burner at 80 % efficiency does it in about 55 minutes.</p>
+</details>
+<details class="ec-faq"><summary>What is the recovery rate of a water heater?</summary>
+<p>The volume it can heat through a stated rise in one hour, usually 90 °F in the US. A 4.5 kW element recovers about 20.5 gallons per hour at that rise.</p>
+</details>
+<details class="ec-faq"><summary>How much heat does a tank lose standing still?</summary>
+<p>UA times the temperature difference. A tank with UA = 2 W/K at 120 °F in a 68 °F room loses 58 W, about 1.4 kWh a day.</p>
+</details>
+<details class="ec-faq"><summary>Why does a heat pump water heater heat slowly?</summary>
+<p>Its heat output is the COP times a small electrical input. The time depends only on that heat output, while the energy drawn is only a third of an element&#39;s at a COP of 3.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert kW to Btu/h?</summary>
+<p>Multiply by 3 412. A 4.5 kW element gives 15 354 Btu/h, and a therm of gas is 29.31 kWh.</p>
+</details>
+<details class="ec-faq"><summary>Why does my tank deliver hot water before it has fully heated?</summary>
+<p>Hot water rises and collects at the top, where the outlet is. The calculator assumes a fully mixed tank, so it gives the time for the whole volume.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../specific-heat/index.html">Specific heat</a> — heat for any material and temperature change.</li>
+<li><a href="../newtons-cooling/index.html">Newton&#39;s law of cooling</a> — how fast the tank cools when the heater is off.</li>
+<li><a href="../electricity-cost/index.html">Electricity cost</a> — the running cost over a year.</li>
+<li><a href="../carnot-cop/index.html">Carnot efficiency and COP</a> — the ideal limit of a heat pump.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

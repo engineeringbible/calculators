@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beaufort, wind speed and sea state converter — Engineering calculators</title>
+  <meta name="description" content="Convert between Beaufort force, wind speed, probable wave height and Douglas sea state using the WMO tables.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Beaufort, wind speed and sea state converter</h1>
+    <p class="ec-summary">Convert between Beaufort force, wind speed, probable wave height and Douglas sea state using the WMO tables. Wind speeds show in knots by default; pick m/s, km/h or mph from the unit menus.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Weather reaches a ship in three languages: the Beaufort force in the deck log and the forecast, the wind speed in knots or metres per second from the anemometer and the routing service, and the Douglas sea state or significant wave height in the hindcast and the charter party. This converter moves between all four from whichever one you have, using the World Meteorological Organization code tables rather than anyone&#39;s rule of thumb.</p>
+<p>It is for watch officers filling in the log, cadets learning the scale, performance analysts matching noon reports to weather data, and charterers and owners checking &quot;good weather&quot; clauses that are written in Beaufort and Douglas numbers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas-and-tables">
+<h2 id="ec-article-formulas-and-tables">Formulas and tables</h2>
+<p>Beaufort force from wind speed (WMO code table 1100, 10-minute mean at 10 m height):</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Force</th><th scope="col">Description</th><th scope="col">Wind, kn</th><th scope="col">Probable wave, m</th><th scope="col">Max wave, m</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>Calm</td><td>&lt; 1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>Light air</td><td>1–3</td><td>0.1</td><td>0.1</td></tr>
+<tr><td>2</td><td>Light breeze</td><td>4–6</td><td>0.2</td><td>0.3</td></tr>
+<tr><td>3</td><td>Gentle breeze</td><td>7–10</td><td>0.6</td><td>1.0</td></tr>
+<tr><td>4</td><td>Moderate breeze</td><td>11–16</td><td>1.0</td><td>1.5</td></tr>
+<tr><td>5</td><td>Fresh breeze</td><td>17–21</td><td>2.0</td><td>2.5</td></tr>
+<tr><td>6</td><td>Strong breeze</td><td>22–27</td><td>3.0</td><td>4.0</td></tr>
+<tr><td>7</td><td>Near gale</td><td>28–33</td><td>4.0</td><td>5.5</td></tr>
+<tr><td>8</td><td>Gale</td><td>34–40</td><td>5.5</td><td>7.5</td></tr>
+<tr><td>9</td><td>Strong gale</td><td>41–47</td><td>7.0</td><td>10.0</td></tr>
+<tr><td>10</td><td>Storm</td><td>48–55</td><td>9.0</td><td>12.5</td></tr>
+<tr><td>11</td><td>Violent storm</td><td>56–63</td><td>11.5</td><td>16.0</td></tr>
+<tr><td>12</td><td>Hurricane force</td><td>≥ 64</td><td>14+</td><td>–</td></tr>
+</tbody></table>
+</div>
+<p>A wind speed is classified by rounding it to the nearest knot and reading the row. The &quot;typical&quot; speed of a force is the WMO empirical relation</p>
+<pre class="ec-formula" tabindex="0"><code>v [m/s] = 0.836 × B^1.5</code></pre>
+<ul>
+<li>B — Beaufort force</li>
+<li>v — equivalent mean wind speed at 10 m</li>
+</ul>
+<p>Douglas sea state from significant wave height (WMO code table 3700):</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Code</th><th scope="col">Description</th><th scope="col">H_s, m</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>Calm (glassy)</td><td>0</td></tr>
+<tr><td>1</td><td>Calm (rippled)</td><td>0–0.1</td></tr>
+<tr><td>2</td><td>Smooth (wavelets)</td><td>0.1–0.5</td></tr>
+<tr><td>3</td><td>Slight</td><td>0.5–1.25</td></tr>
+<tr><td>4</td><td>Moderate</td><td>1.25–2.5</td></tr>
+<tr><td>5</td><td>Rough</td><td>2.5–4</td></tr>
+<tr><td>6</td><td>Very rough</td><td>4–6</td></tr>
+<tr><td>7</td><td>High</td><td>6–9</td></tr>
+<tr><td>8</td><td>Very high</td><td>9–14</td></tr>
+<tr><td>9</td><td>Phenomenal</td><td>&gt; 14</td></tr>
+</tbody></table>
+</div>
+<p>Unit relations: 1 kn = 1852/3600 m/s = 0.5144 m/s; 1 m/s = 3.6 km/h = 1.944 kn.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The Beaufort knot bounds are the official definition. The WMO m/s column (0.3–1.5, 1.6–3.3, …) is a rounded equivalent and does not match the knot bounds exactly at every boundary; this converter classifies on knots.</li>
+<li>Wave heights against Beaufort assume a fully developed sea in open water, far from land, with no swell. Short fetch, limited duration or a cross swell change the real wave height by a factor of two either way. Treat the wave outputs as indicative.</li>
+<li>Going from wave height or sea state back to wind picks the Beaufort row with the nearest probable height. It is a plausibility check, not a measurement.</li>
+<li>Sea state is defined on significant wave height H_s (mean of the highest third). Individual waves reach about 1.9 × H_s in a long record; the &quot;maximum&quot; column is the WMO guidance figure, not a statistical extreme.</li>
+<li>Ship anemometers read at 30–50 m above the sea and include the ship&#39;s own motion. Correct to 10 m height and true wind before comparing with the scale.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>The forecast gives Beaufort 6.</p>
+<ol>
+<li>Row 6: &quot;Strong breeze&quot;, 22–27 knots.</li>
+<li>Typical speed: 0.836 × 6^1.5 = 0.836 × 14.70 = 12.3 m/s = 23.9 knots, inside the band.</li>
+<li>Probable wave height 3.0 m, maximum about 4.0 m.</li>
+<li>3.0 m falls in the Douglas range 2.5–4 m: sea state 5, &quot;Rough&quot;.</li>
+</ol>
+<p>Working the other way, the anemometer shows 12.35 m/s true wind at 10 m: 12.35 / 0.5144 = 24.0 knots, which lies in 22–27, so force 6 again.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which wind speed does the scale refer to?</summary>
+<p>The 10-minute mean true wind at 10 m above the surface. Gusts are typically 1.3–1.5 times the mean and must not be used to pick the force.</p>
+</details>
+<details class="ec-faq"><summary>Why do different tables give slightly different m/s ranges?</summary>
+<p>The scale was defined in knots. Metre-per-second tables round the converted bounds, and some national services round differently. The knot column is the reference.</p>
+</details>
+<details class="ec-faq"><summary>Is sea state the same as Beaufort force?</summary>
+<p>No. Beaufort describes the wind; Douglas describes the sea. They are often correlated at sea but differ with fetch, duration and swell. Charter parties should name which one they mean.</p>
+</details>
+<details class="ec-faq"><summary>What is significant wave height?</summary>
+<p>The average height of the highest one-third of waves in a record, which matches what an experienced observer reports by eye. Forecasts and hindcasts give H_s; the Douglas code is defined on it.</p>
+</details>
+<details class="ec-faq"><summary>How do I report wind in the log?</summary>
+<p>Most companies log Beaufort force and true direction. Use the force from the mean wind, not from the gusts, and note the sea and swell separately.</p>
+</details>
+<details class="ec-faq"><summary>Does the scale go above 12?</summary>
+<p>Some services use 13–17 for tropical cyclones, but the WMO scale and most logs stop at 12 (&quot;hurricane force&quot;, ≥ 64 kn). Hurricane categories are a different scale based on 1-minute sustained winds.</p>
+</details>
+<details class="ec-faq"><summary>Can I convert to km/h or mph?</summary>
+<p>Yes. Every wind-speed output has a unit menu; the conversion factors are exact definitions.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../fuel-voyage-cost/index.html">Fuel consumption and voyage cost</a> — add a weather margin for the forecast sea state.</li>
+<li><a href="../ship-squat/index.html">Ship squat and under-keel clearance</a> — wave allowance in shallow water.</li>
+<li><a href="../anchor-catenary/index.html">Anchor cable catenary and scope</a> — wind force on the anchored ship.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — knots, m/s, km/h and mph.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The tables and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

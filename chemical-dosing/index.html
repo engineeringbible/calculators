@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chemical dosing calculator (feed rate, pump setting, chlorine dose) — Engineering calculators</title>
+  <meta name="description" content="Chemical feed rate and dosing pump setting in L/h and gal/day from flow, dose in mg/L, product strength and density, with chlorine dose, demand and residual.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Process</span>
+    <h1 class="ec-title">Chemical dosing calculator (feed rate, pump setting, chlorine dose)</h1>
+    <p class="ec-summary">Chemical feed rate and dosing pump setting in L/h, mL/min and US gal/day from flow, dose and product strength, with the chlorine dose form.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How much chemical does a water treatment dose need? Multiply the water flow by the dose to get the active chemical, then divide by the product strength to get the product. A dose of 1 mg/L puts 1 g of chemical into every cubic metre, or 8.34 lb into every million US gallons. Dosing 100 m³/h at 5 mg/L takes 0.5 kg/h of active chemical. With trade-strength sodium hypochlorite at 12.5 % that is 4 L/h of product.</p>
+<p>This calculator gives the active chemical feed, the product feed by mass and volume, the dosing pump setting in L/h, mL/min and US gal/day, and the daily product use. It accepts product strength as % w/w or as % w/v. It also solves the chlorine relation dose = demand + residual for any one term. It is for water and wastewater operators, process engineers and students sizing dosing pumps and chemical storage.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Active chemical and product feed:</p>
+<pre class="ec-formula" tabindex="0"><code>active [g/h] = Q [m³/h] × dose [mg/L]
+product mass = active / w
+product volume = product mass / ρ_product = active / c</code></pre>
+<p>US pounds formula:</p>
+<pre class="ec-formula" tabindex="0"><code>lb/day = flow [MGD] × dose [mg/L] × 8.34</code></pre>
+<p>Chlorine:</p>
+<pre class="ec-formula" tabindex="0"><code>dose = demand + residual</code></pre>
+<ul>
+<li>Q — water flow; dose — active chemical per litre of water, mg/L = g/m³</li>
+<li>w — product strength as a mass fraction (% w/w / 100)</li>
+<li>c — product strength as mass per volume: % w/v × 10 = g/L, and % w/v = % w/w × SG</li>
+<li>ρ_product — product density; SG — its specific gravity</li>
+<li>8.34 — pounds per US gallon of water, which turns MGD × mg/L into lb/day</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The dose applies to the whole flow and mixes completely. Dose rates for disinfection, coagulation or pH control come from jar tests, regulations or the supplier.</li>
+<li>Trade-strength hypochlorite is sold by available chlorine in % w/v. At SG 1.2, 12.5 % w/v is 10.4 % w/w. Choose the basis that matches the product data sheet.</li>
+<li>The pump setting is the product rate while water flows. Pump ratings in gal/day are the same rate over 24 hours.</li>
+<li>Hypochlorite loses strength in storage, faster when warm or exposed to light. Check the strength and adjust the pump.</li>
+<li>Chlorine demand varies with water quality and contact time. Measure the residual and adjust the dose to hold it.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A plant treats 100 m³/h of water and wants a chlorine dose of 5 mg/L. It uses sodium hypochlorite with 12.5 % w/v available chlorine and a density of 1 200 kg/m³. What pump setting is needed?</p>
+<ol>
+<li>Active chlorine: 100 m³/h × 5 g/m³ = 500 g/h, or 12.0 kg per day.</li>
+<li>Product strength: 12.5 % w/v = 125 g/L of product.</li>
+<li>Pump setting: 500 / 125 = 4.00 L/h, which is 4.00 × 24 / 3.785 = 25.4 US gal/day.</li>
+<li>Product used: 4.00 L/h × 24 h = 96 L a day, or 96 × 1.2 = 115.2 kg.</li>
+</ol>
+<p>A 1 000 L tank of product lasts about 10 days at this rate.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate a chemical dosing rate?</summary>
+<p>Multiply the flow by the dose, then divide by the product strength. For 50 m³/h at 10 mg/L with a 40 % w/w product of density 1 400 kg/m³, the feed is 0.5 kg/h of active, 1.25 kg/h of product, or 0.89 L/h.</p>
+</details>
+<details class="ec-faq"><summary>What is the pounds formula?</summary>
+<p>Pounds per day equals flow in million gallons per day times dose in mg/L times 8.34. A 2.5 MGD plant dosing 3 mg/L uses 62.6 lb of chlorine a day.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between chlorine dose, demand and residual?</summary>
+<p>The dose is what you add. The demand is what reacts with the water&#39;s impurities. The residual is what is left, and it keeps disinfecting in the network.</p>
+</details>
+<details class="ec-faq"><summary>What chlorine residual should drinking water have?</summary>
+<p>Many utilities aim for at least 0.2 mg/L of free chlorine at the far end of the network. The US EPA caps the residual at 4.0 mg/L.</p>
+</details>
+<details class="ec-faq"><summary>What does 12.5 % sodium hypochlorite mean?</summary>
+<p>12.5 g of available chlorine per 100 mL, which is 125 g/L. At SG 1.2 it is about 10.4 % by weight.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert L/h to gallons per day?</summary>
+<p>Multiply by 24 and divide by 3.785. A pump delivering 1 L/h moves 6.34 US gal/day.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../ppm-concentration/index.html">PPM concentration converter</a> — mg/L, ppm and molarity of the dose.</li>
+<li><a href="../dilution/index.html">Dilution C1V1 = C2V2</a> — diluting the product for a small pump.</li>
+<li><a href="../mass-balance/index.html">Mass balance mixing</a> — concentration after streams combine.</li>
+<li><a href="../flow-rate-velocity/index.html">Flow rate and velocity</a> — the water flow in the pipe.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

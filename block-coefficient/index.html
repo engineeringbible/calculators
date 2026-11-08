@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Block coefficient and hull form coefficients — Engineering calculators</title>
+  <meta name="description" content="Block, midship, prismatic and waterplane coefficients of a hull from its dimensions, and the displacement Δ = C_B L B T ρ in salt or fresh water.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Block coefficient and hull form coefficients</h1>
+    <p class="ec-summary">Block, midship, prismatic and waterplane coefficients of a hull from its dimensions, with the displacement in salt and fresh water and the TPC.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The block coefficient says how much of the box around the underwater hull the hull actually fills. It is the displacement volume divided by length × breadth × draught. A ship 100 m long, 16 m wide and 6 m deep in the water that displaces 7 200 m³ fills 7 200 of the 9 600 m³ box, so C_B = 0.750. A barge comes close to 1, a fast yacht can be below 0.4.</p>
+<p>This calculator gives the block coefficient and the other hull form coefficients: midship, prismatic, waterplane and vertical prismatic. It takes the underwater volume directly, from the displacement in tonnes, or from a known C_B, and gives the displacement in salt and fresh water and the TPC. It is for deck officers, cadets and naval architecture students working with hydrostatics.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Form coefficients:</p>
+<pre class="ec-formula" tabindex="0"><code>C_B = ∇ / (L B T)
+C_M = A_M / (B T)
+C_P = ∇ / (A_M L) = C_B / C_M
+C_WP = A_WP / (L B)
+C_VP = ∇ / (A_WP T) = C_B / C_WP</code></pre>
+<p>Displacement and tonnes per centimetre:</p>
+<pre class="ec-formula" tabindex="0"><code>Δ = C_B L B T ρ,     TPC = A_WP ρ / 100</code></pre>
+<ul>
+<li>L — length between perpendiculars or on the waterline; B — moulded breadth; T — moulded draught</li>
+<li>∇ — displacement volume; A_M — midship section area below the waterline; A_WP — waterplane area</li>
+<li>ρ — water density: 1.025 t/m³ for salt water, 1.000 t/m³ for fresh water</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>All coefficients belong to one draught. They fall as the ship rises, so design-draught values overstate the displacement at ballast draught.</li>
+<li>Coefficients based on L_PP and on L_WL differ. Compare like with like.</li>
+<li>The volume is moulded, inside the plating and without appendages. Shell plating, rudder and propeller add a little to a steel ship&#39;s displacement.</li>
+<li>The hull-type hint uses the typical block coefficients MAN Energy Solutions lists for merchant ships.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A coaster is 100 m long, 16 m in breadth and floats at 6 m draught. Its displacement volume is 7 200 m³, the midship section area 92 m² and the waterplane area 1 300 m².</p>
+<ol>
+<li>Block coefficient: 7 200 / (100 × 16 × 6) = 7 200 / 9 600 = 0.750.</li>
+<li>Midship coefficient: 92 / (16 × 6) = 0.958.</li>
+<li>Prismatic coefficient: 0.750 / 0.958 = 0.783.</li>
+<li>Waterplane coefficient: 1 300 / (100 × 16) = 0.813.</li>
+<li>Vertical prismatic coefficient: 0.750 / 0.813 = 0.923.</li>
+<li>Displacement: 7 200 × 1.025 = 7 380 t in salt water, or 7 200 t in fresh water. TPC in salt water is 1 300 × 1.025 / 100 = 13.3 t/cm.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is a typical block coefficient?</summary>
+<p>MAN lists about 0.80 to 0.85 for tankers and bulk carriers, 0.55 to 0.75 for general cargo ships, 0.50 to 0.70 for container ships and ferries, and 0.90 for lighters.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate displacement from the block coefficient?</summary>
+<p>Multiply C_B by length, breadth, draught and water density. A ship 180 m × 32 m × 10 m with C_B 0.80 displaces 0.80 × 57 600 × 1.025 = 47 232 t in salt water.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between the block and the prismatic coefficient?</summary>
+<p>The block coefficient compares the hull with a box. The prismatic coefficient compares it with a prism of the midship section, so it shows how the volume is spread along the length, which matters for wave resistance.</p>
+</details>
+<details class="ec-faq"><summary>What is the waterplane coefficient used for?</summary>
+<p>It gives the waterplane area, and from that the TPC: the tonnes needed to sink the ship one centimetre.</p>
+</details>
+<details class="ec-faq"><summary>Why is the displacement less in fresh water?</summary>
+<p>It is the same underwater volume filled with lighter water: 1.000 t/m³ against 1.025 t/m³. The same ship, with the same mass, floats deeper in fresh water instead.</p>
+</details>
+<details class="ec-faq"><summary>Can the block coefficient be more than 1?</summary>
+<p>No. If the calculator says so, the volume or a dimension is wrong, often a draught entered in feet as metres.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hydrostatics/index.html">Hydrostatics basics</a> — displacement, TPC, FWA and trim from C_B.</li>
+<li><a href="../buoyancy/index.html">Buoyancy calculator</a> — Archimedes for any floating body.</li>
+<li><a href="../trim-change/index.html">Change of trim and new drafts</a> — drafts after loading a weight.</li>
+<li><a href="../shallow-water-speed/index.html">Shallow water correction</a> — uses C_B, C_M and C_WP.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anchor holding power calculator — Engineering calculators</title>
+  <meta name="description" content="Holding capacity of an anchor from its mass and type (efficiency by anchor class) and the anchor mass needed to hold a design force.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Anchor holding power calculator</h1>
+    <p class="ec-summary">Anchor holding capacity from mass and anchor class (Vryhof efficiencies), the allowable force with a safety factor, and the mass for a design force.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>An anchor&#39;s holding power is its weight multiplied by its efficiency, the number of times its own weight it can hold before it drags. Efficiency depends on the anchor design and the seabed. The Vryhof Anchor Manual groups drag anchors into classes, from about 4 to 6 for stockless ship anchors up to 33 to 55 for modern high-penetration designs. A 6 t stockless anchor at an efficiency of 4 holds about 24 tonnes-force, or 235 kN.</p>
+<p>This calculator gives the holding capacity of an anchor from its mass and class, and the allowable force after a safety factor. It also works backwards to the anchor mass needed for a design force. It is the companion of the <a href="../anchor-catenary/index.html">anchor catenary calculator</a>, which gives the force the cable brings to the anchor. It is for ship officers, mooring designers and boat owners choosing an anchor.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Holding capacity and allowable force:</p>
+<pre class="ec-formula" tabindex="0"><code>H = η × W × g
+F_allow = H / SF</code></pre>
+<p>Size effect from Vryhof&#39;s holding-capacity charts (UHC = A W^0.92):</p>
+<pre class="ec-formula" tabindex="0"><code>H = η × W_ref g × (W / W_ref)^0.92,     W_ref = 10 t</code></pre>
+<p>Anchor mass for a design force F:</p>
+<pre class="ec-formula" tabindex="0"><code>W = F × SF / (η g)</code></pre>
+<p>Efficiencies η by Vryhof class, for a 10 t anchor:</p>
+<ul>
+<li>Class A, 33 to 55 — Stevpris, Stevshark, FFTS</li>
+<li>Class B, 17 to 25 — Bruce SS, Bruce TS, Hook</li>
+<li>Class C, 14 to 26 — Stevin, Stevfix, Stevmud, Flipper Delta</li>
+<li>Class D, 8 to 15 — Danforth, LWT, Moorfast, Stato, Offdrill, Boss</li>
+<li>Class E, 8 to 11 — AC14, Stokes, Snugstow, Weldhold</li>
+<li>Class F, 4 to 6 — US Navy stockless, Beyers, Union, Spek</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The efficiencies apply to an anchor that has dug in fully with the line horizontal at the seabed. Any uplift of the cable at the shank reduces the holding sharply.</li>
+<li>The seabed matters. Holding is highest in sand and stiff clay and lower in very soft mud, where the fluke angle should be about 50°. On rock or weed an anchor may hardly hold at all.</li>
+<li>The low end of each range is used by default. Use the middle or high end only with good reason, such as test results in similar soil.</li>
+<li>The class figures come from offshore anchors around 10 t. For small boat anchors they are only a guide.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A ship has a 6 t stockless anchor. What holding power can it be counted on for, with a safety factor of 1.5?</p>
+<ol>
+<li>Class F, low end of the range: η = 4.</li>
+<li>Holding capacity: 4 × 6 t = 24 tonnes-force, which is 24 000 × 9.81 = 235 kN.</li>
+<li>Allowable force: 235 / 1.5 = 157 kN.</li>
+</ol>
+<p>The other way round: holding 300 kN with the same factor needs 300 × 1.5 / (4 × 9.81) = 11.5 t of stockless anchor, or 5.7 t of a Class D anchor at η 8.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate anchor holding power?</summary>
+<p>Multiply the anchor&#39;s weight by its efficiency for the seabed. A 6 t stockless anchor at η 4 holds about 24 t, or 235 kN.</p>
+</details>
+<details class="ec-faq"><summary>What is a high holding power anchor?</summary>
+<p>Under the IACS rules on anchoring equipment, an HHP anchor must hold at least twice as much as an ordinary stockless anchor of the same mass. Classes A to D are all well above stockless anchors.</p>
+</details>
+<details class="ec-faq"><summary>How much will a small boat anchor hold?</summary>
+<p>By the Class D range, a 15 kg Danforth-type anchor holds 120 to 225 kgf, 1.2 to 2.2 kN. Small anchors in good sand often do better, and much worse in weed or soft mud.</p>
+</details>
+<details class="ec-faq"><summary>What safety factor should I use?</summary>
+<p>API RP 2SK uses 1.5 for drag anchors of permanent moorings in the intact condition with a dynamic analysis. A ship at anchor relies on paying out more cable and on its engines, but a margin above the expected force is still prudent.</p>
+</details>
+<details class="ec-faq"><summary>Why does my anchor drag when the numbers say it should hold?</summary>
+<p>The cable may lift at the shank, the anchor may not have dug in, the seabed may be poor, or yawing and snatching may double the static load. Check the scope with the catenary calculator.</p>
+</details>
+<details class="ec-faq"><summary>Does a heavier anchor always hold more?</summary>
+<p>Yes, but less than in proportion. Vryhof&#39;s charts follow weight to the power 0.92, so twice the mass gives about 1.89 times the holding.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../anchor-catenary/index.html">Anchor cable catenary and scope</a> — the force the cable brings to the anchor.</li>
+<li><a href="../wire-rope-swl/index.html">Wire rope and chain SWL</a> — strength of the cable and fittings.</li>
+<li><a href="../bollard-pull/index.html">Bollard pull for a tow</a> — wind, current and wave forces on a ship.</li>
+<li><a href="../mooring-line-meg4/index.html">Mooring line and winch brake</a> — mooring line strengths.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Water temperature and density correction — Engineering calculators</title>
+  <meta name="description" content="ISO 15016 Annex E resistance and power correction for sea water temperature and density against the 15 °C / 1026 kg/m³ reference.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Water temperature and density correction</h1>
+    <p class="ec-summary">The ISO 15016 Annex E correction of a measured speed-power point to the reference sea water of 15 °C and 1026 kg/m³: actual density and viscosity, Reynolds numbers, ITTC-57 friction with the roughness allowance at both conditions, the density and friction terms of R_AS, the power equivalent and how to read its sign.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Warm tropical water is lighter and less viscous than the 15 °C sea water that tank tests and performance baselines assume, so a ship measured in it looks slightly better than it is; cold water does the opposite. ISO 15016 Annex E removes the effect with two terms: the whole resistance scales with density, and the frictional part changes with the Reynolds number through viscosity. This calculator evaluates both at the actual and the reference condition, reports the resistance increase R_AS, its share of the total resistance, the power equivalent and, because the sign confuses everyone, says in words whether to add or subtract.</p>
+<p>It is for trial engineers and performance analysts correcting speed-power data, for anyone comparing voyages in different climates, and for students of ship resistance.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>R_AS = R_Tref (ρ_act/ρ_ref − 1) − R_Fact [(C_Fref + ΔC_Fref)/(C_Fact + ΔC_Fact) − 1]     E.1
+R_Fact = ½ ρ_act S V_S² (C_Fact + ΔC_Fact)                                                E.2
+R_Tref = P_ref η_D / V_S                                                                   E.4
+C_F = 0.075/(log₁₀ Re − 2)²,  Re = V_S L_PP/ν                                              E.5–E.6
+ΔC_F = 0.044 [(k_s/L_PP)^(1/3) − 10 Re^(−1/3)] + 0.000125  (min 0, k_s 150 µm default)    E.7
+ΔP_AS = R_AS V_S/η_D,   P_ref = P_measured − ΔP_AS</code></pre>
+<p>Reference: 15 °C, ρ_ref 1026.0 kg/m³, ν_ref 1.1883 × 10⁻⁶ m²/s. Water properties from the ITTC 35 g/kg table.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Propulsive efficiency unchanged by the small resistance change; correction applied on speed through water.</li>
+<li>The reference power should be the tank prediction (trials) or the baseline curve (service) at the same speed.</li>
+<li>ITTC table for density and viscosity (not the Annex E viscosity polynomial, 0.17 % apart, second order).</li>
+<li>Effect scale about ±1 % of power between 5 and 30 °C for typical merchant ships.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>L_PP 180 m, wetted surface 5 500 m², 12.6 kn (6.5 m/s), tank-predicted 8 000 kW with η_D 0.70, trial in 25 °C water, hull roughness 150 µm.</p>
+<ol>
+<li>R_Tref = 8 000 kW × 0.70/6.5 = 861.5 kN.</li>
+<li>ρ_act 1023.2, ν_act 0.9425 × 10⁻⁶ → Re_act 1.24 × 10⁹ against Re_ref 0.98 × 10⁹; C_F + ΔC_F 1.620 × 10⁻³ actual, 1.630 × 10⁻³ reference.</li>
+<li>Density term 861.5 × (1023.2/1026 − 1) = −2.35 kN; friction term −1.23 kN; R_AS = −3.58 kN, −0.42 % of the total.</li>
+<li>ΔP_AS = −3.58 kN × 6.5/0.70 = −33 kW: the warm water favoured the ship, so the reference-condition power is 33 kW higher than measured.</li>
+</ol>
+<p>At 5 °C the same ship gets +2.68 kN and +25 kW, i.e. the measured power is reduced to reach the reference.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why is R_AS negative in warm water?</summary>
+<p>Less dense and less viscous water lowers the resistance below the reference, so the &quot;increase&quot; is negative; correcting means adding that resistance back.</p>
+</details>
+<details class="ec-faq"><summary>Why is the result not exactly zero at 15 °C?</summary>
+<p>The ITTC table gives 1025.9 kg/m³ at 15 °C while ISO fixes the reference at 1026.0; the −0.01 % residual is harmless and documented.</p>
+</details>
+<details class="ec-faq"><summary>Does salinity matter?</summary>
+<p>Brackish water (Baltic, river estuaries) lowers the density by up to 2–3 % and dominates the density term; enter the salinity or the measured density.</p>
+</details>
+<details class="ec-faq"><summary>Can I apply this to service data?</summary>
+<p>Yes, with the baseline power as R_Tref and the sea surface temperature along the voyage; the effect is ±1 % and systematic by season and route.</p>
+</details>
+<details class="ec-faq"><summary>What is the roughness allowance doing here?</summary>
+<p>It is part of the frictional coefficient at both conditions; it changes little with temperature but is included because the standard includes it.</p>
+</details>
+<details class="ec-faq"><summary>Which speed, through water or over ground?</summary>
+<p>Through water: the water temperature acts on the hull&#39;s motion relative to the water (ISO clause 13).</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hull-roughness-penalty/index.html">Hull roughness and fouling penalty</a> — the roughness allowance and friction line.</li>
+<li><a href="../shallow-water-speed/index.html">Shallow water correction</a> — ISO 15016 Annex G.</li>
+<li><a href="../stawave-added-resistance/index.html">Added resistance in waves (STAwave-1)</a> — the wave correction.</li>
+<li><a href="../hydrostatics/index.html">Hydrostatics</a> — displacement in water of another density.</li>
+<li><a href="../draft-survey/index.html">Draft survey</a> — density corrections of displacement.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

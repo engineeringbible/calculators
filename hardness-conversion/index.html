@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hardness conversion calculator (HRC, HRB, HV, HB) — Engineering calculators</title>
+  <meta name="description" content="Approximate conversion of steel hardness between Rockwell C, Rockwell B, Vickers and Brinell, with tensile strength, from ASTM E140 and ISO 18265.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Hardness conversion calculator (HRC, HRB, HV, HB)</h1>
+    <p class="ec-summary">Convert steel hardness between HRC, HRB, HV and HBW and estimate tensile strength, by interpolation in ASTM E140 and ISO 18265 tables.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Each hardness test presses a different indenter into the metal with a different load, so the scales have no exact relation. For steel, standard tables built from many paired tests give the equivalent values. A steel at 45 HRC reads about 446 HV and 421 HBW, and its tensile strength is roughly 1 440 MPa.</p>
+<p>This calculator converts a reading in Rockwell C, Rockwell B, Vickers or Brinell to the other scales, and estimates the tensile strength. It can also work backwards from a tensile strength. It interpolates in the published tables and refuses values outside them. It is for inspectors, heat-treaters and designers comparing a hardness test with a drawing or a material certificate.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Hardness to hardness, by linear interpolation between two rows of ASTM E140:</p>
+<pre class="ec-formula" tabindex="0"><code>y = y₁ + (x − x₁) (y₂ − y₁) / (x₂ − x₁)</code></pre>
+<ul>
+<li>x — the reading you have; x₁, x₂ — the table rows either side of it</li>
+<li>y₁, y₂ — the values of the other scale in those rows</li>
+</ul>
+<p>Tables used:</p>
+<div class="ec-table-wrap" role="region" tabindex="0" aria-label="Table">
+<table class="ec-table"><thead><tr><th scope="col">Range</th><th scope="col">Table</th><th scope="col">Columns</th></tr></thead>
+<tbody>
+<tr><td>HRC 20 to 68</td><td>ASTM E140 Table 1</td><td>HRC, HV, HBW (carbide ball, 3 000 kgf)</td></tr>
+<tr><td>HRB 55 to 100</td><td>ASTM E140 Table 2</td><td>HRB, HV, HB (equal to HV in this range)</td></tr>
+<tr><td>HV 80 to 650</td><td>ISO 18265 Table A.1</td><td>HV, tensile strength Rm 255 to 2 180 MPa</td></tr>
+</tbody></table>
+</div>
+<p>The Vickers number links the tables: every reading is first converted to HV, then to the other scales and to the tensile strength.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The tables hold for non-austenitic carbon and low-alloy steels. Austenitic stainless steel, cold-worked steel, cast iron, aluminium and copper alloys need their own tables.</li>
+<li>Rockwell C stops at 20 HRC and Rockwell B at 100 HRB. Below 20 HRC use Rockwell B; above 100 HRB use Rockwell C.</li>
+<li>Where Table 1 meets Table 2, around 98 to 100 HRB, the two tables differ by up to 10 HV. Conversions in that band are less certain.</li>
+<li>The tensile strength is only an estimate. ISO 18265 calls it the least reliable of the converted values.</li>
+<li>A converted value never replaces a test in the scale a specification asks for. ASTM E140 itself says to convert only when testing in that scale is not possible.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A heat-treated shaft of alloy steel tests at 45 HRC. What are its Vickers and Brinell hardness and its approximate tensile strength?</p>
+<ol>
+<li>ASTM E140 Table 1, row 45 HRC: 446 HV and 421 HBW.</li>
+<li>ISO 18265 Table A.1: 440 HV is 1 420 MPa and 450 HV is 1 455 MPa.</li>
+<li>Interpolate at 446 HV: 1 420 + 0.6 × 35 = 1 441 MPa.</li>
+</ol>
+<p>So the shaft is about 446 HV, 421 HBW and 1 441 MPa. The older SAE tensile column printed with E140-based charts gives 1 480 MPa for 45 HRC, within 3 % of this estimate.</p>
+<p>A softer plate at 85 HRB converts the same way through Table 2: 165 HV, 165 HB and about 530 MPa.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Can I convert HRC to HRB?</summary>
+<p>Only near the top of the B scale. 20 HRC is about 99.7 HRB, and the B scale ends at 100 HRB, so harder steels have no HRB value.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert Brinell to Rockwell C?</summary>
+<p>Find the Brinell number in E140 Table 1 and read the HRC in the same row. For example, 400 HBW is 43 HRC.</p>
+</details>
+<details class="ec-faq"><summary>How accurate are hardness conversions?</summary>
+<p>They are approximate. ASTM E140 warns that converted values may be inaccurate for a given material, and ISO 18265 treats the tensile estimate as the least reliable.</p>
+</details>
+<details class="ec-faq"><summary>Why is there no tensile strength above 650 HV?</summary>
+<p>ISO 18265 Table A.1 stops at 650 HV and 2 180 MPa. Harder steels are brittle, and their tensile strength depends more on defects than on hardness.</p>
+</details>
+<details class="ec-faq"><summary>Does this work for stainless steel?</summary>
+<p>Not for austenitic grades such as 304 and 316. ASTM E140 gives austenitic stainless steel a table of its own.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between HB and HBW?</summary>
+<p>HBW means the test used a tungsten carbide ball. Older tests with a steel ball were marked HBS; modern standards allow only the carbide ball.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../material-properties/index.html">Material properties</a> — strength and stiffness of common engineering materials.</li>
+<li><a href="../stress-strain/index.html">Stress and strain</a> — the stress a part sees under load.</li>
+<li><a href="../fatigue-goodman/index.html">Fatigue safety factor</a> — endurance limit from the tensile strength.</li>
+<li><a href="../bolt-torque/index.html">Bolt torque and preload</a> — bolt property classes and their hardness ranges.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

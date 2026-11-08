@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Joist span calculator (bending and deflection) — Engineering calculators</title>
+  <meta name="description" content="Maximum span of a wood floor joist or rafter from its size, spacing, grade and loads, by bending and deflection mechanics with NDS adjustment factors.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Structural</span>
+    <h1 class="ec-title">Joist span calculator (bending and deflection)</h1>
+    <p class="ec-summary">Maximum span of a wood joist or rafter by bending and deflection mechanics with NDS factors, from size, spacing, grade and dead and live loads.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How far can a joist span? Far enough that its bending stress stays below the allowable value and its sag stays within the deflection limits. Both follow from simple beam theory once the load per joist, the section properties and the wood&#39;s strength and stiffness are known. A Douglas Fir-Larch No. 2 2×10 at 16 in centres, with 10 psf dead and 40 psf live load, can span 15.61 ft, limited by bending.</p>
+<p>This calculator computes the maximum span of a rectangular joist or rafter from mechanics, not from code span tables. It applies the NDS load duration, size and repetitive member factors, checks bending and the live and total load deflection limits, and says which one governs. It also checks a span you enter. It is for builders, designers, engineers and students sizing floor joists, ceiling joists and rafters.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Load per joist and section properties:</p>
+<pre class="ec-formula" tabindex="0"><code>w = q × s,    S = b d² / 6,    I = b d³ / 12</code></pre>
+<p>Span limited by bending, with F&#39;b = Fb × C_D × C_F × C_r:</p>
+<pre class="ec-formula" tabindex="0"><code>M = w L² / 8 ≤ F&#39;b S    →    L_b = √( 8 F&#39;b S / w )</code></pre>
+<p>Span limited by deflection, with the limit L/n:</p>
+<pre class="ec-formula" tabindex="0"><code>Δ = 5 w L⁴ / (384 E I) ≤ L / n    →    L_Δ = ( 384 E I / (5 w n) )^(1/3)</code></pre>
+<ul>
+<li>q — load per unit floor area; s — joist spacing; b, d — actual width and depth</li>
+<li>C_D — load duration, 1.0 for occupancy live load; C_F — size factor; C_r = 1.15 for joists at 24 in or less</li>
+<li>Live load deflection uses the live load only; total load deflection uses dead plus live</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The joist is simply supported and uniformly loaded. Continuous joists, point loads and openings need a full analysis.</li>
+<li>The compression edge is held by the floor or roof sheathing, the wood is dry in service and at normal temperature.</li>
+<li>Shear, bearing, notches and floor vibration are not checked. Long, shallow joists can feel bouncy even when they meet L/360.</li>
+<li>The spans come from mechanics with the NDS factors. Code span tables are built in a similar way but may round or add checks, so small differences are normal.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A floor has Douglas Fir-Larch No. 2 2×10 joists (1.5 × 9.25 in) at 16 in centres. The dead load is 10 psf and the live load 40 psf. Use L/360 for live and L/240 for total load deflection.</p>
+<ol>
+<li>Load per joist: 50 psf × 16/12 ft = 66.67 lb/ft, or 5.556 lb/in. The live part is 4.444 lb/in.</li>
+<li>Section: S = 1.5 × 9.25² / 6 = 21.39 in³ and I = 1.5 × 9.25³ / 12 = 98.93 in⁴.</li>
+<li>Allowable stress: F&#39;b = 900 × 1.0 × 1.1 × 1.15 = 1 139 psi.</li>
+<li>Bending: L = √(8 × 1 138.5 × 21.39 / 5.556) = 187.3 in, or 15.61 ft.</li>
+<li>Live load deflection: L = (384 × 1 600 000 × 98.93 / (5 × 4.444 × 360))^(1/3) = 196.6 in, or 16.38 ft.</li>
+<li>Total load deflection at L/240: 17.41 ft.</li>
+</ol>
+<p>Bending governs, so the maximum span is 15.61 ft, or 15 ft 7 in.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How far can a 2×10 joist span?</summary>
+<p>It depends on the species, grade, spacing and loads. A Douglas Fir-Larch No. 2 2×10 at 16 in with 40 psf live and 10 psf dead load spans about 15.6 ft by this method.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between L/360 and L/240?</summary>
+<p>L/360 limits the live load deflection of floors so finishes do not crack. L/240 limits the total deflection under dead plus live load.</p>
+</details>
+<details class="ec-faq"><summary>Why does the size factor change with depth?</summary>
+<p>Deeper lumber has a lower bending strength per unit area, because large members contain more and larger defects. The NDS raises Fb for small sizes, by 1.1 for a 2×10 and 1.5 for a 2×4.</p>
+</details>
+<details class="ec-faq"><summary>What is the repetitive member factor?</summary>
+<p>A 15 % increase in bending stress for joists, rafters and studs spaced 24 in or less, when three or more share the load through sheathing. A weak joist is helped by its neighbours.</p>
+</details>
+<details class="ec-faq"><summary>Does this work for rafters?</summary>
+<p>Yes, using the horizontal span and loads per horizontal area. Use C_D = 1.15 when snow is the live load.</p>
+</details>
+<details class="ec-faq"><summary>Can I use metric timber grades such as C24?</summary>
+<p>Choose &quot;Other&quot; and enter the bending stress and modulus. Eurocode 5 designs with partial factors and different load factors, so the result is only an estimate for EN 338 grades.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../deflection-limits/index.html">Deflection limits</a> — which L/n applies to your member.</li>
+<li><a href="../beam-deflection/index.html">Beam deflection and bending stress</a> — other load cases and supports.</li>
+<li><a href="../load-combinations/index.html">Load combinations</a> — dead, live and snow loads together.</li>
+<li><a href="../snow-load/index.html">Snow load</a> — the roof load for rafters.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

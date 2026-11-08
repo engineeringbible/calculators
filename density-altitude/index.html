@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Density altitude calculator — Engineering calculators</title>
+  <meta name="description" content="Pressure altitude from field elevation and altimeter setting, and density altitude from temperature and dew point, with the ISA formula and the rule of thumb.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Automotive and aerospace</span>
+    <h1 class="ec-title">Density altitude calculator</h1>
+    <p class="ec-summary">Pressure altitude from field elevation and altimeter setting, and density altitude from temperature and dew point by the standard atmosphere.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Density altitude is the height in the standard atmosphere where the air has the same density as the air around you. It is pressure altitude corrected for a non-standard temperature. Aircraft wings, propellers and engines respond to density, so a hot day at a high airport makes an aircraft perform as if it were much higher. A 5 000 ft airport at 30 °C has a density altitude of about 7 600 ft.</p>
+<p>This calculator finds the station pressure and the pressure altitude from the field elevation and the altimeter setting. It then gives the density altitude from the outside air temperature with the standard atmosphere formula, and optionally with humidity from the dew point. The 120 ft per °C rule of thumb is shown alongside. It is for pilots checking take-off and climb performance, and for drone, car and engine tuners who correct for air density.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Station pressure and pressure altitude, ISA troposphere:</p>
+<pre class="ec-formula" tabindex="0"><code>p = QNH × (1 − L h / T0)^5.2559
+PA = (T0 / L) × (1 − (p / p0)^0.190263)</code></pre>
+<p>Density and density altitude:</p>
+<pre class="ec-formula" tabindex="0"><code>ρ = p / (R T_v)
+T_v = T / (1 − (e / p)(1 − 0.622))
+DA = (T0 / L) × (1 − (ρ / ρ0)^0.234969)</code></pre>
+<p>Rule of thumb for comparison:</p>
+<pre class="ec-formula" tabindex="0"><code>DA ≈ PA + 120 ft × (OAT − T_ISA)
+T_ISA = 15 °C − 1.98 °C × PA / 1 000 ft</code></pre>
+<ul>
+<li>QNH — altimeter setting; h — field elevation</li>
+<li>T0 = 288.15 K, p0 = 1 013.25 hPa (29.92 inHg), ρ0 = 1.225 kg/m³, L = 6.5 K/km</li>
+<li>R = 287.05 J/(kg·K); T — outside air temperature in K</li>
+<li>e — vapour pressure at the dew point; T_v — virtual temperature</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The formulas cover the troposphere, below 36 089 ft. That includes every airport and most piston-aircraft flying.</li>
+<li>The altimeter setting is the station pressure reduced to sea level through the standard atmosphere. The calculator reverses that step to find the station pressure.</li>
+<li>Pilots usually leave humidity out. Moist air is lighter than dry air, so humidity raises the density altitude by a few hundred feet on a warm, humid day.</li>
+<li>The 120 ft per °C rule is an approximation. In the worked example it overestimates the exact result by about 180 ft.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An airport sits at 5 000 ft. The altimeter setting is 30.10 inHg and the temperature is 30 °C. What are the pressure and density altitudes?</p>
+<ol>
+<li>Station pressure: 30.10 × (1 − 0.0065 × 1 524 / 288.15)^5.2559 = 25.04 inHg.</li>
+<li>Pressure altitude: the standard atmosphere has 25.04 inHg at 4 841 ft.</li>
+<li>Standard temperature there: 15 − 1.98 × 4.841 = 5.4 °C, so the air is 24.6 °C warmer than standard.</li>
+<li>Density: 84 811 Pa / (287.05 × 303.15 K) = 0.9746 kg/m³.</li>
+<li>Density altitude: the standard atmosphere has that density at 7 608 ft.</li>
+<li>Rule of thumb: 4 841 + 120 × 24.59 = 7 792 ft.</li>
+</ol>
+<p>With a dew point of 15 °C the density altitude rises to 7 855 ft. The aircraft will perform as if it were taking off from about 7 600 to 7 900 ft.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is density altitude?</summary>
+<p>The pressure altitude corrected for a non-standard temperature. It is the standard-atmosphere height with the same air density.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate pressure altitude?</summary>
+<p>Set the altimeter to 29.92 inHg and read it. Without that, a quick estimate is the field elevation plus (29.92 − altimeter setting) × 1 000 ft.</p>
+</details>
+<details class="ec-faq"><summary>How do I calculate density altitude?</summary>
+<p>Find the air density from the station pressure and temperature, then find the standard-atmosphere height with that density. The rule of thumb adds 120 ft for each °C above the standard temperature.</p>
+</details>
+<details class="ec-faq"><summary>Does humidity affect density altitude?</summary>
+<p>Yes. Water vapour is lighter than air, so humid air is less dense. The FAA advises adding 10 % to the computed take-off distance when humidity is high.</p>
+</details>
+<details class="ec-faq"><summary>Why does density altitude matter?</summary>
+<p>High density altitude lengthens the take-off run, reduces the climb rate and raises the true airspeed on approach. A normally aspirated engine also loses power.</p>
+</details>
+<details class="ec-faq"><summary>What is the standard temperature at altitude?</summary>
+<p>15 °C at sea level, falling about 1.98 °C per 1 000 ft. At 10 000 ft it is −4.8 °C.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../true-airspeed/index.html">True airspeed</a> — TAS and Mach from calibrated airspeed.</li>
+<li><a href="../mach-number/index.html">Speed of sound and Mach number</a> — Mach from temperature or altitude.</li>
+<li><a href="../thrust-weight/index.html">Thrust-to-weight and wing loading</a> — stall speed at the density altitude.</li>
+<li><a href="../air-density/index.html">Air density calculator</a> — density of humid air for HVAC and fans.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

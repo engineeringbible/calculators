@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Light, radar and VHF range — Engineering calculators</title>
+  <meta name="description" content="Geographic and luminous range of a light, radar and VHF line-of-sight ranges, and the COLREG minimum intensity of a navigation light.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Light, radar and VHF range</h1>
+    <p class="ec-summary">Geographic range of a light from its elevation and the height of eye, luminous range from its intensity or nominal range and the visibility by Allard's law, radar and VHF line-of-sight ranges in the standard atmosphere, and the COLREG Annex I minimum intensity of a navigation light.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>When will a lighthouse rise above the horizon, and will it be bright enough to see in tonight&#39;s visibility? How far away can the radar see a low coaster, and how far does VHF reach between two antennas? All of these are horizon and attenuation questions. This calculator answers them together: the geographic range of a light from its elevation and the height of eye, its luminous range from its intensity or nominal range and the meteorological visibility, the radar and VHF line-of-sight ranges, and the minimum intensity COLREG requires of a navigation light for a given range.</p>
+<p>It is for navigating officers planning landfalls, cadets learning light ranges, and anyone specifying or checking navigation lights.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Horizon (Bowditch Table 12):   d = √(2 R h / β),   R = 3440.1 nmi, β = 0.8279   →   1.17 √h(ft) = 2.12 √h(m)
+Rounded rule:                  d = 2.08 √h(m);    geometric: d = √(2 R h) = 1.93 √h(m)
+Geographic range:              D_geo = d(H) + d(h)
+Allard&#39;s law:                  E = I · T^d / (1852 d)²,   T = 0.05^(1/V),   E_threshold = 2·10⁻⁷ lx at night
+Nominal range:                 luminous range at V = 10 nmi (T = 0.741)
+Visible range:                 min(luminous range, geographic range)
+Radar and VHF horizon:         d = √(2 · 4/3 · R h) = 2.23 √h(m)
+COLREG Annex I minimum:        I = 3.43·10⁶ × 2·10⁻⁷ × D² × 0.8^(−D)  cd</code></pre>
+<ul>
+<li>H — elevation of the light; h — height of eye or antenna; I — luminous intensity in candela; V — meteorological visibility; d, D — distances in nautical miles.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Standard refraction; abnormal refraction over cold or warm water changes all horizon ranges.</li>
+<li>Charted light elevations are above a high-water datum; the actual height depends on the tide.</li>
+<li>Allard&#39;s law is for a point source at night against a dark background; shore lights raise the threshold.</li>
+<li>Radar and VHF figures are line-of-sight only; detection and reception also depend on power, antenna gain and target size.</li>
+<li>The COLREG intensity uses the regulation&#39;s own transmissivity, K = 0.8.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A light with a nominal range of 20 nmi stands 40 m above the sea. The observer&#39;s eye is 15 m above the water and the visibility is 5 nmi.</p>
+<ol>
+<li>Horizon from the light: 2.12 √40 = 13.4 nmi; from the eye: 2.12 √15 = 8.2 nmi; geographic range 21.6 nmi.</li>
+<li>Intensity from the nominal range: I = 2·10⁻⁷ × (1852 × 20)² × 0.741^(−20) ≈ 110 000 cd.</li>
+<li>In 5 nmi visibility the transmissivity per mile is 0.05^(1/5) = 0.549, and Allard&#39;s law gives a luminous range of 11.8 nmi.</li>
+<li>The light will be seen at about 11.8 nmi, limited by visibility rather than by the horizon. In clear weather it would rise at 21.6 nmi.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the difference between nominal and luminous range?</summary>
+<p>Nominal range is the luminous range in a standard visibility of 10 nmi, and is what charts and lists of lights give. Luminous range is the distance at which the light is just visible in the actual visibility.</p>
+</details>
+<details class="ec-faq"><summary>Why can I sometimes see a light beyond its geographic range?</summary>
+<p>Its loom, the glow of the beam scattered in the air above it, can show beyond the horizon. Unusual refraction can also lift the light into view.</p>
+</details>
+<details class="ec-faq"><summary>Why does the radar see further than the eye?</summary>
+<p>Radio waves bend more around the earth in the standard atmosphere: the effective earth radius is 4/3 of the real one, against about 1.2 for light.</p>
+</details>
+<details class="ec-faq"><summary>Which horizon model should I use?</summary>
+<p>Bowditch&#39;s table is the established reference. The 2.08 rule is a rounded version used in many textbooks and gives about 2 % less. The geometric value ignores refraction and is the most conservative.</p>
+</details>
+<details class="ec-faq"><summary>Is the VHF range really line of sight?</summary>
+<p>Practically yes for marine VHF. Real ship-to-ship ranges of 20–30 nmi agree with the antenna heights; power and antenna gain decide whether the signal is still readable at that distance.</p>
+</details>
+<details class="ec-faq"><summary>What intensity does a masthead light need?</summary>
+<p>COLREG requires 6 nmi for a masthead light on a vessel of 50 m or more. By the Annex I formula that is at least 94 cd.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../cpa-tcpa/index.html">CPA and TCPA from radar plots</a> — what to do once the target is detected.</li>
+<li><a href="../air-draft/index.html">Air draft and bridge clearance</a> — the other height question on the bridge.</li>
+<li><a href="../tidal-height/index.html">Tidal height</a> — the state of tide that changes a light&#39;s elevation.</li>
+<li><a href="../great-circle-distance/index.html">Great-circle distance</a> — the distance to the landfall.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

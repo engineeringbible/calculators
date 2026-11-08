@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hull roughness and fouling penalty — Engineering calculators</title>
+  <meta name="description" content="Added resistance, power, fuel and speed loss from hull roughness or fouling via the ITTC-57 line and the ISO 15016 roughness allowance.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Hull roughness and fouling penalty</h1>
+    <p class="ec-summary">What a rough or fouled hull costs: Reynolds number and ITTC-57 friction coefficient, the ISO 15016 (or 1978 ITTC) roughness allowance for the clean and the present hull, the added resistance at constant speed, the power increase, the speed loss at constant power and the extra fuel, cost and CO₂ per year, with the Schultz hull-condition presets from a new coating to heavy calcareous fouling.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A hull that has grown slime, weed or barnacles drags more water with it. The classic way to put a number on that is the roughness allowance: an addition to the frictional resistance coefficient that depends on the equivalent sand roughness of the surface and on the ship&#39;s Reynolds number. This calculator takes the ship&#39;s length, wetted surface and speed, the water temperature, the roughness of the clean hull and the present condition, and returns the added resistance, the power needed to hold the speed, the speed lost at constant power, and the fuel, money and CO₂ it costs over a year. The condition presets are the Schultz (2007) equivalents, from a fresh coating at 150 µm to heavy calcareous fouling at 10 mm.</p>
+<p>It is for performance engineers, superintendents deciding on a hull cleaning, and naval architecture students; the companion hull-cleaning-interval calculator turns the penalty rate into an optimal cleaning schedule.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Re = V L_PP / ν,   C_F = 0.075 / (log₁₀ Re − 2)²                       ITTC-57
+ΔC_F = 0.044 [(k_s/L)^(1/3) − 10 Re^(−1/3)] + 0.000125   (min 0)       ISO 15016:2025 E.7 / G.8
+ΔC_F = [105 (k_s/L)^(1/3) − 0.64] × 10⁻³                 (min 0)       1978 ITTC form
+R_V,clean = (1 + k) C_F ½ρSV²,   ΔR = ½ρSV² [ΔC_F(k_s,present) − ΔC_F(k_s,clean)]
+R_T = P_D η_D / V   (or R_V,clean / viscous share),   ΔP/P = ΔR / R_T
+ΔV/V = 1 − (1 + ΔP/P)^(−1/3),   fuel = ΔP × SFOC × 24 h</code></pre>
+<p>Schultz (2007) equivalent roughness: as-applied coating 150 µm, deteriorated coating or light slime 300, heavy slime 600, small calcareous fouling or weed 1 000, medium calcareous 3 000, heavy calcareous 10 000 µm.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Roughness changes only the frictional resistance; the form factor applies to the smooth friction, not to ΔC_F (ITTC-78 / ISO 15016).</li>
+<li>Propulsive efficiency is held constant, so the real power penalty is 5–10 % larger than computed; propeller fouling is separate.</li>
+<li>The equivalent sand roughness of fouling is an approximation (±30 %); a roughness survey (Rt50) should replace the presets when available.</li>
+<li>Water properties from the ITTC 35 g/kg table, held at the ends outside 0–35 °C.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 180 m tanker, wetted surface 5 500 m², 12.6 kn in 15 °C sea water, form factor 1.20, 3 200 kW delivered with η_D 0.68, SFOC 175 g/kWh, fuel 550 per tonne, 250 days at sea. Clean hull 150 µm, present condition heavy slime (600 µm).</p>
+<ol>
+<li>V = 12.6 × 1852/3600 = 6.482 m/s; Re = 6.482 × 180/1.1883e-6 = 9.82 × 10⁸, C_F = 1.534 × 10⁻³.</li>
+<li>ΔC_F: 0.964 × 10⁻⁴ clean, 3.396 × 10⁻⁴ heavy slime, increase 2.432 × 10⁻⁴.</li>
+<li>½ρSV² = 118.5 MN → ΔR = 28.8 kN; clean viscous resistance 218 kN; total resistance from the power 336 kN.</li>
+<li>ΔP/P = 28.8/335.7 = 8.59 %, 275 kW more; speed loss at constant power 2.7 %.</li>
+<li>Fuel 1.15 t/day, 289 t/year, about 159 000 per year and 899 t CO₂.</li>
+</ol>
+<p>With the 1978 ITTC form the clean allowance is 3.48 × 10⁻⁴ and heavy slime 9.29 × 10⁻⁴; the increase (5.80 × 10⁻⁴) is more than twice what the ISO form gives, because the older formula has no Reynolds term and was calibrated on rougher hulls.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why compare against 150 µm and not against zero?</summary>
+<p>A newly coated hull is already rough; 150 µm is the ISO 15016 default when no survey exists, so the penalty is the increase over the as-docked condition the sea trial or baseline represents.</p>
+</details>
+<details class="ec-faq"><summary>Where do the condition values come from?</summary>
+<p>Schultz (2007) assigned equivalent sand roughness heights to coating and fouling states and predicted the resulting frictional resistance of a frigate; they are widely used as order-of-magnitude presets.</p>
+</details>
+<details class="ec-faq"><summary>Why is the speed loss roughly a third of the power increase?</summary>
+<p>Power rises with roughly the cube of speed, so at constant power a 9 % resistance increase costs about 3 % of speed.</p>
+</details>
+<details class="ec-faq"><summary>Should I use the power or the share mode?</summary>
+<p>Use the delivered power at the speed if you have it (trials, baseline curve); the viscous-share mode is for a quick estimate when only the hull dimensions are known.</p>
+</details>
+<details class="ec-faq"><summary>Does this include the propeller?</summary>
+<p>No. Propeller roughness and fouling typically add 2–6 % of power on top of the hull figures.</p>
+</details>
+<details class="ec-faq"><summary>Can the penalty be negative?</summary>
+<p>Only if the present roughness entered is smaller than the clean reference, which the page flags; after a fresh coating the reference itself should be updated.</p>
+</details>
+<details class="ec-faq"><summary>How does this relate to ISO 19030?</summary>
+<p>ISO 19030 measures the speed loss from service data; this page predicts what a given fouling state should produce, useful for sanity-checking the measured trend.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hull-cleaning-interval/index.html">Optimal hull cleaning interval</a> — turns the penalty growth into a cleaning schedule.</li>
+<li><a href="../holtrop-mennen/index.html">Holtrop–Mennen resistance</a> — total resistance and power of the clean hull.</li>
+<li><a href="../admiralty-coefficient/index.html">Admiralty coefficient</a> — speed-power scaling.</li>
+<li><a href="../water-temperature-correction/index.html">Water temperature and density correction</a> — the other ISO 15016 friction-based correction.</li>
+<li><a href="../fuel-voyage-cost/index.html">Fuel and voyage cost</a> — the voyage-level consequence.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

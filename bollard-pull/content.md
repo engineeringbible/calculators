@@ -1,0 +1,74 @@
+# Bollard pull for a tow calculator
+
+**Summary:** Towing force to hold a tow in wind, waves and current (DNV method: wind, current and wave-drift forces) and the tug bollard pull required with tug efficiency.
+
+## Introduction
+
+Before a marine warranty surveyor approves an ocean tow, someone has to show that the tug can hold the tow against the design weather: in the DNV rules that is 20 m/s of wind, 5 m significant waves and a head current, all at once and head-on, with the tow making no way through the water (or 2 knots over the ground in coastal waters). The environmental force is the sum of three parts, the wind on everything above the waterline, the water flowing past the hull, and the mean drift force of the waves, and the certified bollard pull must exceed that sum divided by a tug efficiency factor because a tug in a seaway delivers less than it did at the bollard test. This calculator performs that standard calculation, reproduces a published warranty calculation, and tells you whether a given tug is adequate.
+
+It is for marine operations engineers, towmasters and surveyors, and for students meeting the DNV marine-operations rules.
+
+## Formulas
+
+Design weather (DNV): ocean tow 20 m/s wind, 5 m H_s, 0.5–1 m/s current, zero speed; benign 15 m/s, 2 m, 0.5 m/s; coastal tows 2 knots over the ground added to the current.
+
+    F_wind    = ½ ρ_air C_s C_h A_w V_w²
+    F_current = ½ ρ_w C_d A_frontal V_rel²              (barges, blunt tows; C_d 0.50 raked/square, 0.35, 0.20)
+              = ½ ρ_w S V_rel² [(1+k) C_F(Rn) + ΔC_F]    (ship-shaped hulls, ITTC-1957 friction)
+    F_wd      = ⅛ ρ_w g R² B H_s²                        (DNV-RP-H103 §7.2.6; R: ship bow 0.45, spoon barge 0.55, raked barge 0.67, cylinder 0.88, Condeep 0.97, square 1.00)
+    F_total   = F_wind + F_current + F_wd
+    BP_required = F_total / η_tug                       (η 0.75 classic DNV; 0.70–0.80 by tug size and sea state)
+
+Wind coefficients (DNV-OS-C301): shape C_s 1.0 flat hull, 1.1 clustered deckhouses, 1.25–1.5 isolated structures; height C_h 1.0 to 15.3 m, 1.1 to 30.5 m, 1.2 to 46 m, 1.3 to 61 m, 1.37 to 76 m above the waterline. A proper calculation sums C_s C_h A over bands; enter that sum as the area with coefficients 1.0.
+
+Towing speed estimate: available pull assumed to fall linearly from η × BP at zero speed to zero at the tug's free-running speed; the speed where it meets the tow resistance is indicative only.
+
+## Assumptions and limitations
+
+- Static, co-linear head weather as the rules require; no towline dynamics, catenary weight, propeller-race interaction at short towlines or shallow-water effects.
+- The wave drift formula is a mean second-order force for objects longer than the waves; short tows in long swell see less.
+- Frontal drag is a barge simplification accepted at the surveyor's discretion; for ships use the friction method or a Holtrop–Mennen resistance at the current speed.
+- Tug efficiency must be agreed with the warranty surveyor; certified bollard pull is the continuous value at 100 % MCR, never the 110 % maximum.
+- The 2-knot coastal case adds 2 knots to the current only; wind and waves are unchanged.
+
+## Worked example
+
+The published Global Maritime calculation for the tow of the FPSO Haewene Brim (L 252 m, B 42 m, towing draught 7 m) in 20 m/s wind, 5 m H_s and 1 m/s current with a 165 t tug:
+
+1. Wind: the ten area bands sum to Σ C_s C_h A = 2 113 m² (hull 642 m² at C_h 1.0, upper hull 620 m² at 1.1, deckhouse 274 m² at 1.1 × 1.2, towers and equipment up to 1.4 × 1.37). F_wind = ½ × 1.22 × 2 113 × 20² = 516 kN = 52.6 t.
+2. Current: bow area 42 × 7 = 292.7 m², C_d 0.50 (raked/square bow): F = ½ × 1 025 × 0.5 × 292.7 × 1² = 75 kN = 7.65 t.
+3. Wave drift: ship bow R = 0.45: F = ⅛ × 1 025 × 9.81 × 0.45² × 42 × 5² = 267 kN = 27.2 t.
+4. Total 859 kN = 87.5 t; ÷ 0.75 → required certified bollard pull 116.7 t. The 165 t tug has a 41 % margin.
+5. Coastal case (2 knots over the ground): relative water speed 2.03 m/s, current force 31.5 t, total 111.4 t, required 148.5 t: still within 165 t.
+
+In the design weather that tug would make roughly 3 knots with the tow.
+
+## FAQ
+
+**Why divide by a tug efficiency?**
+Bollard pull is certified at zero speed in calm water. In a seaway the tug pitches, its propellers ventilate and some thrust goes into holding its own heading, so only 70–80 % reaches the towline.
+
+**Which current speed: 0.5 or 1 m/s?**
+The 1996 DNV marine-operations rules used 1 m/s; Noble Denton ND-0030 and its successor DNVGL-ST-N001 use 0.5 m/s. Use the standard your warranty surveyor applies; 1 m/s is conservative.
+
+**Why is the wave drift force so large for barges?**
+A square or raked bow reflects the waves almost completely (R up to 1.0), and the drift force scales with R² and H_s²; a ship bow reflects far less (R 0.45).
+
+**What about the tug's own resistance?**
+Not in the static requirement, which only asks that the tow be held. When making way the tug spends part of its thrust on itself; the towing-speed output is a simple estimate of that.
+
+**Can I use a rule of thumb?**
+Field rules such as 1 t of pull per 100 hp exist but surveyors expect the component calculation; this page gives it.
+
+**Does the towed vessel's length matter?**
+Only through the areas and the friction Reynolds number; the drift force depends on breadth and wave height, the wind force on the profile area.
+
+**How do I include two tugs?**
+Enter their combined certified bollard pull (usually reduced by a few per cent for interaction) as the available value.
+
+## Related calculators
+
+- [Holtrop–Mennen resistance and power](../holtrop-mennen/index.html) — calm-water resistance of a ship-shaped tow at the current speed.
+- [Beaufort, wind speed and sea state converter](../beaufort-sea-state/index.html) — wind and wave inputs for the design condition.
+- [Wave properties and encounter period](../wave-properties/index.html) — wave length versus tow length for the drift force validity.
+- [Anchor cable catenary and scope](../anchor-catenary/index.html) — holding the tow at anchor.

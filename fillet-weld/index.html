@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fillet weld strength — Engineering calculators</title>
+  <meta name="description" content="Throat area and design resistance of fillet welds under shear, tension and bending (Eurocode 3 directional and simplified methods).">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Structural</span>
+    <h1 class="ec-title">Fillet weld strength</h1>
+    <p class="ec-summary">Design resistance of a group of parallel fillet welds to EN 1993-1-8: throat and leg sizes, the weld design shear strength from the steel grade's f_u and β_w, the simplified method (resultant force per unit length) and the directional method (σ⊥, τ⊥, τ∥ on the throat), utilisations, required throat, and the geometric limits on throat and length.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Fillet welds carry load through their throat, the thinnest section of the triangular bead, and Eurocode 3 gives two ways to check them: a simplified method that treats every force as shear on the throat with one design strength, and a directional method that resolves the stresses on the throat plane and credits welds loaded across their axis with about 22 % more resistance. This calculator applies both to a group of parallel welds carrying a transverse force, a longitudinal shear and an in-plane moment, reports the stresses and utilisations, the throat needed for full utilisation, and checks the practical limits on throat size and effective length.</p>
+<p>It is for structural and marine engineers sizing brackets, lugs, stiffeners and foundation connections, and for students of steel connections.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>a = z/√2   (throat from leg),   f_vw,d = f_u / (√3 β_w γ_M2),   F_w,Rd = f_vw,d a</code></pre>
+<p>Forces per weld (n parallel welds, moment couple over spacing h):</p>
+<pre class="ec-formula" tabindex="0"><code>F_⊥ = F_transverse/n + M/h,   F_∥ = F_longitudinal/n
+simplified:   F_w,Ed = √(F_⊥² + F_∥²)/L ≤ F_w,Rd
+directional:  σ⊥ = τ⊥ = F_⊥/(√2 a L),  τ∥ = F_∥/(a L)
+              √(σ⊥² + 3(τ⊥² + τ∥²)) ≤ f_u/(β_w γ_M2)   and   σ⊥ ≤ 0.9 f_u/γ_M2</code></pre>
+<p>Steel data (t ≤ 40 mm): S235 f_u 360 MPa β_w 0.80; S275 430/0.85; S355 490/0.90; S420 520/1.00; S460 540/1.00; γ_M2 = 1.25.</p>
+<p>Limits: a ≥ 3 mm; a ≤ 0.7 t_min (practice); L_eff ≥ 30 mm and ≥ 6a; L_eff ≤ 150a without the long-weld reduction β_Lw.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Equal-leg fillet welds, static ultimate-limit-state design to EN 1993-1-8 with matching weld metal; fatigue is EN 1993-1-9.</li>
+<li>The moment is resisted by a force couple between two welds at spacing h: exact for two equal welds, conservative for more; eccentric and torsional weld groups need a polar analysis.</li>
+<li>End craters, partial penetration and inspection levels are not modelled; the simplified method is always the safe side.</li>
+<li>National Annexes may change γ_M2.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Two S355 fillet welds, throat 5 mm, 200 mm long each, connecting a 10 mm bracket plate carrying 300 kN across the weld axis and 100 kN along it.</p>
+<ol>
+<li>f_vw,d = 490/(√3 × 0.90 × 1.25) = 251.5 MPa; F_w,Rd = 251.5 × 5 = 1 257 N/mm per weld.</li>
+<li>Per weld: 150 kN transverse and 50 kN longitudinal → 750 and 250 N/mm; resultant 791 N/mm. Simplified utilisation 791/1 257 = 63 %.</li>
+<li>Directional: σ⊥ = τ⊥ = 750/(√2 × 5) = 106 MPa, τ∥ = 250/5 = 50 MPa; comparison stress √(106² + 3(106² + 50²)) = 231 MPa against 490/(0.9 × 1.25) = 436 MPa → 53 %; σ⊥ = 106 ≤ 353 MPa.</li>
+<li>Geometry: a = 5 mm ≥ 3 mm and ≤ 7 mm (0.7 × 10); L = 200 mm between 30 mm and 750 mm (150a). OK.</li>
+<li>Adding a 20 kN·m moment with the welds 200 mm apart adds 100 kN per weld transversely: utilisations rise to 97 % (simplified) and 83 % (directional); at 900 kN transverse the joint fails and a 9 mm throat is required.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the directional method give more capacity?</summary>
+<p>A weld loaded across its axis carries the force as a combination of normal and shear stress on the throat; the von Mises-type criterion with β_w credits that, while the simplified method treats everything as pure shear.</p>
+</details>
+<details class="ec-faq"><summary>Throat or leg?</summary>
+<p>Drawings usually call out the leg z; the calculation uses the throat a = z/√2 for equal legs. A 7 mm leg is a 5 mm throat.</p>
+</details>
+<details class="ec-faq"><summary>What is β_w?</summary>
+<p>A correlation factor that scales the weld strength to the parent metal grade; weaker grades get a lower β_w (more weld strength relative to f_u), high grades 1.0.</p>
+</details>
+<details class="ec-faq"><summary>Can I use the plate f_y instead of f_u?</summary>
+<p>No; Eurocode weld design works with the ultimate strength of the weaker part joined and γ_M2.</p>
+</details>
+<details class="ec-faq"><summary>How do I handle a weld all round a bracket?</summary>
+<p>Resolve the welds into parallel groups (side welds and end welds) and check each with its own direction; for eccentric loads use a polar (elastic vector) analysis of the group.</p>
+</details>
+<details class="ec-faq"><summary>Is 0.7 t a code rule?</summary>
+<p>It is standard fabrication practice to avoid burn-through and excessive heat input; EN 1993-1-8 fixes only the 3 mm minimum and leaves the maximum to good practice.</p>
+</details>
+<details class="ec-faq"><summary>What about intermittent welds?</summary>
+<p>Sum the effective lengths of the segments (each ≥ 6a and ≥ 30 mm) as L_eff with the number of welds set to 1 per side.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../beam-deflection/index.html">Beam deflection and bending stress</a> — the members being connected.</li>
+<li><a href="../bolt-torque/index.html">Bolt torque and preload</a> — the alternative to welding.</li>
+<li><a href="../column-buckling/index.html">Column buckling (Euler and Johnson)</a> — compression members and their end connections.</li>
+<li><a href="../pressure-vessel/index.html">Thin-wall pressure vessel</a> — shell welds.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

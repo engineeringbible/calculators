@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cable sizing and voltage drop — Engineering calculators</title>
+  <meta name="description" content="Voltage drop, power loss and the minimum IEC conductor size for DC, single-phase and three-phase circuits from current, length, material and allowed drop.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Cable sizing and voltage drop</h1>
+    <p class="ec-summary">Voltage drop, power loss and the smallest IEC 60228 conductor that meets an allowed drop, for DC, single-phase and three-phase circuits, with IEC resistances at operating temperature and cable reactance. Ampacity is checked only against a rating you enter.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Two things size a cable: it must carry the current without overheating (ampacity), and the voltage at the far end must stay within limits (voltage drop). Ampacity depends on how the cable is installed and comes from tables; voltage drop is a calculation, and on long runs or low-voltage DC systems it is usually the deciding factor. This calculator computes the drop for a given IEC 60228 conductor size at its operating temperature, including cable reactance and power factor for AC, reports the power lost in the cable, and finds the smallest standard size that meets your allowed percentage.</p>
+<p>It is for marine electrical engineers laying out 440 V and 230 V ship circuits and 24 V DC control supplies, for building services engineers, and for students learning the IEC 60364 voltage-drop method.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Conductor resistance per unit length:</p>
+<pre class="ec-formula" tabindex="0"><code>R&#39;₂₀ = IEC 60228 Table 2 value for the size (Ω/km), or ρ₂₀ / A for a non-standard size
+R&#39;_T = R&#39;₂₀ [1 + α (T − 20)]</code></pre>
+<ul>
+<li>ρ₂₀ — resistivity at 20 °C: copper 1.7241 × 10⁻⁸ Ω·m, aluminium 2.8264 × 10⁻⁸ Ω·m</li>
+<li>α — temperature coefficient: copper 0.00393/K, aluminium 0.00403/K</li>
+<li>T — conductor temperature, °C (70 for PVC, 90 for XLPE at full load)</li>
+</ul>
+<p>Voltage drop (L one-way route length):</p>
+<pre class="ec-formula" tabindex="0"><code>R = R&#39;_T L / 1000,   X = X&#39; L / 1000            [Ω]
+DC:            ΔU = 2 I R
+Single-phase:  ΔU = 2 I (R cos φ + X sin φ)
+Three-phase:   ΔU = √3 I (R cos φ + X sin φ)     (line-to-line)
+ΔU% = 100 ΔU / U_nominal</code></pre>
+<p>Power loss:</p>
+<pre class="ec-formula" tabindex="0"><code>P_loss = n I² R,   n = 2 (DC, single-phase) or 3 (three-phase)</code></pre>
+<p>Minimum size: the smallest IEC 60228 standard cross-section whose ΔU% ≤ allowed drop.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Resistances are the IEC 60228 class 2 maxima scaled to temperature, so the drop is slightly conservative (real cables are up to 5–7 % better). The conductor is assumed at its rated temperature; at partial load it is cooler.</li>
+<li>The default reactance 0.08 Ω/km (IEC 60364-5-52 Annex G) suits multicore and touching single-core LV cables. Spaced single-core cables, armoured cables and MV cables need the catalogue value. DC has no reactance.</li>
+<li>Balanced sinusoidal load. Harmonic-rich loads (drives, LED drivers) increase losses and neutral current and need a separate assessment.</li>
+<li>Ampacity is not calculated. It depends on installation method, grouping, ambient temperature and insulation; take the derated rating from IEC 60092-352 (ships) or IEC 60364-5-52 (shore) or the manufacturer and enter it to see the utilisation. Short-circuit withstand and protective-device coordination are also outside the scope.</li>
+<li>The recommended size satisfies voltage drop only; it may still be too small for ampacity or for mechanical minimum sizes.</li>
+<li>Limits: IEC 60364-5-52 suggests 3 % for lighting and 5 % for other uses from the origin of the installation; IEC 60092-201 allows 6 % between switchboard and consumer on ships; battery-fed DC systems often need tighter limits because the source voltage already varies.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 400 V three-phase motor circuit draws 50 A at power factor 0.85 over a 50 m route in 16 mm² copper PVC cable (70 °C). Allowed drop 5 %.</p>
+<ol>
+<li>Resistance at 20 °C: 1.15 Ω/km (IEC 60228). At 70 °C: 1.15 × (1 + 0.00393 × 50) = 1.376 Ω/km → R = 0.0688 Ω for 50 m.</li>
+<li>Reactance: 0.08 Ω/km → X = 0.004 Ω.</li>
+<li>Drop: √3 × 50 × (0.0688 × 0.85 + 0.004 × 0.527) = 86.6 × 0.0606 = 5.25 V, i.e. 1.31 % — comfortably within 5 %. Voltage at the motor 394.8 V.</li>
+<li>Loss: 3 × 50² × 0.0688 = 516 W, about 1.5 % of the 34 kW load.</li>
+<li>The smallest standard size meeting 5 % would be 6 mm² (3.4 %; 4 mm² gives 5.1 %), but 16 mm² is what ampacity demands for 50 A in most installation methods, so ampacity governs here.</li>
+</ol>
+<p>A 24 V DC control supply, 10 A over 10 m in 2.5 mm² copper at 20 °C: ΔU = 2 × 10 × 0.0741 = 1.48 V = 6.2 %, over a 5 % limit; 4 mm² gives 0.92 V (3.8 %). Low voltage makes voltage drop the governing criterion.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the calculator use the conductor&#39;s maximum temperature?</summary>
+<p>Because the cable may run fully loaded, and resistance rises about 20 % between 20 and 70 °C. Designing at the cold value would understate the drop. For a lightly loaded cable the real drop is lower.</p>
+</details>
+<details class="ec-faq"><summary>Which voltage drop limit applies on a ship?</summary>
+<p>IEC 60092-201 allows 6 % between the main or emergency switchboard and any point of the installation for consumers above 50 V, with special provisions for starting currents and navigation lights. Class rules follow IEC.</p>
+</details>
+<details class="ec-faq"><summary>Why is the three-phase factor √3 and not 2 or 3?</summary>
+<p>The drop per conductor is I(R cos φ + X sin φ); in a balanced system the neutral carries no current and the line-to-line drop is √3 times the per-phase drop.</p>
+</details>
+<details class="ec-faq"><summary>Does power factor matter much?</summary>
+<p>With the default reactance, moderately: at pf 0.85 the reactive term is about 4 % of the total for 16 mm². For large cables (≥ 95 mm²) the resistance is small and reactance can dominate, so the catalogue X matters.</p>
+</details>
+<details class="ec-faq"><summary>Can I size the cable from this result alone?</summary>
+<p>No. Check ampacity from the appropriate table for the installation method, ambient and grouping; the larger of the ampacity size and the voltage-drop size is the answer. Then check short-circuit withstand and protection.</p>
+</details>
+<details class="ec-faq"><summary>What about motor starting?</summary>
+<p>Starting current (6–8 × rated) causes a transient drop that can trip contactors or stall other motors. Run the calculator with the starting current and the starting power factor (0.2–0.4) and compare with the allowed transient drop (often 15 %).</p>
+</details>
+<details class="ec-faq"><summary>Aluminium or copper?</summary>
+<p>Aluminium has 1.6 times the resistance for the same section, so it needs about 1.6 times the cross-section for the same drop, but weighs about half. Ships use copper almost exclusively (IEC 60092).</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — the current to size the cable for.</li>
+<li><a href="../battery-runtime/index.html">Battery capacity and runtime</a> — DC supplies where voltage drop matters most.</li>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — source-side considerations.</li>
+<li><a href="../unit-converter/index.html">Engineering unit converter</a> — mm² to AWG-area, Ω/km to Ω/kft.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

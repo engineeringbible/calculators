@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Injection molding clamp tonnage calculator — Engineering calculators</title>
+  <meta name="description" content="Clamp force for an injection mould from projected area, cavities, cold runner and clamp factor or cavity pressure, with the machine size for a margin.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Manufacturing</span>
+    <h1 class="ec-title">Injection molding clamp tonnage calculator</h1>
+    <p class="ec-summary">Clamp force for an injection mould from projected area, cavities, runner and clamp factor, with the smallest machine rating for a utilisation limit.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Molten plastic presses the two halves of a mould apart. The clamp of the moulding machine must hold them shut, or the part flashes at the parting line. The force needed is the projected area of the parts and runner times a clamp factor, the mean pressure in the cavity. Eight parts of 21.16 in² each at 3 tons per square inch need 507.8 US tons of clamp.</p>
+<p>This calculator gives the total projected area, the clamp force and the smallest machine rating that keeps the clamp below a chosen share of its limit. It offers starting clamp factors from RJG and from polycarbonate processing guides, or takes your own cavity pressure. It is for mould designers, process engineers and buyers choosing a press.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Projected area and clamp force:</p>
+<pre class="ec-formula" tabindex="0"><code>A = n × A_cavity + A_runner
+F = A × p</code></pre>
+<p>Machine size:</p>
+<pre class="ec-formula" tabindex="0"><code>rating ≥ F / u</code></pre>
+<p>Units of the clamp factor:</p>
+<pre class="ec-formula" tabindex="0"><code>1 US ton/in² = 2 000 psi = 13.79 MPa = 1.38 kN/cm²</code></pre>
+<ul>
+<li>n — number of cavities; A_cavity — projected area of one part; A_runner — projected area of a cold runner</li>
+<li>p — clamp factor, the mean cavity pressure over the projected area</li>
+<li>u — highest share of the machine rating to use, 80 % by default</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The projected area is what you see looking along the direction the mould opens. Through-holes and cored-out areas are taken away. A hot runner adds no area.</li>
+<li>Clamp factors depend on the resin, the wall thickness and the flow length. RJG gives 2 to 10 tons/in² with 3 as a starting point. The Lexan guide gives 3 to 5 tons/in² for polycarbonate and about 1 ton/in² more for glass-filled grades.</li>
+<li>The best factor comes from the resin datasheet or from a cavity pressure measurement on the mould.</li>
+<li>The machine should run below its rating. Autodesk Moldflow advises keeping the peak clamp force under about 80 % of the machine limit.</li>
+<li>More clamp is not better. Excess force can damage the mould: RJG reports a cavity block that failed when clamped at four times the needed tonnage.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>This is RJG&#39;s example. A part measures 4.6 × 4.6 in in the direction of opening, and the mould has 8 cavities. As in the example, no runner area is added. Use 3 tons/in² as the starting clamp factor.</p>
+<ol>
+<li>Area of one part: 4.6 × 4.6 = 21.16 in².</li>
+<li>Total projected area: 8 × 21.16 = 169.28 in².</li>
+<li>Clamp force: 169.28 × 3 = 507.8 US tons, or 4 518 kN.</li>
+<li>Smallest machine at 80 % use: 507.8 / 0.8 = 634.8 tons.</li>
+</ol>
+<p>At the 2 to 3 tons/in² that RJG expects for this part, the clamp needs 339 to 508 tons.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate clamp tonnage?</summary>
+<p>Multiply the total projected area in square inches by the clamp factor in tons per square inch. Include every cavity and a cold runner.</p>
+</details>
+<details class="ec-faq"><summary>What clamp factor should I use?</summary>
+<p>The resin supplier&#39;s value for the grade. Without one, RJG suggests 3 tons/in² as a starting point. Polycarbonate guides give 3 to 5 tons/in².</p>
+</details>
+<details class="ec-faq"><summary>What is projected area?</summary>
+<p>The shadow of the part on the parting plane, seen along the direction of mould opening. Side walls parallel to the opening add nothing.</p>
+</details>
+<details class="ec-faq"><summary>Why should the machine not run at its full rating?</summary>
+<p>Autodesk Moldflow advises keeping the peak below about 80 % of the limit. The other 20 % is a reserve for pressure peaks, sliding cores and other loads from the tool.</p>
+</details>
+<details class="ec-faq"><summary>What happens if the clamp force is too low?</summary>
+<p>The mould opens slightly under injection pressure and plastic flashes at the parting line.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert tons per square inch to MPa?</summary>
+<p>Multiply by 13.79. 3 tons/in² is 41.4 MPa, the same as 6 000 psi.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../press-tonnage/index.html">Press tonnage calculator</a> — punching and press brake forces.</li>
+<li><a href="../oee-takt/index.html">OEE and takt time calculator</a> — effectiveness of the moulding cell.</li>
+<li><a href="../hydraulic-cylinder/index.html">Hydraulic cylinder force and speed</a> — force of a hydraulic clamp.</li>
+<li><a href="../tolerance-stack/index.html">Tolerance stack-up</a> — tolerances of moulded assemblies.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

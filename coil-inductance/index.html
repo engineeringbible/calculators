@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Air-core coil inductance calculator — Engineering calculators</title>
+  <meta name="description" content="Inductance of an air-core coil by Wheeler's single-layer and multilayer formulas or the long-solenoid formula, and the turns for a target inductance.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Air-core coil inductance calculator</h1>
+    <p class="ec-summary">Inductance of an air-core coil by Wheeler's single-layer and multilayer formulas or μ0 N² A / l, the turns for a target, and Nagaoka's exact value.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The inductance of an air-core coil depends on the number of turns squared and on the coil&#39;s shape. Wheeler&#39;s formula, published in 1928, gives it for a single-layer coil in microhenries from its diameter and length in inches: L = d² N² / (18 d + 40 l). Twenty turns on a former 1 in across, wound over 1 in, give 6.90 µH.</p>
+<p>This calculator gives the inductance of a single-layer or multilayer air-core coil by Wheeler&#39;s formulas, or of a long solenoid by the physics formula μ0 N² A / l. It also works backwards to the turns for a target inductance. For single-layer coils it shows the exact current-sheet value with Nagaoka&#39;s coefficient for comparison. It is for radio amateurs, students and engineers winding coils for tuned circuits, filters and crossovers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Wheeler&#39;s formulas, with dimensions in inches and L in µH:</p>
+<pre class="ec-formula" tabindex="0"><code>single layer:  L = d² N² / (18 d + 40 l)
+multilayer:    L = 0.8 a² N² / (6 a + 9 b + 10 c)</code></pre>
+<p>Long solenoid and current sheet, in SI units:</p>
+<pre class="ec-formula" tabindex="0"><code>L = μ0 N² A / l,   A = π d² / 4
+L_sheet = K × μ0 N² A / l</code></pre>
+<p>Turns for a target inductance, single layer:</p>
+<pre class="ec-formula" tabindex="0"><code>N = √(L × (18 d + 40 l)) / d</code></pre>
+<ul>
+<li>N — number of turns; d — coil diameter to the wire centres</li>
+<li>l, b — winding length; a — mean radius of a multilayer coil</li>
+<li>c — radial depth of the winding (outer minus inner radius)</li>
+<li>μ0 = 4π × 10⁻⁷ H/m; K — Nagaoka&#39;s coefficient, from the ratio d / l</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The coil has an air core, or a former of plastic, ceramic or wood. A ferrite or iron core raises the inductance many times.</li>
+<li>Wheeler&#39;s single-layer formula is within about 1 % when the coil is longer than 0.4 times its diameter. Shorter coils are better estimated by the current-sheet value.</li>
+<li>The multilayer formula is within about 1 % when 6a, 9b and 10c are roughly equal. The calculator warns when they differ widely.</li>
+<li>The long-solenoid formula ignores the weaker field at the ends. It overestimates any coil that is not much longer than it is wide.</li>
+<li>Close to the coil&#39;s self-resonant frequency, its self-capacitance makes the effective inductance rise.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A coil has 20 turns on a former 1 in in diameter, wound over a length of 1 in. What is its inductance?</p>
+<ol>
+<li>Wheeler: L = 1² × 20² / (18 × 1 + 40 × 1) = 400 / 58 = 6.90 µH.</li>
+<li>Long-solenoid formula: A = π × 0.0254² / 4 = 5.067 × 10⁻⁴ m², so L = 4π × 10⁻⁷ × 400 × 5.067 × 10⁻⁴ / 0.0254 = 10.03 µH.</li>
+<li>Nagaoka&#39;s coefficient for d / l = 1 is 0.6884, so the current sheet gives 0.6884 × 10.03 = 6.90 µH.</li>
+</ol>
+<p>Wheeler&#39;s simple formula agrees with the exact current-sheet value to 0.1 %. The long-solenoid formula is 45 % too high for a coil this short. To reach 10 µH on the same former takes √(10 × 58) = 24.1 turns.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate the inductance of an air-core coil?</summary>
+<p>For a single layer, use Wheeler&#39;s formula L = d² N² / (18 d + 40 l) with inches and microhenries. It is within about 1 % for most practical coils.</p>
+</details>
+<details class="ec-faq"><summary>How many turns do I need for a given inductance?</summary>
+<p>Inductance rises with the square of the turns. Doubling the turns on the same length gives four times the inductance.</p>
+</details>
+<details class="ec-faq"><summary>Why is the long-solenoid formula wrong for my coil?</summary>
+<p>It assumes the field is uniform along the whole coil. In a short coil the field spreads out at the ends, so the true value is lower by Nagaoka&#39;s coefficient.</p>
+</details>
+<details class="ec-faq"><summary>What diameter should I measure?</summary>
+<p>The diameter to the centre of the wire, which is the former diameter plus one wire diameter.</p>
+</details>
+<details class="ec-faq"><summary>Does the wire gauge change the inductance?</summary>
+<p>Only slightly, through the winding length and the diameter to the wire centres. It mainly sets the resistance and the current rating.</p>
+</details>
+<details class="ec-faq"><summary>What is Nagaoka&#39;s coefficient?</summary>
+<p>A factor between 0 and 1 that corrects the long-solenoid formula for a coil of finite length. It is 0.6884 for a coil as long as it is wide.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../lc-resonance/index.html">LC resonant frequency</a> — the frequency the coil tunes to with a capacitor.</li>
+<li><a href="../filter-cutoff/index.html">Filter cutoff frequency</a> — RL, LC and RLC filters using the coil.</li>
+<li><a href="../awg-wire-gauge/index.html">AWG wire gauge chart</a> — wire diameter and resistance for the winding.</li>
+<li><a href="../wire-size/index.html">Wire size calculator</a> — the current the winding wire can carry.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

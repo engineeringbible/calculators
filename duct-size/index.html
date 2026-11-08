@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duct size calculator — Engineering calculators</title>
+  <meta name="description" content="Round and rectangular duct size for an airflow by friction rate or velocity, with the velocity, pressure loss per 100 ft or per metre, and standard sizes.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">HVAC</span>
+    <h1 class="ec-title">Duct size calculator</h1>
+    <p class="ec-summary">Round and rectangular duct size for an airflow by the equal-friction or velocity method, with velocity, friction per 100 ft or per metre and standard sizes.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A duct that is too small makes the fan work harder, the air noisy and the far rooms starved. One that is too big costs more and is hard to fit. The usual way to size ducts in homes and low-pressure systems is the equal-friction method: choose a friction loss per length, typically 0.08 to 0.10 inches of water per 100 ft, and size every duct for it. At 0.10, a 1 000 cfm main needs a 14 in round duct.</p>
+<p>This calculator finds the round diameter for an airflow at a chosen friction rate or velocity, rounds it to standard inch and metric sizes, and gives the equivalent rectangular duct for one fixed side. It reports the velocity, the friction and the velocity pressure, and works in cfm, ft/min and in. w.c. or in m³/h, m/s and Pa/m. It replaces the cardboard duct calculator (ductulator) for HVAC designers and installers.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Friction loss in a round duct (Darcy–Weisbach) with the Colebrook friction factor:</p>
+<pre class="ec-formula" tabindex="0"><code>Δp/L = f × ρ V² / (2 D)
+1/√f = −2 log10( ε/(3.7 D) + 2.51/(Re √f) ),   Re = ρ V D / μ</code></pre>
+<p>Velocity and the rectangular equivalent (Huebscher):</p>
+<pre class="ec-formula" tabindex="0"><code>V = Q / (π D² / 4)
+D_e = 1.30 × (a b)^0.625 / (a + b)^0.25</code></pre>
+<ul>
+<li>Q — airflow; V — velocity; D — round diameter</li>
+<li>ρ = 1.204 kg/m³ and μ = 1.81 × 10⁻⁵ Pa·s, standard air at 20 °C</li>
+<li>ε — roughness: 0.09 mm for galvanized steel duct</li>
+<li>a, b — sides of the rectangular duct with the same friction as diameter D_e</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The friction calculation is the one behind the ASHRAE duct friction chart and gives the same sizes within the chart&#39;s reading accuracy.</li>
+<li>Galvanized steel is assumed by default. Flexible duct is much rougher, and compressed or sagging flex can double the loss; size it larger or use the manufacturer&#39;s chart.</li>
+<li>Only the straight duct is sized. Elbows, takeoffs, registers and filters add losses, so the total effective length, not the measured length, sets the fan pressure.</li>
+<li>Air at other temperatures or altitudes has a different density. The friction changes in proportion to the density, so correct with the air density calculator for hot air or high sites.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 2.5-ton air handler moves 1 000 cfm through a round supply main sized at 0.10 in. w.c. per 100 ft. What diameter is needed?</p>
+<ol>
+<li>Try diameters until the Darcy–Weisbach friction equals 0.10 in. w.c./100 ft (0.817 Pa/m).</li>
+<li>The exact diameter is 13.65 in, with a velocity of 983 ft/min.</li>
+<li>The next standard round size is 14 in, or 400 mm in metric sizes.</li>
+<li>With an 8 in fixed height, the equivalent rectangular duct is about 8 × 20.6 in.</li>
+</ol>
+<p>A 14 in round main, or a 21 × 8 in rectangular one, carries the airflow at the chosen friction rate.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What size duct do I need for 400 cfm?</summary>
+<p>At 0.10 in. w.c. per 100 ft, a 10 in round duct (9.7 in exact), with a velocity of about 780 ft/min.</p>
+</details>
+<details class="ec-faq"><summary>What friction rate should I use?</summary>
+<p>0.08 to 0.10 in. w.c. per 100 ft is typical for residential supply ducts and 0.05 to 0.08 for returns. ACCA Manual D derives it from the fan pressure available and the total effective length.</p>
+</details>
+<details class="ec-faq"><summary>How many cfm does a 6 inch duct carry?</summary>
+<p>About 100 cfm at 0.10 in. w.c. per 100 ft in rigid metal duct, and less in flexible duct.</p>
+</details>
+<details class="ec-faq"><summary>What velocity is acceptable in a duct?</summary>
+<p>In homes, about 700 to 900 ft/min in supply mains and 600 or less in branches, to keep noise down. Commercial mains can run at 1 500 to 2 000 ft/min.</p>
+</details>
+<details class="ec-faq"><summary>How do I convert a round duct to rectangular?</summary>
+<p>Use the equivalent diameter: a 12 × 12 in duct has the same friction as a 13.1 in round one. Enter one side and the calculator gives the other.</p>
+</details>
+<details class="ec-faq"><summary>Why does the result differ slightly from my ductulator?</summary>
+<p>Ductulators are read by eye from a chart drawn for a particular roughness and air density. Differences of a few percent in diameter are normal.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../air-changes/index.html">Air changes per hour and CFM</a> — the airflow each room needs.</li>
+<li><a href="../air-density/index.html">Air density calculator</a> — correct for altitude and temperature.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — the same method for liquids in pipes.</li>
+<li><a href="../reynolds-number/index.html">Reynolds number</a> — laminar or turbulent flow.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

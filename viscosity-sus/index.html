@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cSt to SSU viscosity converter (Saybolt seconds) — Engineering calculators</title>
+  <meta name="description" content="Convert kinematic viscosity between centistokes and Saybolt Universal Seconds (SUS, SSU) by ASTM D2161, with dynamic viscosity in centipoise.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Thermal and fluids</span>
+    <h1 class="ec-title">cSt to SSU viscosity converter (Saybolt seconds)</h1>
+    <p class="ec-summary">Convert kinematic viscosity between centistokes and Saybolt Universal Seconds by ASTM D2161, with centipoise and Saybolt Furol seconds.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Older oil data sheets, pump curves and hydraulic manuals give viscosity in Saybolt Universal Seconds (SUS or SSU), the time 60 mL of oil took to run through a standard orifice. Modern specifications use centistokes (cSt, the same as mm²/s). The two are not proportional at low viscosity, so a simple factor does not work: 20 cSt is 97.8 SUS, but 2 cSt is not a tenth of that.</p>
+<p>This calculator converts in both directions with the official ASTM D2161 equation at 100 °F, corrects for other test temperatures, and gives the dynamic viscosity in centipoise for a given density. For heavy oils it also gives the Saybolt Furol seconds at 122 °F. It is for engineers working with lubricants, fuels, hydraulic fluids and pump selection.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Saybolt Universal seconds at 100 °F from kinematic viscosity ν in cSt (ASTM D2161):</p>
+<pre class="ec-formula" tabindex="0"><code>SUS = 4.6324 ν + (1.0 + 0.03264 ν) / ((3930.2 + 262.7 ν + 23.97 ν² + 1.646 ν³) × 10⁻⁵)</code></pre>
+<p>At another test temperature t in °F:</p>
+<pre class="ec-formula" tabindex="0"><code>SUS_t = SUS_100 × (1 + 0.000061 (t − 100))</code></pre>
+<p>Saybolt Furol seconds at 122 °F, and dynamic viscosity:</p>
+<pre class="ec-formula" tabindex="0"><code>SFS = 0.4717 ν + 13 924 / (ν² − 72.59 ν + 6 816)
+μ (cP) = ν (cSt) × ρ (g/cm³)</code></pre>
+<ul>
+<li>ν — kinematic viscosity at the test temperature, mm²/s (cSt)</li>
+<li>Above 75 cSt the relation is linear: SUS = 4.632 × cSt at 100 °F</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The equation is the one ASTM D2161 gives for computer conversion, fitted to the original experimental data. It applies from 32 SUS (about 1.8 cSt) upward.</li>
+<li>The kinematic viscosity must be at the same temperature as the Saybolt time. Viscosity itself changes strongly with temperature; this page converts units, it does not correct a viscosity to another temperature.</li>
+<li>Saybolt Furol seconds apply to heavy oils, roughly above 25 SFS. Below that the Universal scale is used.</li>
+<li>Dynamic viscosity needs the density at the same temperature.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A hydraulic oil has a kinematic viscosity of 20 cSt at 100 °F and a density of 870 kg/m³. What is it in Saybolt seconds and in centipoise?</p>
+<ol>
+<li>Linear term: 4.6324 × 20 = 92.65.</li>
+<li>Correction term: (1.0 + 0.03264 × 20) / ((3930.2 + 5254 + 9588 + 13168) × 10⁻⁵) = 1.6528 / 0.3194 = 5.17.</li>
+<li>Saybolt Universal seconds: 92.65 + 5.17 = 97.82.</li>
+<li>Dynamic viscosity: 20 × 0.870 = 17.40 cP.</li>
+</ol>
+<p>ASTM D2161&#39;s table lists 97.8 SUS for 20.00 cSt at 100 °F.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I convert cSt to SSU?</summary>
+<p>Use the ASTM D2161 equation above. Above 75 cSt you can simply multiply by 4.632 at 100 °F.</p>
+</details>
+<details class="ec-faq"><summary>Is SSU the same as SUS?</summary>
+<p>Yes. Both mean Saybolt Seconds Universal, the same measurement written two ways.</p>
+</details>
+<details class="ec-faq"><summary>Why is the conversion not a simple factor?</summary>
+<p>At low viscosity the time through the orifice includes a fixed part from the oil&#39;s kinetic energy, so short times do not scale with viscosity.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between cSt and cP?</summary>
+<p>Centistokes measure kinematic viscosity; centipoise measure dynamic viscosity. Multiply cSt by the density in g/cm³ to get cP.</p>
+</details>
+<details class="ec-faq"><summary>What is Saybolt Furol?</summary>
+<p>A larger orifice used for heavy fuel and residual oils, giving times about a tenth of the Universal seconds.</p>
+</details>
+<details class="ec-faq"><summary>What viscosity is ISO VG 32 in SUS?</summary>
+<p>ISO VG 32 is 32 cSt at 40 °C. At that temperature it is about 150 SUS by this equation.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../unit-converter/index.html">Unit converter</a> — other viscosity and fluid units.</li>
+<li><a href="../reynolds-number/index.html">Reynolds number</a> — flow regime from the viscosity.</li>
+<li><a href="../pipe-flow/index.html">Pipe flow and pressure drop</a> — friction losses of oil lines.</li>
+<li><a href="../pump-power/index.html">Pump power</a> — viscous oils lower pump efficiency.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

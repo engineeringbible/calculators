@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mooring line and winch brake (MEG4) — Engineering calculators</title>
+  <meta name="description" content="OCIMF MEG4 values from the ship design MBL: line LDBF range, WLL, tail strength, fitting SWL, brake holding and rendering, and the drum-layer derating.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Mooring line and winch brake (MEG4)</h1>
+    <p class="ec-summary">The MEG4 mooring numbers from one figure, the Ship Design MBL: the 100–105 % line break force range and a check of the line certificate, the 50 % working load limit against the expected line load, the tail design break force, the fitting SWL, the winch brake design holding capacity and 60 % rendering set point, the derating of the rendering load on the drum layer in use, and the last brake test against the set point.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The fourth edition of the OCIMF Mooring Equipment Guidelines reorganised mooring strength around one number, the Ship Design Minimum Breaking Load: lines are bought at 100–105 % of it, worked to 50 % of it, tails are 125–130 % of it, fittings carry 1.25 times it, and the winch brake is designed to hold 80 % and set to render at 60 % of it, so that in an overload the line slips on the drum before anything breaks. This calculator derives all of those from the SDMBL, checks the line and tail certificates and the last brake test against them, and shows how much the rendering load drops when the ship is moored on the second or third layer of the drum.</p>
+<p>It is for chief officers and superintendents maintaining the Mooring System Management Plan, vetting inspectors, and students of marine operations.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>LDBF = 1.00–1.05 × SDMBL,   WLL = 0.50 × SDMBL
+tail design break force ≥ 1.25 × SDMBL (synthetic / HMSF lines), 1.30 × SDMBL (steel wire lines)
+fitting SWL ≥ 1.25 × SDMBL
+brake design holding capacity = 0.80 × SDMBL,   brake rendering set point = 0.60 × SDMBL (first layer)
+r_k = D_drum/2 + (k − 0.5) d_rope,   rendering load on layer k = set point × r₁/r_k</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>MEG4 recommendations; the ship&#39;s MSMP, Line Management Plan and terminal requirements govern.</li>
+<li>Static comparison of certificate values and set points; dynamic loads, line sharing and fatigue belong to the mooring analysis.</li>
+<li>The layer derating assumes constant brake torque and neglects crushing of inner layers.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A tanker with SDMBL 1 000 kN, lines certified at 1 030 kN, synthetic tails at 1 300 kN, expected line load 350 kN from the mooring analysis, winch drum 600 mm with 44 mm rope, moored on the third layer, last brake test 600 kN.</p>
+<ol>
+<li>Lines: 1 000–1 050 kN required; 1 030 kN (103 %) is within range. WLL 500 kN; the expected 350 kN is 70 % of it.</li>
+<li>Tails: at least 1 250 kN; 1 300 kN passes. Fittings: SWL at least 1 250 kN.</li>
+<li>Brake: designed to hold 800 kN, set to render at 600 kN on the first layer; the test at 600 kN is on the mark.</li>
+<li>Third layer: r₁ = 322 mm, r₃ = 410 mm → the brake renders at 600 × 322/410 = 471 kN, only 47 % of the SDMBL. Either moor on the first layer or raise the setting for the layer in use, as MEG4 advises.</li>
+</ol>
+<p>A line certified at 1 100 kN would be flagged as too strong: it would overload the fittings and winch before parting.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why cap the line strength at 105 %?</summary>
+<p>The system is designed so the line is the weakest link after the brake renders; a much stronger line transfers the overload to bitts, fairleads and the winch.</p>
+</details>
+<details class="ec-faq"><summary>Why does the brake render at 60 % and not at the WLL?</summary>
+<p>Rendering at 60 % leaves margin above the normal working load (50 %) while still protecting the line, whose break force is at least 100 %.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between design holding capacity and rendering?</summary>
+<p>Design holding capacity (80 %) is what the brake can hold when fully applied; the rendering set point (60 %) is where it is adjusted to slip in service, verified by the annual test.</p>
+</details>
+<details class="ec-faq"><summary>Why are tails stronger than the lines?</summary>
+<p>Tails see the chafe and the cyclic loading at the shore bollard and fatigue fastest; the extra strength keeps them from becoming the weak link as they age.</p>
+</details>
+<details class="ec-faq"><summary>How much does the second layer matter?</summary>
+<p>With this drum and rope the second layer renders at about 88 % of the first-layer value and the third at 79 %; on small drums with thick ropes the loss is larger.</p>
+</details>
+<details class="ec-faq"><summary>Where does the SDMBL come from?</summary>
+<p>From the mooring design for the standard environmental criteria (60 kn wind, 3 kn current for tankers), recorded in the MSMP; it is not the certificate value of the lines on board.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../anchor-catenary/index.html">Anchor chain catenary</a> — the other restraint system.</li>
+<li><a href="../lifting-sling/index.html">Lifting sling loads</a> — wire and fibre rope strength conventions.</li>
+<li><a href="../bollard-pull/index.html">Bollard pull for a tow</a> — tug forces at the berth.</li>
+<li><a href="../berthing-energy/index.html">Berthing energy (PIANC)</a> — fender loads alongside.</li>
+<li><a href="../beaufort-sea-state/index.html">Beaufort scale and sea state</a> — wind for the environmental criteria.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hull speed calculator — Engineering calculators</title>
+  <meta name="description" content="Displacement hull speed from waterline length (1.34 √LWL), speed–length ratio, Froude number, speed regime and Gerr's top speed for light hulls.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Hull speed calculator</h1>
+    <p class="ec-summary">Hull speed of a displacement boat from its waterline length (1.34 √LWL), with speed–length ratio, Froude number and Gerr's top speed for light hulls.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Hull speed is the speed at which a displacement boat&#39;s bow wave becomes as long as its waterline. In knots it is 1.34 times the square root of the waterline length in feet. A yacht with a 30 ft waterline has a hull speed of 1.34 × √30 = 7.34 kn. In metric units the factor is 2.43 with the length in metres. Pushing a heavy hull faster than this takes a steep rise in power, because the boat starts to climb its own bow wave.</p>
+<p>This calculator gives the hull speed from the waterline length, the speed–length ratio and Froude number at any speed, the speed regime, and the length of the bow wave. With the displacement it adds Dave Gerr&#39;s estimate of the top speed a lighter hull can reach without planing. It is for sailors, motorboat owners and students who want to know how fast a hull can sensibly go.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Hull speed and speed–length ratio:</p>
+<pre class="ec-formula" tabindex="0"><code>V_hull = 1.34 √LWL[ft]  kn  =  2.43 √LWL[m]  kn
+S/L = V[kn] / √LWL[ft]</code></pre>
+<p>Froude number and wave length:</p>
+<pre class="ec-formula" tabindex="0"><code>Fn = V / √(g LWL) = 0.298 × S/L
+λ = 2π V² / g          (λ = LWL at S/L 1.34, Fn 0.40)</code></pre>
+<p>Gerr&#39;s maximum speed–length ratio for semi-displacement hulls:</p>
+<pre class="ec-formula" tabindex="0"><code>D/L = Δ[long tons] / (0.01 LWL[ft])³
+S/L_max = 8.26 / (D/L)^0.311</code></pre>
+<ul>
+<li>LWL — waterline length; V — speed through the water; g = 9.81 m/s²</li>
+<li>Δ — displacement; one long ton is 2 240 lb (1 016 kg)</li>
+<li>Regimes after Gerr: displacement up to S/L 1.34, semi-displacement from 1.45 to 3.0, planing above 3.0</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Hull speed is a practical limit, not a wall. Light hulls go faster without planing, and heavy ones need a lot of power to get close.</li>
+<li>Use the loaded waterline length. Long overhangs immerse as the boat heels or squats, so the sailing waterline is often a little longer.</li>
+<li>Gerr&#39;s formula is an empirical fit to real boats. It tells you how fast a hull of that weight and length can go given enough power, not how much power it needs.</li>
+<li>Planing hulls are outside this method. Use the planing speed calculator for them.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A cruising yacht has a waterline length of 30 ft and displaces 10 000 lb. What is its hull speed, and what do the ratios say at 6 kn?</p>
+<ol>
+<li>Hull speed: 1.34 × √30 = 1.34 × 5.477 = 7.34 kn.</li>
+<li>Speed–length ratio at 6 kn: 6 / 5.477 = 1.10, so the yacht is in the displacement regime.</li>
+<li>Froude number: 6 kn is 3.087 m/s and the waterline 9.144 m, so Fn = 3.087 / √(9.81 × 9.144) = 0.326.</li>
+<li>Displacement–length ratio: 10 000 lb is 4.46 long tons, and (0.01 × 30)³ = 0.027, so D/L = 165.</li>
+<li>Gerr&#39;s maximum: S/L = 8.26 / 165^0.311 = 1.69, which is 1.69 × 5.477 = 9.24 kn.</li>
+</ol>
+<p>So the yacht is a moderate-displacement hull. With enough power or wind it can exceed the classic 7.34 kn without planing.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate hull speed?</summary>
+<p>Take the square root of the waterline length in feet and multiply by 1.34. The answer is in knots. With the length in metres, multiply its square root by 2.43.</p>
+</details>
+<details class="ec-faq"><summary>What is the hull speed of a 25 ft or 40 ft waterline?</summary>
+<p>A 25 ft waterline gives 6.70 kn and a 40 ft waterline 8.47 kn. Doubling the waterline length raises hull speed by about 41 %.</p>
+</details>
+<details class="ec-faq"><summary>Why is the factor 1.34?</summary>
+<p>A wave moving at V knots is 0.556 V² feet long. At V = 1.34 √LWL that wave is exactly as long as the waterline, so the boat sits in the trough between its own bow and stern waves.</p>
+</details>
+<details class="ec-faq"><summary>Can a boat go faster than hull speed?</summary>
+<p>Yes. Light hulls reach S/L 1.45 to 3.0 in the semi-displacement range, and planing hulls go beyond that. Heavy displacement hulls need disproportionate power to pass S/L 1.34.</p>
+</details>
+<details class="ec-faq"><summary>What is the speed–length ratio?</summary>
+<p>The speed in knots divided by the square root of the waterline length in feet. It lets boats of different sizes be compared: 1.34 is hull speed, 3.0 is roughly where planing starts.</p>
+</details>
+<details class="ec-faq"><summary>How does the Froude number relate to hull speed?</summary>
+<p>The Froude number is the dimensionless form of the speed–length ratio, Fn = 0.298 × S/L. Hull speed is Fn 0.40.</p>
+</details>
+<details class="ec-faq"><summary>How does the displacement–length ratio change the top speed?</summary>
+<p>A lower ratio means a lighter hull for its length. By Gerr&#39;s formula a hull with D/L 100 can reach S/L 1.97, while one with D/L 300 stays near hull speed at S/L 1.40.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../planing-speed/index.html">Planing boat speed calculator</a> — speed of hulls that plane.</li>
+<li><a href="../froude-number/index.html">Froude number calculator</a> — wave-making regimes and shallow water.</li>
+<li><a href="../prop-pitch-speed/index.html">Propeller pitch and boat speed</a> — the pitch for the speed you expect.</li>
+<li><a href="../boat-fuel/index.html">Boat fuel consumption</a> — fuel use and range at that speed.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

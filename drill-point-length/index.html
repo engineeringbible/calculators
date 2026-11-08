@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drill point length calculator — Engineering calculators</title>
+  <meta name="description" content="Length of a drill point from diameter and point angle (118°, 135°, 140°), and the depth to drill for a full-diameter blind hole or a through hole.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Manufacturing</span>
+    <h1 class="ec-title">Drill point length calculator</h1>
+    <p class="ec-summary">Drill point length for any point angle, and the depth to drill for a full-diameter blind hole or a clean through hole.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A twist drill ends in a cone. The length of that cone, the point length, is half the diameter divided by the tangent of half the point angle. For the standard 118° point it is 0.3 × the diameter, so a 1/2 in drill has a point 0.150 in long. A blind hole that must be full diameter to 1 in deep needs the drill tip to go to 1.150 in.</p>
+<p>This calculator gives the point length for any point angle, the ratio to the diameter, and the depth to program. For a blind hole it adds the point to the full-diameter depth. For a through hole it adds the point and a breakthrough allowance to the thickness. It also lists the point length at the common angles of 90° to 140°. It is for CNC programmers, machinists and designers dimensioning drilled holes.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Point length:</p>
+<pre class="ec-formula" tabindex="0"><code>L_p = (D / 2) / tan(θ / 2)</code></pre>
+<p>Common point angles:</p>
+<pre class="ec-formula" tabindex="0"><code>118°:  L_p = 0.3004 D
+135°:  L_p = 0.2071 D
+140°:  L_p = 0.1820 D</code></pre>
+<p>Depth to drill:</p>
+<pre class="ec-formula" tabindex="0"><code>blind hole:    tip depth = full-diameter depth + L_p
+through hole:  travel = thickness + L_p + breakthrough</code></pre>
+<ul>
+<li>D — drill diameter; θ — included point angle</li>
+<li>A 180° flat-bottom drill has no point</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The point is treated as a sharp cone. The chisel edge at the centre and any point thinning make the real point slightly shorter.</li>
+<li>In a blind hole, the cone of the drill point stays at the bottom. Drawings often give the full-diameter depth and show the 118° cone below it.</li>
+<li>A through hole needs the whole point out of the part, plus an allowance so the corners of the drill clear the exit edge cleanly.</li>
+<li>For a tapped blind hole, the drilled full-diameter depth must also leave room for the tap&#39;s chamfer below the last full thread.</li>
+<li>Deep holes may need peck drilling or a deep-hole drill to clear the chips. The page warns above 10 diameters.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 1/2 in drill with a 118° point must give a blind hole that is full diameter to 1 in deep. How deep should the tip go?</p>
+<ol>
+<li>Half the point angle: 59°, tan 59° = 1.6643.</li>
+<li>Point length: 0.25 / 1.6643 = 0.1502 in.</li>
+<li>As a ratio: 0.1502 / 0.5 = 0.3004 of the diameter.</li>
+<li>Tip depth: 1 + 0.1502 = 1.1502 in.</li>
+</ol>
+<p>With a 135° point, the same drill needs only 0.1036 in more, so the tip goes to 1.1036 in.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate drill point length?</summary>
+<p>Divide half the drill diameter by the tangent of half the point angle. For 118°, multiply the diameter by 0.3.</p>
+</details>
+<details class="ec-faq"><summary>What is the drill point length factor for 135°?</summary>
+<p>0.207 × the diameter. A 10 mm drill with a 135° point has a point 2.07 mm long.</p>
+</details>
+<details class="ec-faq"><summary>Why do drills have 118° points?</summary>
+<p>It is the general-purpose point for twist drills in mild steel and many other materials. Flatter points, such as 135°, suit tough steels, and many solid carbide drills have 140° points.</p>
+</details>
+<details class="ec-faq"><summary>Should drawing depths include the drill point?</summary>
+<p>Usually the depth given is the full-diameter depth. The machinist adds the point length to program the tip depth.</p>
+</details>
+<details class="ec-faq"><summary>How far must the drill go past a through hole?</summary>
+<p>At least one point length beyond the far face, plus a small allowance so the outer corners clear the edge.</p>
+</details>
+<details class="ec-faq"><summary>What is a flat-bottom drill?</summary>
+<p>A drill with a 180° point that leaves a flat bottom. It has no point length to add.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../tap-drill/index.html">Tap drill calculator</a> — the drill size for a tapped hole.</li>
+<li><a href="../machining-time/index.html">Machining time calculator</a> — drilling time including the point.</li>
+<li><a href="../speeds-feeds/index.html">Speeds and feeds calculator</a> — rpm and feed for the drill.</li>
+<li><a href="../chip-load/index.html">Chip load calculator</a> — feed per tooth for milling cutters.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

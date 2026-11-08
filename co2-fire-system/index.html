@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fixed CO₂ fire-extinguishing system — Engineering calculators</title>
+  <meta name="description" content="Required CO₂ quantity, cylinders and minimum discharge rate for machinery, cargo, bulk and vehicle spaces under the FSS Code chapter 5.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Fixed CO₂ fire-extinguishing system</h1>
+    <p class="ec-summary">Size or check a fixed high-pressure CO₂ system by the FSS Code chapter 5: the free gas for machinery spaces with the casing and starting air rules, cargo, bulk and vehicle spaces, the cylinders, and the discharge rate the piping must achieve.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A fixed carbon dioxide system puts out a fire by flooding a closed space with gas. The FSS Code sets how much gas the system must hold, as a percentage of the gross volume of the largest space it protects, and how fast it must discharge. Engine rooms have two criteria that depend on the size of the casing, and the air in the starting air receivers must be added because it would feed the fire. This calculator applies chapter 5, converts the free gas to kilograms at 0.56 m³/kg, counts the cylinders and gives the average discharge rate the piping must achieve.</p>
+<p>It is for marine engineers and surveyors checking an installation, designers sizing a new system, and superintendents comparing a ship&#39;s CO₂ plan with the rules.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>Machinery spaces:      free gas = max(40 % × (V without the upper casing + receiver air),
+                                      35 % × (V gross + receiver air))
+Small cargo ships:     35 % and 30 % (under 2000 GT, machinery spaces not entirely separate)
+Cargo spaces:          30 % × V;   vehicle and ro-ro spaces: 45 % × V
+Receiver air:          V_r (p + p_atm) / p_atm
+CO₂ mass:              free gas / 0.56 m³/kg
+Cylinder capacity:     ≥ charge / (2/3 kg/L)
+Discharge rate:        85 % in 2 min (machinery); 2/3 in 10 min (cargo, vehicle); 2/3 in 20 min (solid bulk)
+Free-efflux concentration: 1 − e^(−free gas / V)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>FSS Code chapter 5 as replaced by MSC.206(81) and amended by MSC.339(91).</li>
+<li>The largest protected space sets the quantity when one system serves several spaces.</li>
+<li>The receiver air is not added when the receiver safety valves discharge to the open air.</li>
+<li>The discharge rate is the average the rules require; the system flow calculation decides the piping and nozzles.</li>
+<li>Special category spaces may not be protected by CO₂.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>An engine room has a gross volume of 6000 m³ including the casing, and 5000 m³ without the part of the casing above the 40 % level. It has 2.5 m³ of starting air receivers at 30 bar.</p>
+<ol>
+<li>Receiver air: 2.5 × 31.01 / 1.013 = 76.5 m³.</li>
+<li>40 % criterion: 0.40 × 5076.5 = 2030.6 m³. 35 % criterion: 0.35 × 6076.5 = 2126.8 m³, which governs.</li>
+<li>CO₂ mass: 2126.8 / 0.56 = 3798 kg, so 85 cylinders of 45 kg (3825 kg installed).</li>
+<li>85 % within 2 min needs 0.85 × 3798 / 120 = 26.9 kg/s on average.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why are there two criteria for engine rooms?</summary>
+<p>The tall casing above an engine room adds volume where a fire is unlikely. The 40 % criterion leaves out the casing above the level where it narrows to 40 % of the room&#39;s area; the 35 % criterion includes it. The larger result applies.</p>
+</details>
+<details class="ec-faq"><summary>Why add the starting air?</summary>
+<p>If a fire heats the receivers, their safety valves release air into the engine room and dilute the CO₂. Leading the safety valve discharge to the open air removes the need.</p>
+</details>
+<details class="ec-faq"><summary>What concentration does the gas reach?</summary>
+<p>With the displaced air escaping, 35 % of free gas gives about 30 % CO₂ and 40 % about 33 %. Either is lethal to people, which is why the space must be evacuated and closed before release.</p>
+</details>
+<details class="ec-faq"><summary>How fast must the gas be discharged?</summary>
+<p>Machinery spaces: 85 % of the gas within 2 minutes. Container and general cargo spaces, and vehicle and ro-ro spaces: two thirds within 10 minutes. Solid bulk holds: two thirds within 20 minutes, with controls that release a third, two thirds or all of the gas to suit how full the hold is.</p>
+</details>
+<details class="ec-faq"><summary>How full can a cylinder be filled?</summary>
+<p>No more than two thirds of a kilogram of CO₂ per litre of cylinder water capacity at 15 °C, so a 45 kg charge needs a cylinder of at least 67.5 L.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../starting-air/index.html">Starting air receivers and compressors</a> — the receiver volume and pressure that add to the engine room volume.</li>
+<li><a href="../engine-room-ventilation/index.html">Engine-room ventilation (ISO 8861)</a> — the airflow the dampers must shut off before release.</li>
+<li><a href="../enclosed-space-purge/index.html">Enclosed space purge time</a> — ventilating the space after a release before anyone enters.</li>
+<li><a href="../tank-volume/index.html">Tank volume and partial fill</a> — volumes of tanks and spaces.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

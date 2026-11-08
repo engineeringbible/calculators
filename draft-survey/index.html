@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Draft survey — Engineering calculators</title>
+  <meta name="description" content="Six observed drafts to corrected drafts, quarter-mean draft, trim and density corrections, net displacement and cargo or constant from the hydrostatic tables.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Draft survey</h1>
+    <p class="ec-summary">Six observed drafts corrected to the perpendiculars, quarter-mean draft for the tables, first and second trim corrections, density correction, deductibles, net displacement and cargo (or the vessel constant at the initial survey). Enter displacement, TPC, LCF and MCTC from the ship's hydrostatic tables at the quarter-mean draft.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A draft survey weighs a ship by Archimedes: read the drafts, enter the hydrostatic tables, correct for trim and water density, subtract everything on board that is not cargo, and the difference between two surveys is the cargo loaded or discharged. It is the standard commercial method for bulk cargoes and the basis of bills of lading, so the arithmetic must be done the same way every time. This calculator follows the UN ECE code sequence used by surveyors worldwide: port and starboard drafts at three stations, correction of the marks to the perpendiculars, the quarter-mean draft, first and second trim corrections, density correction, deductibles and the final cargo or constant.</p>
+<p>It is for chief officers and cargo surveyors checking a survey on the spot, for operators auditing a disputed figure, and for cadets learning the procedure. The hydrostatic values come from the ship&#39;s own tables; the calculator does the corrections and the bookkeeping.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Mean drafts at the marks:</p>
+<pre class="ec-formula" tabindex="0"><code>F = (F_port + F_stbd) / 2,   M = …,   A = …</code></pre>
+<p>Correction to the perpendiculars (apparent trim t_a = A − F; LBM = LBP − d_F − d_A):</p>
+<pre class="ec-formula" tabindex="0"><code>F_FP = F − d_F × t_a / LBM         d_F: forward marks aft of the FP
+A_AP = A + d_A × t_a / LBM         d_A: aft marks forward of the AP
+M_⊗  = M − d_M × t_a / LBM         d_M: midship marks aft of midships
+True trim t = A_AP − F_FP          (+ by the stern)
+Hog/sag = M_⊗ − (F_FP + A_AP) / 2  (+ sag)</code></pre>
+<p>Quarter-mean draft for the tables:</p>
+<pre class="ec-formula" tabindex="0"><code>D_qm = (F_FP + A_AP + 6 M_⊗) / 8</code></pre>
+<p>Trim corrections (tonnes), with Δ_table, TPC, LCF and MCTC read at D_qm:</p>
+<pre class="ec-formula" tabindex="0"><code>First (LCF layer):  FTC = t[cm] × LCF[m, + fwd] × TPC / LBP, sign such that FTC &gt; 0 when the LCF is towards the deeper end
+                    (in this calculator: FTC = −t × LCF_fwd × TPC / LBP)
+Second (Nemoto):    STC = 50 × t[m]² × (MCTC₊₅₀ − MCTC₋₅₀) / LBP     (always positive)
+Δ_trim = Δ_table + FTC + STC</code></pre>
+<p>Density correction:</p>
+<pre class="ec-formula" tabindex="0"><code>Δ_corr = Δ_trim × ρ_dock / ρ_table</code></pre>
+<p>Cargo:</p>
+<pre class="ec-formula" tabindex="0"><code>Deductibles = ballast + fresh water + fuel oil + diesel + lube oil + others
+Net = Δ_corr − deductibles − lightship       (= cargo + constant)
+Cargo = Net − constant                        (at the initial survey with no cargo, Net is the constant)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The hydrostatic data are not in the calculator: read displacement, TPC, LCF and MCTC (at ±50 cm) from the ship&#39;s tables at the quarter-mean draft and enter them. The tables are usually for 1.025 t/m³; change the table density if yours differ.</li>
+<li>Sign conventions: trim positive by the stern; LCF from midships, positive forward; mark distances positive inboard of the perpendiculars.</li>
+<li>The quarter mean approximates the draft at the LCF with hog or sag; large deflection (more than about 10 cm) and large trim (more than 1 % of LBP) reduce accuracy and are flagged.</li>
+<li>List is not corrected; the port/starboard mean is used and a list above 10 cm is flagged. Surveyors should trim the ship upright before reading if possible.</li>
+<li>Deductibles are taken as entered; tank soundings need their own trim and heel corrections and density conversions, and ballast density should be measured, not assumed.</li>
+<li>Reading accuracy dominates: 1 cm of mean draft is one TPC of displacement, 50 t on a Panamax. Expect ±0.5 % of cargo in good conditions and worse in swell.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>Bulk carrier, LBP 180 m, forward marks 3.0 m aft of the FP, aft marks 6.0 m forward of the AP, midship marks at midships. Drafts: forward 9.50 m both sides, midships 10.03 m, aft 10.50 m. Dock water 1.020 t/m³. Tables at the quarter-mean draft: Δ 47 232 t, TPC 52.0, LCF 3.0 m aft of midships, MCTC 460 at +50 cm and 440 at −50 cm. Deductibles 2 860 t, lightship 11 200 t, constant 350 t.</p>
+<ol>
+<li>Apparent trim 1.00 m over LBM = 171 m. F_FP = 9.50 − 3 × 1/171 = 9.482 m; A_AP = 10.50 + 6 × 1/171 = 10.535 m; true trim 1.053 m by the stern; midship draft 10.03 m, sag 2.1 cm.</li>
+<li>Quarter mean: (9.482 + 10.535 + 6 × 10.03) / 8 = 10.025 m.</li>
+<li>First trim correction: 105.3 cm × 3.0 m × 52 / 180 = +91.2 t (LCF aft, trim by stern: positive).</li>
+<li>Second trim correction: 50 × 1.053² × 20 / 180 = +6.2 t.</li>
+<li>Displacement corrected for trim: 47 329.4 t; for density: × 1.020/1.025 = 47 098.5 t.</li>
+<li>Net: 47 098.5 − 2 860 − 11 200 = 33 038.5 t; cargo = 33 038.5 − 350 = 32 688.5 t.</li>
+</ol>
+<p>A 1 cm reading error at each of the six marks, all in the same direction, would move this figure by 52 t, about 0.16 %.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>What is the constant and how do I get it?</summary>
+<p>Everything on board that is neither lightship nor a measured deductible: stores, spares, mud in ballast tanks, unaccounted water. It is found at an initial (light) survey by entering constant = 0 with no cargo on board; the net displacement is then the constant. A typical bulk carrier constant is 200–500 t; a negative or wildly changed constant indicates a reading or tank error.</p>
+</details>
+<details class="ec-faq"><summary>Why read drafts on both sides?</summary>
+<p>To average out list and to detect it. The displacement of a listed ship is not given exactly by the mean draft, and a list also changes the tank soundings.</p>
+</details>
+<details class="ec-faq"><summary>Why is the midship draft weighted six times?</summary>
+<p>Because the hull bends: the mean of forward and aft drafts misses hog or sag, while the midship reading alone misses trim effects. The quarter mean is the standard compromise that approximates the draft at the LCF of the deflected hull.</p>
+</details>
+<details class="ec-faq"><summary>When is the second trim correction significant?</summary>
+<p>It grows with the square of trim. At 1 m trim on a Panamax it is a few tonnes; at 3 m it can be 50 t or more, and the first correction is then also large.</p>
+</details>
+<details class="ec-faq"><summary>Do I correct for density of fuel and ballast separately?</summary>
+<p>Yes, but outside this calculator: convert each tank&#39;s sounded volume with its own measured density before entering the masses as deductibles.</p>
+</details>
+<details class="ec-faq"><summary>Why does the survey disagree with the shore scale?</summary>
+<p>Draft surveys are typically within ±0.5 % of cargo in good conditions, worse in swell or with list. Differences within that band are normal; larger ones usually come from the constant, ballast density or sounding errors.</p>
+</details>
+<details class="ec-faq"><summary>Can I use this for a tanker or a container ship?</summary>
+<p>The arithmetic is the same, but tankers are measured by ullage and container ships by declared weights; draft surveys are mainly a bulk-cargo tool.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../hydrostatics/index.html">Hydrostatics basics</a> — where TPC, MCTC and the trim formulas come from.</li>
+<li><a href="../bunker-quantity/index.html">Bunker quantity and density correction</a> — fuel deductibles from soundings.</li>
+<li><a href="../ship-squat/index.html">Ship squat and under-keel clearance</a> — the departure draft in the channel.</li>
+<li><a href="../initial-stability/index.html">Initial stability GM and list</a> — stability at the surveyed condition.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

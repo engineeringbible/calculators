@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shallow water correction (Raven / Lackenby) — Engineering calculators</title>
+  <meta name="description" content="ISO 15016:2025 Annex G (Raven) shallow-water power correction — viscous increase and sinkage — plus the legacy Lackenby speed correction.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Shallow water correction (Raven / Lackenby)</h1>
+    <p class="ec-summary">Shallow water on a speed trial: the ISO 15016 minimum trial depth, then the 2025 Annex G (Raven) correction — depth Froude numbers, additional sinkage and displacement effect, ITTC-57 friction, roughness allowance and form factor, the viscous resistance increase and the deep-water power — and the legacy Lackenby speed correction of the 2015 edition for comparison.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>A ship in shallow water sinks deeper, pushes its return flow through a smaller cross-section and feels more friction, so a speed trial run in 30 m of water needs more power than the same run in the open ocean. ISO 15016:2025 replaced the old Lackenby speed correction by Raven&#39;s method, which splits the effect into a viscous resistance increase that scales with (T/h)^1.79 and a sinkage term treated as extra displacement. This calculator checks the run against the minimum trial depth, evaluates every step of Annex G from the depth Froude numbers to the deep-water power, and shows the Lackenby result beside it for anyone still working to the 2015 edition.</p>
+<p>It is for trial engineers, naval architects verifying a sea-trial report, performance analysts correcting service data in coastal waters, and students of ship hydrodynamics.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<pre class="ec-formula" tabindex="0"><code>h_min = max(2.5 T_M, 2.4 V_S²/g)                                     Formula (7)
+Fr_h = V_S/√(g h),   Fr_hd = V_S/√(0.3 g L_PP)                        G.13
+d = 1.46 ∇/L_PP² [Fr_h²/√(1−Fr_h²) − Fr_hd²/√(1−Fr_hd²)] ≥ 0        G.12
+δ = d A_W/∇ (≤ 0.05),   r_sink = (1 + δ)^(2/3)                        G.10–G.11
+(1+k) = 1.017 + 20 C_B (B/L_PP)² (T_M/B)^0.5                           G.9
+C_V&#39; = 1.06 C_F (1+k) + ΔC_F,   R_Vdeep = C_V&#39; ½ρV_S²S                 G.4–G.8
+R_SHV = R_Vdeep × 0.57 (T_M/h)^1.79                                    G.3
+P_Ddeep = (P_Dmsc − R_SHV V_S/η_Did)/r_sink,   P_SH = P_Dmsc − P_Ddeep  G.1–G.2
+Lackenby: ΔV/V = 0.1242 (A_M/h² − 0.05) + 1 − √tanh(g h/V²),  V_deep = V (1 + ΔV/V)</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The trial power must already be corrected for wind, waves and water temperature; the propulsive efficiency is assumed unchanged in shallow water.</li>
+<li>Valid above the minimum trial depth and for sub-critical depth Froude numbers; the sinkage term vanishes at and beyond 0.3 L_PP depth by construction.</li>
+<li>Displacement and waterplane area from the block and waterplane coefficients unless hydrostatics are entered.</li>
+<li>Lackenby applies for A_M/h² ≥ 0.05 and is a speed correction, not a power one.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 180 × 32 × 11 m bulk carrier (C_B 0.80, C_WP 0.88, S 7 000 m²) running 12 kn in 30 m of 15 °C water, 5 000 kW delivered, η_Did 0.70.</p>
+<ol>
+<li>Minimum depth max(27.5, 9.3) = 27.5 m: the run is acceptable.</li>
+<li>Fr_h = 0.360, Fr_hd = 0.268 → d = 1.46 × 50 688/180² × (0.1388 − 0.0747) = 0.146 m; δ = 0.0146; r_sink = 1.0097.</li>
+<li>Re 9.35 × 10⁸, C_F 1.543 × 10⁻³, ΔC_F 0.89 × 10⁻⁴, (1+k) 1.313 → C_V&#39; 2.238 × 10⁻³, R_Vdeep 306 kN.</li>
+<li>R_SHV = 306 × 0.57 × (11/30)^1.79 = 29.0 kN → P_Ddeep = (5 000 − 29.0 × 6.17/0.70)/1.0097 = 4 699 kW; P_SH = 301 kW, 6.0 % of the trial power.</li>
+<li>Lackenby: A_M/h² = 0.383 → ΔV/V = 4.1 %, deep-water speed 12.50 kn at the same power.</li>
+</ol>
+<p>Six per cent of power is roughly two per cent of speed by the cubic law, so the two methods differ by a factor of two in the speed they imply: Raven&#39;s method was calibrated on modern CFD and full-scale data and is the normative one.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why was Lackenby replaced?</summary>
+<p>It was derived from 1960s model data for a limited hull range and applies one speed correction regardless of hull form; Raven&#39;s method separates the physical causes and uses the actual ship coefficients.</p>
+</details>
+<details class="ec-faq"><summary>Why 0.3 L_PP as the reference depth?</summary>
+<p>Raven defines &quot;deep water&quot; for sinkage as h = 0.3 L_PP; the additional sinkage is measured relative to that depth, which is why the term is zero when the water is that deep.</p>
+</details>
+<details class="ec-faq"><summary>What does the exponent 1.79 mean?</summary>
+<p>The viscous resistance increase rises steeply as the gap under the keel closes; at h = 2 T the increase is 17 % of the deep-water viscous resistance, at h = 1.5 T 28 %.</p>
+</details>
+<details class="ec-faq"><summary>Is this the same as squat?</summary>
+<p>The sinkage term is squat, but handled as extra displacement; the ship-squat calculator gives the under-keel clearance consequences instead.</p>
+</details>
+<details class="ec-faq"><summary>Can I use it for service data in coastal waters?</summary>
+<p>In principle, with the same caveats: the power must be corrected for weather first, and the depth along the track must be known.</p>
+</details>
+<details class="ec-faq"><summary>What if the depth Froude number is near 1?</summary>
+<p>The formula diverges at the critical speed; trials must not be run there and the page refuses supercritical cases.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../ship-squat/index.html">Ship squat</a> — under-keel clearance in shallow water.</li>
+<li><a href="../stawave-added-resistance/index.html">Added resistance in waves (STAwave-1)</a> — the wave correction applied before this one.</li>
+<li><a href="../water-temperature-correction/index.html">Water temperature and density correction</a> — ISO 15016 Annex E.</li>
+<li><a href="../hull-roughness-penalty/index.html">Hull roughness and fouling penalty</a> — the roughness allowance used here.</li>
+<li><a href="../holtrop-mennen/index.html">Holtrop–Mennen resistance</a> — deep-water resistance estimate.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

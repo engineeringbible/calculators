@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engine-room ventilation (ISO 8861) — Engineering calculators</title>
+  <meta name="description" content="Combustion air and heat-removal airflow for an engine room from installed power and heat emissions, fan capacity and air changes.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Maritime</span>
+    <h1 class="ec-title">Engine-room ventilation (ISO 8861)</h1>
+    <p class="ec-summary">Supply airflow of a diesel-engined ship's engine room by ISO 8861: combustion air for main engines, generators and boilers, airflow to evacuate the heat emission at a 12.5 K rise with the 0.4 credit for engine combustion air, the total airflow against the 1.5 × combustion-air minimum, air changes per hour and the duty per supply fan.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>An engine room needs air for two reasons: the engines and boilers burn it, and everything in the space gives off heat that has to be carried away before the room becomes unworkable. ISO 8861 turns this into a short calculation: combustion air from the installed power and a specific air consumption, heat-removal air from the total heat emission and a permitted 12.5 K temperature rise, with a credit for the heat that leaves with the engines&#39; own combustion air, and a floor of one and a half times the combustion air. This calculator follows the standard clause by clause and adds the practical outputs a designer or a superintendent wants: air changes per hour, duty per supply fan, and the flow the casing or exhaust fans must pass.</p>
+<p>It is for ship designers sizing fans and casings, superintendents checking why an engine room runs hot, and students of marine engineering.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Combustion air (ISO 8861 §5.2), ρ = 1.13 kg/m³ at 35 °C:</p>
+<pre class="ec-formula" tabindex="0"><code>q_dp = P_dp m_ad / ρ        main engines      (m_ad 0.0023 kg/(kW·s) 2-stroke, 0.0020 4-stroke)
+q_dg = P_dg m_ad / ρ        generator engines running at sea (not stand-by)
+q_b  = Q_b m_fs m_af / ρ    boilers           (0.11 kg fuel per kWh, 15.7 kg air per kg fuel)
+q_c  = q_dp + q_dg + q_b</code></pre>
+<p>Heat evacuation (§5.3 and §6), c = 1.01 kJ/(kg·K), ΔT = 12.5 K:</p>
+<pre class="ec-formula" tabindex="0"><code>Σφ = P_dp h_d/100 + P_dg h_d/100 + P_el (1/η − 1) + Q_b h_b/100 + φ_ep + φ_p + φ_el + φ_t + φ_o
+q_h = Σφ / (ρ c ΔT) − 0.4 (q_dp + q_dg) − q_b</code></pre>
+<p>Total (§5.1):</p>
+<pre class="ec-formula" tabindex="0"><code>Q = max( q_c + q_h ,  1.5 q_c )
+air changes/h = 3600 Q / V_room,   per fan = Q / n,   exhaust = Q − q_c</code></pre>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Simultaneous maximum continuous rating of all machinery at sea, 35 °C ambient, 70 % RH; equipment inside the casing and funnel excluded; separate spaces calculated separately.</li>
+<li>Heat-loss percentages are inputs (large two-strokes about 1–1.5 % of MCR, medium-speed engines 2–4 %, boilers about 1 %); the standard requires the manufacturers&#39; data and provides guidance curves only as a fallback.</li>
+<li>The 0.4 credit assumes the usual arrangement of engine room and ducts; special arrangements call for a different factor.</li>
+<li>The boiler fuel rate 0.11 kg per kWh is this calculator&#39;s reading of the standard&#39;s note; enter the boiler&#39;s air consumption directly if known (it is normally small).</li>
+<li>Air changes per hour are informative only; ISO 8861 sets no air-change requirement.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A 10 MW two-stroke main engine, 3 MW of four-stroke generator engines running at sea (alternators 95 % efficient), a 2 MW oil-fired boiler, exhaust pipes 100 kW, steam pipes 30 kW, electrical 50 kW, hot tanks 20 kW, other 30 kW; engine room 15 000 m³ with four supply fans.</p>
+<ol>
+<li>Combustion air: main 10 000 × 0.0023/1.13 = 20.35 m³/s; generators 3 000 × 0.0020/1.13 = 5.31; boiler 2 000 × 0.11/3600 × 15.7/1.13 = 0.85; q_c = 26.5 m³/s.</li>
+<li>Heat: main 150 kW (1.5 %), generator engines 90 kW (3 %) plus alternator losses 2 850 × (1/0.95 − 1) = 150 kW, boiler 20 kW, others 230 kW; Σφ = 640 kW. Gross airflow 640/(1.13 × 1.01 × 12.5) = 44.9 m³/s.</li>
+<li>Credits: 0.4 × (20.35 + 5.31) + 0.85 = 11.1 → q_h = 33.7 m³/s.</li>
+<li>Total: q_c + q_h = 60.3 m³/s = 217 000 m³/h, above the 1.5 q_c floor of 39.8; governing. Air changes 14.5 per hour; 54 000 m³/h per fan; 33.7 m³/s leaves through the casing.</li>
+<li>If the room were hotter than expected, the same arithmetic in reverse shows the temperature rise the installed fans allow.</li>
+</ol>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Why does the combustion air get a 0.4 credit?</summary>
+<p>Engines draw their air from the room and send it up the stack already warmed, so part of the room&#39;s heat leaves with it; ISO 8861 counts 40 % of that air as effective heat removal for the usual duct layout.</p>
+</details>
+<details class="ec-faq"><summary>Why is there a 1.5 × q_c minimum?</summary>
+<p>Even a cool, well-insulated plant needs a margin so that turbocharger intakes never starve the room and a draught remains for the crew.</p>
+</details>
+<details class="ec-faq"><summary>What heat-loss percentage should I use?</summary>
+<p>The maker&#39;s project guide value for radiation and convection to the room, at MCR. Large two-strokes lose little (1–1.5 %); medium-speed engines, especially older ones, 2–4 %.</p>
+</details>
+<details class="ec-faq"><summary>Do I include the stand-by generator?</summary>
+<p>No. ISO 8861 counts the generators running in the normal sea condition; the stand-by set is excluded.</p>
+</details>
+<details class="ec-faq"><summary>How many air changes should an engine room have?</summary>
+<p>There is no rule; typical results from the ISO method are 15–30 per hour. Fewer than 10 usually means a heat source has been forgotten.</p>
+</details>
+<details class="ec-faq"><summary>Is the exhaust side the same flow?</summary>
+<p>The exhaust (casing openings or extraction fans) passes Q − q_c; the rest leaves through the engines and boiler. Keep the room at slight over-pressure.</p>
+</details>
+<details class="ec-faq"><summary>What about tropical service above 35 °C?</summary>
+<p>ISO 8861 fixes 35 °C; hotter ambient reduces the usable ΔT and the room will run above the design temperature unless more air is supplied.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../generator-load/index.html">Generator load, kVA and fuel</a> — which generators run at sea and at what load.</li>
+<li><a href="../three-phase-power/index.html">Three-phase power and motor current</a> — fan motor sizing.</li>
+<li><a href="../pipe-insulation/index.html">Pipe and tank insulation heat loss</a> — the pipe and tank heat terms.</li>
+<li><a href="../heat-exchanger-lmtd/index.html">Heat exchanger LMTD</a> — coolers that remove heat before it reaches the room.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

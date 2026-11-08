@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Footing size calculator — Engineering calculators</title>
+  <meta name="description" content="Plan size of a square, rectangular, round or strip footing from the column or wall load and the allowable soil bearing pressure, with the actual pressure.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Civil</span>
+    <h1 class="ec-title">Footing size calculator</h1>
+    <p class="ec-summary">Plan size of a square, rectangular, round or strip footing from the service load and the allowable bearing pressure, with the actual pressure.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>How big must a footing be? Big enough that the column load, spread over its area, stays below the pressure the soil can safely carry. The footing itself and the soil backfilled over it also press on the ground, so they use up part of that allowable pressure first. A column carrying 800 kN on soil allowing 200 kPa needs a footing about 2.15 m square once its own weight is counted.</p>
+<p>This calculator sizes square, rectangular, round and strip footings from the service load, the allowable bearing pressure, the footing thickness and the soil above it. It rounds the size up to a practical dimension and gives the actual bearing pressure. It is for engineers, builders and students doing the first step of footing design.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Net allowable pressure and required area:</p>
+<pre class="ec-formula" tabindex="0"><code>q_net = q_all − γ_c t − γ_s h_s
+A = P / q_net</code></pre>
+<p>Plan dimensions:</p>
+<pre class="ec-formula" tabindex="0"><code>square:     B = √A
+round:      D = √(4A / π)
+rectangle:  B = √(A / r),  L = r B
+strip:      B = w / q_net</code></pre>
+<p>Actual pressure with the rounded size:</p>
+<pre class="ec-formula" tabindex="0"><code>q = P / A_rounded + γ_c t + γ_s h_s</code></pre>
+<ul>
+<li>P — service (unfactored) column load; w — load per length of wall</li>
+<li>q_all — allowable bearing pressure; t — footing thickness; h_s — soil above the footing</li>
+<li>γ_c, γ_s — unit weights of concrete and soil; r — length to width ratio</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>Footing area is sized from service loads, as ACI 318 requires. Factored loads are then used for the thickness, shear and reinforcement, which this page does not design.</li>
+<li>The load is centred. A moment or an offset column makes the pressure uneven, and the edge pressure must stay below the allowable value.</li>
+<li>The allowable bearing pressure comes from a geotechnical report or the building code&#39;s presumptive values. Without either, use a conservative value for the soil type.</li>
+<li>Settlement, frost depth and minimum footing sizes in the code also apply.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A column carries 800 kN of dead and live load. The soil allows 200 kPa. The footing will be 0.5 m thick with 0.5 m of soil on top. What size is needed?</p>
+<ol>
+<li>Weight of footing and soil: 24 × 0.5 + 18 × 0.5 = 21 kPa.</li>
+<li>Net allowable pressure: 200 − 21 = 179 kPa.</li>
+<li>Required area: 800 / 179 = 4.469 m².</li>
+<li>Square side: √4.469 = 2.114 m, rounded up to 2.15 m.</li>
+<li>Actual pressure: 800 / 2.15² + 21 = 194.1 kPa, below 200 kPa.</li>
+</ol>
+<p>A 2.15 × 2.15 m footing works; its thickness and reinforcement then come from the factored loads.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How do I calculate footing size?</summary>
+<p>Divide the column load by the net allowable soil pressure to get the area, then take the square root for a square footing.</p>
+</details>
+<details class="ec-faq"><summary>What is a typical allowable bearing pressure?</summary>
+<p>Building codes give presumptive values such as 1 500 psf (72 kPa) for clay and 2 000 to 3 000 psf (96 to 144 kPa) for sand and gravel. A geotechnical report usually allows more.</p>
+</details>
+<details class="ec-faq"><summary>Why subtract the footing&#39;s weight?</summary>
+<p>The soil carries the footing and the backfill as well as the column. Only what is left of the allowable pressure is available for the column load.</p>
+</details>
+<details class="ec-faq"><summary>Should I use factored or unfactored loads?</summary>
+<p>Unfactored service loads for the footing area. Factored loads for the concrete design of the footing.</p>
+</details>
+<details class="ec-faq"><summary>How thick should a footing be?</summary>
+<p>At least 6 in (150 mm) above the bottom reinforcement under ACI 318, and usually much more for shear. Thickness comes from punching and beam shear checks.</p>
+</details>
+<details class="ec-faq"><summary>How deep should a footing be?</summary>
+<p>Below the frost line and on undisturbed soil of adequate strength. Local codes set minimum depths.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../soil-bearing/index.html">Soil bearing capacity</a> — bearing capacity from soil strength.</li>
+<li><a href="../concrete-footing/index.html">Concrete footing calculator</a> — the concrete for the footing.</li>
+<li><a href="../concrete-column/index.html">Concrete column and post hole calculator</a> — the column above it.</li>
+<li><a href="../rebar-weight/index.html">Rebar weight and quantity</a> — the reinforcement.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

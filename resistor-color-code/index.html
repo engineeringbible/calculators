@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resistor colour code — Engineering calculators</title>
+  <meta name="description" content="Resistance, tolerance and temperature coefficient from the colour bands of a 4, 5 or 6-band resistor, and the colour bands for any value.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Electrical</span>
+    <h1 class="ec-title">Resistor colour code</h1>
+    <p class="ec-summary">The resistance, tolerance and temperature coefficient of a 4, 5 or 6-band resistor from its colour bands, the range within tolerance and its standard series, and the bands to look for to mark a given value.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>Through-hole resistors are too small to print a value on, so they carry coloured bands instead. Each colour stands for a digit, a power of ten, a tolerance or a temperature coefficient, following the international standard IEC 60062. Reading them quickly is a basic skill on the bench, and checking a reading avoids the classic mistake of fitting a 47 kΩ part where 4.7 kΩ was meant.</p>
+<p>This calculator reads 4, 5 and 6-band resistors. It gives the value, the tolerance, the lowest and highest values within tolerance, the temperature coefficient of six-band parts, and which standard E series the value belongs to. It also works the other way: enter a resistance and it lists the bands to look for. It is for students, hobbyists, technicians and anyone sorting a drawer of resistors.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>The colour code (IEC 60062):</p>
+<pre class="ec-formula" tabindex="0"><code>black 0, brown 1, red 2, orange 3, yellow 4, green 5, blue 6, violet 7, grey 8, white 9</code></pre>
+<p>Resistance:</p>
+<pre class="ec-formula" tabindex="0"><code>4 bands:     R = (10 d₁ + d₂) × 10^m
+5 or 6 bands: R = (100 d₁ + 10 d₂ + d₃) × 10^m</code></pre>
+<p>Multiplier band m: silver −2, gold −1, then the digit colours black 0 to white 9.</p>
+<p>Tolerance band: brown ± 1 %, red ± 2 %, green ± 0.5 %, blue ± 0.25 %, violet ± 0.1 %, gold ± 5 %, silver ± 10 %, no band ± 20 %.</p>
+<p>Range within tolerance:</p>
+<pre class="ec-formula" tabindex="0"><code>R_min = R (1 − t),   R_max = R (1 + t)</code></pre>
+<p>Sixth band, temperature coefficient in ppm/K: black 250, brown 100, red 50, yellow 25, green 20, orange 15, blue 10, violet 5, grey 1.</p>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The colours follow IEC 60062:2016. Orange, yellow and grey tolerance bands have had different meanings in different editions, so they are not offered.</li>
+<li>Four-band resistors carry two significant digits and five- and six-band parts three. A value that needs more digits is rounded and flagged.</li>
+<li>Read from the end where the bands are grouped together. The tolerance band is usually set slightly apart, and gold or silver never comes first.</li>
+<li>Faded or heat-darkened bands are easy to misread, particularly red, orange and brown. When in doubt, measure the resistor out of circuit with a meter.</li>
+<li>The tolerance applies at 25 °C. The temperature coefficient adds its value in parts per million for every kelvin away from that.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>A resistor has four bands: yellow, violet, red, gold. What is it?</p>
+<ol>
+<li>First digit: yellow = 4. Second digit: violet = 7. Together they make 47.</li>
+<li>Multiplier: red = 10², so the value is 47 × 100 = 4 700 Ω = 4.7 kΩ.</li>
+<li>Tolerance: gold = ± 5 %.</li>
+<li>Lowest value within tolerance: 4 700 × 0.95 = 4.465 kΩ. Highest: 4 700 × 1.05 = 4.935 kΩ.</li>
+<li>4.7 kΩ is in the E6 series, the most common values of all, and so in E12 and E24 as well.</li>
+</ol>
+<p>A five-band resistor reading brown, black, black, brown, brown is 100 × 10¹ = 1 kΩ ± 1 %. Adding a red sixth band means a temperature coefficient of 50 ppm/K.</p>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>Which end do I start reading from?</summary>
+<p>The end where the bands are bunched together. The tolerance band, often gold or silver, is usually separated by a wider gap at the other end, and gold and silver are never the first band.</p>
+</details>
+<details class="ec-faq"><summary>What is the difference between 4, 5 and 6 bands?</summary>
+<p>Four-band parts give two significant digits, which suits 5 % and 10 % resistors. Five-band parts give three digits for 1 % and tighter parts. The sixth band adds the temperature coefficient.</p>
+</details>
+<details class="ec-faq"><summary>What does gold mean as the third band of four?</summary>
+<p>It is the multiplier ×0.1, used for values below 10 Ω. Green, blue, gold, gold is 5.6 Ω ± 5 %.</p>
+</details>
+<details class="ec-faq"><summary>How do I tell red from orange, or brown from red?</summary>
+<p>Under warm light they look alike. Compare with a known resistor, use daylight, or measure the part.</p>
+</details>
+<details class="ec-faq"><summary>Why is my measured value slightly off?</summary>
+<p>Within the tolerance band, that is normal. A gold-band 4.7 kΩ resistor can read anywhere from 4.465 to 4.935 kΩ. Also measure out of circuit, because parallel parts change the reading.</p>
+</details>
+<details class="ec-faq"><summary>What do surface-mount resistors use instead?</summary>
+<p>A printed code: three or four digits where the last is the power of ten (472 = 4.7 kΩ), or the EIA-96 code of two digits and a letter for 1 % parts.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../ohms-law/index.html">Ohm&#39;s law and electrical power</a> — what the resistor does in the circuit.</li>
+<li><a href="../voltage-divider/index.html">Voltage divider</a> — choosing standard values for a target voltage.</li>
+<li><a href="../led-resistor/index.html">LED series resistor</a> — another common resistor to identify.</li>
+<li><a href="../resistors-series-parallel/index.html">Series and parallel resistors</a> — combining parts to reach a value you don&#39;t have.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>
