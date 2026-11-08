@@ -1,0 +1,3 @@
+# Unix line endings on every platform. shared/version.js stamps each calc.js with a hash of
+# its exact text, so a Windows checkout with CRLF endings would rebuild different stamps.
+* text=auto eol=lf
