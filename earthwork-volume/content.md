@@ -37,6 +37,14 @@ Two road cross-sections 20 m apart with cut areas 150.25 m² and 259.375 m², mi
 
 Blasted rock behaves the other way: 1 000 m³ in the quarry face becomes 1 500 m³ loose and still 1 300 m³ when placed.
 
+## Common mistakes
+
+- **Ordering trucks for the bank volume.** Dug material swells: 1 000 m³ in the ground is 1 120 to 1 500 m³ in the trucks, depending on the soil.
+- **Taking the cut volume as the fill it will make.** Compacted fill takes less room than the ground it came from, except blasted rock, which bulks. Work from the compacted volume needed back to the bank volume.
+- **Using average end areas for very different sections.** Where one section is much larger than the next, average end area over-estimates the volume; the prismoidal formula is the correction.
+- **Netting cut against fill within a section.** Cut and fill are separate quantities. Whether they balance is a mass-haul question, not a subtraction on each section.
+- **Forgetting the extras.** Topsoil strip, over-excavation and unsuitable material that has to go to tip are all on top of the design volumes.
+
 ## FAQ
 
 **Why do bank, loose and compacted volumes differ?**

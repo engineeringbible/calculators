@@ -54,6 +54,14 @@ A 400 V three-phase motor circuit draws 50 A at power factor 0.85 over a 50 m ro
 
 A 24 V DC control supply, 10 A over 10 m in 2.5 mm² copper at 20 °C: ΔU = 2 × 10 × 0.0741 = 1.48 V = 6.2 %, over a 5 % limit; 4 mm² gives 0.92 V (3.8 %). Low voltage makes voltage drop the governing criterion.
 
+## Common mistakes
+
+- **Entering the length of both conductors.** The length is the one-way route; the formula already counts the return conductor, or the √3 of a three-phase circuit. Entering the total cable length doubles the drop.
+- **Using the resistance at 20 °C.** A PVC cable at its rated 70 °C has about 20 % more resistance than the 20 °C table value, and the drop rises with it.
+- **Sizing on voltage drop alone.** The cable must also carry the current after derating for the installation method, grouping and ambient temperature, and survive the fault current until the protection trips.
+- **Forgetting motor starting.** A direct-on-line motor draws 6 to 8 times its running current while it starts, and the voltage drop rises in proportion. Check that the motor can still start.
+- **Treating low-voltage DC like mains.** At 12 V a drop of 0.6 V is already 5 %, so runs that would be trivial at 230 V need much larger conductors.
+
 ## FAQ
 
 **Why does the calculator use the conductor's maximum temperature?**

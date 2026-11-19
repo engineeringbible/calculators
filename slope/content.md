@@ -39,6 +39,13 @@ A wheelchair ramp must climb 1 m. If it runs 12 m horizontally, what is its slop
 
 A shorter run would make the ramp too steep for the ADA limit.
 
+## Common mistakes
+
+- **Taking percent grade for degrees.** A 100 % grade is 45°, not vertical, and a 10 % grade is 5.7°, not 10°.
+- **Measuring along the slope.** Grade is rise over the horizontal run. On steep slopes the length along the surface is much longer: at 45° it is 41 % longer.
+- **Reading a ratio the wrong way round.** Road and drainage practice writes 1 : n as one unit of rise per n of run; embankments are often written n horizontal to 1 vertical. Check which one a drawing uses.
+- **Treating roof pitch as an angle.** A 6/12 roof rises 6 in per 12 in of run, which is 26.6°, not 30° or 50 %.
+
 ## FAQ
 
 **How do I calculate slope percentage?**

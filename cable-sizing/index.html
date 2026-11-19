@@ -66,6 +66,16 @@ Three-phase:   ΔU = √3 I (R cos φ + X sin φ)     (line-to-line)
 </ol>
 <p>A 24 V DC control supply, 10 A over 10 m in 2.5 mm² copper at 20 °C: ΔU = 2 × 10 × 0.0741 = 1.48 V = 6.2 %, over a 5 % limit; 4 mm² gives 0.92 V (3.8 %). Low voltage makes voltage drop the governing criterion.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Entering the length of both conductors.</strong> The length is the one-way route; the formula already counts the return conductor, or the √3 of a three-phase circuit. Entering the total cable length doubles the drop.</li>
+<li><strong>Using the resistance at 20 °C.</strong> A PVC cable at its rated 70 °C has about 20 % more resistance than the 20 °C table value, and the drop rises with it.</li>
+<li><strong>Sizing on voltage drop alone.</strong> The cable must also carry the current after derating for the installation method, grouping and ambient temperature, and survive the fault current until the protection trips.</li>
+<li><strong>Forgetting motor starting.</strong> A direct-on-line motor draws 6 to 8 times its running current while it starts, and the voltage drop rises in proportion. Check that the motor can still start.</li>
+<li><strong>Treating low-voltage DC like mains.</strong> At 12 V a drop of 0.6 V is already 5 %, so runs that would be trivial at 230 V need much larger conductors.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>Why does the calculator use the conductor&#39;s maximum temperature?</summary>

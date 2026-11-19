@@ -45,6 +45,14 @@ A pickup turns 3 000 rpm in fourth gear, a direct 1.00 ratio, with 3.73 axle gea
 
 The speedometer reads about 5 mph slow at this speed, so the driver is going faster than the dial shows.
 
+## Common mistakes
+
+- **Forgetting the overdrive.** Most automatic and manual top gears are 0.6 to 0.8, not 1.00. Leaving the gear ratio at 1.00 overstates the highway rpm by up to two thirds.
+- **Reading "lower gears" the wrong way.** A lower axle ratio is the numerically higher one: 4.10 is lower than 3.08 and gives more rpm and quicker acceleration.
+- **Using a nominal tyre size instead of the real diameter.** Metric tyre diameter is the rim plus twice the sidewall (width × aspect ratio). A worn tyre is also smaller than a new one.
+- **Changing the tyre size without recalibrating the speedometer.** Going from 26 in to 28 in tyres makes the speedometer read about 7 % low.
+- **Ignoring torque converter slip.** Before the converter locks, the engine turns faster than the calculated rpm.
+
 ## FAQ
 
 **How do I calculate mph from rpm?**

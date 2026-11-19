@@ -44,6 +44,13 @@ A street car weighs 3 500 lb with the driver and has 400 hp at the flywheel. Wha
 
 A real time slip of 12.4 s at 113 mph would point to a weak launch rather than missing power.
 
+## Common mistakes
+
+- **Putting wheel horsepower in as flywheel horsepower.** Chassis dynos read 10 to 20 % below the engine's rating. Choose "wheel" so the calculator adds the drivetrain loss back.
+- **Leaving out the driver and fuel.** Race weight is everything that crosses the line. A 180 lb driver in a 3 500 lb car adds about 0.25 s to a 15 s run.
+- **Expecting the estimate on street tyres.** The formulas assume a prepared track and a good launch. A powerful car on street tyres can lose half a second or more in wheelspin.
+- **Comparing with a timeslip from altitude.** Thinner air costs a naturally aspirated engine about 3 % of its power per 1 000 ft, so the same car runs slower at a high-altitude track.
+
 ## FAQ
 
 **How do I estimate my quarter-mile time?**
