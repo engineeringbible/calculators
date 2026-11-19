@@ -1,7 +1,7 @@
 {
   "name": "Engineering calculators",
   "version": "0.4.0",
-  "generated": "2026-11-08",
+  "generated": "2026-11-19",
   "categories": [
     "automotive",
     "civil",
@@ -67001,6 +67001,10 @@
       },
       {
         "name": "Permalink: only non-default values travel, in schema units, rounded to the 10 significant digits the fields hold; bad entries are listed and never applied",
+        "source": "Permalink contract (README, \"Share link and send to\")"
+      },
+      {
+        "name": "Permalink: a link to a place on the page (#faq, #checks) is not state, so it neither loads inputs nor resets them",
         "source": "Permalink contract (README, \"Share link and send to\")"
       },
       {

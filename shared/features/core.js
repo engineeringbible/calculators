@@ -124,6 +124,12 @@ export function encodeState(schema, { inputs = {}, units = {} } = {}, extras = {
   return params.toString();
 }
 
+/**
+ * Whether a URL hash carries calculator state. encodeState always writes "v=" first; any other hash is a link
+ * to a place on the page (#faq, #checks) and must be left alone, neither read as inputs nor overwritten.
+ */
+export const isStateHash = (hash) => new URLSearchParams(String(hash || '').replace(/^#/, '')).has('v');
+
 /** Decode a URL hash into { inputs, units, from, ignored } — invalid entries are listed, never applied. */
 export function decodeState(schema, hash) {
   const out = { inputs: {}, units: {}, from: null, ignored: [], version: null };

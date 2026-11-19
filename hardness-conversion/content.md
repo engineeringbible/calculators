@@ -47,6 +47,14 @@ So the shaft is about 446 HV, 421 HBW and 1 441 MPa. The older SAE tensile colum
 
 A softer plate at 85 HRB converts the same way through Table 2: 165 HV, 165 HB and about 530 MPa.
 
+## Common mistakes
+
+- **Using the steel tables for other metals.** Austenitic stainless steel, aluminium, brass and cast iron work-harden and deform differently under the indenter, so a steel conversion can be off by a whole hardness grade. Use the table for that material, or test in the scale you need.
+- **Converting a surface reading into a core strength.** A case-hardened, nitrided or decarburised part has a surface unlike its core. The tensile estimate from a surface reading describes neither.
+- **Testing a round part without the curvature correction.** On a convex cylinder the indenter sinks further and Rockwell reads low. Below about 25 mm diameter, add the correction from ASTM E18 or ISO 6508 before converting.
+- **Testing thin material.** The test piece should be at least about ten times as thick as the indentation is deep, or the anvil shows through and the reading is too high.
+- **Treating the converted value as a test result.** When a specification calls for hardness in one scale, a value converted from another scale does not show compliance. ASTM A370 and ISO 18265 both say so.
+
 ## FAQ
 
 **Can I convert HRC to HRB?**

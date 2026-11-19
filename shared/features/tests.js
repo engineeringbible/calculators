@@ -86,6 +86,14 @@ export const tests = [
     },
   },
   {
+    name: 'Permalink: a link to a place on the page (#faq, #checks) is not state, so it neither loads inputs nor resets them',
+    source: 'Permalink contract (README, "Share link and send to")',
+    run: () => {
+      for (const hash of [`#${core.encodeState(TOY, { inputs: { a_m: 7 } })}`, '#v=1', 'v=1&i.a_m=3']) assertEqual(core.isStateHash(hash), true, `state hash ${hash}`);
+      for (const hash of ['', '#', '#faq', '#checks', '#ec-article-worked-example', '#sources']) assertEqual(core.isStateHash(hash), false, `place on the page ${hash}`);
+    },
+  },
+  {
     name: 'Sweep: 5 linear points over 0–10 are 0, 2.5, 5, 7.5, 10; 3 logarithmic points over 1–100 are 1, 10, 100; points the calculator rejects are kept as gaps with the error',
     source: 'Definitions of arithmetic and geometric spacing',
     run: () => {

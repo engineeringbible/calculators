@@ -16,6 +16,24 @@ const SAFE_HREF = /^(\.{1,2}\/[\w./#-]*|https?:\/\/[^\s"<>]+)$/;
 
 export const escapeHtml = (text) => String(text).replace(/[&<>"']/g, (c) => ESCAPES[c]);
 
+/** The six sections every content.md has, in this order. */
+export const ARTICLE_SECTIONS = ['Introduction', 'Formulas', 'Assumptions and limitations', 'Worked example', 'FAQ', 'Related calculators'];
+/** Sections an article may add, each allowed only straight after the section named here. */
+export const OPTIONAL_SECTIONS = { 'Common mistakes': 'Worked example' };
+
+/** What is wrong with an article's "##" headings, or null when they follow the rule above. */
+export function articleSectionProblem(headings) {
+  const required = headings.filter((h) => !Object.keys(OPTIONAL_SECTIONS).some((o) => h === o));
+  if (required.length !== ARTICLE_SECTIONS.length || !ARTICLE_SECTIONS.every((s, k) => required[k].startsWith(s))) {
+    return `sections must be ${ARTICLE_SECTIONS.join(', ')}, with ${Object.entries(OPTIONAL_SECTIONS).map(([o, after]) => `"${o}" allowed after ${after}`).join('; ')} (found ${headings.join(', ')})`;
+  }
+  for (const [optional, after] of Object.entries(OPTIONAL_SECTIONS)) {
+    const at = headings.indexOf(optional);
+    if (at >= 0 && (headings.lastIndexOf(optional) !== at || !headings[at - 1]?.startsWith(after))) return `"${optional}" must come once, straight after "${after}" (found ${headings.join(', ')})`;
+  }
+  return null;
+}
+
 /** Section slug from a heading: "Worked example" → "worked-example", "Assumptions and limitations" → "assumptions-and-limitations". */
 export const slug = (text) => String(text).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 

@@ -127,6 +127,8 @@ function syncHash(ctx) {
   const encoded = core.encodeState(ctx.schema, ctx.api.getState());
   const target = encoded === `v=${core.STATE_VERSION}` ? '' : `#${encoded}`;
   if (location.hash === target || (target === '' && location.hash === '')) return;
+  // Default inputs and a link to a place on the page (#faq): keep the place.
+  if (target === '' && !core.isStateHash(location.hash)) return;
   try {
     history.replaceState(null, '', `${location.pathname}${location.search}${target}`);
   } catch {
@@ -143,6 +145,8 @@ function showBanner(banner, text) {
 }
 
 function restoreFromHash(ctx, banner, initial) {
+  // A link to a place on the page (#faq, #checks, a contents link) is not state: the inputs stay as they are.
+  if (location.hash && !core.isStateHash(location.hash)) return;
   const decoded = core.decodeState(ctx.schema, location.hash);
   const count = Object.keys(decoded.inputs).length;
   const empty = !count && !Object.keys(decoded.units).length && !decoded.from && !decoded.ignored.length;

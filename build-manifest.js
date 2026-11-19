@@ -25,7 +25,7 @@ import { unitLabel } from './shared/units.js';
 import { SHARED_MODULES } from './shared/register.js';
 import { tests as sharedTests } from './shared/tests.js';
 import { validateSendTo, smokeTestChain } from './shared/features/core.js';
-import { renderArticle, articleLinks } from './shared/markdown.js';
+import { renderArticle, articleLinks, articleSectionProblem } from './shared/markdown.js';
 import { checkExample, exampleTest, workedExampleText } from './shared/example.js';
 
 /** Shared modules whose code determines calculate() results (stamped in the record as SHARED_HASH). */
@@ -152,7 +152,6 @@ const chainCount = calculators.reduce((n, c) => n + c.sendTo.length, 0);
 
 // Articles: check every content.md first, then embed its rendered HTML in the page between the markers (written only
 // when it changed). The page keeps its own newline style.
-const ARTICLE_SECTIONS = ['Introduction', 'Formulas', 'Assumptions and limitations', 'Worked example', 'FAQ', 'Related calculators'];
 const ARTICLE_START = '<!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->';
 const ARTICLE_END = '<!-- /article -->';
 const articleErrors = [];
@@ -160,9 +159,8 @@ const pageUpdates = [];
 for (const id of ids) {
   const markdown = await readFile(new URL(`./${id}/content.md`, ROOT), 'utf8');
   const headings = [...markdown.matchAll(/^## (.+?)\s*$/gm)].map((m) => m[1]);
-  if (headings.length !== ARTICLE_SECTIONS.length || !ARTICLE_SECTIONS.every((s, k) => headings[k].startsWith(s))) {
-    articleErrors.push(`${id}: content.md sections must be ${ARTICLE_SECTIONS.join(', ')} (found ${headings.join(', ')})`);
-  }
+  const sectionProblem = articleSectionProblem(headings);
+  if (sectionProblem) articleErrors.push(`${id}: content.md ${sectionProblem}`);
   for (const href of articleLinks(markdown)) {
     const target = href.match(/^\.\.\/([^/]+)\/index\.html$/);
     if (!target || !calculatorsById[target[1]]) articleErrors.push(`${id}: content.md link ${href} does not point at a calculator page`);
