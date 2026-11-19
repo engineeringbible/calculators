@@ -38,6 +38,13 @@ A clamp meter reads 100 A on each phase of a 400 V three-phase feeder supplying 
 
 The supply transformer and cables carry the full 69.3 kVA, while only 55.4 kW does useful work. Correcting the power factor to 0.95 would bring the current down to about 84 A for the same kW.
 
+## Common mistakes
+
+- **Leaving out √3 on a three-phase supply.** Three-phase power is √3 × V × I × cos φ with the line-to-line voltage. Without the √3 the answer is 58 % of the real power.
+- **Putting the phase voltage into the three-phase formula.** On a 230/400 V supply the formula needs 400 V. Using 230 V with √3 also gives 58 % of the real power.
+- **Assuming a power factor of 1.** Motors run at about 0.8 at full load and lower at part load, so amps times volts overstates the kW. Only resistive loads such as heaters have a power factor close to 1.
+- **Taking the breaker rating as the load.** A 32 A breaker limits the current; it does not say what the load draws. Continuous loads are usually kept to 80 % of the rating.
+
 ## FAQ
 
 **How many kW is 100 amps?**

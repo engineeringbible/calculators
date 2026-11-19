@@ -44,6 +44,13 @@ A cooling-water line has a 150 mm bore and is 120 m long. How much water does it
 
 To flush the line with three volumes of water, allow about 13 minutes at that flow.
 
+## Common mistakes
+
+- **Using the outside diameter.** On small pipe the wall is a large share of the size: a DN 25 schedule 40 pipe is 33.4 mm outside and 26.6 mm inside, and the outside diameter gives 58 % too much volume.
+- **Ignoring the wall schedule.** DN 100 schedule 40 has a 102.3 mm bore and schedule 80 a 97.2 mm bore, about 10 % less volume per metre.
+- **Forgetting the equipment in the loop.** Filters, heat exchangers, pumps and tanks often hold more than the pipe. Add them as extra length or as a separate volume.
+- **Converting volume to mass at the wrong temperature.** Fuel oil expands by about 0.07 % per °C, so a line filled hot holds less mass than the same volume cold.
+
 ## FAQ
 
 **Should I use the nominal or the inside diameter?**

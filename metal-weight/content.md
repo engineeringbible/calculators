@@ -44,6 +44,14 @@ What does a 6 m length of 20 mm diameter steel round bar weigh?
 
 A bundle of 20 such bars weighs 296 kg.
 
+## Common mistakes
+
+- **Entering the nominal pipe size as the outside diameter.** A 2 in pipe is 60.3 mm outside, and its weight depends on the wall schedule. Take both from the pipe table.
+- **Measuring a hex bar across the corners.** Hex bar is sized across the flats. Entering the corner-to-corner size makes it a third heavier.
+- **Adding the two legs of an angle as two flats.** That counts the corner square twice; the true area is (a + b − t) × t.
+- **Using carbon steel density for other metals.** Stainless steel is 1 to 2 % heavier, aluminium about a third of the weight, copper 14 % heavier. Choose the material, or enter the density.
+- **Expecting the weighed piece to match exactly.** Root radii and mill tolerances move rolled sections by up to about 5 % from the theoretical weight.
+
 ## FAQ
 
 **How do I calculate the weight of steel?**

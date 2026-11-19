@@ -71,6 +71,14 @@ M12 × 1.75, property class 8.8, dry zinc-plated (μ_G = μ_K = 0.14), hex head 
 
 With MoS₂ paste (μ = 0.08) the same bolt reaches 44.9 kN preload at only 61 N·m. Using the dry torque on a lubricated bolt would overload it: that is why the friction condition must match the torque table.
 
+## Common mistakes
+
+- **Using a dry-thread torque on a lubricated bolt.** Oil, moly paste or anti-seize lower the friction, so the same torque drives far more preload. With MoS₂ paste an M12 class 8.8 bolt reaches its full preload at 61 N·m; the dry figure of 93 N·m would take it past yield.
+- **Ignoring the coating's friction class.** Zinc flake sits in class B (μ about 0.12) and hot-dip galvanizing in class D (μ about 0.20). One torque value for both gives preloads a third or more apart.
+- **Designing on the target preload.** A standard torque wrench scatters the preload by about ±25 %, so the joint has to hold with the minimum, F_M divided by the tightening factor.
+- **Tightening stainless steel bolts dry.** A2 and A4 threads gall and can seize before the preload is reached. Use an anti-seize and the matching low-friction class.
+- **Too little thread engagement in a soft part.** In aluminium or cast iron the internal thread strips before the bolt yields unless it is engaged about 1.5 to 2 bolt diameters deep.
+
 ## FAQ
 
 **Why not just use T = 0.2 F d?**
