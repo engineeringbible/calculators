@@ -44,6 +44,14 @@ A 20 mm hole is punched in 3 mm mild steel with a shear strength of 300 MPa. Str
 
 For a press brake: 1/4 in mild steel on a 2 in V-die needs 575 × 0.25² / 2 = 17.97 US tons per foot. A 10 ft bend takes 180 US tons before any margin.
 
+## Common mistakes
+
+- **Using the tensile strength as the shear strength.** Steel shears at about 0.6 to 0.8 of its tensile strength. Using the tensile figure overstates the force by about a third; using the yield strength understates it.
+- **Counting one hole when the die punches several.** The force adds up for every hole cut in the same stroke, unless the punches are stepped in length so they enter one after another.
+- **Punching a hole smaller than the sheet is thick.** As a rule the hole diameter should be at least the thickness in mild steel, and more in stainless, or the punch breaks.
+- **Running a mechanical press at its full rating.** A mechanical press delivers its rated force only near the bottom of the stroke. Keep a margin, and more for thick material that is cut higher up.
+- **Leaving out the stripping force.** Pulling the punch back out of the sheet takes force too, typically 5 to 20 % of the punching force.
+
 ## FAQ
 
 **How do I calculate punching tonnage?**

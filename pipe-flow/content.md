@@ -70,6 +70,15 @@ Sea-water cooling line: 100 m³/h through a DN100 (100 mm inside) commercial ste
 
 Doubling the diameter to DN200 cuts the velocity to 0.88 m/s and the friction loss to about 4 kPa.
 
+## Common mistakes
+
+- **Using the nominal size as the bore.** DN 50 schedule 40 is 52.5 mm inside, schedule 80 is 49.3 mm. Pressure drop goes roughly with the fifth power of the diameter at a given flow, so a few millimetres matter.
+- **Forgetting fittings and valves.** Elbows, tees, valves and strainers add their own losses. In a short run with many fittings they can be larger than the straight pipe.
+- **Assuming the pipe stays new.** Corrosion and scale raise the roughness of old steel pipe many times over and shrink the bore, so old lines lose much more pressure.
+- **Using the viscosity at the wrong temperature.** Oil viscosity changes tenfold or more between cold and hot. Take the viscosity at the temperature in the line.
+- **Mixing up pressure drop and head.** One metre of head is 9.81 kPa for water but less for a lighter liquid. Convert with the density of the fluid in the pipe.
+- **Using the liquid formula for gas with a large drop.** Once the pressure falls by more than about 10 % of the inlet pressure, the gas expands along the pipe and a compressible-flow method is needed.
+
 ## FAQ
 
 **Darcy or Fanning friction factor?**

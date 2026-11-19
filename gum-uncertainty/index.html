@@ -61,6 +61,16 @@ report U with two significant digits and y to the same decimal place</code></pre
 <p>EA-4/02 prints 8.95 mg for the drift row although ±15 mg rectangular gives 8.66 mg; the combined value rounds to 29.3 mg either way.</p>
 <p>With the GUM&#39;s own example (relative uncertainties 0.25 %, 0.57 % and 0.82 % from 10, 5 and 15 readings) the effective degrees of freedom are 19, k = 2.09 at 95 % and U = 2.2 %.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Adding the components straight.</strong> Independent uncertainties combine as the square root of the sum of squares. Adding them overstates the result, more so the more components there are.</li>
+<li><strong>Using the scatter of single readings for a mean.</strong> When the result is the mean of n readings, its Type A uncertainty is s / √n, not s.</li>
+<li><strong>Counting one effect twice.</strong> If repeated readings already show the instrument&#39;s repeatability, adding the repeatability from its data sheet counts the same scatter again.</li>
+<li><strong>Giving U without k.</strong> An expanded uncertainty means little without its coverage factor and probability: write &quot;U = 0.12 mm (k = 2, about 95 %)&quot;.</li>
+<li><strong>Rounding the result finer than its uncertainty.</strong> Round U to two significant figures and the result to the same decimal place: 12.346 ± 0.12 mm is not a better measurement than 12.35 ± 0.12 mm.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>Type A or Type B?</summary>

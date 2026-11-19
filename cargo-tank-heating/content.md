@@ -36,6 +36,14 @@ Saturated steam: 5 bar g 158.8 °C / 2 085 kJ/kg; 7 bar g 170.4 / 2 047; 10 bar 
 
 With only 1 000 kW available the heat-up takes 80 h; with 16 bar g steam the coil shrinks but the steam mass flow rises 6.7 % because the latent heat is lower.
 
+## Common mistakes
+
+- **Starting too late.** A big tank needs days, not hours. Work back from the discharge time with the heating rate the steam plant can really deliver, and allow for the heat lost on the way.
+- **Trusting one temperature reading.** Heavy oils stratify: the top warms while a cold layer stays at the bottom near the suction. Take temperatures at several heights.
+- **Overheating the cargo.** Vegetable oils and many chemicals have a maximum temperature and a maximum heating rate in the carriage instructions. Exceeding them can spoil the cargo, and heating next to a sensitive cargo can damage it.
+- **Using the design U for old coils.** Fouled, leaking or partly blanked coils transfer far less heat than when new. If the measured heating rate is low, the coil U is usually why.
+- **Forgetting the sea.** Heat lost through the shell rises with the difference to the sea temperature, so a winter passage can double the steam needed to maintain temperature.
+
 ## FAQ
 
 **Why evaluate the losses at the mean temperature?**

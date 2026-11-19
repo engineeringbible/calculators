@@ -43,6 +43,14 @@ What is the density of air at 30 °C and 60 % relative humidity at sea level?
 
 Dry air at the same temperature would be 1.164 kg/m³. The humid air is 94.2 % of standard density, so a fan moves 5.8 % less mass of air than at standard conditions.
 
+## Common mistakes
+
+- **Using sea-level density at altitude.** At 2 000 m the air is about a fifth less dense. Fans move less mass, engines make less power and wings need more speed.
+- **Using the sea-level pressure from a weather report.** Weather services correct pressure to sea level. Density needs the actual station pressure, or the altitude.
+- **Assuming humid air is heavier.** Water vapour is lighter than air (18 against 29 g/mol), so humid air is slightly less dense than dry air at the same temperature and pressure.
+- **Selecting a fan for 1.2 kg/m³ everywhere.** A fan's pressure and power scale with density. On a hot day or a high site it delivers less pressure than its catalogue curve.
+- **Confusing density altitude with pressure altitude.** Pressure altitude is from the barometer alone; density altitude also counts the temperature and is what aircraft performance depends on.
+
 ## FAQ
 
 **What is the density of air?**

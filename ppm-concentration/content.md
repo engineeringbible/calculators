@@ -45,6 +45,14 @@ A sodium chloride brine holds 35 g of salt per litre and has a density of 1 025 
 
 The brine is 35 000 mg/L but only 34 146 ppm, because a litre of it weighs more than a kilogram.
 
+## Common mistakes
+
+- **Mixing ppm by volume and ppm by mass.** Gas concentrations are usually ppm by volume; concentrations in water are by mass. 1 ppm by volume of benzene in air is 2.7 ppm by mass.
+- **Using a different reference temperature.** At 0 °C, 20 °C and 25 °C the molar volume is 22.41, 24.04 and 24.45 L, so the same ppm gives mg/m³ figures up to 9 % apart. Use the temperature the limit was written for.
+- **Taking mg/L as ppm in a dense solution.** In dilute water 1 mg/L is 1 ppm by mass. In sea water or brine the solution is denser than water, and the two differ: 35 g/L of salt is 34 146 ppm.
+- **Using the molar mass of the wrong form.** Nitrate reported as nitrogen is 4.43 times smaller than nitrate reported as NO₃; phosphate as phosphorus is about a third of phosphate as PO₄. Check which form a result is given as.
+- **Mixing percent and ppm.** 1 % is 10 000 ppm, and 1 ppm is 1 000 ppb.
+
 ## FAQ
 
 **How do I convert ppm to mg/L?**

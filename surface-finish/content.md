@@ -49,6 +49,14 @@ A part is turned at a feed of 0.2 mm/rev with a 0.8 mm nose radius insert. What 
 
 Halving the feed to 0.1 mm/rev would cut the theoretical Ra to a quarter, 0.40 µm.
 
+## Common mistakes
+
+- **Treating Ra and RMS as the same.** Older US drawings give RMS. For a smooth sine profile RMS is 1.11 × Ra, and real machined profiles are 1.1 to 1.3 times; the two are close but not interchangeable.
+- **Converting Ra to Rz with a fixed factor.** Rz is several times Ra, but the factor depends on the process: about 4 for some ground surfaces and 7 or more for turned or milled ones. Measure Rz if the drawing asks for it.
+- **Measuring with the wrong cut-off.** The sampling length changes the number. ISO 4288 uses 0.8 mm for Ra from 0.1 to 2 µm and longer cut-offs for rougher surfaces.
+- **Measuring along the tool marks.** Ra is measured across the lay unless the drawing says otherwise. Along the marks the same surface reads much smoother.
+- **Asking for a finer finish than the part needs.** Each step finer usually needs another process or slower cuts, and the cost rises steeply.
+
 ## FAQ
 
 **How do I convert Ra from µm to µin?**

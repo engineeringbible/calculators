@@ -47,6 +47,14 @@ A crude oil assay reports 35 °API. What are its specific gravity, density and w
 
 This is a medium crude, lighter than water by 15 %.
 
+## Common mistakes
+
+- **Forgetting the reference temperatures.** SG at 60/60 °F and SG at 15/4 °C use different water densities and differ by about 0.1 %. Say which one a figure is.
+- **Using a density at the wrong temperature.** Fuel oils lose about 0.6 to 0.7 kg/m³ per °C as they warm. Correct to 15 °C before comparing with a specification.
+- **Reading API gravity the wrong way round.** API rises as the liquid gets lighter: water is 10 °API, light crude about 35, gasoline about 60.
+- **Comparing a gas with water.** Gas specific gravity is relative to air at the same temperature and pressure, not to water.
+- **Mixing US and imperial gallons.** An imperial gallon is 20 % larger than a US gallon, so pounds per gallon differ by the same amount.
+
 ## FAQ
 
 **How do you calculate specific gravity?**

@@ -34,6 +34,14 @@ A propulsion system has one main engine (MTBF 5000 h, MTTR 24 h), three generati
 3. The system is available 99.5195 % of the time, about 42 h of downtime a year; the main engine dominates.
 4. Seven failure times from 1200 to 5100 h give β = 2.17 and η = 3464 h: wear-out, with a B10 life of about 1230 h.
 
+## Common mistakes
+
+- **Adding MTBFs for units in series.** In series the failure rates add, not the MTBFs. Two units of 10 000 h MTBF in series have a combined MTBF of 5 000 h.
+- **Taking MTBF as the expected life.** With a constant failure rate only 37 % of units are still running at the MTBF. It is an average rate, not a guaranteed life.
+- **Forgetting common-cause failures.** Two pumps on the same power supply, fuel line or software fail together. Redundancy helps only as far as the units are independent.
+- **Counting a standby unit that is never tested.** A standby that has failed without anyone knowing gives no redundancy. Its availability depends on how often it is tested and run.
+- **Assuming repair is quick.** Redundancy gives its full benefit only if a failed unit is repaired before the other fails. Long lead times for spares erode it.
+
 ## FAQ
 
 **Why does redundancy help so much?**

@@ -43,6 +43,14 @@ EA-4/02 prints 8.95 mg for the drift row although ±15 mg rectangular gives 8.66
 
 With the GUM's own example (relative uncertainties 0.25 %, 0.57 % and 0.82 % from 10, 5 and 15 readings) the effective degrees of freedom are 19, k = 2.09 at 95 % and U = 2.2 %.
 
+## Common mistakes
+
+- **Adding the components straight.** Independent uncertainties combine as the square root of the sum of squares. Adding them overstates the result, more so the more components there are.
+- **Using the scatter of single readings for a mean.** When the result is the mean of n readings, its Type A uncertainty is s / √n, not s.
+- **Counting one effect twice.** If repeated readings already show the instrument's repeatability, adding the repeatability from its data sheet counts the same scatter again.
+- **Giving U without k.** An expanded uncertainty means little without its coverage factor and probability: write "U = 0.12 mm (k = 2, about 95 %)".
+- **Rounding the result finer than its uncertainty.** Round U to two significant figures and the result to the same decimal place: 12.346 ± 0.12 mm is not a better measurement than 12.35 ± 0.12 mm.
+
 ## FAQ
 
 **Type A or Type B?**

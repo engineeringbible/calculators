@@ -48,6 +48,14 @@ The air in a room is at 20 °C with 50 % relative humidity, at sea level. What i
 
 Any surface colder than 9.3 °C, such as a single-glazed window in winter, will collect condensation.
 
+## Common mistakes
+
+- **Using humidity measured at another temperature.** Relative humidity belongs to the temperature it was measured at. Outdoor air at 90 % heated indoors falls to a much lower relative humidity with the same dew point.
+- **Comparing the dew point with the air instead of the coldest surface.** Condensation forms on a window, a cold-water pipe or a duct whose surface is below the dew point, even when the room air is well above it.
+- **Insulating a cold pipe without a vapour barrier.** Moist air reaches the cold pipe through the insulation and condenses inside it, where nobody sees it until the insulation is soaked.
+- **Mixing dew point and frost point.** Below 0 °C water vapour forms frost at a slightly higher temperature than it would form dew. The calculator gives the frost point there.
+- **Ignoring altitude.** The dew point barely changes with pressure, but the moisture content per kilogram of air does. Enter the altitude for HVAC loads at high sites.
+
 ## FAQ
 
 **What is a comfortable dew point?**

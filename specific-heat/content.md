@@ -41,6 +41,14 @@ How much energy does it take to boil 1.5 litres of water starting at 20 °C, and
 
 Actually boiling the water away would take another 1.5 × 2 257 = 3 386 kJ, almost seven times as much.
 
+## Common mistakes
+
+- **Crossing a change of state with Q = m c ΔT.** Melting ice takes 334 kJ/kg and boiling water away 2 257 kJ/kg, against 4.18 kJ/kg per degree to warm water. Add the latent heat separately.
+- **Using cp for a gas in a closed container.** Air heated at constant volume takes its cv, about 0.72 kJ/kg·K, not the cp of 1.005 used for air flowing through a heater.
+- **Adding 273 to a temperature difference.** A difference of 10 °C is a difference of 10 K. Only absolute temperatures convert by adding 273.15.
+- **Taking c as constant over a wide range.** The specific heat of steel climbs steeply near 700 to 770 °C, so forging and heat-treatment estimates need an average c over the range.
+- **Forgetting losses.** The heat the object takes up is not what the heater uses. Set the efficiency, or the time comes out too short.
+
 ## FAQ
 
 **What is the specific heat of water?**
