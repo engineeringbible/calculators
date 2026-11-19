@@ -61,6 +61,14 @@ Delivery of residual fuel: tank tables give 500.0 m³ at 45 °C; the BDN states 
 
 Had the fuel been at 55 °C instead, the VCF would be 0.9724 and the mass 478.4 t: a 10 °C temperature error is worth 3.4 t on this parcel.
 
+## Common mistakes
+
+- **Multiplying the observed volume by the 15 °C density.** Heated fuel has expanded: 1 000 m³ of HFO at 55 °C is about 27 t less fuel than the same volume at 15 °C.
+- **Mixing density in vacuo and in air.** Commercial quantities are mass in air, about 1.1 kg/m³ less than the density in vacuo the laboratory reports. On a large stem that is a tonne or two.
+- **Not deducting free water.** Water at the bottom of a tank is sounded as fuel unless it is found with water-finding paste and taken off.
+- **Taking one temperature for a stratified tank.** A heated tank is warmer near the coils. Take temperatures at several heights, or the correction is wrong.
+- **Skipping the trim and list corrections.** Soundings taken with the ship trimmed or listed read a different ullage from the one the tank tables assume.
+
 ## FAQ
 
 **Why do I need both density and temperature?**

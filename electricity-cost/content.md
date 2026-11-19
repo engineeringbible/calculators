@@ -46,6 +46,13 @@ A 2 kW electric heater runs 4 hours a day, every day, and electricity costs 0.25
 
 If a thermostat keeps it on only 60 % of the time, enter a 60 % duty cycle and every figure falls to 60 %.
 
+## Common mistakes
+
+- **Using the nameplate power for anything with a thermostat.** Fridges, heaters, air conditioners and water heaters switch on and off. Their average draw is a fraction of the rating; set the duty cycle.
+- **Forgetting standby.** A device that draws 5 W in standby all day uses 44 kWh a year, and a house has dozens of them.
+- **Mixing watts and watt-hours.** Watts are the rate; kilowatt-hours are what the meter counts and the bill charges. A 2 kW heater for 3 hours is 6 kWh.
+- **Leaving out the fixed charges.** The unit price covers only the energy. Standing charges, taxes and time-of-use rates change what an extra kWh really costs.
+
 ## FAQ
 
 **How do I calculate the electricity cost of an appliance?**

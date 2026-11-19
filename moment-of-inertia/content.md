@@ -46,6 +46,14 @@ What are the section properties of a 100 mm wide, 200 mm deep rectangular timber
 
 Laid flat, the same beam has Iy = 1 667 cm⁴, a quarter of the stiffness.
 
+## Common mistakes
+
+- **Using the wrong axis.** A 50 × 150 mm joist on edge is nine times as stiff as the same joist laid flat, because I grows with the cube of the depth.
+- **Mixing cm⁴ and mm⁴.** Steel tables give I in cm⁴; 1 cm⁴ is 10 000 mm⁴. A slip here is an error of four orders of magnitude.
+- **Adding the parts about their own centroids.** For a built-up section, each part's inertia must be moved to the common centroid with the parallel-axis term A × d².
+- **Using the elastic modulus where the plastic one is meant, or the reverse.** For a rectangle the plastic modulus is 1.5 times the elastic one; for an I-beam about 1.14 times. Check which one the design code asks for.
+- **Trusting the full section of a thin-walled shape.** Slender flanges and walls buckle locally before the section yields, and the design codes reduce them to an effective section.
+
 ## FAQ
 
 **What is the moment of inertia of a rectangle?**

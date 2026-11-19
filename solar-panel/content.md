@@ -46,6 +46,14 @@ A home uses 10 000 kWh a year and wants to cover all of it. The site gets 4.5 pe
 4. Production: 7.2 × 1 412.6 = 10 170 kWh a year, 102 % of the use.
 5. Roof area: 18 × 1.9 = 34.2 m², about 368 ft².
 
+## Common mistakes
+
+- **Taking the sun hours of a summer month.** In northern Europe June gives about twice the yearly average. Size on the yearly figure, or the system falls short from October to March.
+- **Confusing peak sun hours with daylight hours.** Peak sun hours are the day's energy expressed as hours of full 1 000 W/m² sun; a 14-hour summer day may give only 5 or 6.
+- **Ignoring orientation and shade.** East- or west-facing roofs give roughly 15 to 20 % less than a south-facing one in the northern hemisphere, and a shaded panel can pull down a whole string.
+- **Sizing on one month's bill.** Use the total of twelve months. Heating, cooling and an electric car change the use far more than the season's average suggests.
+- **Expecting the panel's rating on a hot roof.** The rating is at 25 °C cell temperature. Cells run 20 to 30 °C hotter in summer and lose about 0.3 to 0.4 % of output per °C.
+
 ## FAQ
 
 **How many solar panels do I need for my house?**

@@ -45,6 +45,14 @@ A 200 m ship (L_WL 205 m, B 32 m, d 10 m) with a fluid GM of 1.5 m steams at 15 
 4. Head seas of 13 s period: T_E = 9.4 s = T_R/2, λ = 263 m = 1.3 L: parametric rolling danger.
 5. Following seas at 26 knots: above 1.8 √200 = 25.5 knots, surf-riding danger; at 22 knots marginal.
 
+## Common mistakes
+
+- **Using the solid GM.** Slack tanks reduce GM, and the roll period follows the fluid GM. Using the solid value makes the ship look stiffer than she is.
+- **Treating the IS Code coefficient as exact.** C stands for a typical weight distribution; ships with heavy deck cargo or unusual tanks can be 10 to 15 % off. A timed roll is better.
+- **Timing a half roll.** The period is a full roll, out to one side and back to the other side and back again. Time ten rolls and divide by ten.
+- **Changing course without checking the encounter period.** Rolling builds up when the waves meet the ship at about her roll period, or at half of it in head and following seas. A change of course or speed moves away from it.
+- **Reading a short period as extra safety.** A stiff ship has a large margin but violent accelerations that break lashings and shift cargo.
+
 ## FAQ
 
 **Which heading and speed get me out of resonance?**
