@@ -47,6 +47,14 @@ A pump moves 20 m³/h of water at 20 °C from a sump to a tank 15 m higher, thro
 
 Choose a pump whose curve passes through 20 m³/h at about 17.5 m, near its best efficiency point.
 
+## Common mistakes
+
+- **Measuring the lift from the pump instead of the liquid surfaces.** The static lift runs from the suction liquid surface to the discharge surface, so it includes any suction lift below the pump. Leaving out 4 m of suction lift in the worked example gives 13.42 m instead of 17.42 m.
+- **Taking the nominal pipe size as the bore.** Friction rises steeply as the bore shrinks, and the wall schedule changes the bore. A 3 in schedule 80 pipe has a 73.7 mm bore instead of 77.9 mm; with the worked example's flow and length the friction head rises from 1.86 m to 2.46 m.
+- **Converting a vessel pressure with the density of water.** Head is the pressure divided by ρ g of the liquid being pumped. Delivering into a vessel at 3 bar takes 30.6 m of head with water but 36.0 m with an oil of 850 kg/m³.
+- **Keeping the viscosity of water for a thicker liquid.** An oil of 100 cSt and 870 kg/m³ in the worked example's pipe runs laminar at a Reynolds number of about 908. Its friction head is 6.27 m instead of 1.86 m, and the TDH 21.82 m. Enter the viscosity at the pumping temperature.
+- **Taking the hydraulic power as the motor size.** ρ g Q H is the power delivered to the liquid. The pump shaft needs that divided by the pump efficiency from its curve, and the motor is chosen above the shaft power.
+
 ## FAQ
 
 **What is total dynamic head?**

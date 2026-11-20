@@ -57,6 +57,14 @@ A living room is 14 by 20 ft, gets strong afternoon sun, and three people use it
 
 So choose a unit of about 8 000 to 9 000 Btu/h, rather than the 7 000 Btu/h the area alone suggests.
 
+## Common mistakes
+
+- **Using 20 Btu/h per ft² instead of the chart.** The single figure does not follow the chart's steps. For a 600 ft² open-plan room it gives 12 000 Btu/h, while the ENERGY STAR chart gives 14 000 Btu/h.
+- **Leaving out the kitchen allowance.** Cooking adds heat that the floor area does not show. A 12 × 15 ft kitchen needs 10 000 Btu/h, not the 6 000 Btu/h its area alone gives.
+- **Buying the next size up to be safe.** An oversized unit reaches the thermostat setting before it has removed the moisture, then cycles off, so the room feels cold and clammy. Choose the size nearest the result.
+- **Confusing cooling kilowatts with electrical kilowatts.** A 12 000 Btu/h unit delivers 3.52 kW of cooling, but it draws much less from the socket: the cooling divided by its efficiency ratio. Use the input power on the label for the circuit and the running cost.
+- **Using a room chart for a whole house.** The chart covers one space of up to 2 500 ft² with 8 ft ceilings, and the calculator stops there. A house with central air, tall ceilings or large west-facing glass needs a room-by-room load calculation.
+
 ## FAQ
 
 **How many BTU do I need per square foot?**

@@ -52,6 +52,14 @@ How much air is in a room 5 m × 4 m × 2.5 m at normal atmospheric pressure and
 
 So an ordinary room holds about 60 kg of air. Heated to 30 °C in a sealed space, its pressure would rise in proportion to the absolute temperature, by 10 / 293 = 3.4 %, which is why a sealed, sunlit enclosure builds up pressure.
 
+## Common mistakes
+
+- **Entering the gauge pressure.** A receiver at 7 bar gauge holds air at 801.3 kPa absolute. One cubic metre of it at 20 °C holds 9.52 kg of air; entering 700 kPa gives 8.32 kg, 13 % low.
+- **Scaling with degrees Celsius.** Heating sealed air from 20 to 40 °C does not double its pressure, because the law works in kelvin and 313 K is only 7 % above 293 K. Air at 101.3 kPa rises to 108.2 kPa.
+- **Mixing up standard conditions.** "Normal" and "standard" cubic metres are defined at 0 °C, 15 °C or 20 °C, depending on the industry. At 101.325 kPa a kilomole of gas occupies 22.414 m³ at 0 °C, 23.645 m³ at 15 °C and 24.055 m³ at 20 °C, so check the reference before comparing gas volumes or flows.
+- **Using the molar constant with kilograms.** 8.314 J/(mol·K) goes with moles. Per kilogram use the specific constant R/M, 287.1 J/(kg·K) for dry air; mixing the two, or entering the molar mass in g/mol where kg/mol is wanted, puts the answer out by a large factor.
+- **Trusting the ideal law in a high-pressure cylinder.** Above about 10 bar real gases depart from PV = nRT, and the calculator warns. At 200 bar a nitrogen cylinder holds a few per cent less gas than the ideal value, so use the compressibility factor Z for filling and storage calculations.
+
 ## FAQ
 
 **Why must I use absolute pressure and temperature?**

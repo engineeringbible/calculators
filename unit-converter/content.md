@@ -54,6 +54,14 @@ A pump curve gives 440 US gpm at 150 ft head with a 25 hp motor, and the ship's 
 
 Marine example: a ship logs 324 nmi in 24 h; 324 nmi = 600.0 km, average 13.5 kn = 6.94 m/s = 25.0 km/h.
 
+## Common mistakes
+
+- **Converting a temperature difference as a temperature.** A rise of 10 °C is a rise of 18 °F. Converted as a temperature level it shows 50 °F, because the level conversion adds the 32 °F offset. Use the "temperature difference" quantity for rises, tolerances and ΔT in heat transfer.
+- **Taking the wrong gallon.** 1 000 US gallons are 3 785 L and 1 000 imperial gallons are 4 546 L, 20 % more. Tank tables, pump curves and fuel figures from different countries can use either.
+- **Treating every ton as a tonne.** 1 000 tonnes are 984.2 long tons or 1 102.3 short tons. On a cargo or bunker quantity the difference between a long ton and a tonne is 1.6 %.
+- **Mixing up horsepower and metric horsepower.** 10 000 hp is 7 457 kW, but 10 000 PS is 7 355 kW. Engine ratings in PS or CV are metric horsepower.
+- **Expecting the converter to turn gauge into absolute pressure.** It changes the unit, not the reference. 100 psi gauge is 6.895 bar gauge; for absolute pressure add the atmosphere, 1.013 bar, which gives about 7.908 bar absolute.
+
 ## FAQ
 
 **Why are there two horsepowers?**

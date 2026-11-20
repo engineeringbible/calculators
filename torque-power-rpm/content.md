@@ -45,6 +45,14 @@ A 15 kW, 4-pole electric motor runs at 1460 rpm. What torque does its shaft and 
 
 A coupling chosen for this motor should have a rated torque above 98.1 N·m times the service factor for the driven machine, typically 1.5 to 2 for a pump or fan.
 
+## Common mistakes
+
+- **Dividing power by rpm without the 2π/60.** T = P / ω needs ω in rad/s. A 15 kW motor at 1460 rpm carries 98.1 N·m; dividing 15 000 W by 1 460 rpm gives a figure 9.55 times too small. Use T = 9549 × kW / rpm, or enter the speed in rpm here.
+- **Using the synchronous speed instead of the rated speed.** A 4-pole motor on 50 Hz turns at nearly 1500 rpm unloaded but at about 1460 rpm at full load. At 1500 rpm the same 15 kW gives 95.5 N·m instead of 98.1 N·m, so take the speed from the nameplate.
+- **Taking the electrical input as shaft power.** The kW on a motor nameplate is the mechanical output. Power worked out from volts, amps and power factor is the input, which includes the motor's losses: 16.3 kW at 1460 rpm gives 106.6 N·m, more than the shaft actually carries.
+- **Using the motor torque on the gearbox output shaft.** A reducer divides the speed and multiplies the torque by its ratio. The same 15 kW motor through a 10:1 gearbox gives 146 rpm and 981 N·m at the output, less the gearbox losses, so size the output coupling and driven shaft on that.
+- **Sizing a coupling or shaft on the mean torque.** The formula gives the steady or mean torque. Starting torque, shock loads and the firing pulses of a piston engine are higher, so apply the service factor for the driven machine or use the peak torque from the data sheet.
+
 ## FAQ
 
 **How do I convert kW to N·m?**

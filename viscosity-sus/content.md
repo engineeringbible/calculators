@@ -44,6 +44,14 @@ A hydraulic oil has a kinematic viscosity of 20 cSt at 100 °F and a density of 
 
 ASTM D2161's table lists 97.8 SUS for 20.00 cSt at 100 °F.
 
+## Common mistakes
+
+- **Multiplying by 4.632 below 75 cSt.** The linear factor only holds for thicker oils. At 5 cSt the ASTM equation gives 42.4 SUS at 100 °F, close to twice the 23 SUS the factor gives.
+- **Treating cSt and cP as the same number.** Centistokes are kinematic viscosity and centipoise dynamic viscosity; they differ by the density in g/cm³. 20 cSt of an oil at 870 kg/m³ is 17.4 cP, so check which one a pump or pipe-flow formula asks for.
+- **Expecting the temperature correction to change the oil's viscosity.** The ASTM correction covers only the instrument: 20 cSt is 97.8 SUS at 100 °F and 98.5 SUS at 210 °F. The oil itself thins several times over between those temperatures, so a SUS value at 210 °F needs the cSt measured at 210 °F.
+- **Comparing 40 °C grades with 100 °F grades.** ISO grades are defined at 40 °C and most old SUS grades at 100 °F (37.8 °C). An oil sold as 150 SUS at 100 °F is 31.9 cSt at 100 °F and a little thinner at 40 °C, so it is close to ISO VG 32 but not the same.
+- **Reading heavy fuel oil in Universal seconds.** Above about 1 000 SUS the larger Furol orifice was used. 460 cSt at 122 °F is 2 134 SUS but 217 SFS, so check which scale an old specification meant.
+
 ## FAQ
 
 **How do I convert cSt to SSU?**

@@ -43,6 +43,14 @@ A small house has 100 m² of walls at U = 0.30, 20 m² of windows at 1.4, 60 m²
 
 The house needs about 2.7 kW of heating at the design temperature. The walls are the largest single loss, 720 W, but the windows lose almost as much from a fifth of the area.
 
+## Common mistakes
+
+- **Entering US R-values in the metric list.** R13 is in ft²·°F·h/Btu and equals 2.29 m²·K/W. Typed as R13 in the metric list, 100 m² of wall at a 24 K difference loses 185 W instead of 1 048 W. Switch the list to US units or convert the R-value first.
+- **Counting the windows twice.** Measure the walls net of the windows and doors. Taking the gross 122 m² of wall for the example house adds the openings a second time and raises the total from 2 703 W to 2 862 W.
+- **Using the centre-of-glass U-value for windows.** The glass figure leaves out the frame and spacer, which usually lose more. In the example house, 1.1 instead of 1.4 W/(m²·K) for the windows understates the total by 144 W, 2 559 W instead of 2 703 W.
+- **Sizing on the average winter temperature.** Heaters and heat pumps are sized at the local design temperature, not the winter mean. The example house loses 2 703 W at −3 °C but only 1 802 W at 5 °C, and a heater sized on the smaller figure falls short in cold spells.
+- **Leaving out ventilation.** Air leakage and ventilation carry 606 W of the example's 2 703 W at 0.5 air changes an hour, and more in a draughty house. Enter a realistic air change rate rather than zero.
+
 ## FAQ
 
 **How do I calculate the heat loss of a room?**

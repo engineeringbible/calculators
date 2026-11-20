@@ -51,6 +51,14 @@ A 1/2 in four-flute carbide end mill cuts 1018 steel. The cut is 0.25 in deep an
 
 With an HSS end mill the table gives 110 fpm, so the same cutter would run at 840 rpm.
 
+## Common mistakes
+
+- **Mixing up sfm and m/min.** A metre is 3.28 feet, so the two numbers are far apart. A 1/2 in cutter runs at 1 528 rpm for 200 sfm but at 5 013 rpm for 200 m/min. Check which unit the tool maker's data uses before entering it.
+- **Running an HSS tool at a carbide speed.** In 1018 steel the table gives 200 sfm for carbide and 110 fpm for HSS. A 1/2 in HSS end mill at the carbide figure turns at 1 528 rpm instead of 840 rpm and wears out fast.
+- **Using the tool diameter for turning.** On a lathe D is the diameter of the work. A 2 in bar of 1018 with an HSS tool turns at 210 rpm; the same surface speed on a 1/2 in diameter needs 840 rpm. Recalculate as the part gets smaller, or use constant surface speed.
+- **Keeping the feed rate when the spindle hits its limit.** A 1/8 in three-flute carbide end mill in aluminium wants 35 141 rpm and 105.4 in/min at 0.001 in per tooth. On a 10 000 rpm spindle the feed must drop to 30.0 in/min; keeping 105.4 in/min loads each tooth 3.5 times as much and can break the tool.
+- **Ignoring chip thinning in light side cuts.** When the width of cut is below half the cutter diameter, the chip is thinner than the feed per tooth. The tool then rubs instead of cutting and wears faster. The calculator warns when this happens; raise the feed per tooth with the chip load calculator.
+
 ## FAQ
 
 **How do I calculate rpm from surface speed?**

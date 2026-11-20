@@ -47,6 +47,14 @@ A building in open country with low vegetation (terrain category II) has a basic
 
 The exposure factor, q_p divided by the basic pressure ½ ρ v_b², is 2.35, as read from Figure 4.2 of the Eurocode.
 
+## Common mistakes
+
+- **Putting a gust speed into the Eurocode.** EN 1991-1-4 starts from a 10-minute mean speed and adds the gusts through the turbulence term. A 3-second gust from an ASCE map or a weather station counts the gusts twice, and the pressure rises with the square of the speed.
+- **Stopping at the basic pressure ½ ρ v².** The peak pressure adds height, terrain and gusts. At 27 m/s in terrain II, 10 m above the ground, q_p is 1.07 kPa: 2.35 times the basic pressure.
+- **Picking a rougher terrain than the site has.** The category follows the ground upwind of the site, not the plot itself. At 27 m/s and 10 m, terrain III gives 0.779 kPa against 1.07 kPa for open country, 27 % less.
+- **Taking the pressure at mid-height.** For a building no taller than it is wide, EN 1991-1-4 applies the pressure at the top of the wall to the whole face. A 10 m wall in terrain II at 27 m/s takes 1.07 kPa, not the 0.879 kPa found at 5 m.
+- **Using one coefficient for the whole roof.** Corners and edges see much higher suction than the middle of a roof, and internal pressure adds to it. Apply the code's zone coefficients to cladding and fixings near the edges.
+
 ## FAQ
 
 **How do I calculate wind pressure from wind speed?**

@@ -53,6 +53,14 @@ A 50 US gallon electric water heater has a 4.5 kW element. The water comes in at
 
 The standing loss adds only 0.5 minutes here. It matters far more over a whole day than during one heat-up.
 
+## Common mistakes
+
+- **Adding both elements of a two-element tank.** Most domestic electric tanks with an upper and a lower element are wired so that only one heats at a time; check the wiring label. Entering 9 kW for a tank with two 4.5 kW elements gives 57 minutes for the example instead of 114.5.
+- **Taking the gas input rating as the heat into the water.** The Btu/h on the label is the fuel input. At 80 % recovery efficiency a 40 000 Btu/h burner heats 50 US gallons from 50 to 120 °F in 54.8 minutes; assuming 100 % gives 43.8 minutes.
+- **Entering a heat pump's heat output as its input.** The power field takes the electrical input, which the calculator multiplies by the COP. A 0.5 kW input at a COP of 3 heats the 50 gallon tank in 346 minutes; entering the 1.5 kW heat output instead gives 114.5 minutes.
+- **Reading a Fahrenheit rise as kelvin.** US recovery ratings use a 90 °F rise, which is 50 K. A 4.5 kW element recovers 20.5 gallons per hour at that rise; entering 90 K gives 11.4 gallons per hour.
+- **Setting a heat pump tank above about 65 °C.** Most heat pumps cannot reach it without the backup element, which heats at a COP of 1, and the COP falls as the water gets hotter. Both the time and the energy are then higher than calculated.
+
 ## FAQ
 
 **How long does a 50 gallon water heater take to heat?**

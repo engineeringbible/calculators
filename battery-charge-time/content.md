@@ -40,6 +40,14 @@ A 100 Ah flooded lead-acid battery is at 50 % and charged to full with a 10 A ch
 
 The last stretch from 80 to 100 % runs at a falling current in the absorption stage, so in practice allow 2 to 4 hours more for a truly full battery.
 
+## Common mistakes
+
+- **Dividing amp-hours by amps and stopping there.** That leaves out the charge efficiency. The example battery takes 5.88 h with 85 % efficiency, not the 5.0 h the plain division gives.
+- **Entering watt-hours as amp-hours.** A 12 V battery of 1 200 Wh holds 100 Ah. Entered as 1 200 Ah, the 10 A charge from 50 % appears to take 70.6 h instead of 5.88 h, so divide watt-hours by the nominal voltage first.
+- **Charging lead-acid too fast to save time.** 40 A into a 100 Ah flooded battery is 0.4 C, twice the usual 0.2 C. The calculator warns, because the heat and gassing shorten the battery's life.
+- **Forgetting loads that run during the charge.** A fridge or inverter drawing 3 A from a 10 A charger leaves 7 A for the battery, and the example takes 8.40 h instead of 5.88 h.
+- **Expecting full current all the way to 100 %.** The 5.88 h assumes the full 10 A to the end. In practice the current falls above about 80 %: the stretch from 50 to 80 % takes 3.53 h at full current, and a lead-acid battery then needs 2 to 4 hours of absorption to reach full.
+
 ## FAQ
 
 **How do I calculate battery charge time?**

@@ -59,6 +59,14 @@ A natural gas of specific gravity 0.65, free of H₂S and CO₂, is at 2 000 psi
 
 The ideal gas law would give 85.20 kg/m³, about 10 % too low.
 
+## Common mistakes
+
+- **Entering gauge pressure.** The correlations need absolute pressure. A main at 10 bar gauge is at about 11 bar absolute: for a gas of specific gravity 0.6 at 15 °C that is 8.18 kg/m³, against 7.42 kg/m³ if the gauge reading is entered as absolute, about 9 % low.
+- **Using the ideal gas law at pipeline pressure.** At 70 bar absolute and 15 °C the same gas has Z = 0.849. The ideal gas law gives 50.8 kg/m³ instead of 59.8 kg/m³, 15 % low, and line pack and meter readings come out wrong by the same amount.
+- **Leaving out the H₂S and CO₂.** A sour gas of specific gravity 0.75 with 5 % H₂S and 10 % CO₂, at 70 bar and 40 °C, has Z = 0.857 with the acid-gas correction. Without it Z is 0.834 and the density 70.0 kg/m³ instead of 68.2 kg/m³, about 3 % high.
+- **Working out the reduced temperature in °C or °F.** Tpr = T / Tpc only holds with both temperatures absolute, in kelvin or degrees Rankine. A gas of specific gravity 0.6 has Tpc = 195.7 K, so at 15 °C the reduced temperature is 288.15 / 195.7 = 1.472.
+- **Taking the specific gravity on the wrong basis.** Gas specific gravity is the molar mass of the gas divided by that of air, 28.964 g/mol. A liquid specific gravity, or a density ratio measured at different pressures or temperatures, puts the pseudo-critical properties in the wrong place.
+
 ## FAQ
 
 **What is the compressibility factor Z?**

@@ -49,6 +49,14 @@ An engine dyno shows 400 lbf·ft at 5 000 rpm. What is the power at that point, 
 
 In a 3 500 lb car with good traction, the Hale formula predicts a trap speed of 234 × (380.8 / 3 500)^(1/3) = 111.7 mph. Working backwards from a time slip, 111.7 mph gives back about 381 hp.
 
+## Common mistakes
+
+- **Using 5 252 with torque in N·m.** The constant 5 252 works only with lbf·ft. With N·m use kW = N·m × rpm / 9 549: 400 N·m at 5 000 rpm is 209.4 kW, or 280.9 hp, not the 380.8 hp that 400 lbf·ft gives.
+- **Multiplying peak torque by the peak-power rpm.** Torque and rpm must come from the same point on the curve. A turbo engine making 250 lbf·ft at 2 000 rpm produces 95.2 hp there. Multiplying that torque by 5 500 rpm gives 261.8 hp, which the engine reaches only if its torque holds all the way up.
+- **Comparing wheel horsepower with a rated crank figure.** Ratings are quoted at the crank, and a chassis dyno reads at the wheels. With a 15 % loss, 323.7 hp at the wheels is the same engine as 380.8 hp at the crank, so the engine is not down on power.
+- **Leaving the driver out of the race weight.** The quarter-mile formulas use the weight as the car sits on the line, with driver and fuel. A car trapping 113.6 mph is estimated at 400.5 hp at 3 500 lb, but at 377.6 hp if a 200 lb driver is left out.
+- **Treating hp and PS as the same unit.** Metric horsepower is about 1.4 % smaller than mechanical horsepower, so 380.8 hp is 386.1 PS. A rating in PS reads higher than the same power in hp, and one in kW reads lower.
+
 ## FAQ
 
 **How do I calculate horsepower from torque?**

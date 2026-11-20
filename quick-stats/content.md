@@ -36,6 +36,14 @@ Ten days of fuel consumption (t/day): 31.2, 30.8, 31.5, 30.9, 31.1, 31.4, 30.7, 
 4. 34.2 lies above the upper fence; its z = 2.75 gives n·P = 0.06 (Chauvenet) and exceeds the Grubbs critical value 2.290 for n = 10: flagged by all three tests.
 5. Without it the mean is 31.10 t/day and s 0.27 t/day — the day with 34.2 deserves a look in the log (bad weather, a different fuel, a meter fault).
 
+## Common mistakes
+
+- **Pasting numbers with decimal commas.** The comma is read as a separator, so 31,2 becomes two values, 31 and 2. The ten days of the example pasted with commas give 20 values and a mean of 17.55 instead of 31.41. Convert the commas to points first.
+- **Quoting the population standard deviation.** The sample value, with n − 1, estimates the spread of the process. For the example it is 1.014 t/day; the population value of 0.962 t/day understates it, and the gap grows as n gets smaller.
+- **Reading the confidence interval as the range of single values.** The 95 % interval of the example, about 30.7 to 32.1 t/day, is for the mean. Single days scatter with s = 1.014 t/day, so a normal day can fall outside it.
+- **Deleting a flagged value without a cause.** Dropping the 34.2 of the example moves the mean from 31.41 to 31.10 t/day and cuts s from 1.014 to 0.274 t/day. Remove a value only when the log or the instrument explains it, as ISO 5725-2 requires.
+- **Treating consecutive readings as independent.** Noon reports and sensor logs follow each other, so neighbouring values are alike. The real uncertainty of the mean is then larger than the interval shows, and a trend can be weather rather than the ship.
+
 ## FAQ
 
 **Sample or population standard deviation?**

@@ -45,6 +45,14 @@ A steel flywheel is a solid disc 300 mm across and 50 mm thick. What is its mome
 
 A rim of the same mass and outside diameter would store almost twice as much.
 
+## Common mistakes
+
+- **Putting the diameter in for the radius.** I = m r² / 2 uses the radius. The 300 mm steel disc of the worked example has 0.3121 kg·m²; with r = 0.3 m the result is four times too large.
+- **Using rpm in E = ½ I ω².** ω must be in rad/s, rpm × 2π / 60. The disc stores 3 851 J at 1 500 rpm; putting 1 500 in for ω gives an energy far too large.
+- **Shifting from the end of a rod instead of its centre.** The parallel-axis theorem starts from the axis through the centre of mass. A 10 kg rod 1 m long has 0.8333 kg·m² about its centre and 3.333 kg·m² about its end; adding m d² to the end value counts the shift twice.
+- **Treating a rimmed flywheel or pulley as a solid disc.** Where the mass sits matters. A 27.74 kg disc 300 mm across has 0.3121 kg·m²; the same mass as a ring 300 mm outside and 240 mm inside has 0.5119 kg·m², 64 % more.
+- **Adding load inertia straight to the motor's.** A load behind a reduction gearbox counts at the motor as its inertia divided by the square of the ratio. Adding it unreduced, or dividing by the ratio only, overstates the inertia the motor has to accelerate.
+
 ## FAQ
 
 **What is the moment of inertia of a disc?**

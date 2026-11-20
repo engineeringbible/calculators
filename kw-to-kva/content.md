@@ -41,6 +41,14 @@ A plant draws 400 kW at a power factor of 0.8 from a 400 V three-phase supply. W
 
 So the generator must be rated at least 500 kVA, before margins. Raising the power factor to 0.95 with capacitors would cut the requirement to 421 kVA.
 
+## Common mistakes
+
+- **Multiplying by the power factor instead of dividing.** The kVA is larger than the kW unless the power factor is 1. 400 kW at 0.8 needs 500 kVA; multiplying gives a source far too small.
+- **Averaging the power factors of different loads.** Add the kW and the kvar separately and find the kVA from the totals. 100 kW of heaters at 1.0 and 100 kW of motors at 0.6 need 240.4 kVA together; the average power factor of 0.8 would give 250 kVA.
+- **Using a motor's shaft rating as its electrical load.** The nameplate kW of a motor is its output at the shaft. The supply provides that divided by the efficiency, so divide by the efficiency before converting to kVA.
+- **Checking only the kVA of a generator.** A 500 kVA set delivers no more than 400 kW. A 450 kW load at 0.95 needs only 473.7 kVA, but it still overloads the engine, so the load must fit both ratings.
+- **Sizing to the running load alone.** A motor starting direct on line draws several times its running current. Add margin for starting, inrush and growth before choosing the generator or transformer.
+
 ## FAQ
 
 **How do I convert kW to kVA?**

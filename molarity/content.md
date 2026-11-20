@@ -46,6 +46,14 @@ How much sodium chloride is needed for 250 mL of a 0.5 M solution?
 
 Weigh 7.305 g of NaCl, dissolve it in about 200 mL of water, and make up to 250 mL in a volumetric flask.
 
+## Common mistakes
+
+- **Adding the solute to a litre of water.** Molarity is per litre of final solution. Dissolving the solute in 1 L of water gives more than 1 L of solution and a lower concentration. Dissolve it in less water and make up to the mark.
+- **Weighing the anhydrous mass of a hydrate.** For 1 L of 0.1 M copper sulphate from the pentahydrate on the shelf, weigh 24.97 g. Weighing the 15.96 g worked out from the anhydrous molar mass gives only 0.0639 M.
+- **Confusing molarity with normality.** Sulphuric acid gives two protons per molecule, so 0.5 M H₂SO₄ (49.04 g per litre) is 1 N. A method that asks for 1 N acid and gets 1 M has twice the acid it expects.
+- **Confusing molarity with molality in strong solutions.** 37 % hydrochloric acid of density 1.18 g/mL is 12.0 M but 16.1 mol/kg, because the litre of solution holds only about 743 g of water. The two agree only in dilute solutions.
+- **Treating a weighed sodium hydroxide solution as exact.** NaOH pellets take up water and carbon dioxide from the air, so the mass weighed holds less NaOH than it seems. Standardise the solution by titration before using it as a titrant.
+
 ## FAQ
 
 **How do you calculate molarity?**

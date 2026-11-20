@@ -61,6 +61,14 @@ A floor beam spans 20 ft between girders. It carries 400 lb/ft of dead load and 
 
 W12x22 weighs the same and also works. The calculator prefers W14x22 because it has the larger plastic modulus.
 
+## Common mistakes
+
+- **Entering the floor load in psf as the beam load.** The calculator wants pounds per foot of beam: the psf times the beam spacing. In the worked example, 50 and 100 psf on beams 8 ft apart are 400 and 800 lb/ft; entering 50 and 100 lb/ft picks W6x12 instead of W14x22.
+- **Factoring the loads twice.** LRFD applies the 1.2 and 1.6 factors itself, so enter service loads. Entering the example's loads already factored, 480 and 1 280 lb/ft, selects W16x26 instead of W14x22.
+- **Using the result for an unbraced beam.** The check assumes the deck holds the compression flange along its length. An unbraced beam can buckle sideways well below this capacity and needs the full lateral-torsional buckling check of AISC Chapter F or Eurocode 6.3.2.
+- **Assuming A992 strength for A36 steel.** In A36 the example's W14x22 is at 100 % of its bending strength, against 72 % in A992. Select the grade you will actually use.
+- **Using a roof deflection limit for a floor.** At L/180 the example takes a W12x19, which deflects 0.76 in under live load. That is more than the 0.67 in that L/360 allows for a floor with brittle finishes.
+
 ## FAQ
 
 **How do I size a steel beam?**

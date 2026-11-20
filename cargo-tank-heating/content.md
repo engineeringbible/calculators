@@ -61,6 +61,9 @@ Thermal stress on structure and coatings, coil surface temperature (coking of he
 **Can I use this for a fuel oil settling tank?**
 Yes; enter the tank mass and surfaces. For small tanks the coil and bulkhead terms dominate.
 
+**Can I use it for an ISO tank container?**
+Yes. Enter the whole outer surface of the barrel as the shell area (about 54 m² for a 20-foot tank of 2.4 m diameter, ends included), the U of its insulated jacket (about 0.7 W/m²K for 50 mm of insulation), the outside air temperature as the sea temperature, and zero for the deck and bulkhead areas. Heating 20 t of a cargo with a specific heat of 1.9 kJ/kgK from 10 to 50 °C in 24 h then takes 18 kW, or 32 kg/h of 5 bar g steam through the bottom coils, and the losses are only about 4 % of it. That is 40 K a day, above the 10 to 15 K a day usually allowed for heavy cargoes, so allow longer.
+
 **How do I include a deck heat exchanger with circulation?**
 Enter the exchanger duty as the available power in the power mode; its own losses and pumping energy are extra.
 

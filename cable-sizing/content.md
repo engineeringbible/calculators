@@ -82,6 +82,9 @@ No. Check ampacity from the appropriate table for the installation method, ambie
 **What about motor starting?**
 Starting current (6–8 × rated) causes a transient drop that can trip contactors or stall other motors. Run the calculator with the starting current and the starting power factor (0.2–0.4) and compare with the allowed transient drop (often 15 %).
 
+**How does this compare with the UK mV/A/m method?**
+BS 7671 tabulates the voltage drop per ampere per metre of each cable, in mV/A/m, and the drop is mV/A/m × current × length ÷ 1000. A resistance in Ω/km is the same number as mV/A/m for one conductor, so for a single-phase circuit the figure is 2 × R, and for three-phase √3 × R (plus the reactance term on large cables). For 2.5 mm² copper at 70 °C this calculator uses 8.87 Ω/km, which gives 17.7 mV/A/m against the 18 in the UK table; 20 A over 30 m then drops 10.6 V, 4.6 % of 230 V. BS 7671 allows 3 % for lighting and 5 % for other uses on a public supply.
+
 **Aluminium or copper?**
 Aluminium has 1.6 times the resistance for the same section, so it needs about 1.6 times the cross-section for the same drop, but weighs about half. Ships use copper almost exclusively (IEC 60092).
 

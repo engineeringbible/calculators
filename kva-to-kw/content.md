@@ -40,6 +40,14 @@ A standby generator is rated 500 kVA, and the site load has a power factor of 0.
 
 So the site's running load must stay below 400 kW, and the generator's circuit breaker and cables are sized for 722 A.
 
+## Common mistakes
+
+- **Reading kVA as kW.** A 500 kVA generator runs 400 kW of load at a power factor of 0.8, not 500 kW. Check the load against the kW figure.
+- **Expecting more kW from a generator at unity power factor.** At 1.0 the formula gives 500 kW for a 500 kVA set, but the engine is rated for 400 kW. The alternator limits the kVA and the engine the kW, and both limits apply.
+- **Using the phase voltage for a three-phase current.** I = S / (√3 × V) takes the line-to-line voltage. 500 kVA at 400 V is 722 A; entering the 230 V phase voltage gives 1 255 A.
+- **Leaving out the √3 on a three-phase supply.** S / V is the single-phase formula. On a 400 V three-phase supply it gives 1 250 A for 500 kVA instead of 722 A, and the cables and breaker come out oversized.
+- **Assuming 0.8 for lightly loaded motors.** Motors running well below their rating can have a power factor of 0.5 to 0.7. At 0.6 a 500 kVA source carries only 300 kW, so measure the power factor before adding load.
+
 ## FAQ
 
 **How do I convert kVA to kW?**

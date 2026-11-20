@@ -84,6 +84,9 @@ With MoS₂ paste (μ = 0.08) the same bolt reaches 44.9 kN preload at only 61 N
 **Why not just use T = 0.2 F d?**
 Because K ranges from about 0.10 (well lubricated) to 0.30 (dry, rough). For a given torque the preload can vary by a factor of three. K = 0.2 happens to match μ ≈ 0.15.
 
+**What preload does a given torque give?**
+Divide the torque by the nut factor K and the nominal diameter: F = T / (K × d). The calculator prints K for the chosen friction. For an M12 bolt with dry zinc-plated threads K is 0.185, so 70 N·m gives about 70 / (0.185 × 0.012) = 31.6 kN; enter that preload with the "given" basis and the calculator returns 70.0 N·m. Expect the real preload to scatter by about ±25 % around that figure with a torque wrench.
+
 **Should the preload be 90 % of yield? That sounds high.**
 During tightening, yes: VDI 2230 and most European tables use 90 % of yield including the torsion. The torsional stress largely relaxes after tightening, leaving a safe tensile stress. US practice quotes 75 % of proof load for reusable and 90 % for permanent joints; both options are available.
 

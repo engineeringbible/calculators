@@ -48,6 +48,14 @@ A car with a 75 kWh usable battery charges from 20 to 80 % on a 7.2 kW Level 2 c
 6. Range added: 45.0 × 3.4 = 153 mi.
 7. Range added per hour of charging: 7.2 × 0.90 × 3.4 = 22.0 mph, that is 22 miles for each hour on the charger.
 
+## Common mistakes
+
+- **Expecting the wallbox rating on AC.** The car's onboard charger sets the limit. An 11 kW wallbox charging a car with a 7.4 kW onboard charger runs at 7.4 kW, so 20 to 80 % of a 75 kWh battery takes 6 h 45 min, not the 4 h 33 min a car that accepts 11 kW would need.
+- **Leaving out the charging losses.** The meter counts the losses too. At 90 % efficiency, 45 kWh into the battery draws 50 kWh and costs 7.50 at 0.15 per kWh, not 6.75, and takes 6 h 57 min at 7.2 kW instead of 6 h 15 min.
+- **Counting the losses twice with label figures.** EPA figures in kWh/100 mi are measured at the wall and already include the losses. With 30 kWh/100 mi and 90 % efficiency the cost works out at 0.050 per mile, against the correct 0.045 at 100 %, so set the efficiency to 100 % for such figures.
+- **Assuming DC fast charging holds its power to 100 %.** The car cuts the current above about 80 %. The constant-power estimate for 20 to 100 % at 150 kW is 27 minutes, and the calculator warns that the real charge takes much longer.
+- **Using the gross battery capacity.** Part of the battery is kept in reserve and never used. Enter the usable capacity, which is the figure that the state of charge on the dashboard refers to.
+
 ## FAQ
 
 **How long does it take to charge an electric car?**

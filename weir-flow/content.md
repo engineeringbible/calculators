@@ -46,6 +46,14 @@ A rectangular weir with a 2 ft crest and two end contractions sits 1.5 ft above 
 
 Without end contractions the same weir would pass 2.35 ft³/s. A Cipolletti weir of the same length passes 2.38 ft³/s.
 
+## Common mistakes
+
+- **Reading the head at the crest.** The water surface draws down as it approaches the crest, so a gauge there reads low. On a 90° V-notch, a head read as 0.45 ft instead of 0.5 ft gives 0.344 ft³/s instead of 0.446 ft³/s, 23 % less. Read it in still water at least four heads upstream.
+- **Using the Francis coefficient with metres.** 3.33 is for feet and ft³/s. With L and H in metres and Q in m³/s, the suppressed Francis formula becomes Q = 1.84 L H^1.5; the calculator converts metric inputs for you.
+- **Counting the wrong number of end contractions.** A notch narrower than the channel loses flow at each end. The 2 ft weir at 0.5 ft of head passes 63.3 L/s with two contractions; treating it as suppressed gives 66.7 L/s, 5 % high.
+- **Setting the crest too low.** With the crest less than twice the head above the bed, the approach velocity is no longer small and the contraction is incomplete, so the standard equation no longer fits. Raise the crest or calibrate the weir.
+- **Ignoring tailwater on a Parshall flume.** Once the downstream head passes 70 % of the upstream head in a 1 to 8 ft flume, the free-flow equation overstates the flow. Read H_b as well as H_a, and apply the USBR submergence correction above the limit.
+
 ## FAQ
 
 **How much flow does a 90° V-notch pass?**

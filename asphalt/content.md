@@ -47,6 +47,14 @@ A driveway is 12 ft wide and 50 ft long, paved with 3 in of compacted asphalt at
 
 The rule of thumb gives nearly the same answer: 66.7 yd² × 3 in × 110 lb / 2 000 = 11.0 tons before waste. In metric tonnes the order is 10.4 t.
 
+## Common mistakes
+
+- **Multiplying feet by inches.** Convert the thickness to feet first: 3 in is 0.25 ft. The 12 × 50 ft driveway at 3 in is 150 ft³ and 10.88 short tons; leaving the thickness in inches makes it twelve times that.
+- **Ordering to the loose thickness.** The paver lays a thicker mat than the finished course, and the rollers compact it down. The tonnage follows the compacted thickness, so using the loose thickness orders too much.
+- **Mixing short tons and tonnes.** US plants sell by the 2 000 lb short ton, most other countries by the 1 000 kg tonne. The same driveway needs 11.42 short tons with waste, which is 10.36 t; reading one as the other is a 10 % error.
+- **Guessing the density.** Dense-graded mixes weigh 144 to 160 lb/ft³ compacted. The driveway takes 12.60 short tons at 160 lb/ft³ against 11.42 at 145 lb/ft³, so ask the plant for the density of its mix.
+- **Using one waste allowance for every job.** 5 % suits a large, even area. Small patches, hand work and jobs with many edges lose a larger share, so allow more on those.
+
 ## FAQ
 
 **How much does a ton of asphalt cover?**

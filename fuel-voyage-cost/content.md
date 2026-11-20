@@ -72,6 +72,14 @@ A 3 000 nmi passage at 14 knots. The main engine develops 8 000 kW at 175 g/kWh.
 
 Adding a 10 % margin lifts the main-engine fuel to 330 t and the total to 352.3 t.
 
+## Common mistakes
+
+- **Entering the engine MCR instead of the power on passage.** A 12 000 kW engine at 65 % load develops 7 800 kW. On the 3 000 nmi passage at 14 kn with a 10 % margin, the MCR gives 517.3 t of fuel against 344.1 t at the real power, half as much again.
+- **Planning on shop-test SFOC with no margin.** Shop-test SFOC is measured on reference fuel on the test bed, and calm-water power leaves out weather and fouling. The example burns 322.3 t with no margin and 352.3 t with 10 %; the calculator warns when the margin is zero on the power basis.
+- **Adding a margin to noon-report figures.** A daily consumption from recent noon reports already includes the weather and the fouling. At 32 t/day on the same passage, a 10 % margin adds 28.6 t that the ship will not burn.
+- **Expecting fuel to fall in proportion to speed.** Power rises roughly with the cube of speed, so fuel per passage falls roughly with the square. In the common cases, slowing from 14 to 12 kn cuts the total from 352.3 t to 268.6 t, 24 % less, and adds 1.5 days at sea.
+- **Leaving the fuel type at HFO.** The fuel type only sets the CO₂ factor, but that factor differs by fuel. The 322.3 t of the example emit 1 003.7 t of CO₂ as HFO and 1 033.4 t as MGO, which matters for the CII and the EU ETS.
+
 ## FAQ
 
 **What is SFOC and where do I get it?**

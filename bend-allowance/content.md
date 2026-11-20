@@ -49,6 +49,14 @@ A U-channel is 30 × 50 × 30 mm outside, in 2 mm steel, with a 2 mm inside radi
 
 With K = 0.44 the blank would be 103.05 mm, 0.72 mm longer.
 
+## Common mistakes
+
+- **Entering the included angle as the bend angle.** A drawing that shows 135° between the legs means a 45° bend. For the 30 × 50 × 30 mm channel of the example with two 45° bends the blank is 107.54 mm; entering 135° gives 83.86 mm, almost 24 mm short.
+- **Adding the bend allowance to outside dimensions.** Bend allowance goes with the flat lengths inside the bends; bend deduction goes with the outside dimensions. Adding 2 × 4.16 mm to the 110 mm of outside legs in the example gives 118.33 mm instead of 102.33 mm.
+- **Using the punch radius in air bending.** In air bending the inside radius follows the die opening, so the part may not get the punch radius. If the channel of the example really bends to 3 mm instead of 2 mm, the blank is 101.74 mm, not 102.33 mm, and a blank cut to the 2 mm figure makes the part about 0.6 mm oversize.
+- **One K-factor for every radius.** The K-factor rises with R/T: DIN 6935 gives 0.325 at R = T, 0.400 at R = 2T and 0.5 from R = 5T. A fixed K = 0.44 makes the 2 mm channel blank 103.05 mm, 0.72 mm longer than the DIN value. Check it with a test bend.
+- **A flange shorter than the outside setback.** A 2 mm sheet over a 2 mm radius has an outside setback of 4 mm, so a 3 mm leg has no flat left to bend against. The calculator warns about it; it often means the leg lengths were entered in the wrong units.
+
 ## FAQ
 
 **What is bend allowance?**
