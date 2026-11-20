@@ -69,7 +69,7 @@ Si cambias a una carga uniformemente distribuida de 5 kN/m: M = w L² / 8 = 10 k
 Límites de servicio habituales: luz/250 para estructuras en general, luz/360 para forjados y vigas que soportan enlucidos o equipos, luz/180 para voladizos (medido desde el empotramiento). Las reglas de construcción naval usan sus propios límites; consulta las reglas de la sociedad de clasificación.
 
 **¿La tensión es correcta pero la flecha es grande: es un problema?**
-A menudo sí: los límites de flecha condicionan las luces largas y las secciones esbeltas. La flecha crece con L³ o L⁴ y la tensión solo con L o L², así que duplicar una luz aproximadamente duplica la tensión pero multiplica la flecha por ocho a dieciséis.
+A menudo sí: los límites de flecha condicionan las luces largas y las secciones esbeltas. La flecha crece con L³ o L⁴ y la tensión solo con L o L², así que duplicar una luz duplica la tensión con una carga puntual y la cuadruplica con una carga repartida, pero multiplica la flecha por ocho o por dieciséis.
 
 **¿Por qué mi I es menor que el valor del catálogo para la misma viga en I?**
 La fórmula no incluye los radios de acuerdo entre el alma y el ala. Introduce el I del catálogo y c = h/2 como sección personalizada.

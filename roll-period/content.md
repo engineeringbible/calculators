@@ -68,7 +68,7 @@ Yes: time ten full roll cycles in calm water (or beam swell) and divide; the IS 
 The waterplane, and so GM, changes as crests and troughs pass a flared hull; when this happens twice per roll period the roll is pumped up. Large container ships with pronounced bow flare and flat sterns in head seas are the classic case.
 
 **What is broaching?**
-A sudden yaw to beam-on while surfing a following wave, with a large heel; the circular's speed limit 1.8 √L cos⁻¹ marks the zone to avoid.
+A sudden yaw to beam-on while surfing a following wave, with a large heel; the circular's speed limit, 1.8 √L / cos(180° − α) knots with L in metres, marks the zone to avoid.
 
 **Does water depth matter?**
 The wave relations assume deep water (depth > λ/2). In shallow water waves are shorter and slower for the same period and the celerity formula changes; use the wave-properties calculator.

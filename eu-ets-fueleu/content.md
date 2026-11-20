@@ -65,7 +65,7 @@ By energy: each fuel's well-to-wake intensity is weighted by its energy (mass ×
 41 000 MJ, the energy content the regulation assigns to a tonne of VLSFO. The penalty converts the deficit in gCO₂e into the energy of compliant fuel that would have fixed it, then charges 2 400 EUR per tonne of that energy.
 
 **Why does the penalty rise in consecutive years?**
-Annex IV adds 10 % for each additional consecutive year with a deficit, so the third year in a row costs 1.2 times the formula value.
+Article 23(2) adds 10 % for each additional consecutive year with a deficit, so the third year in a row costs 1.2 times the formula value.
 
 **Can I pool with other ships?**
 Yes: compliance balances of ships under the same or different companies can be pooled if the pool total is positive. This calculator shows the ship-level balance; pooling is an allocation on top.

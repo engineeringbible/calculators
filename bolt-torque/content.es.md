@@ -69,7 +69,7 @@ M12 × 1.75, clase de resistencia 8.8, cincado en seco (μ_G = μ_K = 0.14), cab
 5. Factor de apriete: K = 93 / (42.0 × 12) = 0.185. La regla de 0.2 daría 101 N·m, un 8 % de más.
 6. Dispersión: con α_A = 1.7 la precarga mínima es 42.0 / 1.7 = 24.7 kN.
 
-Con pasta de MoS₂ (μ = 0.08) el mismo tornillo alcanza 44.9 kN de precarga con solo 61 N·m. Aplicar el par en seco a un tornillo lubricado lo sobrecargaría: por eso la condición de rozamiento debe coincidir con la de la tabla de pares.
+Con pasta de MoS₂ (μ = 0.08) el mismo tornillo alcanza 45.2 kN de precarga con solo 63 N·m. Aplicar el par en seco a un tornillo lubricado lo sobrecargaría: por eso la condición de rozamiento debe coincidir con la de la tabla de pares.
 
 ## Preguntas frecuentes
 
@@ -86,7 +86,7 @@ La tensión de prueba S_p (ISO 898-1) es aproximadamente el 90 % del límite el�
 Una arandela templada aumenta D_Km (más par bajo la cabeza) y protege la superficie. Introduce el diámetro exterior de la arandela y el diámetro del taladro con la opción de diámetro de apoyo «dado».
 
 **¿Qué precisión tiene el apriete por par?**
-De ±17 % a ±43 % en la precarga con llave dinamométrica, según lo bien que se conozca el rozamiento (α_A de VDI 1.4–2.0); las llaves de impacto son mucho peores. Si la unión es crítica, usa control por ángulo o medición ultrasónica del alargamiento.
+De ±17 % a ±33 % en la precarga con llave dinamométrica, según lo bien que se conozca el rozamiento (α_A de VDI 1.4–2.0); las llaves de impacto son mucho peores. Si la unión es crítica, usa control por ángulo o medición ultrasónica del alargamiento.
 
 **¿Puedo usar el resultado para roscas finas o tornillos UNC/UNF?**
 No directamente. Las roscas finas tienen mayor sección resistente y menor paso; las roscas en pulgadas tienen otra geometría y grados SAE. La estructura de las fórmulas es la misma si calculas d₂, d₃ y A_s para esa rosca.

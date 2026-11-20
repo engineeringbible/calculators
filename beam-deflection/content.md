@@ -69,7 +69,7 @@ Change to a uniformly distributed 5 kN/m: M = w L² / 8 = 10 kN·m again, but δ
 Common serviceability limits: span/250 for general structures, span/360 for floors and beams carrying plaster or equipment, span/180 for cantilevers (measured from the fixed end). Shipbuilding rules use their own limits; check the class rules.
 
 **The stress is fine but the deflection is large. Is that a problem?**
-Often yes: deflection limits govern long spans and slender sections. Deflection scales with L³ or L⁴, stress only with L or L², so doubling a span roughly doubles the stress but increases deflection eight to sixteen times.
+Often yes: deflection limits govern long spans and slender sections. Deflection scales with L³ or L⁴, stress only with L or L², so doubling a span doubles the stress under a point load and quadruples it under a uniform load, but increases the deflection eight or sixteen times.
 
 **Why is my I lower than the catalogue value for the same I-beam?**
 The formula ignores the fillets between web and flange. Enter the catalogue I and c = h/2 as a custom section.

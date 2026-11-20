@@ -68,7 +68,7 @@ Any tank that is slack (neither empty nor pressed up) lets its liquid move when 
 Exact for the geometric shape (bisection to a hundredth of a millimetre). The practical limit is the tank's true geometry and the sounding method.
 
 **What density should I use?**
-The density at the tank temperature: HFO 0.97–0.99 t/m³ when heated, MGO 0.84, fresh water 1.000, sea water 1.025, lube oil about 0.90. For custody transfer use the 15 °C density with the volume correction factor.
+The density at the tank temperature: HFO about 0.95–0.97 t/m³ when heated to 40–60 °C (0.97–0.99 at 15 °C), MGO 0.84, fresh water 1.000, sea water 1.025, lube oil about 0.90. For custody transfer use the 15 °C density with the volume correction factor.
 
 **Does the calculator handle a tilted tank?**
 No. A trimmed horizontal cylinder is a more complex integral; use the tank tables or treat small trims as a level change at the sounding point.

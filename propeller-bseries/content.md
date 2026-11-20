@@ -67,7 +67,7 @@ The thrust loading is light for the diameter: either the ship is fast and lightl
 More blades reduce pressure pulses and vibration at some efficiency cost; four or five is normal for merchant ships. Blade number affects KT and KQ directly in the polynomials.
 
 **What is J?**
-The advance coefficient V_A/(nD): the distance advanced per revolution in diameters. Zero thrust occurs near J ≈ P/D (less the hydrodynamic pitch effect).
+The advance coefficient V_A/(nD): the distance advanced per revolution in diameters. Zero thrust occurs slightly above J = P/D, at about 1.06 P/D for a typical B-series screw, because the blade sections are cambered.
 
 **Is the Keller check enough?**
 No. It gives the blade area at which back cavitation is unlikely for a conventional single-screw ship; it says nothing about tip-vortex, sheet or face cavitation under off-design conditions.

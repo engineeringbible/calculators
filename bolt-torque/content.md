@@ -69,11 +69,11 @@ M12 × 1.75, property class 8.8, dry zinc-plated (μ_G = μ_K = 0.14), hex head 
 5. Nut factor: K = 93 / (42.0 × 12) = 0.185. The 0.2 rule would give 101 N·m, 8 % high.
 6. Scatter: with α_A = 1.7 the minimum preload is 42.0 / 1.7 = 24.7 kN.
 
-With MoS₂ paste (μ = 0.08) the same bolt reaches 44.9 kN preload at only 61 N·m. Using the dry torque on a lubricated bolt would overload it: that is why the friction condition must match the torque table.
+With MoS₂ paste (μ = 0.08) the same bolt reaches 45.2 kN preload at only 63 N·m. Using the dry torque on a lubricated bolt would overload it: that is why the friction condition must match the torque table.
 
 ## Common mistakes
 
-- **Using a dry-thread torque on a lubricated bolt.** Oil, moly paste or anti-seize lower the friction, so the same torque drives far more preload. With MoS₂ paste an M12 class 8.8 bolt reaches its full preload at 61 N·m; the dry figure of 93 N·m would take it past yield.
+- **Using a dry-thread torque on a lubricated bolt.** Oil, moly paste or anti-seize lower the friction, so the same torque drives far more preload. With MoS₂ paste an M12 class 8.8 bolt reaches its full preload at 63 N·m; the dry figure of 93 N·m would take it past yield.
 - **Ignoring the coating's friction class.** Zinc flake sits in class B (μ about 0.12) and hot-dip galvanizing in class D (μ about 0.20). One torque value for both gives preloads a third or more apart.
 - **Designing on the target preload.** A standard torque wrench scatters the preload by about ±25 %, so the joint has to hold with the minimum, F_M divided by the tightening factor.
 - **Tightening stainless steel bolts dry.** A2 and A4 threads gall and can seize before the preload is reached. Use an anti-seize and the matching low-friction class.
@@ -85,7 +85,7 @@ With MoS₂ paste (μ = 0.08) the same bolt reaches 44.9 kN preload at only 61 N
 Because K ranges from about 0.10 (well lubricated) to 0.30 (dry, rough). For a given torque the preload can vary by a factor of three. K = 0.2 happens to match μ ≈ 0.15.
 
 **What preload does a given torque give?**
-Divide the torque by the nut factor K and the nominal diameter: F = T / (K × d). The calculator prints K for the chosen friction. For an M12 bolt with dry zinc-plated threads K is 0.185, so 70 N·m gives about 70 / (0.185 × 0.012) = 31.6 kN; enter that preload with the "given" basis and the calculator returns 70.0 N·m. Expect the real preload to scatter by about ±25 % around that figure with a torque wrench.
+Divide the torque by the nut factor K and the nominal diameter: F = T / (K × d). The calculator prints K for the chosen friction. For an M12 bolt with dry zinc-plated threads K is 0.1847, so 70 N·m gives about 70 / (0.1847 × 0.012) = 31.6 kN; enter that preload with the "given" basis and the calculator returns 70.0 N·m. Expect the real preload to scatter by about ±25 % around that figure with a torque wrench.
 
 **Should the preload be 90 % of yield? That sounds high.**
 During tightening, yes: VDI 2230 and most European tables use 90 % of yield including the torsion. The torsional stress largely relaxes after tightening, leaving a safe tensile stress. US practice quotes 75 % of proof load for reusable and 90 % for permanent joints; both options are available.
@@ -97,7 +97,7 @@ Proof stress S_p (ISO 898-1) is about 90 % of the minimum yield; a bolt loaded t
 A hardened washer increases D_Km (more under-head torque) and protects the surface. Enter the washer outside diameter and the hole diameter via the "given" bearing option.
 
 **How accurate is torque tightening?**
-±17 % to ±43 % on preload for a torque wrench depending on how well the friction is known (VDI α_A 1.4–2.0); impact wrenches are far worse. If the joint is critical, use angle control or ultrasonic length measurement.
+±17 % to ±33 % on preload for a torque wrench depending on how well the friction is known (VDI α_A 1.4–2.0); impact wrenches are far worse. If the joint is critical, use angle control or ultrasonic length measurement.
 
 **Can I use the result for fine threads or UNC/UNF bolts?**
 Not directly. Fine threads have a larger stress area and smaller pitch; inch threads have different geometry and SAE grades. The formula structure is the same if you compute d₂, d₃ and A_s for that thread.

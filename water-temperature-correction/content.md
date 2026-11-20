@@ -24,7 +24,7 @@ Reference: 15 °C, ρ_ref 1026.0 kg/m³, ν_ref 1.1883 × 10⁻⁶ m²/s. Water 
 - Propulsive efficiency unchanged by the small resistance change; correction applied on speed through water.
 - The reference power should be the tank prediction (trials) or the baseline curve (service) at the same speed.
 - ITTC table for density and viscosity (not the Annex E viscosity polynomial, 0.17 % apart, second order).
-- Effect scale about ±1 % of power between 5 and 30 °C for typical merchant ships.
+- Effect scale under 1 % of power between 5 and 30 °C for typical merchant ships: about +0.3 % at 5 °C and −0.6 % at 30 °C against the 15 °C reference.
 
 ## Worked example
 
@@ -49,7 +49,7 @@ The ITTC table gives 1025.9 kg/m³ at 15 °C while ISO fixes the reference at 10
 Brackish water (Baltic, river estuaries) lowers the density by up to 2–3 % and dominates the density term; enter the salinity or the measured density.
 
 **Can I apply this to service data?**
-Yes, with the baseline power as R_Tref and the sea surface temperature along the voyage; the effect is ±1 % and systematic by season and route.
+Yes, with the baseline power as R_Tref and the sea surface temperature along the voyage; the effect is small, under 1 % of power, but systematic by season and route.
 
 **What is the roughness allowance doing here?**
 It is part of the frictional coefficient at both conditions; it changes little with temperature but is included because the standard includes it.

@@ -71,7 +71,7 @@ The road owner sets it, often as a ratio HW/D or as a freeboard below the road e
 Manning assumes a long, full pipe with no entrance. A short culvert usually loses more head at the inlet than in the barrel.
 
 **What does tailwater do?**
-High tailwater pushes the outlet-control headwater up. With 4 ft of tailwater the same 36 in pipe needs 4.64 ft of headwater, now under outlet control.
+High tailwater pushes the outlet-control headwater up. With 4 ft of tailwater the same 36 in pipe needs 4.64 ft of headwater at 50 ft³/s, now under outlet control.
 
 **What entrance loss coefficient should I use?**
 HDS-5 Table C.2 gives 0.5 for a square-edged headwall, 0.2 for a groove end and 0.4 to 0.7 for boxes depending on the wingwalls.
