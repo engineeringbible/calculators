@@ -55,6 +55,16 @@ single-phase:  I = S / V</code></pre>
 </ol>
 <p>So the site&#39;s running load must stay below 400 kW, and the generator&#39;s circuit breaker and cables are sized for 722 A.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Reading kVA as kW.</strong> A 500 kVA generator runs 400 kW of load at a power factor of 0.8, not 500 kW. Check the load against the kW figure.</li>
+<li><strong>Expecting more kW from a generator at unity power factor.</strong> At 1.0 the formula gives 500 kW for a 500 kVA set, but the engine is rated for 400 kW. The alternator limits the kVA and the engine the kW, and both limits apply.</li>
+<li><strong>Using the phase voltage for a three-phase current.</strong> I = S / (√3 × V) takes the line-to-line voltage. 500 kVA at 400 V is 722 A; entering the 230 V phase voltage gives 1 255 A.</li>
+<li><strong>Leaving out the √3 on a three-phase supply.</strong> S / V is the single-phase formula. On a 400 V three-phase supply it gives 1 250 A for 500 kVA instead of 722 A, and the cables and breaker come out oversized.</li>
+<li><strong>Assuming 0.8 for lightly loaded motors.</strong> Motors running well below their rating can have a power factor of 0.5 to 0.7. At 0.6 a 500 kVA source carries only 300 kW, so measure the power factor before adding load.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>How do I convert kVA to kW?</summary>

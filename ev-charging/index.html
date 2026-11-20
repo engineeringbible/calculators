@@ -64,6 +64,16 @@ range per hour = P × η / c</code></pre>
 <li>Range added per hour of charging: 7.2 × 0.90 × 3.4 = 22.0 mph, that is 22 miles for each hour on the charger.</li>
 </ol>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Expecting the wallbox rating on AC.</strong> The car&#39;s onboard charger sets the limit. An 11 kW wallbox charging a car with a 7.4 kW onboard charger runs at 7.4 kW, so 20 to 80 % of a 75 kWh battery takes 6 h 45 min, not the 4 h 33 min a car that accepts 11 kW would need.</li>
+<li><strong>Leaving out the charging losses.</strong> The meter counts the losses too. At 90 % efficiency, 45 kWh into the battery draws 50 kWh and costs 7.50 at 0.15 per kWh, not 6.75, and takes 6 h 57 min at 7.2 kW instead of 6 h 15 min.</li>
+<li><strong>Counting the losses twice with label figures.</strong> EPA figures in kWh/100 mi are measured at the wall and already include the losses. With 30 kWh/100 mi and 90 % efficiency the cost works out at 0.050 per mile, against the correct 0.045 at 100 %, so set the efficiency to 100 % for such figures.</li>
+<li><strong>Assuming DC fast charging holds its power to 100 %.</strong> The car cuts the current above about 80 %. The constant-power estimate for 20 to 100 % at 150 kW is 27 minutes, and the calculator warns that the real charge takes much longer.</li>
+<li><strong>Using the gross battery capacity.</strong> Part of the battery is kept in reserve and never used. Enter the usable capacity, which is the figure that the state of charge on the dashboard refers to.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>How long does it take to charge an electric car?</summary>

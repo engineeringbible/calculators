@@ -66,6 +66,16 @@ Recovery = P_heat / (ρ c ΔT_rise)</code></pre>
 </ol>
 <p>The standing loss adds only 0.5 minutes here. It matters far more over a whole day than during one heat-up.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Adding both elements of a two-element tank.</strong> Most domestic electric tanks with an upper and a lower element are wired so that only one heats at a time; check the wiring label. Entering 9 kW for a tank with two 4.5 kW elements gives 57 minutes for the example instead of 114.5.</li>
+<li><strong>Taking the gas input rating as the heat into the water.</strong> The Btu/h on the label is the fuel input. At 80 % recovery efficiency a 40 000 Btu/h burner heats 50 US gallons from 50 to 120 °F in 54.8 minutes; assuming 100 % gives 43.8 minutes.</li>
+<li><strong>Entering a heat pump&#39;s heat output as its input.</strong> The power field takes the electrical input, which the calculator multiplies by the COP. A 0.5 kW input at a COP of 3 heats the 50 gallon tank in 346 minutes; entering the 1.5 kW heat output instead gives 114.5 minutes.</li>
+<li><strong>Reading a Fahrenheit rise as kelvin.</strong> US recovery ratings use a 90 °F rise, which is 50 K. A 4.5 kW element recovers 20.5 gallons per hour at that rise; entering 90 K gives 11.4 gallons per hour.</li>
+<li><strong>Setting a heat pump tank above about 65 °C.</strong> Most heat pumps cannot reach it without the backup element, which heats at a COP of 1, and the COP falls as the water gets hotter. Both the time and the energy are then higher than calculated.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>How long does a 50 gallon water heater take to heat?</summary>

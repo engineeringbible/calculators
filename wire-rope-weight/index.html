@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wire rope weight calculator — Engineering calculators</title>
+  <meta name="description" content="Steel wire rope weight per metre and per foot for 6×19, 6×36, 8-strand and rotation-resistant rope, the length on a reel from its weight, and the breaking load.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+</head>
+<body>
+  <main class="ec-page">
+    <a class="ec-back" href="../index.html">← All calculators</a>
+    <span class="ec-category">Mechanical</span>
+    <h1 class="ec-title">Wire rope weight calculator</h1>
+    <p class="ec-summary">Steel wire rope weight per metre, per foot and per 100 m from the EN 12385-4 mass factors, the length on a reel from its weight, and the minimum breaking load.</p>
+    <div id="calculator"></div>
+    <!-- article: generated from content.md by build-manifest.js; edit content.md, not this block -->
+<article class="ec-article" aria-label="About this calculator">
+<section class="ec-article-section" data-section="introduction">
+<h2 id="ec-article-introduction">Introduction</h2>
+<p>The weight of steel wire rope goes up with the square of its diameter. EN 12385-4 gives each rope construction a length mass factor W, so the mass per metre is W × d² / 100 kg with d in mm. A 20 mm 6×36 rope with a steel core has W = 0.409 and weighs 1.636 kg per metre, so 100 m of it weighs 163.6 kg. A 10 mm 6×19 rope weighs between 0.36 and 0.40 kg per metre, depending on whether its core is fibre or steel.</p>
+<p>This calculator gives the weight per metre, per foot and per 100 m for twelve common constructions, from 6×7 to 35×7 rotation-resistant rope, or for factors taken from a rope maker&#39;s data sheet. It finds the weight of a given length, or the length of rope on a reel from its net weight. It also gives the weight in water, the minimum breaking load and how much of that load the hanging rope&#39;s own weight takes up. It is for riggers, crane and winch crews, deck officers and anyone ordering, shipping or spooling rope.</p>
+</section>
+<section class="ec-article-section" data-section="formulas">
+<h2 id="ec-article-formulas">Formulas</h2>
+<p>Mass per length (EN 12385-4):</p>
+<pre class="ec-formula" tabindex="0"><code>m&#39; = W × d² / 100          kg/m, d in mm</code></pre>
+<p>Weight of a length, or the length from a weight:</p>
+<pre class="ec-formula" tabindex="0"><code>M = m&#39; × L        L = M / m&#39;</code></pre>
+<p>Mass in water:</p>
+<pre class="ec-formula" tabindex="0"><code>m&#39;_w = m&#39; × (1 − ρ_w / 7 850)</code></pre>
+<p>Minimum breaking force and the share taken by the hanging rope:</p>
+<pre class="ec-formula" tabindex="0"><code>MBL = K × d² × R_r / 1 000          kN, R_r in N/mm²
+share = m&#39; × g × L / MBL</code></pre>
+<ul>
+<li>W — nominal length mass factor, kg per 100 m per mm²: 0.359 for 6×19 fibre core, 0.400 for 6×19 steel core, 0.409 for 6×36 steel core</li>
+<li>K — minimum breaking force factor: 0.330 fibre core, 0.356 steel core for the 6×19 and 6×36 classes</li>
+<li>ρ_w — 1 025 kg/m³ for seawater, 1 000 kg/m³ for fresh water</li>
+<li>R_r — rope grade, 1770, 1960 or 2160 N/mm²</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="assumptions-and-limitations">
+<h2 id="ec-article-assumptions-and-limitations">Assumptions and limitations</h2>
+<ul>
+<li>The W and K factors are those a rope maker tabulates according to EN 12385-4. For every construction here they reproduce that maker&#39;s printed weight and breaking load at 20 mm. A rope&#39;s own data sheet or certificate takes precedence.</li>
+<li>The mass is for new, lubricated rope at its nominal diameter. EN 12385-4 allows most sizes to measure up to 5 % over nominal, so a real rope may weigh a few per cent more.</li>
+<li>US tables (ASTM A1023 and the Wire Rope Users Manual) list slightly heavier figures for the same nominal size. Use the maker&#39;s figure when the weight matters, as for a crane&#39;s load chart or a shipping limit.</li>
+<li>The weight in water treats the whole rope as steel. The fibre core and the lubricant are close to the density of water, so a fibre-core rope weighs a little less in water than shown.</li>
+<li>The share of the breaking load is for the rope hanging straight down. Sheaves, drums, wave motion and the load on the hook are not included.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="worked-example">
+<h2 id="ec-article-worked-example">Worked example</h2>
+<p>How much do 100 m of 20 mm 6×36 IWRC wire rope weigh, and how much does the rope take from its own breaking load when it hangs from a crane?</p>
+<ol>
+<li>Mass per metre: 0.409 × 20² / 100 = 1.636 kg/m, which is 1.099 lb/ft.</li>
+<li>Weight of 100 m: 1.636 × 100 = 163.6 kg.</li>
+<li>In seawater: 1.636 × (1 − 1 025 / 7 850) = 1.422 kg/m.</li>
+<li>Minimum breaking load in grade 1770: 0.356 × 20² × 1 770 / 1 000 = 252.0 kN.</li>
+<li>The hanging 100 m weighs 163.6 × 9.81 = 1.60 kN, which is 0.64 % of the breaking load.</li>
+</ol>
+<p>To find what is left on a reel instead, weigh it and subtract the empty reel. A net 500 kg of 16 mm 6×19 IWRC rope, which weighs 0.400 × 16² / 100 = 1.024 kg/m, is 500 / 1.024 = 488 m of rope.</p>
+</section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Using one weight for every rope of the same diameter.</strong> At 20 mm a 6×36 rope with a steel core weighs 1.64 kg/m and an 8×19 rope with a fibre core 1.36 kg/m, about a sixth less. Pick the construction on the rope&#39;s certificate.</li>
+<li><strong>Forgetting the steel core.</strong> A steel core (IWRC) rope weighs about 11 % more than the same rope with a fibre core, and a deep-water winch or crane jib feels that extra weight.</li>
+<li><strong>Weighing the reel with the rope.</strong> A wooden or steel reel can weigh several hundred kilograms. Subtract its stamped tare mass before dividing by the mass per metre, or the length comes out far too long.</li>
+<li><strong>Mixing kg per 100 m and kg per metre.</strong> Rope tables print the weight per 100 m, and W is in kg per 100 m per mm². A W of 0.409 means 0.409 kg per metre for a 10 mm rope, not 0.409 kg per metre for every size.</li>
+</ul>
+</section>
+<section class="ec-article-section" data-section="faq">
+<h2 id="ec-article-faq">FAQ</h2>
+<details class="ec-faq"><summary>How much does wire rope weigh per metre?</summary>
+<p>W × d² / 100 kg, with d in mm. For a 6×19 or 6×36 rope that is about 0.36 to 0.41 kg/m at 10 mm, 0.92 to 1.05 kg/m at 16 mm and 1.44 to 1.64 kg/m at 20 mm.</p>
+</details>
+<details class="ec-faq"><summary>How much does 1/2 inch wire rope weigh per foot?</summary>
+<p>About 0.43 lb/ft for 6×19 rope with a steel core by the EN factor: 0.400 × 12.7² / 100 = 0.645 kg/m. US tables list about 0.46 lb/ft. Fibre-core rope is about a tenth lighter.</p>
+</details>
+<details class="ec-faq"><summary>How do I work out how much rope is left on a reel?</summary>
+<p>Weigh the full reel, subtract the empty reel&#39;s mass, and divide by the mass per metre. Choose &quot;The net weight on a reel&quot; above to do it here.</p>
+</details>
+<details class="ec-faq"><summary>How much does wire rope weigh in water?</summary>
+<p>About 87 % of its weight in air for seawater, because steel is 7.85 times denser than water. A 20 mm 6×36 IWRC rope goes from 1.64 kg/m in air to 1.42 kg/m in seawater.</p>
+</details>
+<details class="ec-faq"><summary>Why does a steel core rope weigh more?</summary>
+<p>The independent wire rope core (IWRC) is a small steel rope in the centre. It replaces a fibre core that is nearly as light as water, so the rope is heavier and about 8 % stronger, and it crushes less on a drum.</p>
+</details>
+<details class="ec-faq"><summary>How long can a wire rope hang before it breaks under its own weight?</summary>
+<p>For 6×36 IWRC rope of grade 1770 it is about 15.7 km, whatever the diameter, because weight and strength both rise with d². With a safety factor of 5, a hanging length of a fifth of that, about 3.1 km, would use the whole working load.</p>
+</details>
+</section>
+<section class="ec-article-section" data-section="related-calculators">
+<h2 id="ec-article-related-calculators">Related calculators</h2>
+<ul>
+<li><a href="../wire-rope-swl/index.html">Wire rope and chain safe working load</a> — the SWL from the breaking load and a safety factor.</li>
+<li><a href="../lifting-sling/index.html">Lifting sling and wire rope load</a> — leg tension at sling angles.</li>
+<li><a href="../metal-weight/index.html">Steel and metal weight</a> — plate, bar and section weights.</li>
+<li><a href="../mooring-line-meg4/index.html">Mooring line and winch brake</a> — MEG4 line strengths.</li>
+</ul>
+</section>
+</article>
+<!-- /article -->
+    <section id="notes" aria-label="Assumptions, caveats and sources"></section>
+    <section id="tests" class="ec-tests" aria-label="Self-tests"></section>
+    <noscript><p class="ec-status ec-status-error">This calculator needs JavaScript. The formulas and a worked example are in the article below.</p></noscript>
+  </main>
+  <script type="module">
+    import { mountCalculatorPage } from '../shared/ui.js';
+    import { schema, calculate } from './calc.js';
+    import { tests } from './tests.js';
+    mountCalculatorPage({ schema, calculate, tests });
+  </script>
+</body>
+</html>

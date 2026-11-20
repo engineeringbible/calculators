@@ -53,6 +53,16 @@ C-rate = I / Q_rated   (I in A, Q in Ah)</code></pre>
 </ol>
 <p>The last stretch from 80 to 100 % runs at a falling current in the absorption stage, so in practice allow 2 to 4 hours more for a truly full battery.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Dividing amp-hours by amps and stopping there.</strong> That leaves out the charge efficiency. The example battery takes 5.88 h with 85 % efficiency, not the 5.0 h the plain division gives.</li>
+<li><strong>Entering watt-hours as amp-hours.</strong> A 12 V battery of 1 200 Wh holds 100 Ah. Entered as 1 200 Ah, the 10 A charge from 50 % appears to take 70.6 h instead of 5.88 h, so divide watt-hours by the nominal voltage first.</li>
+<li><strong>Charging lead-acid too fast to save time.</strong> 40 A into a 100 Ah flooded battery is 0.4 C, twice the usual 0.2 C. The calculator warns, because the heat and gassing shorten the battery&#39;s life.</li>
+<li><strong>Forgetting loads that run during the charge.</strong> A fridge or inverter drawing 3 A from a 10 A charger leaves 7 A for the battery, and the example takes 8.40 h instead of 5.88 h.</li>
+<li><strong>Expecting full current all the way to 100 %.</strong> The 5.88 h assumes the full 10 A to the end. In practice the current falls above about 80 %: the stretch from 50 to 80 % takes 3.53 h at full current, and a lead-acid battery then needs 2 to 4 hours of absorption to reach full.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>How do I calculate battery charge time?</summary>

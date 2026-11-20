@@ -56,6 +56,16 @@ single-phase:  I = S / V</code></pre>
 </ol>
 <p>So the generator must be rated at least 500 kVA, before margins. Raising the power factor to 0.95 with capacitors would cut the requirement to 421 kVA.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Multiplying by the power factor instead of dividing.</strong> The kVA is larger than the kW unless the power factor is 1. 400 kW at 0.8 needs 500 kVA; multiplying gives a source far too small.</li>
+<li><strong>Averaging the power factors of different loads.</strong> Add the kW and the kvar separately and find the kVA from the totals. 100 kW of heaters at 1.0 and 100 kW of motors at 0.6 need 240.4 kVA together; the average power factor of 0.8 would give 250 kVA.</li>
+<li><strong>Using a motor&#39;s shaft rating as its electrical load.</strong> The nameplate kW of a motor is its output at the shaft. The supply provides that divided by the efficiency, so divide by the efficiency before converting to kVA.</li>
+<li><strong>Checking only the kVA of a generator.</strong> A 500 kVA set delivers no more than 400 kW. A 450 kW load at 0.95 needs only 473.7 kVA, but it still overloads the engine, so the load must fit both ratings.</li>
+<li><strong>Sizing to the running load alone.</strong> A motor starting direct on line draws several times its running current. Add margin for starting, inrush and growth before choosing the generator or transformer.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>How do I convert kW to kVA?</summary>

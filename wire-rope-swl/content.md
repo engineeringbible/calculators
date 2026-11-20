@@ -73,6 +73,7 @@ Not directly. Mooring lines are sized by OCIMF MEG4 from the ship design MBL; us
 ## Related calculators
 
 - [Lifting sling and wire rope load](../lifting-sling/index.html) — leg tension at sling angles.
+- [Wire rope weight](../wire-rope-weight/index.html) — weight per metre and the length on a reel.
 - [Mooring line and winch brake](../mooring-line-meg4/index.html) — MEG4 line strengths.
 - [Padeye calculator](../padeye/index.html) — the lifting point the rope connects to.
 - [Anchor holding power](../anchor-holding/index.html) — the load an anchor chain must take.

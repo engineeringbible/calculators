@@ -58,6 +58,16 @@ m_p = mf × (e^(Δv / v_e) − 1)</code></pre>
 </ol>
 <p>To reach 3 000 m/s with the same 400 kg final mass, it would need 709.0 kg of propellant.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Taking the propellant mass as the final mass.</strong> The final mass is what is left after the burn: structure, engines and payload. A 1 000 kg rocket burning 600 kg at 300 s gains 2 695.7 m/s; entering 600 kg as the final mass gives 1 502.8 m/s.</li>
+<li><strong>Converting Isp with the local gravity.</strong> Specific impulse always converts with standard gravity, 9.806 65 m/s², even on Mars. Using 3.71 m/s² turns a 300 s engine into a 1 113 m/s exhaust and cuts the delta-v at a mass ratio of 2.5 from 2 695.7 to 1 019.8 m/s.</li>
+<li><strong>Leaving the upper stages out of a lower stage&#39;s mass.</strong> Each stage pushes everything above it. In the staging defaults, stage 1 gives 3 567.7 m/s with the upper stage and payload on top. Taken alone, its 22 000 kg falling to 2 000 kg would claim 6 584.3 m/s.</li>
+<li><strong>Using the vacuum Isp for a stage that fires at sea level.</strong> Air pressure at the nozzle exit lowers the Isp near the ground. For 3 000 m/s, a 300 s engine needs 63.9 % of the lift-off mass as propellant against 59.3 % at 340 s, so the vacuum figure undersizes the tanks.</li>
+<li><strong>Comparing the ideal delta-v with orbital speed.</strong> The equation leaves out gravity, drag and steering losses. A rocket whose ideal delta-v only equals the orbital speed will not reach orbit; add the losses to the budget.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>What is the rocket equation?</summary>

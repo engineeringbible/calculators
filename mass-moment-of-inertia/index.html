@@ -60,6 +60,16 @@ rectangular block, normal to face a × b:    I = m (a² + b²) / 12</code></pre>
 </ol>
 <p>A rim of the same mass and outside diameter would store almost twice as much.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Putting the diameter in for the radius.</strong> I = m r² / 2 uses the radius. The 300 mm steel disc of the worked example has 0.3121 kg·m²; with r = 0.3 m the result is four times too large.</li>
+<li><strong>Using rpm in E = ½ I ω².</strong> ω must be in rad/s, rpm × 2π / 60. The disc stores 3 851 J at 1 500 rpm; putting 1 500 in for ω gives an energy far too large.</li>
+<li><strong>Shifting from the end of a rod instead of its centre.</strong> The parallel-axis theorem starts from the axis through the centre of mass. A 10 kg rod 1 m long has 0.8333 kg·m² about its centre and 3.333 kg·m² about its end; adding m d² to the end value counts the shift twice.</li>
+<li><strong>Treating a rimmed flywheel or pulley as a solid disc.</strong> Where the mass sits matters. A 27.74 kg disc 300 mm across has 0.3121 kg·m²; the same mass as a ring 300 mm outside and 240 mm inside has 0.5119 kg·m², 64 % more.</li>
+<li><strong>Adding load inertia straight to the motor&#39;s.</strong> A load behind a reduction gearbox counts at the motor as its inertia divided by the square of the ratio. Adding it unreduced, or dividing by the ratio only, overstates the inertia the motor has to accelerate.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>What is the moment of inertia of a disc?</summary>

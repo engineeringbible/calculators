@@ -59,6 +59,16 @@ local_arrival = UTC_arrival + offset_arrival</code></pre>
 </ol>
 <p>The local calendar shows 9 days from departure to arrival, although the ship is at sea for 9 days and 10 hours.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Entering the zone description instead of the UTC offset.</strong> A ship&#39;s zone description has the opposite sign: Yokohama at UTC+9 keeps ZD −9. Entering −9 for the example moves the ETA from 05:40 to 23:40 on 17 November, 18 hours late, and hides the date-line crossing.</li>
+<li><strong>Adding the passage time to the local departure time.</strong> That gives the ETA in the departure zone. A 3 000 nmi crossing at 14 kn leaving at 14:00 at UTC−5 arrives at 12:17 by the departure clock, which is 17:17 at the UTC+0 destination.</li>
+<li><strong>Forgetting daylight saving time.</strong> The offsets are those in force on the day. The 400 nmi coastal passage of the common cases arrives at 17:34 with a winter departure offset of UTC+1; entered as UTC+2 by mistake, it shows 16:34.</li>
+<li><strong>Counting calendar days as days at sea.</strong> Across the date line the two differ. Westbound from UTC−8 to UTC+8, 5 000 nmi at 18 kn is 11 d 13 h 47 min at sea but 12 days on the calendar, because one date is skipped.</li>
+<li><strong>Using the speed through the water.</strong> The ETA needs the speed over the ground. One knot of head current on the 3 000 nmi crossing, 13 kn instead of 14 kn, adds 16 h 29 min and moves the arrival to the next morning.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>How do I calculate an ETA?</summary>

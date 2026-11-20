@@ -60,6 +60,16 @@ q_z = 0.00256 K_z K_zt K_d K_e V²    psf, V in mph</code></pre>
 </ol>
 <p>The exposure factor, q_p divided by the basic pressure ½ ρ v_b², is 2.35, as read from Figure 4.2 of the Eurocode.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Putting a gust speed into the Eurocode.</strong> EN 1991-1-4 starts from a 10-minute mean speed and adds the gusts through the turbulence term. A 3-second gust from an ASCE map or a weather station counts the gusts twice, and the pressure rises with the square of the speed.</li>
+<li><strong>Stopping at the basic pressure ½ ρ v².</strong> The peak pressure adds height, terrain and gusts. At 27 m/s in terrain II, 10 m above the ground, q_p is 1.07 kPa: 2.35 times the basic pressure.</li>
+<li><strong>Picking a rougher terrain than the site has.</strong> The category follows the ground upwind of the site, not the plot itself. At 27 m/s and 10 m, terrain III gives 0.779 kPa against 1.07 kPa for open country, 27 % less.</li>
+<li><strong>Taking the pressure at mid-height.</strong> For a building no taller than it is wide, EN 1991-1-4 applies the pressure at the top of the wall to the whole face. A 10 m wall in terrain II at 27 m/s takes 1.07 kPa, not the 0.879 kPa found at 5 m.</li>
+<li><strong>Using one coefficient for the whole roof.</strong> Corners and edges see much higher suction than the middle of a roof, and internal pressure adds to it. Apply the code&#39;s zone coefficients to cladding and fixings near the edges.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>How do I calculate wind pressure from wind speed?</summary>

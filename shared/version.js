@@ -4,7 +4,7 @@
  * (units.js, validate.js, stats.js, seawater.js, fuels.js, sections.js, format.js, eseries.js, fluids.js, power.js, awg.js, concrete.js, psychro.js, pipes.js, iapws97.js) and one of each calculator's calc.js.
  */
 export const LIBRARY_VERSION = '0.4.0';
-export const BUILD_DATE = '2026-11-19';
+export const BUILD_DATE = '2026-11-20';
 export const SHARED_HASH = '39b7bc9511ba';
 export const CALC_HASHES = {
   'admiralty-coefficient': '3dc1bbbfc7e5',
@@ -288,6 +288,7 @@ export const CALC_HASHES = {
   'wind-load': '1ab2e1e0f46e',
   'wind-resistance': '06e1b9399c06',
   'wind-turbine-power': 'db0f21c04d44',
-  'wire-rope-swl': 'a84c0b450af7',
+  'wire-rope-swl': 'f23d7dee3f7f',
+  'wire-rope-weight': '2f7497436b1c',
   'wire-size': 'fb66df2610f3',
 };

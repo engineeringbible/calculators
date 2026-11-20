@@ -1,7 +1,7 @@
 {
   "name": "Engineering calculators",
   "version": "0.4.0",
-  "generated": "2026-11-19",
+  "generated": "2026-11-20",
   "categories": [
     "automotive",
     "civil",
@@ -66392,6 +66392,7 @@
       ],
       "related": [
         "lifting-sling",
+        "wire-rope-weight",
         "mooring-line-meg4",
         "padeye",
         "anchor-holding"
@@ -66452,7 +66453,228 @@
         "Chain size: … is not a size of …."
       ],
       "sendTo": [],
-      "calcHash": "a84c0b450af7"
+      "calcHash": "f23d7dee3f7f"
+    },
+    {
+      "id": "wire-rope-weight",
+      "name": "Wire rope weight calculator",
+      "category": "mechanical",
+      "summary": "Steel wire rope weight per metre and per foot for 6×19, 6×36, 8-strand and rotation-resistant rope, the length on a reel from its weight, and the breaking load.",
+      "path": "wire-rope-weight/index.html",
+      "inputs": [
+        {
+          "id": "construction",
+          "label": "Rope construction",
+          "type": "select",
+          "options": [
+            "6x7_fc",
+            "7x7",
+            "6x19_fc",
+            "6x19_iwrc",
+            "6x36_fc",
+            "6x36_iwrc",
+            "8x19_fc",
+            "8x19_iwrc",
+            "8x36_fc",
+            "8x36_iwrc",
+            "18x7",
+            "35x7",
+            "custom"
+          ],
+          "default": "6x36_iwrc"
+        },
+        {
+          "id": "w_custom",
+          "label": "Length mass factor W (kg per 100 m per mm²)",
+          "group": "dimensionless",
+          "unit": "",
+          "default": 0.4,
+          "min": 0.1,
+          "max": 1
+        },
+        {
+          "id": "k_custom",
+          "label": "Breaking force factor K",
+          "group": "dimensionless",
+          "unit": "",
+          "default": 0.356,
+          "min": 0.1,
+          "max": 1
+        },
+        {
+          "id": "diameter_m",
+          "label": "Nominal rope diameter d",
+          "group": "length",
+          "unit": "m",
+          "default": 0.02,
+          "min": 0.002,
+          "max": 0.12
+        },
+        {
+          "id": "mode",
+          "label": "What do you know?",
+          "type": "select",
+          "options": [
+            "length",
+            "mass"
+          ],
+          "default": "length"
+        },
+        {
+          "id": "length_m",
+          "label": "Rope length",
+          "group": "length",
+          "unit": "m",
+          "default": 100,
+          "min": 0.1,
+          "max": 100000
+        },
+        {
+          "id": "mass_kg",
+          "label": "Net rope weight (full reel less empty reel)",
+          "group": "mass",
+          "unit": "kg",
+          "default": 500,
+          "min": 0.01,
+          "max": 1000000
+        },
+        {
+          "id": "grade",
+          "label": "Rope grade R_r (for the breaking load)",
+          "type": "select",
+          "options": [
+            "1770",
+            "1960",
+            "2160"
+          ],
+          "default": "1770"
+        },
+        {
+          "id": "water",
+          "label": "Water (for the weight in water)",
+          "type": "select",
+          "options": [
+            "sea",
+            "fresh"
+          ],
+          "default": "sea"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "w_factor",
+          "label": "Length mass factor W",
+          "group": "dimensionless",
+          "unit": ""
+        },
+        {
+          "id": "unit_kg_m",
+          "label": "Weight per length",
+          "group": "linear_density",
+          "unit": "kg/m"
+        },
+        {
+          "id": "per100_kg",
+          "label": "Weight per 100 m",
+          "group": "mass",
+          "unit": "kg"
+        },
+        {
+          "id": "length_out_m",
+          "label": "Rope length",
+          "group": "length",
+          "unit": "m"
+        },
+        {
+          "id": "total_kg",
+          "label": "Total rope weight",
+          "group": "mass",
+          "unit": "kg"
+        },
+        {
+          "id": "submerged_kg_m",
+          "label": "Weight per length in water",
+          "group": "linear_density",
+          "unit": "kg/m"
+        },
+        {
+          "id": "mbl_n",
+          "label": "Minimum breaking load",
+          "group": "force",
+          "unit": "N"
+        },
+        {
+          "id": "self_share",
+          "label": "Own weight of the hanging length as a share of the MBL",
+          "group": "ratio",
+          "unit": "–"
+        },
+        {
+          "id": "basis_text",
+          "label": "Basis",
+          "type": "text"
+        }
+      ],
+      "related": [
+        "wire-rope-swl",
+        "lifting-sling",
+        "metal-weight",
+        "mooring-line-meg4"
+      ],
+      "assumptions": [
+        "The mass per metre is W d² / 100 kg/m, with d the nominal diameter in mm and W the nominal length mass factor of the rope construction in EN 12385-4. The factors here are those a rope maker tabulates according to EN 12385-4; a rope's own data sheet or certificate overrides them.",
+        "The mass is for a new, lubricated rope at its nominal diameter. EN 12385-4 allows the measured diameter of most sizes to be up to 5 % over nominal, so a real rope may weigh a few per cent more. US tables (ASTM A1023, the Wire Rope Users Manual) list slightly heavier figures for the same nominal size.",
+        "The length on a reel is the net rope mass divided by the mass per metre. Weigh the reel full and subtract the empty reel, whose mass is stamped on it or given by the supplier.",
+        "The mass in water treats the whole rope as steel of 7 850 kg/m³. The fibre core and the lubricant are close to the density of water, so a fibre-core rope weighs a little less in water than shown.",
+        "The minimum breaking force is K d² R_r / 1 000 kN by EN 12385-4. The share of it taken by the rope's own weight is for the given length hanging straight down; it ignores sheaves, drums and dynamic loads."
+      ],
+      "notes": [
+        "Verification 2026-11-20: 20 mm 6×36 IWRC rope has W = 0.409, so 0.409 × 20² / 100 = 1.636 kg/m and 163.6 kg per 100 m (catalogue table: 164 kg); its MBL in grade 1770 is 0.356 × 400 × 1 770 / 1 000 = 252.0 kN (catalogue: 252 kN). Checked by hand.",
+        "Verification 2026-11-20: a 500 kg net coil of 16 mm 6×19 IWRC rope (1.024 kg/m) holds 500 / 1.024 = 488.3 m. Checked by hand.",
+        "Design decision: the rope grade is offered for every construction, though makers do not stock every grade in every construction; the mass does not depend on the grade."
+      ],
+      "sources": [
+        "EN 12385-4:2002+A1:2008 Steel wire ropes — Safety — Part 4: Stranded ropes for general lifting applications (nominal length mass factor W, minimum breaking force factor K, diameter tolerance)",
+        "Hendrik Veder Group, Steel wire rope catalogue, chapter 4 (6-strand, 8-strand and rotation-resistant ropes according to EN 12385-4): factors W and K and the tables of weight per 100 m and minimum breaking load",
+        "Wire Rope Technical Board, Wire Rope Users Manual, 4th ed. (2005), and ASTM A1023/A1023M: approximate weights of US ropes, for comparison"
+      ],
+      "checks": [
+        {
+          "name": "Every construction at 20 mm matches the catalogue table: weight per 100 m and MBL within the printed rounding",
+          "source": "Hendrik Veder Group steel wire rope catalogue, chapter 4, tables according to EN 12385-4"
+        },
+        {
+          "name": "32 mm rows: 6×19 IWRC 410 kg and 645 kN; 6×36 IWRC 419 kg; 8×19 FC 348 kg and 531 kN; 35×7 465 kg and 723 kN (1960)",
+          "source": "Hendrik Veder Group steel wire rope catalogue, chapter 4, tables according to EN 12385-4"
+        },
+        {
+          "name": "Worked example: 100 m of 20 mm 6×36 IWRC = 1.636 kg/m (1.099 lb/ft), 163.6 kg, 1.422 kg/m in seawater, own weight 0.637 % of 252.0 kN",
+          "source": "Hand calculation: m' = W d² / 100, m'_w = m' (1 − 1 025 / 7 850), share = m' g L / MBL"
+        },
+        {
+          "name": "Length on a reel: a 500 kg net coil of 16 mm 6×19 IWRC (1.024 kg/m) holds 488.3 m; the round trip returns the mass",
+          "source": "Hand calculation: L = M / m'"
+        },
+        {
+          "name": "Entered factors are used as given; an unusual W warns; the rope's own weight warns at a fifth of the MBL",
+          "source": "Validation contract"
+        },
+        {
+          "name": "A diameter of 1 mm, a zero length and an unknown construction are rejected",
+          "source": "Validation contract"
+        },
+        {
+          "name": "Worked example of the article: the calculator reproduces 1.636 kg/m, 163.6 kg, 252.0 kN to the digits printed",
+          "source": "content.md, Worked example (the numbers as printed there)"
+        }
+      ],
+      "runtimeWarnings": [
+        "W outside 0.3 to 0.5 is unusual for stranded steel rope: check the factor and its unit (kg per 100 m per mm²).",
+        "Hanging straight down, this length of rope weighs a fifth of its breaking load or more: with a safety factor of 5 it could lift nothing more."
+      ],
+      "validationErrors": [],
+      "sendTo": [],
+      "calcHash": "2f7497436b1c"
     },
     {
       "id": "wire-size",

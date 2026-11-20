@@ -58,6 +58,16 @@ E = H × HDD × 24 / 1000                          kWh</code></pre>
 </ol>
 <p>The house needs about 2.7 kW of heating at the design temperature. The walls are the largest single loss, 720 W, but the windows lose almost as much from a fifth of the area.</p>
 </section>
+<section class="ec-article-section" data-section="common-mistakes">
+<h2 id="ec-article-common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Entering US R-values in the metric list.</strong> R13 is in ft²·°F·h/Btu and equals 2.29 m²·K/W. Typed as R13 in the metric list, 100 m² of wall at a 24 K difference loses 185 W instead of 1 048 W. Switch the list to US units or convert the R-value first.</li>
+<li><strong>Counting the windows twice.</strong> Measure the walls net of the windows and doors. Taking the gross 122 m² of wall for the example house adds the openings a second time and raises the total from 2 703 W to 2 862 W.</li>
+<li><strong>Using the centre-of-glass U-value for windows.</strong> The glass figure leaves out the frame and spacer, which usually lose more. In the example house, 1.1 instead of 1.4 W/(m²·K) for the windows understates the total by 144 W, 2 559 W instead of 2 703 W.</li>
+<li><strong>Sizing on the average winter temperature.</strong> Heaters and heat pumps are sized at the local design temperature, not the winter mean. The example house loses 2 703 W at −3 °C but only 1 802 W at 5 °C, and a heater sized on the smaller figure falls short in cold spells.</li>
+<li><strong>Leaving out ventilation.</strong> Air leakage and ventilation carry 606 W of the example&#39;s 2 703 W at 0.5 air changes an hour, and more in a draughty house. Enter a realistic air change rate rather than zero.</li>
+</ul>
+</section>
 <section class="ec-article-section" data-section="faq">
 <h2 id="ec-article-faq">FAQ</h2>
 <details class="ec-faq"><summary>How do I calculate the heat loss of a room?</summary>

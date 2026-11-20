@@ -68,7 +68,7 @@ export const schema = {
   name: 'Wire rope and chain safe working load calculator',
   category: 'maritime',
   summary: 'Wire rope breaking load (EN 12385-4) and safe working load with EN 13414 or ILO safety factors, and Grade 80 or 100 chain working load limits.',
-  related: ['lifting-sling', 'mooring-line-meg4', 'padeye', 'anchor-holding'],
+  related: ['lifting-sling', 'wire-rope-weight', 'mooring-line-meg4', 'padeye', 'anchor-holding'],
   assumptions: [
     'The minimum breaking force of stranded rope is K d² R_r / 1000 kN by EN 12385-4, with K = 0.330 for fibre core and 0.356 for steel core ropes of the 6×19 and 6×36 classes, d the nominal diameter in mm and R_r the rope grade in N/mm². A manufacturer\'s certificate overrides it.',
     'The termination efficiency covers the strength lost at the end fitting or over a sheave or pin: about 0.9 for a ferrule-secured eye (EN 13414-1) and lower for wedge sockets or bulldog grips. Bending a rope over a pin smaller than about 25 rope diameters cuts its strength further; use the maker\'s D/d curve.',
